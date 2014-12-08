@@ -1,0 +1,1 @@
+/var/www/default/edu/app/views/posts/edit.blade.php
