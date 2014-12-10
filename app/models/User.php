@@ -11,8 +11,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	// Add your validation rules here
 	public static $rules = [
-		'email' => 'required|email',
-		'password' => 'required',
+		'email' => 'required|email|unique:users',
+		'password' => 'required|confirmed',
 	];
 
 	/**
@@ -31,5 +31,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+    
+    public function setPasswordAttribute($password){
+        
+        $this->attributes['password'] = Hash::make($password);
+        
+    }
 
 }

@@ -35,8 +35,8 @@
 
             <ul>
                 <li>{{ link_to('/', 'Home') }}</li>
-                <li>{{ link_to('/register', 'Register') }}</li>
                 @if (Auth::guest())
+                    <li>{{ link_to('/register', 'Register') }}</li>
                     <li>{{ link_to('/login', 'Login') }}</li>
                 @else
                     <li>{{ link_to('/logout', 'Logout') }}</li>

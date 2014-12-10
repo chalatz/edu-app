@@ -11,6 +11,7 @@
 |
 */
 
+# Home
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
 Route::get('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
@@ -18,9 +19,11 @@ Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@
 
 Route::resource('users', 'UsersController');
 
+# Registration
 Route::get('/register', 'RegistrationController@create');
-Route::resource('registration', 'RegistrationController');
+Route::post('/register', ['as' => 'registration.store', 'use' => 'RegistrationController@store']);
 
-Route::get('login', 'SessionsController@create');
-Route::get('logout', 'SessionsController@destroy');
-Route::resource('sessions', 'SessionsController');
+# Authentication
+Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
+Route::get('logout',['as' => 'logout', 'uses' => 'SessionsController@destroy']);
+Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);

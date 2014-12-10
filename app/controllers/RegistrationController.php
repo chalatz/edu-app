@@ -21,6 +21,8 @@ class RegistrationController extends \BaseController {
 	 */
 	public function create()
 	{
+        if(Auth::check()) return Redirect::home();
+        
 		return View::make('registration.create');
 	}
 
@@ -32,6 +34,14 @@ class RegistrationController extends \BaseController {
 	 */
 	public function store()
 	{
+        $validator = Validator::make($data = Input::all(), User::$rules);
+        
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        //$data['password'] = Hash::make(Input::get('password'));
+        
 		$user = User::create(Input::only('email', 'password'));
 
 		Auth::login($user);
