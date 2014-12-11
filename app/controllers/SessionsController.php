@@ -3,17 +3,6 @@
 class SessionsController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 * GET /sessions
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 * GET /sessions/create
 	 *
@@ -21,7 +10,7 @@ class SessionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('sessions.create');
 	}
 
 	/**
@@ -32,43 +21,18 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /sessions/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /sessions/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /sessions/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+		$validator = Validator::make($data = Input::only(['email', 'password']), User::$login_rules);
+        
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        if(Auth::attempt($data)){
+            return Redirect::intended('/');
+        }
+        
+        return Redirect::back()->withInput()->withFlashMessage('Invalid credentials provided');
+        
 	}
 
 	/**

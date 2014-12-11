@@ -14,6 +14,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'email' => 'required|email|unique:users',
 		'password' => 'required|confirmed',
 	];
+    
+    public static $login_rules= [
+		'email' => 'required|email',
+		'password' => 'required',
+	];
 
 	/**
 	 * The database table used by the model.
@@ -36,6 +41,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         
         $this->attributes['password'] = Hash::make($password);
         
+    }
+    
+    public function profile(){
+        return $this->hasOne('Profile');
     }
 
 }
