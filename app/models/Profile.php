@@ -8,7 +8,7 @@ class Profile extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['location', 'bio', 'twitter_username'];
     
     public function user(){
         $this->belongsTo('User');

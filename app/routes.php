@@ -14,9 +14,6 @@
 # Home
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
-# Profile
-Route::get('/profile/{profile}', 'ProfilesController@show');
-
 # Registration
 Route::get('/register', 'RegistrationController@create')->before('guest');
 Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
@@ -25,6 +22,11 @@ Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationC
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
 Route::get('logout',['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
+
+# Profile
+Route::resource('profile', 'ProfilesController', ['only' => ['update']]);
+Route::get('/profile/{profile}',['as' => 'profile', 'uses' => 'ProfilesController@show' ]);
+Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'ProfilesController@edit']);
 
 // Route::get('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
 // Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@logmein']);

@@ -27,7 +27,37 @@ class ProfilesController extends \BaseController {
 		
 	}
     
+    public function edit($userid) {
+        
+        try {
+            $user = User::with('profile')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        return View::make('profiles.edit', compact('user'));
+        
+    }
     
+    public function update($userid){
+        
+        try {
+            $user = User::with('profile')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        $input = Input::only('location', 'bio', 'twitter_username');
+        
+        $user->profile->fill($input)->save();
+        
+        return Redirect::route('profile', $user->id);
+        
+    }
 
 
 }
