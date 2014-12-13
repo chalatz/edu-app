@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class SessionsController extends \BaseController {
 
 	/**
@@ -27,13 +29,37 @@ class SessionsController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
         
-        if(Auth::attempt($data)){
+        $login_data = Input::only(['email', 'password']);
+        $login_data['confirmed'] = 1;
+        
+        if(Auth::attempt($login_data)){
+            
             return Redirect::intended('/');
+            
         }
         
         return Redirect::back()->withInput()->withFlashMessage('Invalid credentials provided');
         
 	}
+    
+    public function verify() {
+        
+        $parameters = Route::getCurrentRoute()->parameters();
+        $confirmation_string = $parameters['confirmation_string'];
+        
+        try {
+            $user = User::whereConfirmation_string($confirmation_string)->firstOrFail();  
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        return 'verified';
+        
+        
+        
+    }
 
 	/**
 	 * Remove the specified resource from storage.

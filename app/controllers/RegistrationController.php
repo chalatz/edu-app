@@ -30,10 +30,14 @@ class RegistrationController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
         
-        //$data['password'] = Hash::make(Input::get('password'));
+        $confirmation_string = str_random(40);
         
-		$user = User::create(Input::only('email', 'password'));
-
+        $user_data = Input::only('email', 'password');
+        $user_data['confirmation_string'] = $confirmation_string;
+        
+		//$user = User::create(Input::only('email', 'password'));
+        $user = User::create($user_data);
+        
 		Auth::login($user);
 
 		return Redirect::home();
