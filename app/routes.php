@@ -28,6 +28,13 @@ Route::resource('profile', 'ProfilesController', ['only' => ['update']]);
 Route::get('/profile/{profile}',['as' => 'profile', 'uses' => 'ProfilesController@show' ]);
 Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'ProfilesController@edit']);
 
+# Test Email
+// Route::get('testemail', function(){
+//     Mail::send('emails.test', [], function($message){
+//         $message->to('chalatz@yahoo.gr')->subject('Hello from Laravel and Mandrill');
+//     });
+// });
+
 // Route::get('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
 // Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@logmein']);
 // Route::resource('users', 'UsersController');
