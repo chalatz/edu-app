@@ -2,15 +2,15 @@
 
 @section('content')
 
-    <h1>Login</h1>
+    <h1>Σύνδεση</h1>
 
     {{ Form::open(array('route' => 'sessions.store', 'class' => 'pure-form pure-form-stacked')) }}
 
-		{{ Form::label('email', 'Email') }}
+		{{ Form::label('email', 'E-mail') }}
 		{{ Form::email('email') }}
         {{ $errors->first('email') }}
 
-		{{ Form::label('password', 'Password') }}
+		{{ Form::label('password', 'Κωδικός Πρόσβασης') }}
 		{{ Form::password('password') }}
         {{ $errors->first('password') }}
 

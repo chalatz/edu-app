@@ -2,9 +2,12 @@
 
 @section('content')
 
-	<h1>Home</h1>
+	<h3>Καλώς ορίσατε.</h3>
 
-	<h2>{{ Auth::check() ? "Welcome, " . Auth::user()->email : "Signup" }}</h2>
-
+    @if(Auth::check())
+        <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
+    @else
+        <p>{{ link_to('login', 'Συνδεθείτε') }} ή {{ link_to('register', 'Εγγραφείτε') }}</p>
+    @endif
 
 @stop

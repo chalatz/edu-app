@@ -21,14 +21,9 @@ class SessionsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+    
 	public function store()
 	{
-		$validator = Validator::make($data = Input::only(['email', 'password']), User::$login_rules);
-        
-        if($validator->fails()){
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-        
         $login_data = Input::only(['email', 'password']);
         $login_data['confirmed'] = 1;
         
@@ -38,7 +33,7 @@ class SessionsController extends \BaseController {
             
         }
         
-        return Redirect::back()->withInput()->withFlashMessage('Invalid credentials provided');
+        return Redirect::back()->withInput()->withFlashMessage('Λανθασμένο email ή κωδικός πρόσβασης');
         
 	}
     
@@ -62,14 +57,14 @@ class SessionsController extends \BaseController {
         
         // the user is found but is already verified
         if($user->confirmed == 1) {
-            return Redirect::route('login')->withFlashMessage('Already confirmed');
+            return Redirect::route('login')->withFlashMessage('Το email σας έχει ήδη επιβεβαιωθεί. Μπορείτε να συνδεθείτε.');
         }
         
         // the user is found and ready to be verified
         $user->confirmed = 1;
         $user->save();
 
-		return Redirect::route('login')->withFlashMessage('Confirmed!');
+		return Redirect::route('login')->withFlashMessage('Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
         
     }
 

@@ -29,6 +29,9 @@ Route::resource('profile', 'ProfilesController', ['only' => ['update']]);
 Route::get('/profile/{profile}',['as' => 'profile', 'uses' => 'ProfilesController@show' ]);
 Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'ProfilesController@edit']);
 
+# Sites
+
+
 # Test Email
 // Route::get('testemail', function(){
 //     Mail::send('emails.test', [], function($message){

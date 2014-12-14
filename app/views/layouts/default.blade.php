@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
 
-    <title>Side Menu &ndash; Layout Examples &ndash; Pure</title>
+    <title>Edu Web Awards 2015</title>
 
     
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="{{ asset('css/side-menu-old-ie.css') }}">
@@ -17,6 +16,8 @@
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="{{ asset('css/side-menu.css') }}">
     <!--<![endif]-->
+    
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   
 </head>
 
@@ -34,8 +35,8 @@
     <div id="main">
 
         <div class="header">
-            <h1>Edu</h1>
-            <h2>A subtitle for your page goes here</h2>
+            <h1>Edu Web Awards 2015</h1>
+            <h2>Ιστότοπος Διαχείρισης</h2>
         </div>
 
         <div class="content">

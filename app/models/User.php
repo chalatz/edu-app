@@ -19,6 +19,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'email' => 'required|email',
 		'password' => 'required',
 	];
+    
+    public static $error_messages = [
+        'required' => 'Το πεδίο είναι υποχρεωτικό.',
+        'confirmed' => 'Οι κωδικοί πρόσβασης δε συμφωνούν',
+        'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail',
+        'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.'
+    ];
 
 	/**
 	 * The database table used by the model.

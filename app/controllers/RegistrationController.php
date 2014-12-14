@@ -24,7 +24,7 @@ class RegistrationController extends \BaseController {
 	 */
 	public function store()
 	{
-        $validator = Validator::make($data = Input::only(['email', 'password', 'password_confirmation']), User::$rules);
+        $validator = Validator::make($data = Input::only(['email', 'password', 'password_confirmation']), User::$rules, User::$error_messages);
         
         if($validator->fails()){
             return Redirect::back()->withErrors($validator)->withInput();
@@ -34,7 +34,7 @@ class RegistrationController extends \BaseController {
         $confirmation_url = route('verify', $confirmation_string);
         
         Mail::send('emails.verification', ['confirmation_url' => $confirmation_url], function($message){
-             $message->to(Input::get('email'))->subject('Your verification link');
+             $message->to(Input::get('email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
          });
         
         $user_data = Input::only('email', 'password');
@@ -42,7 +42,9 @@ class RegistrationController extends \BaseController {
         
         $user = User::create($user_data);
 
-		return Redirect::home();
+		return Redirect::home()->withFlashMessage(
+            'Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.'
+        );
 	}
 
 

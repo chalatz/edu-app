@@ -1,0 +1,11 @@
+.pure-menu .pure-menu-heading {
+    text-transform: none;
+}
+
+.pure-menu a, .pure-menu .pure-menu-heading {
+    white-space: normal;
+}
+
+.pure-button {
+    margin: .5em 0;
+}

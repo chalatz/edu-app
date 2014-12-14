@@ -1,15 +1,15 @@
 <div id="menu">
     <div class="pure-menu pure-menu-open">
-        <a class="pure-menu-heading" href="#">Company</a>
+        <a class="pure-menu-heading" href="#">Edu Web Awards 2015</a>
 
         <ul>
-            <li>{{ link_to('/', 'Home') }}</li>
+            <li>{{ link_to('/', 'Αρχική') }}</li>
             @if (Auth::guest())
-                <li>{{ link_to('/register', 'Register') }}</li>
-                <li>{{ link_to('/login', 'Login') }}</li>
+                <li>{{ link_to('/login', 'Είσοδος') }}</li>
+                <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
                 <li>{{ link_to_route('profile', 'Profile Page', Auth::user()->id) }}</li>    
-                <li>{{ link_to('/logout', 'Logout') }}</li>
+                <li>{{ link_to('/logout', 'Αποσύνδεση') }}</li>
             @endif
         </ul>
     </div>
