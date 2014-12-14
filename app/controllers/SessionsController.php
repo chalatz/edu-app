@@ -44,20 +44,32 @@ class SessionsController extends \BaseController {
     
     public function verify() {
         
+        Auth::logout();
+        
+        // get ver_string from url
         $parameters = Route::getCurrentRoute()->parameters();
         $confirmation_string = $parameters['confirmation_string'];
         
+        // try to find a user that has that string
         try {
             $user = User::whereConfirmation_string($confirmation_string)->firstOrFail();  
         }
         
+        // if no such user is found, return to the home page
         catch(ModelNotFoundException $e){
             return Redirect::home();
         }
         
-        return 'verified';
+        // the user is found but is already verified
+        if($user->confirmed == 1) {
+            return Redirect::route('login')->withFlashMessage('Already confirmed');
+        }
         
-        
+        // the user is found and ready to be verified
+        $user->confirmed = 1;
+        $user->save();
+
+		return Redirect::route('login')->withFlashMessage('Confirmed!');
         
     }
 

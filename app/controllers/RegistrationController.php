@@ -31,14 +31,16 @@ class RegistrationController extends \BaseController {
         }
         
         $confirmation_string = str_random(40);
+        $confirmation_url = route('verify', $confirmation_string);
+        
+        Mail::send('emails.verification', ['confirmation_url' => $confirmation_url], function($message){
+             $message->to(Input::get('email'))->subject('Your verification link');
+         });
         
         $user_data = Input::only('email', 'password');
         $user_data['confirmation_string'] = $confirmation_string;
         
-		//$user = User::create(Input::only('email', 'password'));
         $user = User::create($user_data);
-        
-		Auth::login($user);
 
 		return Redirect::home();
 	}

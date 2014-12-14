@@ -13,7 +13,6 @@ class ProfilesController extends \BaseController {
 	 */
 	public function show($userid)
 	{
-        
         try {
             $user = User::with('profile')->whereId($userid)->firstOrFail();   
         }
@@ -23,7 +22,6 @@ class ProfilesController extends \BaseController {
         }
         
         return View::make('profiles.show', compact('user'));
-
 		
 	}
     

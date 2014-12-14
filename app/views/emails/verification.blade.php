@@ -1,0 +1,1 @@
+<p>Your url is {{ $confirmation_url }}</p>

@@ -4,10 +4,6 @@
 
     <h1>Login</h1>
 
-    @if(Session::has('flash_message'))
-        <p>{{ Session::get('flash_message') }}</p>
-    @endif
-
     {{ Form::open(array('route' => 'sessions.store', 'class' => 'pure-form pure-form-stacked')) }}
 
 		{{ Form::label('email', 'Email') }}

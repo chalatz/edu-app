@@ -39,6 +39,11 @@
         </div>
 
         <div class="content">
+            <div class="flash-message">
+                @if(Session::has('flash_message'))
+                    {{ Session::get('flash_message') }}
+                @endif
+            </div>
             @yield('content')
         </div>
         
