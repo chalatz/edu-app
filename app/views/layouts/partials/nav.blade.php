@@ -8,7 +8,8 @@
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
-                <li>{{ link_to_route('profile', 'Profile Page', Auth::user()->id) }}</li>    
+                <li>{{ link_to_route('site.show', 'Στοιχεία Site', Auth::user()->id) }}</li>
+                <li>{{ link_to_route('site.create', 'Εισαγωγή Στοιχείων Site') }}</li>
                 <li>{{ link_to('/logout', 'Αποσύνδεση') }}</li>
             @endif
         </ul>

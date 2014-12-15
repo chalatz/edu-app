@@ -39,10 +39,20 @@ class SitesController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+        
+        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email');
+        
+        $user_id = Auth::user()->id;
+        
+        $data['user_id'] = $user_id;
+        
+        $user = User::find($user_id);
+        $user['has_site'] = 1;
+        $user->save();
 
 		Site::create($data);
 
-		return Redirect::route('sites.index');
+		return Redirect::home();
 	}
 
 	/**
@@ -51,11 +61,17 @@ class SitesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($userid)
 	{
-		$site = Site::findOrFail($id);
-
-		return View::make('sites.show', compact('site'));
+		try {
+            $user = User::with('site')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        return View::make('sites.show', compact('user'));
 	}
 
 	/**
@@ -64,11 +80,17 @@ class SitesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($userid)
 	{
-		$site = Site::find($id);
-
-		return View::make('sites.edit', compact('site'));
+		 try {
+            $user = User::with('profile')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        return View::make('sites.edit', compact('user'));
 	}
 
 	/**
@@ -77,20 +99,21 @@ class SitesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($userid)
 	{
-		$site = Site::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), Site::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		$site->update($data);
-
-		return Redirect::route('sites.index');
+		try {
+            $user = User::with('site')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        $input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email');
+        
+        $user->site->fill($input)->save();
+        
+        return Redirect::route('site.show', $user->id);
 	}
 
 	/**

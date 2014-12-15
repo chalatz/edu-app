@@ -17,7 +17,7 @@
 		{{ Form::label('password_confirmation', 'Επιβεβαίωση Κωδικού Πρόσβασης') }}
 		{{ Form::password('password_confirmation') }}
 
-		{{Form::button('Εγγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+		{{ Form::button('Εγγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}
 
 	{{ Form::close() }}
 

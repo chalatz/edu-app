@@ -24,7 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'required' => 'Το πεδίο είναι υποχρεωτικό.',
         'confirmed' => 'Οι κωδικοί πρόσβασης δε συμφωνούν',
         'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail',
-        'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.'
+        'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.',
     ];
 
 	/**
@@ -52,6 +52,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     
     public function profile(){
         return $this->hasOne('Profile');
+    }
+    
+    public function site(){
+        return $this->hasOne('Site');
     }
 
 }

@@ -39,7 +39,7 @@ class ProfilesController extends \BaseController {
         
     }
     
-    public function update($userid){
+    public function update($userid){    
         
         try {
             $user = User::with('profile')->whereId($userid)->firstOrFail();   

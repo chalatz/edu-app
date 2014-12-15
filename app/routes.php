@@ -30,6 +30,7 @@ Route::get('/profile/{profile}',['as' => 'profile', 'uses' => 'ProfilesControlle
 Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'ProfilesController@edit']);
 
 # Sites
+Route::resource('site', 'SitesController');
 
 
 # Test Email
