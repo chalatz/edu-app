@@ -1,21 +1,12 @@
 <?php
 
-class Site extends \Eloquent {
+class Grader extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		'title' => 'required',
-        'site_url' => 'required|url',
-        'creator' => 'required',
-        'responsible' => 'required',
-        'contact_name' => 'required',
-        'contact_email' => 'required|email',
-        'phone' => 'required',
-        'grader_name' => 'required',
-        'grader_email' => 'required|email',
-        'cat_id' => 'required',
+		'grader_name' => 'required',
         'district_id' => 'required',
-        'notify_grader' => 'required'
+        'cat_id' => 'required',
 	];
     
     public static $error_messages = [
@@ -26,7 +17,7 @@ class Site extends \Eloquent {
     ];
 
 	// Don't forget to fill this array
-	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader'];
+	protected $fillable = ['grader_name','user_id', 'district_id', 'cat_id', 'from_who', 'past_grader', 'site_1', 'site_2', 'has_agreed'];
     
     public function user(){
         $this->belongsTo('User');

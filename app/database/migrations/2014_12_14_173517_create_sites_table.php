@@ -15,6 +15,7 @@ class CreateSitesTable extends Migration {
 		Schema::create('sites', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('user_id');
             $table->string('site_url', 60);
             $table->string('title');
             $table->tinyInteger('cat_id');
@@ -26,6 +27,7 @@ class CreateSitesTable extends Migration {
             $table->string('phone', 60);
             $table->string('grader_name');
             $table->string('grader_email', 60);
+            $table->tinyInteger('notify_grader')->default(0);
 			$table->timestamps();
 		});
 	}

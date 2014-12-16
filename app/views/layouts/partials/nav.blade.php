@@ -6,10 +6,23 @@
             <li>{{ link_to('/', 'Αρχική') }}</li>
             @if (Auth::guest())
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
-                <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
-                <li>{{ link_to_route('site.show', 'Στοιχεία Site', Auth::user()->id) }}</li>
-                <li>{{ link_to_route('site.create', 'Εισαγωγή Στοιχείων Site') }}</li>
+                @if(Auth::user()->type=='site')
+                    @if (Auth::user()->has_site == 0)
+                        <li>{{ link_to_route('site.create', 'Εισαγωγή Στοιχείων Site') }}</li>
+                    @else
+                        <li>{{ link_to_route('site.show', 'Στοιχεία Site', Auth::user()->id) }}</li>
+                        <li>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</li>
+                    @endif
+                @endif
+                @if(Auth::user()->type=='grader')
+                    @if(Auth::user()->has_site == 0)
+                        <li>{{ link_to_route('grader.create', 'Επεξεργασία') }}</li>
+                    @else
+                        <li>{{ link_to_route('grader.show', 'Τα Στοιχεία Μου', Auth::user()->id) }}</li>
+                        <li>{{ link_to_route('grader.edit', 'Επεξεργασία', Auth::user()->id) }}</li>
+                    @endif
+                @endif
                 <li>{{ link_to('/logout', 'Αποσύνδεση') }}</li>
             @endif
         </ul>

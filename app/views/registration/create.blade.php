@@ -12,7 +12,7 @@
 
 		{{ Form::label('password', 'Κωδικός Πρόσβασης') }}
 		{{ Form::password('password') }}
-        {{ $errors->first('password') }}
+        <p class="error-message">{{ $errors->first('password') }}</p>
 
 		{{ Form::label('password_confirmation', 'Επιβεβαίωση Κωδικού Πρόσβασης') }}
 		{{ Form::password('password_confirmation') }}

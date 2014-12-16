@@ -35,44 +35,24 @@
             
             ?>
 
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('grader.edit', 'Επεξεργασία των Στοιχείων μου', Auth::user()->id) }}</p>
 
-            <h1>Στοιχεία Site</h1>
+            <h1>Στοιχεία Αξιολογητή</h1>
 
-            <h2>Γενική Ονομασία</h2>
-            <p>{{ $user->site->title }}</p>
+            <h2>Ονοματεπώνυμο</h2>
+            <p>{{ $user->grader->grader_name }}</p>
 
-            <h2>URL Ιστοσελίδας</h2>
-            <p>{{ $user->site->site_url }}</p>
 
-            <h2>Κατηγορία</h2>
-            <p>{{ $cats[$user->site->cat_id] }}</p>
+            <h2>Κατηγορία του Site που θα αξιολογήσω</h2>
+            <p>{{ $cats[$user->grader->cat_id] }}</p>
 
-            <h2>Δημιουργός / Δημιουργοί</h2>
-            <p>{{ $user->site->creator }}</p>
+            <h2>Περιφέρεια που ανήκει το Site που θα αξιολογήσω</h2>
+            <p>{{ $districts[$user->grader->district_id] }}</p>
 
-            <h2>Νομικά υπεύθυνος</h2>
-            <p>{{ $user->site->responsible }}</p>
+            <h2>Έχω προταθεί από</h2>
+            <p>{{ $user->grader->from_who }}</p>
 
-            <h2>Υπέυθυνος επικοινωνίας</h2>
-            <p>{{ $user->site->contact_name }}</p>
-
-            <h2>E-mail επικοινωνίας</h2>
-            <p>{{ $user->site->contact_email }}</p>
-
-            <h2>Τηλέφωνο επικοινωνίας</h2>
-            <p>{{ $user->site->phone }}</p>
-
-            <h2>Περιφέρεια</h2>
-            <p>{{ $districts[$user->site->district_id] }}</p>
-
-            <h2>Προτεινόμενος αξιολογητής</h2>
-            <p>{{ $user->site->grader_name }}</p>
-
-            <h2>E-mail αξιολογητή</h2>
-            <p>{{ $user->site->grader_email }}</p>
-
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('grader.edit', 'Επεξεργασία των Στοιχείων μου', Auth::user()->id) }}</p>
 
         @else
             <p>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>

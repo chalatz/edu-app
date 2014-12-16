@@ -9,3 +9,8 @@
 .pure-button {
     margin: .5em 0;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

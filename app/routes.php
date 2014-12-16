@@ -32,6 +32,10 @@ Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'Profil
 # Sites
 Route::resource('site', 'SitesController');
 
+# Graders
+Route::get('/verify/grader/{confirmation_string}', ['as' => 'verify.grader', 'uses' => 'SessionsController@verify_grader']);
+Route::resource('grader', 'GradersController');
+
 
 # Test Email
 // Route::get('testemail', function(){

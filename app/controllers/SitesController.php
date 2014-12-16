@@ -23,6 +23,14 @@ class SitesController extends \BaseController {
 	 */
 	public function create()
 	{
+        if(Auth::guest()){
+            return Redirect::home();
+        } else {
+            if(Auth::user()->has_site == 1) {
+                return Redirect::home();
+            }
+        }
+        
 		return View::make('sites.create');
 	}
 
@@ -33,22 +41,46 @@ class SitesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Site::$rules);
+		$validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
         
-        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email');
+        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader');
         
         $user_id = Auth::user()->id;
         
         $data['user_id'] = $user_id;
         
         $user = User::find($user_id);
+        
         $user['has_site'] = 1;
+        
         $user->save();
+        
+        $notify_grader = $data['notify_grader'];
+        
+        if($notify_grader == 1 && User::where('email', '=', Input::get('grader_email'))->count() == 0) {
+            $grader_email = $data['grader_email'];
+            $confirmation_string = str_random(40);
+            $password = str_random(6);
+            $user_data = [
+                'email' => $grader_email,
+                'password' => $password,
+                'type' => 'grader',
+                'confirmation_string' => $confirmation_string,
+            ];
+            
+            $confirmation_url = route('verify.grader', $confirmation_string);
+            
+            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password], function($message){
+             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+            });
+            
+            User::create($user_data);
+        }
 
 		Site::create($data);
 
@@ -64,7 +96,7 @@ class SitesController extends \BaseController {
 	public function show($userid)
 	{
 		try {
-            $user = User::with('site')->whereId($userid)->firstOrFail();   
+            $user = User::with('site')->whereId($userid)->firstOrFail(); 
         }
         
         catch(ModelNotFoundException $e){
@@ -82,8 +114,8 @@ class SitesController extends \BaseController {
 	 */
 	public function edit($userid)
 	{
-		 try {
-            $user = User::with('profile')->whereId($userid)->firstOrFail();   
+        try {
+            $user = User::with('site')->whereId($userid)->firstOrFail();   
         }
         
         catch(ModelNotFoundException $e){
@@ -101,6 +133,13 @@ class SitesController extends \BaseController {
 	 */
 	public function update($userid)
 	{
+        $validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+        
 		try {
             $user = User::with('site')->whereId($userid)->firstOrFail();   
         }
@@ -109,7 +148,29 @@ class SitesController extends \BaseController {
             return Redirect::home();
         }
         
-        $input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email');
+        $input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader');
+        
+        $notify_grader = $input['notify_grader'];
+        
+        if($notify_grader == 1 && User::where('email', '=', Input::get('grader_email'))->count() == 0) {
+            $grader_email = $input['grader_email'];
+            $confirmation_string = str_random(40);
+            $password = str_random(6);
+            $user_data = [
+                'email' => $grader_email,
+                'password' => $password,
+                'type' => 'grader',
+                'confirmation_string' => $confirmation_string,
+            ];
+            
+            $confirmation_url = route('verify.grader', $confirmation_string);
+            
+            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password], function($message){
+             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+            });
+            
+            User::create($user_data);
+        }
         
         $user->site->fill($input)->save();
         

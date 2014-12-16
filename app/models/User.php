@@ -22,8 +22,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     
     public static $error_messages = [
         'required' => 'Το πεδίο είναι υποχρεωτικό.',
-        'confirmed' => 'Οι κωδικοί πρόσβασης δε συμφωνούν',
-        'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail',
+        'confirmed' => 'Οι κωδικοί πρόσβασης δε συμφωνούν.',
+        'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail.',
         'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.',
     ];
 
@@ -35,7 +35,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'users';
 
 	// Don't forget to fill this array
-	protected $fillable = ['email', 'password', 'confirmation_string'];
+	protected $fillable = ['email', 'password', 'confirmation_string', 'type'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -56,6 +56,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     
     public function site(){
         return $this->hasOne('Site');
+    }
+    
+    public function grader(){
+        return $this->hasOne('Grader');
     }
 
 }
