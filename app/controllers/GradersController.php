@@ -58,9 +58,10 @@ class GradersController extends \BaseController {
         
         $user['has_site'] = 1;
         
+        
         $user->save();
 
-		Grader::create($data);
+		$grader = Grader::create($data);
 
 		return Redirect::home();
 	}

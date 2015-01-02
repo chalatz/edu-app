@@ -31,5 +31,9 @@ class Site extends \Eloquent {
     public function user(){
         $this->belongsTo('User');
     }
+    
+    public function graders(){
+        return $this->belongsToMany('Grader');
+    }
 
 }

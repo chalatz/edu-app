@@ -36,6 +36,29 @@ Route::resource('site', 'SitesController');
 Route::get('/verify/grader/{confirmation_string}', ['as' => 'verify.grader', 'uses' => 'SessionsController@verify_grader']);
 Route::resource('grader', 'GradersController');
 
+// Test Pivot
+Route::get('pivot', function(){
+   
+    $grader = Grader::find(1);
+    
+    //$grader->sites()->attach(3);
+    
+    
+    $grader_id = $grader->id;
+    $user_id = $grader->user_id;
+    
+    $user = User::with('grader')->whereId($user_id)->first();
+    $user_email = $user->email; 
+    
+    echo "Grader email (or id): " . $user_email ."<br>";
+    echo "<p>will grade this(these) site(s): </p>";
+    
+    foreach($grader->sites as $site) {
+        echo $site->site_url . "<br>";
+    }
+    
+});
+
 
 # Test Email
 // Route::get('testemail', function(){

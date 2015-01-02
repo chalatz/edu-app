@@ -22,5 +22,9 @@ class Grader extends \Eloquent {
     public function user(){
         $this->belongsTo('User');
     }
+    
+    public function sites(){
+        return $this->belongsToMany('Site');
+    }
 
 }

@@ -15,7 +15,7 @@
         {{ $errors->first('password') }}
 
 
-		{{Form::button('Login', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+		{{Form::button('Σύνδεση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
 	{{ Form::close() }}
 
