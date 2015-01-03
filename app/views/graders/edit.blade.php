@@ -12,7 +12,7 @@
             {{ Form::model($user->grader, array('method' => 'PATCH','route' => ['grader.update', $user->id], 'class' => 'pure-form pure-form-stacked')) }}
 
                 {{ Form::label('grader_name', 'Ονοματεπώνυμο') }}
-                {{ Form::text('grader_name') }}
+                {{ Form::text('grader_name', null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('grader_name') }}</p>
 
                 {{ Form::label('cat_id', 'Κατηγορία του Site που θα αξιολογήσω') }}
@@ -24,7 +24,7 @@
                     '4' => 'Υποστηρικτικές δομές εκπαίδευσης',
                     '5' => 'Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
                     '6' => 'Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
-                ]) }}
+                ], null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('cat_id') }}</p>
 
                 {{ Form::label('district_id', 'Περιφέρεια που ανήκει το Site που θα αξιολογήσω') }}
@@ -43,11 +43,11 @@
                     '11' => 'Κεντρική Μακεδονία',
                     '12' => 'Πελοπόννησος',
                     '13' => 'Στερεά Ελλάδα',
-                ]) }}
+                ], null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('district_id') }}</p>
 
                 {{ Form::label('from_who', 'Από ποιον έχω προταθεί;') }}
-                {{ Form::text('from_who') }}
+                {{ Form::text('from_who', null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('from_who') }}</p>
 
                 {{ Form::label('past_grader', 'Ήμουν αξιολογητής στον προηγούμενο διαγωνισμό;') }}
@@ -55,10 +55,10 @@
                     '' => 'Επιλέξτε...',
                     '1' => 'Ναι',
                     '0' => 'Όχι',
-                ]) }}
+                ], null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('past_grader') }}</p>
 
-                        {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+                {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
     {{ Form::close() }}
 
