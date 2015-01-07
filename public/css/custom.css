@@ -1,3 +1,7 @@
+body {
+    color: #444;
+}
+
 .pure-menu .pure-menu-heading {
     text-transform: none;
 }
@@ -14,3 +18,26 @@
     color: red;
     font-weight: bold;
 }
+
+.flash-message {
+    margin: .5em 0;
+    padding: .5em;
+    background-color: #666;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.flash-success {
+    background-color: #5eb95e;
+}
+
+.flash-info {
+    background-color: #0078e7;
+}
+
+.flash-error {
+    background-color: #dd514c;
+}
+

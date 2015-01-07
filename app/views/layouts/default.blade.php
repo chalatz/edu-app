@@ -7,7 +7,8 @@
 
     <title>Edu Web Awards 2015</title>
 
-    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 
     <!--[if lte IE 8]>
@@ -36,16 +37,19 @@
 
         <div class="header">
             <h1>Edu Web Awards 2015</h1>
-            <h2>Ιστότοπος Διαχείρισης</h2>
+            <h2>Πληροφοριακό σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         </div>
 
         <div class="content">
-            <div class="flash-message">
-                @if(Session::has('flash_message'))
+            
+            @if(Session::has('flash_message'))
+                <div class="flash-message {{Session::get('alert-class')}}">
                     {{ Session::get('flash_message') }}
-                @endif
-            </div>
+             </div>
+            @endif
+            
             @yield('content')
+            
         </div>
         
     </div>

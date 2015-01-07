@@ -76,7 +76,7 @@ class SitesController extends \BaseController {
             $confirmation_url = route('verify.grader', $confirmation_string);
             
             Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password], function($message){
-             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+             $message->to(Input::get('grader_email'))->subject('Αξιολογητής: Επιβεβαιώστε το email σας. Edu Web Awards 2015');
             });
             
             User::create($user_data);

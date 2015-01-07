@@ -33,7 +33,10 @@ class SessionsController extends \BaseController {
             
         }
         
-        return Redirect::back()->withInput()->withFlashMessage('Λανθασμένο email ή κωδικός πρόσβασης');
+        Session::flash('flash_message', '<i class="fa fa-exclamation-triangle"></i> Λανθασμένο email ή κωδικός πρόσβασης');
+        Session::flash('alert-class', 'flash-error');
+        
+        return Redirect::back()->withInput();
         
 	}
     
@@ -57,14 +60,18 @@ class SessionsController extends \BaseController {
         
         // the user is found but is already verified
         if($user->confirmed == 1) {
-            return Redirect::route('login')->withFlashMessage('Το email σας έχει ήδη επιβεβαιωθεί. Μπορείτε να συνδεθείτε.');
+            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Το email σας έχει ήδη επιβεβαιωθεί. Μπορείτε να συνδεθείτε.');
+            Session::flash('alert-class', 'flash-info');
+            return Redirect::route('login');
         }
         
         // the user is found and ready to be verified
         $user->confirmed = 1;
         $user->save();
 
-		return Redirect::route('login')->withFlashMessage('Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
+        Session::flash('alert-class', 'flash-sucess');
+		return Redirect::route('login');
         
     }
     
@@ -88,14 +95,18 @@ class SessionsController extends \BaseController {
         
         // the user is found but is already verified
         if($user->confirmed == 1) {
-            return Redirect::route('login')->withFlashMessage('Το email σας έχει ήδη επιβεβαιωθεί. Μπορείτε να συνδεθείτε.');
+            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Το email σας έχει ήδη επιβεβαιωθεί. Μπορείτε να συνδεθείτε.');
+            Session::flash('alert-class', 'flash-info');
+            return Redirect::route('login');
         }
         
         // the user is found and ready to be verified
         $user->confirmed = 1;
         $user->save();
 
-		return Redirect::route('login')->withFlashMessage('Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
+        Session::flash('alert-class', 'flash-success');
+		return Redirect::route('login');
         
     }
 

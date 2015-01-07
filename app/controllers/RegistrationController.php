@@ -42,9 +42,9 @@ class RegistrationController extends \BaseController {
         
         $user = User::create($user_data);
 
-		return Redirect::home()->withFlashMessage(
-            'Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.'
-        );
+        Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. <br>Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.');
+        Session::flash('alert-class', 'flash-info');
+		return Redirect::home();
 	}
 
 

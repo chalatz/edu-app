@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h3>Καλώς ορίσατε.</h3>
+	<h3>Καλώς ορίσατε!</h3>
 
     @if(Auth::check())
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
