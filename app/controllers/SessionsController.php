@@ -109,6 +109,28 @@ class SessionsController extends \BaseController {
 		return Redirect::route('login');
         
     }
+    
+    public function change_password() {
+        $user_id = Auth::user()->id;
+        
+        $input = '1233';
+        $user = User::find($user_id);
+        
+        dd(Hash::check($input, $user->password));
+        return View::make('sessions.change_password');
+    }
+    
+    public function do_change_password(){
+        
+        $user = Auth::user();
+        
+        $current_password = Input::get('current_password');
+        
+        $input = '1233';
+        
+        $user = User::find($user_id);
+        
+    }
 
 	/**
 	 * Remove the specified resource from storage.

@@ -3,7 +3,7 @@
 @section('content')
 
     @if(Auth::guest())
-        <p>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
+        <p class='flash-message flash-error'>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
     @else
         @if(Auth::user()->id == $user->id)
 
@@ -93,7 +93,7 @@
             {{ Form::close() }}
 
         @else
-            <p>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
+            <p class='flash-message flash-error'>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
         @endif
     @endif
 
