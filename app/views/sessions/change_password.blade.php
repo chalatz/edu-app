@@ -14,6 +14,16 @@
             {{ Form::password('current_password') }}
             <p class="error-message">{{ $errors->first('current_password') }}</p>
 
+            {{ Form::label('new_password', 'Νέος Κωδικός Πρόσβασης') }}
+            {{ Form::password('new_password') }}
+            <p class="error-message">{{ $errors->first('new_password') }}</p>
+
+            {{ Form::label('new_password_confirmation', 'Επιβεβαίωση Νέου Κωδικού Πρόσβασης') }}
+            {{ Form::password('new_password_confirmation') }}
+            <p class="error-message">{{ $errors->first('new_password_confirmation') }}</p>
+
+            {{Form::button('Αλλαγή Κωδικού', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+
         {{Form::close() }}
 
     @endif

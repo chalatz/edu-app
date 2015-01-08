@@ -111,24 +111,45 @@ class SessionsController extends \BaseController {
     }
     
     public function change_password() {
-        $user_id = Auth::user()->id;
         
-        $input = '1233';
-        $user = User::find($user_id);
-        
-        dd(Hash::check($input, $user->password));
+        //dd(Hash::check($input, $user->password));
         return View::make('sessions.change_password');
     }
     
     public function do_change_password(){
         
-        $user = Auth::user();
+        $validator = Validator::make($data = Input::only(['current_password', 'new_password', 'new_password_confirmation']), User::$change_password_rules, User::$error_messages);
+        
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        $logged_user = Auth::user();
+        
+        $logged_user_id = $logged_user->id;
+        $logged_user_password = $logged_user->password;
         
         $current_password = Input::get('current_password');
         
-        $input = '1233';
+        $user = User::find($logged_user_id);
+        $user_password = $user->password;
         
-        $user = User::find($user_id);
+        if(Hash::check($current_password, $logged_user_password)){
+            // correct current password
+            $new_password = Input::get('new_password');
+            $user->password = $new_password;
+            Auth::user()->password = $new_password;
+            $user->save();
+            
+            Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ο κωδικός πρόσβασης έχει ενημερωθεί με επιτυχία!');
+            Session::flash('alert-class', 'flash-success');
+            return Redirect::home();
+        } else {
+            // wrong current password
+            Session::flash('flash_message', '<i class="fa fa-exclamation-triangle"></i> Λανθασμένος τρέχων κωδικός πρόσβασης');
+            Session::flash('alert-class', 'flash-error');
+            return Redirect::back();
+        }
         
     }
 

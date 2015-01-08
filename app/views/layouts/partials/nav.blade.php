@@ -23,6 +23,7 @@
                         <li>{{ link_to_route('grader.edit', 'Επεξεργασία', Auth::user()->id) }}</li>
                     @endif
                 @endif
+                <li>{{ link_to('/change-password', 'Αλλαγή κωδικού πρόσβασης') }}</li>
                 <li>{{ link_to('/logout', 'Αποσύνδεση') }}</li>
             @endif
         </ul>
