@@ -41,4 +41,18 @@ class AdminController extends \BaseController {
         
     }
     
+    public function graders(){
+        
+        if($this->isAdmin()){
+            
+            $graders = Grader::all();
+            
+		    return View::make('admin.graders', compact('graders'));
+            
+        } else {
+            return Redirect::home();
+        }
+        
+    }    
+    
 }

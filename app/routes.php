@@ -41,6 +41,7 @@ Route::resource('grader', 'GradersController');
 # Admin
 Route::get('/admin/home/', ['as' => 'admin.home', 'uses' => 'AdminController@index']);
 Route::get('/admin/sites/', ['as' => 'admin.sites', 'uses' => 'AdminController@sites']);
+Route::get('/admin/graders/', ['as' => 'admin.graders', 'uses' => 'AdminController@graders']);
 
 // Test Pivot
 Route::get('pivot', function(){

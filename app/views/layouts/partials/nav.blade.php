@@ -28,6 +28,7 @@
             
                 @if(Auth::user()->type=='admin')
                     <li>{{ link_to('/admin/sites', 'Sites') }}</li>
+                    <li>{{ link_to('/admin/graders', 'Αξιολογητές') }}</li>
                 @endif
             
                 <li>{{ link_to('/change-password', 'Αλλαγή κωδικού πρόσβασης') }}</li>
