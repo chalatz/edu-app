@@ -70,7 +70,7 @@ class SessionsController extends \BaseController {
         $user->save();
 
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Το email σας έχει επιβεβαιωθεί με επιτυχία!<br> Μπορείτε τώρα να συνδεθείτε.');
-        Session::flash('alert-class', 'flash-sucess');
+        Session::flash('alert-class', 'flash-success');
 		return Redirect::route('login');
         
     }
