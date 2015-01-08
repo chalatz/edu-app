@@ -7,6 +7,7 @@
             @if (Auth::guest())
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
+            
                 @if(Auth::user()->type=='site')
                     @if (Auth::user()->has_site == 0)
                         <li>{{ link_to_route('site.create', 'Εισαγωγή Στοιχείων Site') }}</li>
@@ -15,6 +16,7 @@
                         <li>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</li>
                     @endif
                 @endif
+            
                 @if(Auth::user()->type=='grader')
                     @if(Auth::user()->has_site == 0)
                         <li>{{ link_to_route('grader.create', 'Επεξεργασία') }}</li>
@@ -23,6 +25,11 @@
                         <li>{{ link_to_route('grader.edit', 'Επεξεργασία', Auth::user()->id) }}</li>
                     @endif
                 @endif
+            
+                @if(Auth::user()->type=='admin')
+                    <li>{{ link_to('/admin/sites', 'Sites') }}</li>
+                @endif
+            
                 <li>{{ link_to('/change-password', 'Αλλαγή κωδικού πρόσβασης') }}</li>
                 <li>{{ link_to('/logout', 'Αποσύνδεση') }}</li>
             @endif

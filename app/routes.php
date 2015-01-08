@@ -38,6 +38,10 @@ Route::resource('site', 'SitesController');
 Route::get('/verify/grader/{confirmation_string}', ['as' => 'verify.grader', 'uses' => 'SessionsController@verify_grader']);
 Route::resource('grader', 'GradersController');
 
+# Admin
+Route::get('/admin/home/', ['as' => 'admin.home', 'uses' => 'AdminController@index']);
+Route::get('/admin/sites/', ['as' => 'admin.sites', 'uses' => 'AdminController@sites']);
+
 // Test Pivot
 Route::get('pivot', function(){
    

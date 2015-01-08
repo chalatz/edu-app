@@ -112,7 +112,6 @@ class SessionsController extends \BaseController {
     
     public function change_password() {
         
-        //dd(Hash::check($input, $user->password));
         return View::make('sessions.change_password');
     }
     
