@@ -2,28 +2,29 @@
 
 @section('content')
 
-    <h1>Δήλωση Στοιχείων Site</h1>
+    <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
     {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked')) }}
 
-        {{ Form::label('title', 'Γενική Ονομασία') }}
+        {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
+		{{ Form::text('site_url', null, array('class' => 'pure-input-1')) }}
+        <div class="instructions">Θα πρέπει να ξεκινάει από http://</div>
+        <p class="error-message">{{ $errors->first('site_url') }}</p>
+
+        {{ Form::label('title', 'Επωνυμία Ιστότοπου') }}
 		{{ Form::text('title', null, array('class' => 'pure-input-1')) }}
         <div class="instructions">Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας</div>
         <p class="error-message">{{ $errors->first('title') }}</p>
 
-        {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
-		{{ Form::text('site_url', null, array('class' => 'pure-input-1')) }}
-        <p class="error-message">{{ $errors->first('site_url') }}</p>
-
         {{ Form::label('cat_id', 'Κατηγορία') }}
 		{{ Form::select('cat_id',[
             '' => 'Επιλέξτε...',
-            '1' => 'Νηπιαγωγεία, Δημοτικά Σχολεία, Δημοτικά Ειδικά Σχολεία',
-            '2' => 'Γυμνάσια, ΕΕΕΕΚ',
-            '3' => 'Γενικά Λύκεια, ΕΠΑΛ, ΕΠΑΣ, ΣΕΚ, ΤΕΕ Ειδικής Αγωγής',
-            '4' => 'Υποστηρικτικές δομές εκπαίδευσης',
-            '5' => 'Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
-            '6' => 'Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
+            '1' => '1. Νηπιαγωγεία, Δημοτικά Σχολεία, Δημοτικά Ειδικά Σχολεία',
+            '2' => '2. Γυμνάσια, ΕΕΕΕΚ',
+            '3' => '3. Γενικά Λύκεια, ΕΠΑΛ, ΕΚ, ΤΕΕ Ειδικής Αγωγής',
+            '4' => '4. Υποστηρικτικές δομές εκπαίδευσης  (ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης)',
+            '5' => '5. Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
+            '6' => '6. Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
         ], null, array('class' => 'pure-input-1')) }}
         <p class="error-message">{{ $errors->first('cat_id') }}</p>
 
@@ -35,11 +36,11 @@
 		{{ Form::text('responsible', null, array('class' => 'pure-input-1')) }}
         <p class="error-message">{{ $errors->first('responsible') }}</p>
 
-        {{ Form::label('contact_name', 'Υπέυθυνος επικοινωνίας') }}
+        {{ Form::label('contact_name', 'Υπέυθυνος επικοινωνίας υποψηφιότητας') }}
 		{{ Form::text('contact_name', null, array('class' => 'pure-input-1')) }}
         <p class="error-message">{{ $errors->first('contact_name') }}</p>
 
-        {{ Form::label('contact_email', 'E-mail επικοινωνίας') }}
+        {{ Form::label('contact_email', 'E-mail επικοινωνίας υποψηφιότητας') }}
 		{{ Form::email('contact_email', null, array('class' => 'pure-input-1')) }}
         <p class="error-message">{{ $errors->first('contact_email') }}</p>
 

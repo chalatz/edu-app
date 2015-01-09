@@ -10,7 +10,7 @@
             
                 @if(Auth::user()->type=='site')
                     @if (Auth::user()->has_site == 0)
-                        <li>{{ link_to_route('site.create', 'Εισαγωγή Στοιχείων Site') }}</li>
+                        <li>{{ link_to_route('site.create', 'Υποβολή Υποψηφιότητας Ιστότοπου') }}</li>
                     @else
                         <li>{{ link_to_route('site.show', 'Στοιχεία Site', Auth::user()->id) }}</li>
                         <li>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</li>
