@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $grader->grader_name }}</td>
-                    <td></td>
+                    <td>{{ $grader->user->email }}</td>
                 </tr>
 
                 <?php $i++; ?>

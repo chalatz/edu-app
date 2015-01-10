@@ -20,11 +20,15 @@ class Grader extends \Eloquent {
 	protected $fillable = ['grader_name','user_id', 'district_id', 'cat_id', 'from_who', 'past_grader', 'site_1', 'site_2', 'has_agreed'];
     
     public function user(){
-        $this->belongsTo('User');
+        return $this->belongsTo('User');
     }
     
     public function sites(){
         return $this->belongsToMany('Site');
+    }
+    
+    public function graders(){
+        return $this->belongsToMany('Grade');
     }
 
 }
