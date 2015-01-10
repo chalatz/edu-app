@@ -42,6 +42,18 @@ class RegistrationController extends \BaseController {
         
         $user = User::create($user_data);
 
+        // --- Attach role (site) ---
+        
+        // Get new user's id
+        $new_user_id = $user->id;
+
+        // Get the new user
+        $new_user = User::find($new_user_id);
+		
+		// Attach to the user the Role with id:1 (site)
+		$new_user->roles()->attach(1);     
+        
+
         Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. <br>Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.');
         Session::flash('alert-class', 'flash-info');
 		return Redirect::home();

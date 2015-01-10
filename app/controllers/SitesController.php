@@ -152,24 +152,71 @@ class SitesController extends \BaseController {
         
         $notify_grader = $input['notify_grader'];
         
-        if($notify_grader == 1 && User::where('email', '=', Input::get('grader_email'))->count() == 0) {
-            $grader_email = $input['grader_email'];
-            $confirmation_string = str_random(40);
-            $password = str_random(6);
-            $user_data = [
-                'email' => $grader_email,
-                'password' => $password,
-                'type' => 'grader',
-                'confirmation_string' => $confirmation_string,
-            ];
+        // if($notify_grader == 1 && User::where('email', '=', Input::get('grader_email'))->count() == 0) {
+        //     $grader_email = $input['grader_email'];
+        //     $confirmation_string = str_random(40);
+        //     $password = str_random(6);
+        //     $user_data = [
+        //         'email' => $grader_email,
+        //         'password' => $password,
+        //         'type' => 'grader',
+        //         'confirmation_string' => $confirmation_string,
+        //     ];
             
-            $confirmation_url = route('verify.grader', $confirmation_string);
+        //     $confirmation_url = route('verify.grader', $confirmation_string);
             
-            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password], function($message){
-             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
-            });
+        //     Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password], function($message){
+        //      $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+        //     });
             
-            User::create($user_data);
+        //     User::create($user_data);
+        // }
+        
+        // if the grader is to be notified
+        if($notify_grader == 1){
+
+        	// if the email does not exist
+        	if(User::where('email', '=', Input::get('grader_email'))->count() == 0){
+    			
+    			$grader_email = $input['grader_email'];
+	            $confirmation_string = str_random(40);
+	            $password = str_random(6);
+	            $user_data = [
+	                'email' => $grader_email,
+	                'password' => $password,
+	                'type' => 'grader',
+	                'confirmation_string' => $confirmation_string,
+	            ];
+	            
+	            $confirmation_url = route('verify.grader', $confirmation_string);
+
+	            $site_title = $user->site->title;
+	            
+	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title], function($message){
+	             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+	            });
+	            
+	            $the_new_user = User::create($user_data);
+
+                // --- Attach role (grader) ---
+        
+		        // Get new user's id
+		        $new_user_id = $the_new_user->id;
+
+		        // Get the new user
+		        $new_user = User::find($new_user_id);
+				
+				// Attach to the user the Role with id:2 (grader)
+				$new_user->roles()->attach(2);
+
+				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
+        		Session::flash('alert-class', 'flash-info');
+
+        	} else {
+        		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
+        		
+        	}
+
         }
         
         $user->site->fill($input)->save();

@@ -41,7 +41,7 @@
         </div>
 
         <div class="content">
-            
+           
             @if(Session::has('flash_message'))
                 <div class="flash-message {{Session::get('alert-class')}}">
                     {{ Session::get('flash_message') }}

@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Εγγραφή Site</h1>
+	<h1>Εγγραφή Υποψήφιου Ιστότοπου</h1>
 
 	{{ Form::open(array('route' => 'registration.store', 'class' => 'pure-form pure-form-stacked')) }}
 

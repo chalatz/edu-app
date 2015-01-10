@@ -45,24 +45,35 @@ Route::get('/admin/graders/', ['as' => 'admin.graders', 'uses' => 'AdminControll
 
 // Test Pivot
 Route::get('pivot', function(){
+
+    //$user = Auth::user();
+    $user = User::find(18);
+    if($user->site) {
+        echo "yes";
+    } else {
+        echo "no";
+    }
    
-    $grader = Grader::find(1);
+    //$grader = Grader::find(1);
     
     //$grader->sites()->attach(3);
     
+    // $user = User::find(17);
+    // $user->roles()->attach(1);
     
-    $grader_id = $grader->id;
-    $user_id = $grader->user_id;
     
-    $user = User::with('grader')->whereId($user_id)->first();
-    $user_email = $user->email; 
+    // $grader_id = $grader->id;
+    // $user_id = $grader->user_id;
     
-    echo "Grader email (or id): " . $user_email ."<br>";
-    echo "<p>will grade this(these) site(s): </p>";
+    // $user = User::with('grader')->whereId($user_id)->first();
+    // $user_email = $user->email; 
     
-    foreach($grader->sites as $site) {
-        echo $site->site_url . "<br>";
-    }
+    // echo "Grader email (or id): " . $user_email ."<br>";
+    // echo "<p>will grade this(these) site(s): </p>";
+    
+    // foreach($grader->sites as $site) {
+    //     echo $site->site_url . "<br>";
+    // }
     
 });
 

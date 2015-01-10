@@ -7,9 +7,8 @@
             @if (Auth::guest())
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
-            
-                @if(Auth::user()->type=='site')
-                    @if (Auth::user()->has_site == 0)
+                @if(Auth::user()->roles->first()->role == 'site')
+                    @if (!Auth::user()->site)
                         <li>{{ link_to_route('site.create', 'Υποβολή Υποψηφιότητας Ιστότοπου') }}</li>
                     @else
                         <li>{{ link_to_route('site.show', 'Στοιχεία Site', Auth::user()->id) }}</li>
@@ -17,7 +16,7 @@
                     @endif
                 @endif
             
-                @if(Auth::user()->type=='grader')
+                @if(Auth::user()->roles->first()->role == 'grader')
                     @if(Auth::user()->has_site == 0)
                         <li>{{ link_to_route('grader.create', 'Επεξεργασία') }}</li>
                     @else
@@ -26,7 +25,7 @@
                     @endif
                 @endif
             
-                @if(Auth::user()->type=='admin')
+                @if(Auth::user()->roles->first()->role == 'admin')
                     <li>{{ link_to('/admin/sites', 'Sites') }}</li>
                     <li>{{ link_to('/admin/graders', 'Αξιολογητές') }}</li>
                 @endif
