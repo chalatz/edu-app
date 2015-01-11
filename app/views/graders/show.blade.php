@@ -42,7 +42,6 @@
             <h2>Ονοματεπώνυμο</h2>
             <p>{{ $user->grader->grader_name }}</p>
 
-
             <h2>Κατηγορία του Site που θα αξιολογήσω</h2>
             <p>{{ $cats[$user->grader->cat_id] }}</p>
 

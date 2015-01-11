@@ -26,7 +26,7 @@ class SitesController extends \BaseController {
         if(Auth::guest()){
             return Redirect::home();
         } else {
-            if(Auth::user()->has_site == 1) {
+            if(Auth::user()->site) {
                 return Redirect::home();
             }
         }
@@ -113,7 +113,22 @@ class SitesController extends \BaseController {
 
         }
 
-		Site::create($data);
+		$the_new_site = Site::create($data);
+
+		// ---------- Create the Grader ---
+		$grader_data = [
+			'user_id' => $new_user_id,
+			'grader_name' => $data['grader_name'],
+			'district_id' => $data['district_id'],
+			'cat_id' => $data['cat_id'],
+			'from_who' => $data['title'],
+		];
+
+		$new_grader = Grader::create($grader_data);
+
+		// ----- Attach to site ------------
+		$the_new_grader = Grader::find($new_grader->id);
+		$the_new_grader->sites()->attach($the_new_site->id);
 
 		return Redirect::home();
 	}
