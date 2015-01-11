@@ -24,7 +24,7 @@ class Grader extends \Eloquent {
     }
     
     public function sites(){
-        return $this->belongsToMany('Site');
+        return $this->belongsToMany('Site')->withTimestamps();
     }
     
     public function graders(){

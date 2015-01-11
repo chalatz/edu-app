@@ -35,9 +35,9 @@
             
             ?>
 
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>
 
-            <h1>Στοιχεία Site</h1>
+            <h1>Στοιχεία Υποψηφιότητας Ιστότοπου</h1>
 
             <h2>Γενική Ονομασία</h2>
             <p>{{ $user->site->title }}</p>
@@ -72,7 +72,7 @@
             <h2>E-mail αξιολογητή</h2>
             <p>{{ $user->site->grader_email }}</p>
 
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Site', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>
 
         @else
             <p>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>

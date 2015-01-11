@@ -26,7 +26,8 @@ class GradersController extends \BaseController {
 		if(Auth::guest()){
             return Redirect::home();
         } else {
-            if(Auth::user()->type != 'grader' || Auth::user()->has_site == 1) {
+        	//dd(!Auth::user()->grader);
+            if(!Auth::user()->hasRole('grader') || Auth::user()->grader) {
                     return Redirect::home();
             }
         }
