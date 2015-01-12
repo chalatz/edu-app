@@ -98,7 +98,7 @@ class SitesController extends \BaseController {
 				$new_user->roles()->attach(2);
 
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
-        		Session::flash('alert-class', 'flash-info');
+        		Session::flash('alert-class', 'flash-info');                  
 
         	} else {
         		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
@@ -116,28 +116,33 @@ class SitesController extends \BaseController {
 		$the_new_site = Site::create($data);
 
 		// ---------- Create the Grader ---
-		if($notify_grader == 1 && $data['grader_email'] != $user->email){
+		if($notify_grader == 1){
+            
             $grader_data = [
-                'user_id' => $new_user_id,
                 'grader_name' => $data['grader_name'],
                 'district_id' => $data['district_id'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
             ];
+            
+            if($data['grader_email'] != $user->email){
+                $grader_data['user_id'] = $new_user_id;
+            } else {
+                $grader_data['user_id'] = $user_id;
+            }
 
             $new_grader = Grader::create($grader_data);
 
             // ----- Attach to site ------------
             $the_new_grader = Grader::find($new_grader->id);
             $the_new_grader->sites()->attach($the_new_site->id);
-        }
-        
-        if($data['grader_email'] == $user->email) {
-            $new_grader = Grader::create($grader_data);
+            
+            if($data['grader_email'] == $user->email) {
+                
+                $grader_data['user_id'] = $user_id;
 
-            // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($the_new_site->id);
+            }
+            
         }
 
 		return Redirect::home();
