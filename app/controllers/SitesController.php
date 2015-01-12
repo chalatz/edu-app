@@ -215,6 +215,25 @@ class SitesController extends \BaseController {
         
         $grader_email = $input['grader_email'];
         
+         
+        // --- The site selects a different grader
+//         $site_id = $user->site->id;
+//         $site = Site::find($site_id);
+//         $grader_id = $site->graders->first()->id;
+//         $grader = Grader::find($grader_id);
+//         dd($grader);
+        
+//         foreach($site->graders as $grader){
+//             if($grader->pivot->site_id == $site_id){
+//                 echo 'yes';
+//             } else {
+//                 echo 'no';
+//             }
+//             //echo $grader->pivot->grader_id;
+//             //echo $grader->pivot->site_id;
+            
+//         }
+        
         //check if the user exists
         if(User::where('email', '=', $grader_email)->count() == 0){
             $user_exists = false;
