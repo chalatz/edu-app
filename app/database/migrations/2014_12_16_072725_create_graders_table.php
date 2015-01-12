@@ -20,7 +20,7 @@ class CreateGradersTable extends Migration {
             $table->tinyInteger('district_id')->nullable();
             $table->tinyInteger('cat_id')->nullable();
             $table->string('from_who', 200)->nullable();
-            $table->tinyInteger('past_grader');
+            $table->tinyInteger('past_grader')->nullable();
             $table->integer('site_1')->default(0);
             $table->integer('site_2')->default(0);
             $table->tinyInteger('has_agreed')->default(0);
