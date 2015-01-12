@@ -213,6 +213,7 @@ class SitesController extends \BaseController {
         
         $notify_grader = $input['notify_grader'];
         
+        
         // if the grader is to be notified
         if($notify_grader == 1){
 
@@ -266,29 +267,34 @@ class SitesController extends \BaseController {
         
         $user->site->fill($input)->save();
         
-        if($notify_grader == 1 && $input['grader_email'] != $user->email){
-            // ---------- Create the Grader ---
+		// ---------- Create the Grader ---
+		if($notify_grader == 1){
+            
             $grader_data = [
-                'user_id' => $new_user_id,
-                'grader_name' => $data['grader_name'],
-                'district_id' => $data['district_id'],
-                'cat_id' => $data['cat_id'],
-                'from_who' => $data['title'],
+                'grader_name' => $input['grader_name'],
+                'district_id' => $input['district_id'],
+                'cat_id' => $input['cat_id'],
+                'from_who' => $input['title'],
             ];
+            
+            if($input['grader_email'] != $user->email){
+                $grader_data['user_id'] = $new_user_id;
+            } else {
+                $grader_data['user_id'] = $user->id;
+            }
 
             $new_grader = Grader::create($grader_data);
 
             // ----- Attach to site ------------
             $the_new_grader = Grader::find($new_grader->id);
             $the_new_grader->sites()->attach($user->site->id);
-        }
-        
-        if($input['grader_email'] == $user->email) {
-            $new_grader = Grader::create($grader_data);
+            
+            if($input['grader_email'] == $user->email) {
+                
+                $grader_data['user_id'] = $user->id;
 
-            // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($user->site->id);
+            }
+            
         }
         
         return Redirect::route('site.show', $user->id);
