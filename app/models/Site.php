@@ -12,7 +12,7 @@ class Site extends \Eloquent {
         'contact_email' => 'required|email',
         'phone' => 'required',
         'grader_name' => 'required',
-        'grader_email' => 'required|email',
+        'grader_email' => 'required|email|check_grader',
         'cat_id' => 'required',
         'district_id' => 'required',
         'notify_grader' => 'required'
@@ -23,6 +23,7 @@ class Site extends \Eloquent {
         'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail.',
         'url' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση url.',
         'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.',
+        'check_grader' => 'Ο αξιολογητής με αυτό το email υπάρχει ήδη.',
     ];
 
 	// Don't forget to fill this array
