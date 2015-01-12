@@ -116,19 +116,29 @@ class SitesController extends \BaseController {
 		$the_new_site = Site::create($data);
 
 		// ---------- Create the Grader ---
-		$grader_data = [
-			'user_id' => $new_user_id,
-			'grader_name' => $data['grader_name'],
-			'district_id' => $data['district_id'],
-			'cat_id' => $data['cat_id'],
-			'from_who' => $data['title'],
-		];
+		if($notify_grader == 1 && $data['grader_email'] != $user->email){
+            $grader_data = [
+                'user_id' => $new_user_id,
+                'grader_name' => $data['grader_name'],
+                'district_id' => $data['district_id'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+            ];
 
-		$new_grader = Grader::create($grader_data);
+            $new_grader = Grader::create($grader_data);
 
-		// ----- Attach to site ------------
-		$the_new_grader = Grader::find($new_grader->id);
-		$the_new_grader->sites()->attach($the_new_site->id);
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($the_new_site->id);
+        }
+        
+        if($data['grader_email'] == $user->email) {
+            $new_grader = Grader::create($grader_data);
+
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($the_new_site->id);
+        }
 
 		return Redirect::home();
 	}
@@ -250,6 +260,31 @@ class SitesController extends \BaseController {
         }
         
         $user->site->fill($input)->save();
+        
+        if($notify_grader == 1 && $input['grader_email'] != $user->email){
+            // ---------- Create the Grader ---
+            $grader_data = [
+                'user_id' => $new_user_id,
+                'grader_name' => $data['grader_name'],
+                'district_id' => $data['district_id'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+            ];
+
+            $new_grader = Grader::create($grader_data);
+
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($user->site->id);
+        }
+        
+        if($input['grader_email'] == $user->email) {
+            $new_grader = Grader::create($grader_data);
+
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($user->site->id);
+        }
         
         return Redirect::route('site.show', $user->id);
 	}
