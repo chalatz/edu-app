@@ -213,14 +213,27 @@ class SitesController extends \BaseController {
         
         $notify_grader = $input['notify_grader'];
         
+        $grader_email = $input['grader_email'];
+        
+        //check if the user exists
+        if(User::where('email', '=', $grader_email)->count() == 0){
+            $user_exists = false;
+        } else {
+            $user_exists = true;
+        }
+        
+        // Check if the site and the grader are the same user
+        if($grader_email == $user->email){
+            $same_user = true;
+        } else {
+            $same_user = false;
+        }
         
         // if the grader is to be notified
         if($notify_grader == 1){
 
-        	$grader_email = $input['grader_email'];
-
         	// if the email does not exist
-        	if(User::where('email', '=', $grader_email)->count() == 0){
+        	if(!$user_exists){
     			
 	            $confirmation_string = str_random(40);
 	            $password = str_random(6);
@@ -254,7 +267,7 @@ class SitesController extends \BaseController {
 
         	} else {
         		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
-        		if($grader_email == $user->email && $user->roles->count() <= 1) {
+        		if($same_user && $user->roles->count() <= 1) {
         			// --- Attach role (grader) ---
         			$user->roles()->attach(2);
         			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον ευατό σας ως αξιολογητή.');
@@ -268,7 +281,7 @@ class SitesController extends \BaseController {
         $user->site->fill($input)->save();
         
 		// ---------- Create the Grader ---
-		if($notify_grader == 1){
+		if($notify_grader == 1 && !$user_exists){
             
             $grader_data = [
                 'grader_name' => $input['grader_name'],
