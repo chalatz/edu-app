@@ -183,7 +183,14 @@ class SitesController extends \BaseController {
             return Redirect::home();
         }
         
-        return View::make('sites.edit', compact('user'));
+        $check_grader_site = '';
+        if($this->check_grader_site()){
+            $check_grader_site = 'disabled';
+        } else {
+            $check_grader_site = '';
+        }
+        
+        return View::make('sites.edit', compact('user', 'check_grader_site'));
 	}
 
 	/**
@@ -331,6 +338,24 @@ class SitesController extends \BaseController {
         
         return Redirect::route('site.show', $user->id);
 	}
+    
+    private function check_grader_site(){
+        
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $site_id = $user->site->id;
+        $site = Site::find($site_id);
+        $graders = $site->graders;
+        
+        foreach($graders as $grader){
+            if($grader->id = $grader->pivot->grader_id && $site_id == $grader->pivot->site_id){
+                return true;
+            } else {
+                return false;
+            }
+        }
+            
+    }
 
 	/**
 	 * Remove the specified site from storage.

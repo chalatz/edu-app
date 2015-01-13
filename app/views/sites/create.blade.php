@@ -74,6 +74,7 @@
 
         {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
 		{{ Form::email('grader_email', null, array('class' => 'pure-input-1')) }}
+        <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
         <p class="error-message">{{ $errors->first('grader_email') }}</p>
 
         {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής;') }}
@@ -82,7 +83,7 @@
             '1' => 'Ναι',
             '0' => 'Όχι',
         ], null, array('class' => 'pure-input-1')) }}
-        <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε Ναι για να καταχωρηθείτε και ως αξιολογητής.</div>
+        <div class="instructions"><strong>ΠΡΟΣΟΧΗ: </strong>Εάν επιλέξετε Ναι, <strong>δε θα μπορείτε να καταχωρίσετε μετά κάποιον άλλον αξιολογητή!</strong> Εάν έχετε κάνει κάποιο λάθος, παρακαλούμε επικοινωνήστε μαζί μας.</div>
         <p class="error-message">{{ $errors->first('notify_grader') }}</p>
 
         {{ Form::button('Καταχώριση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}
