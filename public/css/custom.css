@@ -23,9 +23,9 @@ form label {
     color: #666;
 }
 
-.error-message {
-    color: red;
-    font-weight: bold;
+label.error, .error-message {
+    color: #dd514c;
+    font-style: italic;
 }
 
 .flash-message {

@@ -59,8 +59,9 @@
 
 <script src="{{ asset('js/ui.js') }}"></script>
 <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/jquery.validate.js') }}"></script>
+    <script src="{{ asset('js/messages_el.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>     
-
 </body>
 </html>
