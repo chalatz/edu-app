@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{ asset('css/side-menu.css') }}">
     <!--<![endif]-->
     
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   
 </head>
@@ -58,6 +59,7 @@
 
 <script src="{{ asset('js/ui.js') }}"></script>
 <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>     
 
 </body>

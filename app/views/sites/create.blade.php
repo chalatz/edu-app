@@ -4,7 +4,7 @@
 
     <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
-    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked')) }}
+    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
         {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
 		{{ Form::text('site_url', null, array('class' => 'pure-input-1')) }}
@@ -89,5 +89,10 @@
         {{ Form::button('Καταχώριση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}
 
     {{ Form::close() }}
+
+    <div id="dialog-confirm" title = "Επιβεβαίωση αξιολογητή;">
+        <p>Είστε βέβαιοι ότι επιθυμείτε να δηλώσετε αυτόν τον αξιολογητή;</p>
+        <p>Εάν απαντήσετε θετικά, η ενέργεια αυτή δεν μπορεί να αναιρεθεί και θα πρέπει να επικοινωνήσετε μαζί μας.</p>
+    </div>
 
 @stop
