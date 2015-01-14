@@ -12,7 +12,7 @@
             {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe')) }}
 
                 {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
-                {{ Form::text('site_url', null, array('class' => 'pure-input-1', 'required')) }}
+                {{ Form::url('site_url', null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('site_url') }}</p>
 
                 {{ Form::label('title', 'Επωνυμία Ιστότοπου') }}
@@ -79,6 +79,8 @@
                 {{ Form::text('grader_email', null, array('class' => 'pure-input-1','required', $check_grader_site )) }}
                 @if($check_grader_site != 'disabled')
                     <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
+                @else
+                    <div class="instructions">Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</div>
                 @endif
                 <p class="error-message">{{ $errors->first('grader_email') }}</p>
 

@@ -24,13 +24,18 @@
 
         $('#confirmMe').validate();
         
+        
         $('#confirmMe').on('submit', function(e){
 
-            if(grader_field.val().length > 0 && grader_notify.val() == 1){
-                e.preventDefault();
-                $("#dialog-confirm").dialog('open');
-            }
+//             if(grader_field.val().length > 0 && grader_notify.val() == 1){
+//                 e.preventDefault();
+//                 $("#dialog-confirm").dialog('open');
+//             }
 
+                        if($('#confirmMe').valid() == true) {
+                            e.preventDefault();
+                            $("#dialog-confirm").dialog('open');
+                        }
 
         });
         
