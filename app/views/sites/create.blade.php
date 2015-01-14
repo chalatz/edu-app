@@ -4,7 +4,7 @@
 
     <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
-    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
+    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked site-form', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
         {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
 		{{ Form::url('site_url', null, array('class' => 'pure-input-1', 'required')) }}
@@ -49,9 +49,12 @@
 		{{ Form::text('phone', null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('phone') }}</p>
 
+        {{ Form::label('mobile_phone', 'Κινητό Τηλέφωνο') }}
+		{{ Form::text('mobile_phone', null, array('class' => 'pure-input-1')) }}
+
         {{ Form::label('district_id', 'Περιφέρεια') }}
 		{{ Form::select('district_id',[
-            '' => 'Επιλέξτε...',
+            '' => 'Επιλέξτε...',    
             '1' => 'Αττική',
             '2' => 'Βόρειο Αιγαίο',
             '3' => 'Νότιο Αιγαίο',
@@ -65,8 +68,14 @@
             '11' => 'Κεντρική Μακεδονία',
             '12' => 'Πελοπόννησος',
             '13' => 'Στερεά Ελλάδα',
+            '14' => 'Άλλη...',
         ], null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('district_id') }}</p>
+
+        <div class="district_text">
+            {{ Form::label('district_text', 'Ονομασία Περιφέρειας') }}
+		    {{ Form::text('district_text', null, array('class' => 'pure-input-1')) }}
+        </div>
 
         {{ Form::label('grader_name', 'Προτεινόμενος αξιολογητής') }}
 		{{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}

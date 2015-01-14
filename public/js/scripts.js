@@ -41,6 +41,26 @@
         
     };
     
+    var districts = function(){
+        
+        var district_text = $('.district_text'),
+            district_text_input = $('#district_text'),
+            districts_select = $('.site-form select#district_id');
+        
+        district_text.hide();
+        
+        districts_select.on('change', function(){
+            if(districts_select.val() == 14){
+                district_text.fadeIn();
+            } else {
+                district_text_input.val('');
+                district_text.hide();
+            }
+        });
+        
+    };
+    
     confirm_form();
+    districts();
     
 })(jQuery);

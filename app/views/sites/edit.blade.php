@@ -9,7 +9,7 @@
 
             <h1>Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου</h1>
 
-            {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe')) }}
+            {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked site-form',  'id' => 'confirmMe')) }}
 
                 {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
                 {{ Form::url('site_url', null, array('class' => 'pure-input-1', 'required')) }}
@@ -52,6 +52,9 @@
                 {{ Form::text('phone', null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('phone') }}</p>
 
+                {{ Form::label('mobile_phone', 'Κινητό Τηλέφωνο') }}
+                {{ Form::text('mobile_phone', null, array('class' => 'pure-input-1')) }}
+
                 {{ Form::label('district_id', 'Περιφέρεια') }}
                 {{ Form::select('district_id',[
                     '' => 'Επιλέξτε...',
@@ -68,6 +71,7 @@
                     '11' => 'Κεντρική Μακεδονία',
                     '12' => 'Πελοπόννησος',
                     '13' => 'Στερεά Ελλάδα',
+                    '14' => 'Άλλη...',
                 ], null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('district_id') }}</p>
 
