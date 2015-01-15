@@ -54,3 +54,15 @@ label.error, .error-message {
     display: none !important;
 }
 
+.pure-form fieldset {
+    background: #f4f0ec;
+    padding: 0 .5em;
+    border-bottom: 2px solid #666;
+    margin-bottom: 2em;
+}
+
+.pure-form fieldset h3 {
+    background: #666;
+    padding: .5em;
+    color: #fff;
+}
