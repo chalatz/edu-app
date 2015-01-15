@@ -32,35 +32,34 @@
 //                 $("#dialog-confirm").dialog('open');
 //             }
 
-                        if($('#confirmMe').valid() == true) {
-                            e.preventDefault();
-                            $("#dialog-confirm").dialog('open');
-                        }
+            if($('#confirmMe').valid() == true && grader_notify.val() == 1) {
+                e.preventDefault();
+                $("#dialog-confirm").dialog('open');
+            }
 
         });
         
     };
     
-    var districts = function(){
+    var depandable_fields = function(wrapper, depender, dependee, depender_value) {
         
-        var district_text = $('.district_text'),
-            district_text_input = $('#district_text'),
-            districts_select = $('.site-form select#district_id');
+        if(depender.val() != depender_value){
+            wrapper.hide();
+        }
         
-        district_text.hide();
-        
-        districts_select.on('change', function(){
-            if(districts_select.val() == 14){
-                district_text.fadeIn();
+        depender.on('change', function(){
+            if(depender.val() == depender_value){
+                wrapper.fadeIn();
             } else {
-                district_text_input.val('');
-                district_text.hide();
+                dependee.val('');
+                wrapper.hide();
             }
         });
         
-    };
+    }
     
     confirm_form();
-    districts();
+    depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);
+    depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 1);
     
 })(jQuery);

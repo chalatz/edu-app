@@ -40,6 +40,11 @@
                 {{ Form::text('responsible', null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('responsible') }}</p>
 
+                {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου') }}
+                {{ Form::text('responsible_type', null, array('class' => 'pure-input-1', 'required')) }}
+                <div class="instructions">π.χ Διευθυντής, Υποδιευθυντής, κλπ</div>
+                <p class="error-message">{{ $errors->first('responsible_type') }}</p>
+
                 {{ Form::label('contact_name', 'Υπέυθυνος επικοινωνίας υποψηφιότητας') }}
                 {{ Form::text('contact_name', null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('contact_name') }}</p>
@@ -98,6 +103,24 @@
                     <div class="instructions"><strong>ΠΡΟΣΟΧΗ: </strong>Εάν επιλέξετε Ναι, <strong>δε θα μπορείτε να καταχωρίσετε μετά κάποιον άλλον αξιολογητή!</strong> Εάν έχετε κάνει κάποιο λάθος, παρακαλούμε επικοινωνήστε μαζί μας.</div>
                     <p class="error-message">{{ $errors->first('notify_grader') }}</p>
                 @endif
+
+                {{ Form::label('received_permission', 'Έχετε λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;') }}
+                {{ Form::select('received_permission',[
+                    '' => 'Επιλέξτε...',
+                    '1' => 'Ναι',
+                    '0' => 'Όχι',
+                ], null, array('class' => 'pure-input-1', 'required')) }}
+
+                {{ Form::label('restricted_access', 'Έχει ο ιστότοπος περιορισμένη πρόσβαση;') }}
+                {{ Form::select('restricted_access',[
+                '' => 'Επιλέξτε...',
+                '1' => 'Ναι',
+                '0' => 'Όχι',
+                ], null, array('class' => 'pure-input-1')) }}
+
+                {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης') }}
+                {{ Form::textarea('restricted_access_details', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση')) }}
+                <div class="instructions">Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση</div>
 
                 {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 

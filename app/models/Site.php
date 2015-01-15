@@ -27,7 +27,7 @@ class Site extends \Eloquent {
     ];
 
 	// Don't forget to fill this array
-	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader', 'mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission'];
+	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader', 'mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission'];
     
     public function user(){
         $this->belongsTo('User');

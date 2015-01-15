@@ -42,13 +42,18 @@ class SitesController extends \BaseController {
 	public function store()
 	{
 		$validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
+        
+        $input = Input::all();
+        $validator->sometimes('district_text', 'required', function($input){
+            return $input->district_id == 14;
+        });
 
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
         
-        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
+        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader','mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
         
         $user_id = Auth::user()->id;
         
