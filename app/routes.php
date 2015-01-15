@@ -84,6 +84,14 @@ Route::get('flash', function(){
     return Redirect::home();
 });
 
+// Test Select Lists from DB
+Route::get('selects', function(){
+    
+    $districts = ['100' => 'Επιλέξτε...'] + District::lists('district_name', 'id');
+    
+    return View::make('tests.select_lists', compact('districts'));
+});
+
 
 # Test Email
 // Route::get('testemail', function(){
