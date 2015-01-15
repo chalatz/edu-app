@@ -9,7 +9,7 @@
 
             <h1>Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου</h1>
 
-            {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked site-form',  'id' => 'confirmMe')) }}
+            {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked site-form',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
                 {{ Form::label('site_url', 'URL Ιστοσελίδας') }}
                 {{ Form::url('site_url', null, array('class' => 'pure-input-1', 'required')) }}
@@ -80,18 +80,28 @@
                 ], null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('district_id') }}</p>
 
+                <div id="district_text_wrapper">
+                    {{ Form::label('district_text', 'Ονομασία Περιφέρειας') }}
+                    {{ Form::text('district_text', null, array('class' => 'pure-input-1')) }}
+                    <p class="error-message">{{ $errors->first('district_text') }}</p>
+                </div>
+
                 {{ Form::label('grader_name', 'Προτεινόμενος αξιολογητής') }}
                 {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
                 <p class="error-message">{{ $errors->first('grader_name') }}</p>
-                
-                {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
-                {{ Form::text('grader_email', null, array('class' => 'pure-input-1','required', $check_grader_site )) }}
+
                 @if($check_grader_site != 'disabled')
+                    {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
+                    {{ Form::text('grader_email', null, array('class' => 'pure-input-1','required')) }}
                     <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
+                    <p class="error-message">{{ $errors->first('grader_email') }}</p>
                 @else
+                    <p><strong>E-mail αξιολογητή</strong></p>
+                    <p>{{$user->site->grader_email}}</p>
+                    {{ Form::hidden('grader_email', null, array('class' => 'pure-input-1')) }}
+                    <p class="error-message">{{ $errors->first('grader_email') }}</p>
                     <div class="instructions">Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</div>
                 @endif
-                <p class="error-message">{{ $errors->first('grader_email') }}</p>
 
                 @if($check_grader_site != 'disabled')
                     {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής;') }}
@@ -102,6 +112,8 @@
                     ], null, array('class' => 'pure-input-1', 'required')) }}
                     <div class="instructions"><strong>ΠΡΟΣΟΧΗ: </strong>Εάν επιλέξετε Ναι, <strong>δε θα μπορείτε να καταχωρίσετε μετά κάποιον άλλον αξιολογητή!</strong> Εάν έχετε κάνει κάποιο λάθος, παρακαλούμε επικοινωνήστε μαζί μας.</div>
                     <p class="error-message">{{ $errors->first('notify_grader') }}</p>
+                @else
+                    {{ Form::hidden('notify_grader') }}
                 @endif
 
                 {{ Form::label('received_permission', 'Έχετε λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;') }}
@@ -118,13 +130,20 @@
                 '0' => 'Όχι',
                 ], null, array('class' => 'pure-input-1')) }}
 
-                {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης') }}
-                {{ Form::textarea('restricted_access_details', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση')) }}
-                <div class="instructions">Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση</div>
+                <div id="restricted_access_details_wrapper">
+                    {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης') }}
+                    {{ Form::textarea('restricted_access_details', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση')) }}
+                    <div class="instructions">Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση</div>
+                </div>
 
                 {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
             {{ Form::close() }}
+
+            <div id="dialog-confirm" title = "Επιβεβαίωση αξιολογητή;">
+                <p>Είστε βέβαιοι ότι επιθυμείτε να δηλώσετε αυτόν τον αξιολογητή;</p>
+                <p>Εάν απαντήσετε θετικά, η ενέργεια αυτή δεν μπορεί να αναιρεθεί και θα πρέπει να επικοινωνήσετε μαζί μας.</p>
+            </div>
 
         @else
             <p class='flash-message flash-error'>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>

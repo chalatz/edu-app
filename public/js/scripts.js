@@ -45,6 +45,7 @@
         
         if(depender.val() != depender_value){
             wrapper.hide();
+            dependee.val('');
         }
         
         depender.on('change', function(){

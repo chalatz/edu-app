@@ -106,7 +106,7 @@
             '100' => 'Επιλέξτε...',
             '1' => 'Ναι',
             '0' => 'Όχι',
-        ], null, array('class' => 'pure-input-1')) }}
+        ], null, array('class' => 'pure-input-1', 'required')) }}
 
         {{ Form::label('restricted_access', 'Έχει ο ιστότοπος περιορισμένη πρόσβαση;') }}
         {{ Form::select('restricted_access',[

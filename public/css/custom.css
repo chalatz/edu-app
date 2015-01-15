@@ -50,3 +50,7 @@ label.error, .error-message {
     background-color: #dd514c;
 }
 
+.hidden {
+    display: none !important;
+}
+

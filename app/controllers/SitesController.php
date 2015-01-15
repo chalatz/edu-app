@@ -208,6 +208,11 @@ class SitesController extends \BaseController {
 	{
         $validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
 
+        $input = Input::all();
+        $validator->sometimes('district_text', 'required', function($input){
+            return $input->district_id == 14;
+        });
+        
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
@@ -226,25 +231,6 @@ class SitesController extends \BaseController {
         $notify_grader = $input['notify_grader'];
         
         $grader_email = $input['grader_email'];
-        
-         
-        // --- The site selects a different grader
-//         $site_id = $user->site->id;
-//         $site = Site::find($site_id);
-//         $grader_id = $site->graders->first()->id;
-//         $grader = Grader::find($grader_id);
-//         dd($grader);
-        
-//         foreach($site->graders as $grader){
-//             if($grader->pivot->site_id == $site_id){
-//                 echo 'yes';
-//             } else {
-//                 echo 'no';
-//             }
-//             //echo $grader->pivot->grader_id;
-//             //echo $grader->pivot->site_id;
-            
-//         }
         
         //check if the user exists
         if(User::where('email', '=', $grader_email)->count() == 0){
