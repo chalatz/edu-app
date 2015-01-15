@@ -93,17 +93,31 @@
 
         <fieldset>
             <h3>Στοιχεία Αξιολογητή Α</h3>
+
+            {{ Form::label('grader_last_name', 'Επώνυμο προτεινόμενου αξιολογητή Α') }}
+            {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required')) }}
+            <p class="error-message">{{ $errors->first('grader_last_name') }}</p>            
             
-            {{ Form::label('grader_name', 'Προτεινόμενος αξιολογητής') }}
+            {{ Form::label('grader_name', 'Όνομα προτεινόμενου αξιολογητή Α') }}
             {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
             <p class="error-message">{{ $errors->first('grader_name') }}</p>
+            
+            {{ Form::label('grader_district', 'Περιφέρεια Αξιολογητή Α') }}
+            {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+            <p class="error-message">{{ $errors->first('grader_district') }}</p>
 
-            {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
+<!--             <div id="district_text_wrapper">
+                {{ Form::label('district_text', 'Ονομασία Περιφέρειας') }}
+                {{ Form::text('district_text', null, array('class' => 'pure-input-1')) }}
+                <p class="error-message">{{ $errors->first('district_text') }}</p>
+            </div> -->
+
+            {{ Form::label('grader_email', 'E-mail αξιολογητή Α') }}
             {{ Form::email('grader_email', null, array('class' => 'pure-input-1', 'required')) }}
             <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
             <p class="error-message">{{ $errors->first('grader_email') }}</p>
 
-            {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής;') }}
+            {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής Α;') }}
             {{ Form::select('notify_grader',[
                 '100' => 'Επιλέξτε...',
                 '1' => 'Ναι',

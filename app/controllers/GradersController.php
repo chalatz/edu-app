@@ -49,7 +49,8 @@ class GradersController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
         
-        $data = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
+        //$data = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
+        $data = Input::all();
         
         $user_id = Auth::user()->id;
         
@@ -128,7 +129,8 @@ class GradersController extends \BaseController {
             return Redirect::home();
         }
         
-        $input = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
+        //$input = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
+        $input = Input::all();
         
         $user->grader->fill($input)->save();
         

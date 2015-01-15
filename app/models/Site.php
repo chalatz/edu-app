@@ -12,10 +12,12 @@ class Site extends \Eloquent {
         'contact_email' => 'required|email',
         'phone' => 'required',
         'grader_name' => 'required',
+        'grader_last_name' => 'required',
         'grader_email' => 'required|email|check_grader',
+        'grader_district' => 'required',
         'cat_id' => 'required',
         'district_id' => 'required',
-        'notify_grader' => 'required'
+        'notify_grader' => 'required',
 	];
     
     public static $error_messages = [
@@ -27,7 +29,7 @@ class Site extends \Eloquent {
     ];
 
 	// Don't forget to fill this array
-	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader', 'mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission'];
+	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'grader_last_name', 'grader_district', 'notify_grader', 'mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission', 'grader_district_text'];
     
     public function user(){
         $this->belongsTo('User');

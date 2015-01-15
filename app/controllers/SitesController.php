@@ -53,7 +53,8 @@ class SitesController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
         
-        $data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader','mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
+        //$data = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_last_name', 'grader_email', 'grader_district', 'notify_grader','mobile_phone', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
+        $data = Input::all();
         
         $user_id = Auth::user()->id;
         
@@ -125,9 +126,11 @@ class SitesController extends \BaseController {
             
             $grader_data = [
                 'grader_name' => $data['grader_name'],
+                'grader_last_name' => $data['grader_last_name'],
                 'district_id' => $data['district_id'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
+                'from_who_email' => $user->email,
             ];
             
             if($data['grader_email'] != $user->email){
@@ -226,7 +229,8 @@ class SitesController extends \BaseController {
             return Redirect::home();
         }
         
-        $input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
+        //$input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_last_name', 'grader_email', 'grader_district', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
+        $input = Input::all();
         
         $notify_grader = $input['notify_grader'];
         
