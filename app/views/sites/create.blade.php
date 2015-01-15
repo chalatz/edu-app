@@ -16,16 +16,9 @@
         <div class="instructions">Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας</div>
         <p class="error-message">{{ $errors->first('title') }}</p>
 
+        <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
         {{ Form::label('cat_id', 'Κατηγορία') }}
-		{{ Form::select('cat_id',[
-            '' => 'Επιλέξτε...',
-            '1' => '1. Νηπιαγωγεία, Δημοτικά Σχολεία, Δημοτικά Ειδικά Σχολεία',
-            '2' => '2. Γυμνάσια, ΕΕΕΕΚ',
-            '3' => '3. Γενικά Λύκεια, ΕΠΑΛ, ΕΚ, ΤΕΕ Ειδικής Αγωγής',
-            '4' => '4. Υποστηρικτικές δομές εκπαίδευσης',
-            '5' => '5. Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
-            '6' => '6. Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
-        ], null, array('class' => 'pure-input-1', 'required')) }}
+		{{ Form::select('cat_id', $categories, null, array('class' => 'pure-input-1', 'required')) }}
         <div class="instructions">Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</div>
         <p class="error-message">{{ $errors->first('cat_id') }}</p>
 
@@ -57,24 +50,9 @@
         {{ Form::label('mobile_phone', 'Κινητό Τηλέφωνο') }}
 		{{ Form::text('mobile_phone', null, array('class' => 'pure-input-1')) }}
 
+        <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
         {{ Form::label('district_id', 'Περιφέρεια') }}
-		{{ Form::select('district_id',[
-            '' => 'Επιλέξτε...',    
-            '1' => 'Αττική',
-            '2' => 'Βόρειο Αιγαίο',
-            '3' => 'Νότιο Αιγαίο',
-            '4' => 'Δυτική Ελλάδα',
-            '5' => 'Θεσσαλία',
-            '6' => 'Ήπειρος',
-            '7' => 'Ιόνιο',
-            '8' => 'Κρήτη',
-            '9' => 'Ανατολική Μακεδονία και Θράκη',
-            '10' => 'Δυτική Μακεδονία',
-            '11' => 'Κεντρική Μακεδονία',
-            '12' => 'Πελοπόννησος',
-            '13' => 'Στερεά Ελλάδα',
-            '14' => 'Άλλη...',
-        ], null, array('class' => 'pure-input-1', 'required')) }}
+		{{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('district_id') }}</p>
 
         <div id="district_text_wrapper">

@@ -88,6 +88,7 @@ Route::get('flash', function(){
 Route::get('selects', function(){
     
     $districts = ['100' => 'Επιλέξτε...'] + District::lists('district_name', 'id');
+    dd($districts);
     
     return View::make('tests.select_lists', compact('districts'));
 });
