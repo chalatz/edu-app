@@ -63,11 +63,18 @@
                     '0' => 'Όχι',
                 ], null, array('class' => 'pure-input-1')) }}
 
+                {{ Form::label('wants_to_be_grader_b', 'Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β') }}
+                {{ Form::select('wants_to_be_grader_b',[
+                    '' => 'Επιλέξτε...',
+                    '1' => 'Ναι',
+                    '0' => 'Όχι',
+                ], null, array('class' => 'pure-input-1')) }}
+
                 {{ Form::label('languages', 'Ξένες γλώσσες που γνωρίζω') }}
                 {{ Form::text('languages', null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
 
-                {{ Form::label('languages_level', 'Επίπεδο ξένων γλώσσών που γνωρίζω') }}
+                {{ Form::label('languages_level', 'Επίπεδο ξένων γλωσσών που γνωρίζω') }}
                 {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}
                 <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
 
