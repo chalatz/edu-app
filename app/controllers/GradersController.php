@@ -95,7 +95,7 @@ class GradersController extends \BaseController {
 	 */
 	public function edit($userid)
 	{
-		 try {
+        try {
             $user = User::with('grader')->whereId($userid)->firstOrFail();   
         }
         
@@ -103,7 +103,9 @@ class GradersController extends \BaseController {
             return Redirect::home();
         }
         
-        return View::make('graders.edit', compact('user'));
+        $grader = Grader::find($user->grader->id);
+        
+        return View::make('graders.edit', compact('user', 'grader'));
 	}
 
 	/**
