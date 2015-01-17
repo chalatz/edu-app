@@ -21,6 +21,7 @@ class AddGraderLastNameToGradersTable extends Migration {
             $table->string('from_who_email', 200)->after('from_who')->nullable();
             $table->tinyInteger('desired_category')->default(0);
             $table->tinyInteger('past_grader_more')->after('past_grader')->default(100);
+            $table->tinyInteger('grader_district_id')->default(0);
             $table->string('grader_district_text', 200)->after('district_id')->nullable();
 		});
 	}
