@@ -97,9 +97,17 @@
                 <fieldset>
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
+                    {{ Form::label('grader_last_name', 'Επώνυμο προτεινόμενου αξιολογητή Α') }}
+                    {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required')) }}
+                    <p class="error-message">{{ $errors->first('grader_last_name') }}</p> 
+
                     {{ Form::label('grader_name', 'Προτεινόμενος αξιολογητής') }}
                     {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
                     <p class="error-message">{{ $errors->first('grader_name') }}</p>
+
+                    {{ Form::label('grader_district', 'Περιφέρεια Αξιολογητή Α') }}
+                    {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+                    <p class="error-message">{{ $errors->first('grader_district') }}</p>
 
                     @if($check_grader_site != 'disabled')
                         {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
