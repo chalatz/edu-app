@@ -33,6 +33,11 @@
                     required: function(){
                         return $('select#district_id').val() == 14;
                     }
+                },
+                restricted_access_details : {
+                    required: function(){
+                        return $('select#restricted_access').val() == 1;
+                    }
                 }
             }
         });
@@ -70,7 +75,7 @@
             }
         });
         
-    }
+    };
     
     confirm_form();
     depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);

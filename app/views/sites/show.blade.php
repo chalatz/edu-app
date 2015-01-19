@@ -7,70 +7,96 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <?php
-                $cats = [
-                    '1' => 'Νηπιαγωγεία, Δημοτικά Σχολεία, Δημοτικά Ειδικά Σχολεία',
-                    '2' => 'Γυμνάσια, ΕΕΕΕΚ',
-                    '3' => 'Γενικά Λύκεια, ΕΠΑΛ, ΕΠΑΣ, ΣΕΚ, ΤΕΕ Ειδικής Αγωγής',
-                    '4' => 'Υποστηρικτικές δομές εκπαίδευσης',
-                    '5' => 'Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
-                    '6' => 'Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
-                ];
-
-                $districts = [
-                    '1' => 'Αττική',
-                    '2' => 'Βόρειο Αιγαίο',
-                    '3' => 'Νότιο Αιγαίο',
-                    '4' => 'Δυτική Ελλάδα',
-                    '5' => 'Θεσσαλία',
-                    '6' => 'Ήπειρος',
-                    '7' => 'Ιόνιο',
-                    '8' => 'Κρήτη',
-                    '9' => 'Ανατολική Μακεδονία και Θράκη',
-                    '10' => 'Δυτική Μακεδονία',
-                    '11' => 'Κεντρική Μακεδονία',
-                    '12' => 'Πελοπόννησος',
-                    '13' => 'Στερεά Ελλάδα',
-                    '14' => 'Άλλη...',
-                ];
-            
-            ?>
+            <?php $categories = Category::lists('category_name', 'id'); ?>
+            <?php $districts = District::lists('district_name', 'id'); ?>
 
             <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>
 
             <h1>Στοιχεία Υποψηφιότητας Ιστότοπου</h1>
 
-            <h2>Γενική Ονομασία</h2>
-            <p>{{ $user->site->title }}</p>
+            <section class="details-wrapper">
+                <h2>Στοιχεία Υποψήφιου Ιστότοπου</h2>
 
-            <h2>URL Ιστοσελίδας</h2>
-            <p>{{ $user->site->site_url }}</p>
+                <div class="detail">
+                    <h3>URL Ιστοσελίδας</h3>
+                    <p>{{ $user->site->site_url }}</p>
+                </div>
+            
+                <div class="detail">
+                   <h3>Επωνυμία Ιστότοπου</h3>
+                    <p>{{ $user->site->title }}</p> 
+                </div>
 
-            <h2>Κατηγορία</h2>
-            <p>{{ $cats[$user->site->cat_id] }}</p>
+                <div class="detail">
+                    <h3>Κατηγορία</h3>
+                    <p>{{ $categories[$user->site->cat_id] }}</p>
+                </div>
 
-            <h2>Δημιουργός / Δημιουργοί</h2>
-            <p>{{ $user->site->creator }}</p>
+                <div class="detail">
+                    <h3>Δημιουργός / Δημιουργοί</h3>
+                    <p>{{ $user->site->creator }}</p>
+                </div>
 
-            <h2>Νομικά υπεύθυνος</h2>
-            <p>{{ $user->site->responsible }}</p>
+                <div class="detail">
+                    <h3>Νομικά υπεύθυνος</h3>
+                    <p>{{ $user->site->responsible }}</p>                    
+                </div>
 
-            <h2>Υπέυθυνος επικοινωνίας</h2>
+                <div class="detail">
+                    <h3>Ιδιότητα νομικά υπεύθυνου</h3>
+                    <p>{{ $user->site->responsible_type }}</p>
+                </div>
+
+                <h3>Έχω λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;</h3>
+                @if(isset($user->site->received_permission))
+                    <div class="detail">
+                        @if($user->site->received_permission == 1)
+                            <p>Ναι</p>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    </div>
+                @endif
+
+                <h3>Έχει ο ιστότοπος περιορισμένη πρόσβαση;</h3>
+                @if(isset($user->site->restricted_access))
+                    <div class="detail">
+                        @if($user->site->restricted_access == 1)
+                            <p>Ναι</p>
+                            <h3>Λεπτομέρειες Πρόσβασης</h3>
+                            <div class="detail">
+                                <p>{{ $user->site->restricted_access_details }}</p>
+                            </div>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    </div>
+                @endif                
+
+            </section>
+
+            
+            <section class="details-wrapper">
+                
+            </section>
+
+
+            <h3>Υπέυθυνος επικοινωνίας</h3>
             <p>{{ $user->site->contact_name }}</p>
 
-            <h2>E-mail επικοινωνίας</h2>
+            <h3>E-mail επικοινωνίας</h3>
             <p>{{ $user->site->contact_email }}</p>
 
-            <h2>Τηλέφωνο επικοινωνίας</h2>
+            <h3>Τηλέφωνο επικοινωνίας</h3>
             <p>{{ $user->site->phone }}</p>
 
-            <h2>Περιφέρεια</h2>
+            <h3>Περιφέρεια</h3>
             <p>{{ $districts[$user->site->district_id] }}</p>
 
-            <h2>Προτεινόμενος αξιολογητής</h2>
+            <h3>Προτεινόμενος αξιολογητής</h3>
             <p>{{ $user->site->grader_name }}</p>
 
-            <h2>E-mail αξιολογητή</h2>
+            <h3>E-mail αξιολογητή</h3>
             <p>{{ $user->site->grader_email }}</p>
 
             <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>

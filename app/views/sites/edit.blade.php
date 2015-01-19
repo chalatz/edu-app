@@ -115,6 +115,12 @@
                         {{ Form::label('grader_district', 'Περιφέρεια Αξιολογητή Α') }}
                         {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
                         <p class="error-message">{{ $errors->first('grader_district') }}</p>
+
+                        <div id="grader_district_text_wrapper">
+                            {{ Form::label('grader_district_text', 'Ονομασία Περιφέρειας Αξιολογητή Α') }}
+                            {{ Form::text('grader_district_text', null, array('class' => 'pure-input-1')) }}
+                            <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
+                        </div>
                     
                     @else
 
@@ -133,6 +139,9 @@
                         <p><strong>Περιφέρεια Αξιολογητή Α</strong></p>
                         <p>{{ District::find($user->site->grader_district)->district_name }}</p>
                         {{ Form::hidden('grader_district', null, array('class' => 'pure-input-1')) }}
+
+                        <p>{{ $user->site->grader_district_text }}</p>
+                        {{ Form::hidden('grader_district_text', null, array('class' => 'pure-input-1')) }}                      
                     
                     <div class="instructions"><strong>Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</strong></div>
                     @endif

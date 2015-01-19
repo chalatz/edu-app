@@ -54,15 +54,29 @@ label.error, .error-message {
     display: none !important;
 }
 
-.pure-form fieldset {
+.pure-form fieldset,
+.details-wrapper {
     background: #f4f0ec;
     padding: 0 .5em;
     border-bottom: 2px solid #666;
     margin-bottom: 2em;
 }
 
-.pure-form fieldset h3 {
+.details-wrapper {
+    padding: .5em;
+}
+
+.pure-form fieldset h3,
+.details-wrapper h2 {
     background: #666;
     padding: .5em;
     color: #fff;
+}
+
+.detail {
+    border-bottom: 1px dotted #666;
+}
+
+.detail p {
+    margin-left: 1em;
 }
