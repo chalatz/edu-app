@@ -10,7 +10,7 @@
             <?php $categories = Category::lists('category_name', 'id'); ?>
             <?php $districts = District::lists('district_name', 'id'); ?>
 
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id, ['class' => 'pure-button button-secondary button-secondary-light-blue']) }}</p>    
 
             <h1>Στοιχεία Υποψηφιότητας Ιστότοπου</h1>
 
@@ -78,28 +78,70 @@
             
             <section class="details-wrapper">
                 
+                <h2>Στοιχεία Επικοινωνίας Υποψηφιότητας</h2>
+
+                <div class="detail">
+                    <h3>Υπεύθυνος επικοινωνίας υποψηφιότητας</h3>
+                    <p>{{ $user->site->contact_name }}</p>
+                </div>                
+
+
+                <div class="detail">
+                    <h3>Κινητό Τηλέφωνο</h3>
+                    <p>{{ $user->site->mobile_phone }}</p>
+                </div>
+
+                <div class="detail">
+                    <h3>Περιφέρεια</h3>
+                    <p>{{ $districts[$user->site->district_id] }}</p>
+                    @if($user->site->district_id == 14)
+                        <p>{{ $user->site->district_text }}</p>
+                    @endif
+                </div>               
+
             </section>
 
+            <section class="details-wrapper">
+                
+                <h2>Στοιχεία Αξιολογητή Α</h2>
 
-            <h3>Υπέυθυνος επικοινωνίας</h3>
-            <p>{{ $user->site->contact_name }}</p>
+                <div class="detail">
+                    <h3>Επώνυμο προτεινόμενου αξιολογητή Α</h3>
+                    <p>{{ $user->site->grader_last_name }}</p>
+                </div>
 
-            <h3>E-mail επικοινωνίας</h3>
-            <p>{{ $user->site->contact_email }}</p>
+                <div class="detail">
+                    <h3>Όνομα προτεινόμενου αξιολογητή Α</h3>
+                    <p>{{ $user->site->grader_name }}</p>
+                </div>
 
-            <h3>Τηλέφωνο επικοινωνίας</h3>
-            <p>{{ $user->site->phone }}</p>
+                <div class="detail">
+                    <h3>Περιφέρεια Αξιολογητή Α</h3>
+                    <p>{{ $districts[$user->site->grader_district] }}</p>
+                    @if($user->site->grader_district == 14)
+                        <p>{{ $user->site->grader_district_text }}</p>
+                    @endif
+                </div>
 
-            <h3>Περιφέρεια</h3>
-            <p>{{ $districts[$user->site->district_id] }}</p>
+                <div class="detail">
+                    <h3>E-mail αξιολογητή Α</h3>
+                    <p>{{ $user->site->grader_email }}</p>
+                </div>
 
-            <h3>Προτεινόμενος αξιολογητής</h3>
-            <p>{{ $user->site->grader_name }}</p>
+                <div class="detail">
+                    <h3>Έχει ειδοποιηθεί ο αξιολογητής Α;</h3>
+                    @if(isset($user->site->notify_grader))
+                        @if($user->site->notify_grader == 1)
+                            <p>Ναι</p>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    @endif
+                </div>
 
-            <h3>E-mail αξιολογητή</h3>
-            <p>{{ $user->site->grader_email }}</p>
+            </section>
 
-            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id) }}</p>
+            <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id, ['class' => 'pure-button button-secondary button-secondary-light-blue']) }}</p>
 
         @else
             <p>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
