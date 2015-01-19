@@ -7,43 +7,47 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <?php
-                $cats = [
-                    '1' => 'Νηπιαγωγεία, Δημοτικά Σχολεία, Δημοτικά Ειδικά Σχολεία',
-                    '2' => 'Γυμνάσια, ΕΕΕΕΚ',
-                    '3' => 'Γενικά Λύκεια, ΕΠΑΛ, ΕΠΑΣ, ΣΕΚ, ΤΕΕ Ειδικής Αγωγής',
-                    '4' => 'Υποστηρικτικές δομές εκπαίδευσης',
-                    '5' => 'Διοικητικές μονάδες Διευθύνσεων Εκπαίδευσης και Περιφερειακών Διευθύνσεων Εκπαίδευσης',
-                    '6' => 'Προσωπικοί και ομαδικοί διαδικτυακοί τόποι εκπαιδευτικών',
-                ];
-
-                $districts = [
-                    '1' => 'Αττική',
-                    '2' => 'Βόρειο Αιγαίο',
-                    '3' => 'Νότιο Αιγαίο',
-                    '4' => 'Δυτική Ελλάδα',
-                    '5' => 'Θεσσαλία',
-                    '6' => 'Ήπειρος',
-                    '7' => 'Ιόνιο',
-                    '8' => 'Κρήτη',
-                    '9' => 'Ανατολική Μακεδονία και Θράκη',
-                    '10' => 'Δυτική Μακεδονία',
-                    '11' => 'Κεντρική Μακεδονία',
-                    '12' => 'Πελοπόννησος',
-                    '13' => 'Στερεά Ελλάδα',
-                ];
-            
-            ?>
+            <?php $categories = Category::lists('category_name', 'id'); ?>
+            <?php $districts = District::lists('district_name', 'id'); ?>
 
             <p>{{ link_to_route('grader.edit', 'Επεξεργασία των Στοιχείων μου', Auth::user()->id) }}</p>
 
             <h1>Στοιχεία Αξιολογητή</h1>
 
+            <section class="details-wrapper">
+
+                <h2>Στοιχεία Αξιολογητή</h2>
+
+                <div class="detail">
+                    <h3>Επώνυμο</h3>
+                    <p>{{ $user->grader->grader_last_name }}</p>
+                </div>
+
+                <div class="detail">
+                    <h3>Όνομα</h3>
+                    <p>{{ $user->grader->grader_name }}</p>
+                </div>
+
+                <div class="detail">
+                    <h3>Περιφέρεια</h3>
+                    <p>{{ $districts[$user->grader->district_id] }}</p>
+                    @if($user->grader->district_id == 14)
+                        <p>{{ $user->grader->grader_district_text }}</p>
+                    @endif
+                </div>
+                
+                <div class="detail">
+                    <h3>Θα προτιμούσα να είμαι αξιολογητής στην κατηγορία:</h3>
+                    <p>{{ $categories[$user->grader->desired_category] }}</p>
+                </div>
+
+            </section>
+
             <h2>Ονοματεπώνυμο</h2>
             <p>{{ $user->grader->grader_name }}</p>
 
             <h2>Κατηγορία του Site που θα αξιολογήσω</h2>
-            <p>{{ $cats[$user->grader->cat_id] }}</p>
+            <p>{{ $categories[$user->grader->cat_id] }}</p>
 
             <h2>Περιφέρεια που ανήκει το Site που θα αξιολογήσω</h2>
             <p>{{ $districts[$user->grader->district_id] }}</p>
