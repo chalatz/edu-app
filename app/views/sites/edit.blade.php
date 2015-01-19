@@ -97,29 +97,44 @@
                 <fieldset>
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
-                    {{ Form::label('grader_last_name', 'Επώνυμο προτεινόμενου αξιολογητή Α') }}
-                    {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required')) }}
-                    <p class="error-message">{{ $errors->first('grader_last_name') }}</p> 
-
-                    {{ Form::label('grader_name', 'Προτεινόμενος αξιολογητής') }}
-                    {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
-                    <p class="error-message">{{ $errors->first('grader_name') }}</p>
-
-                    {{ Form::label('grader_district', 'Περιφέρεια Αξιολογητή Α') }}
-                    {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
-                    <p class="error-message">{{ $errors->first('grader_district') }}</p>
-
                     @if($check_grader_site != 'disabled')
+                    
+                        {{ Form::label('grader_last_name', 'Επώνυμο προτεινόμενου αξιολογητή Α') }}
+                        {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required')) }}
+                        <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
+                    
+                        {{ Form::label('grader_name', 'Όνομα προτεινόμενου αξιολογητή Α') }}
+                        {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
+                        <p class="error-message">{{ $errors->first('grader_name') }}</p>                    
+                    
                         {{ Form::label('grader_email', 'E-mail αξιολογητή') }}
                         {{ Form::text('grader_email', null, array('class' => 'pure-input-1','required')) }}
                         <div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
                         <p class="error-message">{{ $errors->first('grader_email') }}</p>
+                    
+                        {{ Form::label('grader_district', 'Περιφέρεια Αξιολογητή Α') }}
+                        {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+                        <p class="error-message">{{ $errors->first('grader_district') }}</p>
+                    
                     @else
+
+                        <p><strong>Επώνυμο προτεινόμενου αξιολογητή Α</strong></p>
+                        <p>{{ $user->site->grader_last_name }}</p>
+                        {{ Form::hidden('grader_last_name', null, array('class' => 'pure-input-1')) }}
+                    
+                        <p><strong>Όνομα προτεινόμενου αξιολογητή Α</strong></p>
+                        <p>{{ $user->site->grader_name }}</p>
+                        {{ Form::hidden('grader_name', null, array('class' => 'pure-input-1')) }}
+                    
                         <p><strong>E-mail αξιολογητή</strong></p>
-                        <p>{{$user->site->grader_email}}</p>
+                        <p>{{ $user->site->grader_email }}</p>
                         {{ Form::hidden('grader_email', null, array('class' => 'pure-input-1')) }}
-                        <p class="error-message">{{ $errors->first('grader_email') }}</p>
-                        <div class="instructions">Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</div>
+
+                        <p><strong>Περιφέρεια Αξιολογητή Α</strong></p>
+                        <p>{{ District::find($user->site->grader_district)->district_name }}</p>
+                        {{ Form::hidden('grader_district', null, array('class' => 'pure-input-1')) }}
+                    
+                    <div class="instructions"><strong>Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</strong></div>
                     @endif
 
                     @if($check_grader_site != 'disabled')

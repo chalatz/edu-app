@@ -127,7 +127,8 @@ class SitesController extends \BaseController {
             $grader_data = [
                 'grader_name' => $data['grader_name'],
                 'grader_last_name' => $data['grader_last_name'],
-                'district_id' => $data['district_id'],
+                'district_id' => $data['grader_district'],
+                'grader_district_text' => $data['grader_district_text'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
@@ -305,10 +306,13 @@ class SitesController extends \BaseController {
 		if($notify_grader == 1 && !$user_exists){
             
             $grader_data = [
-                'grader_name' => $input['grader_name'],
-                'district_id' => $input['district_id'],
-                'cat_id' => $input['cat_id'],
-                'from_who' => $input['title'],
+                'grader_name' => $data['grader_name'],
+                'grader_last_name' => $data['grader_last_name'],
+                'district_id' => $data['grader_district'],
+                'grader_district_text' => $data['grader_district_text'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+                'from_who_email' => $user->email,
             ];
             
             if($input['grader_email'] != $user->email){

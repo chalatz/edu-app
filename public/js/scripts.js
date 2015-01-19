@@ -22,7 +22,20 @@
             }
         });
 
-        $('#confirmMe').validate();
+        $('#confirmMe').validate({
+            rules: {
+                grader_district_text : {
+                    required: function(){
+                        return $('select#grader_district').val() == 14;
+                    }
+                },
+                district_text : {
+                    required: function(){
+                        return $('select#district_id').val() == 14;
+                    }
+                }
+            }
+        });
         
         
         $('#confirmMe').on('submit', function(e){
@@ -61,6 +74,7 @@
     
     confirm_form();
     depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);
+    depandable_fields($('#grader_district_text_wrapper'), $('.site-form select#grader_district'), $('#grader_district_text'), 14);
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 1);
     
 })(jQuery);
