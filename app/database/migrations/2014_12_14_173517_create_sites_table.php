@@ -27,7 +27,7 @@ class CreateSitesTable extends Migration {
             $table->string('phone', 60);
             $table->string('grader_name');
             $table->string('grader_email', 60);
-            $table->tinyInteger('notify_grader')->default(100);
+            $table->string('notify_grader', 10)->nullable();
 			$table->timestamps();
 		});
 	}

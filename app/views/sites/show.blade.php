@@ -47,31 +47,46 @@
                     <p>{{ $user->site->responsible_type }}</p>
                 </div>
 
-                <h3>Έχω λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;</h3>
-                @if(isset($user->site->received_permission))
+                @if($user->site->uses_private_data)
                     <div class="detail">
-                        @if($user->site->received_permission == 1)
+                        <h3>Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών;</h3>
+                        @if($user->site->uses_private_data == 'yes')
                             <p>Ναι</p>
                         @else
                             <p>Όχι</p>
                         @endif
                     </div>
+
+                    @if($user->site->received_permission && $user->site->uses_private_data == 'yes')
+                        <div class="detail">
+                            <h3>Έχετε λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;</h3>
+                            @if($user->site->received_permission == 'yes')
+                                <p>Ναι</p>
+                            @else
+                                <p>Όχι</p>
+                            @endif
+                        </div>
+                    @endif
                 @endif
 
-                <h3>Έχει ο ιστότοπος περιορισμένη πρόσβαση;</h3>
-                @if(isset($user->site->restricted_access))
+                @if($user->site->restricted_access)
                     <div class="detail">
-                        @if($user->site->restricted_access == 1)
+                        <h3>Έχει ο ιστότοπος περιορισμένη πρόσβαση;</h3>
+                        @if($user->site->restricted_access == 'yes')
                             <p>Ναι</p>
-                            <h3>Λεπτομέρειες Πρόσβασης</h3>
-                            <div class="detail">
-                                <p>{{ $user->site->restricted_access_details }}</p>
-                            </div>
                         @else
                             <p>Όχι</p>
                         @endif
                     </div>
-                @endif                
+                    
+                    @if($user->site->restricted_access_details && $user->site->restricted_access == 'yes')
+                        <div class="detail">
+                            <h3>Λεπτομέρειες Πρόσβασης</h3>
+                            <p>{{ $user->site->restricted_access_details }}</p>
+                        </div>
+                    @endif
+
+                @endif             
 
             </section>
 

@@ -19,10 +19,10 @@ class AddSomeFieldsToSitesTable extends Migration {
             $table->string('county', 200)->nullable()->after('district_text');
             $table->string('grader_district', 200)->nullable()->after('grader_email');
             $table->string('responsible_type', 200)->nullable()->after('responsible');
-            $table->tinyInteger('restricted_access')->default(100);
+            $table->string('restricted_access', 10)->nullable();
             $table->text('restricted_access_details')->nullable()->after('restricted_access');
-            $table->tinyInteger('uses_private_data')->default(100);
-            $table->tinyInteger('received_permission')->default(100)->after('restricted_access_details');
+            $table->string('uses_private_data', 10)->nullable();
+            $table->string('received_permission',10)->nullable()->after('restricted_access_details');
 		});
 	}
 
@@ -43,6 +43,7 @@ class AddSomeFieldsToSitesTable extends Migration {
             $table->dropColumn('responsible_type');
             $table->dropColumn('restricted_access');
             $table->dropColumn('restricted_access_details');
+            $table->dropColumn('uses_private_data');
             $table->dropColumn('received_permission');
 		});
 	}
