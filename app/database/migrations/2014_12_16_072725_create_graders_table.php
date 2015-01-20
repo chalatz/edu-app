@@ -17,13 +17,13 @@ class CreateGradersTable extends Migration {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('grader_name', 100)->nullable();
-            $table->tinyInteger('district_id')->nullable();
-            $table->tinyInteger('cat_id')->nullable();
+            $table->tinyInteger('district_id')->default(100);
+            $table->tinyInteger('cat_id')->default(100);
             $table->string('from_who', 200)->nullable();
-            $table->tinyInteger('past_grader')->nullable();
+            $table->tinyInteger('past_grader')->default(100);
             $table->integer('site_1')->default(0);
             $table->integer('site_2')->default(0);
-            $table->tinyInteger('has_agreed')->default(0);
+            $table->tinyInteger('has_agreed')->default(100);
 			$table->timestamps();
 		});
 	}

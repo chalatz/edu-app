@@ -69,7 +69,7 @@ class SitesController extends \BaseController {
         $notify_grader = $data['notify_grader'];
 
         // if the grader is to be notified
-        if($notify_grader == 1){
+        if($notify_grader == 'yes'){
 
         	$grader_email = $data['grader_email'];
 
@@ -122,7 +122,7 @@ class SitesController extends \BaseController {
 		$the_new_site = Site::create($data);
 
 		// ---------- Create the Grader ---
-		if($notify_grader == 1){
+		if($notify_grader == 'yes'){
             
             $grader_data = [
                 'grader_name' => $data['grader_name'],
@@ -252,7 +252,7 @@ class SitesController extends \BaseController {
         }
         
         // if the grader is to be notified
-        if($notify_grader == 1){
+        if($notify_grader == 'yes'){
 
         	// if the email does not exist
         	if(!$user_exists){
@@ -303,7 +303,7 @@ class SitesController extends \BaseController {
         $user->site->fill($input)->save();
         
 		// ---------- Create the Grader ---
-		if($notify_grader == 1 && !$user_exists){
+		if($notify_grader == 'yes' && !$user_exists){
             
             $grader_data = [
                 'grader_name' => $data['grader_name'],

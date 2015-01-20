@@ -29,7 +29,7 @@
                     <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
                     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
                     {{ Form::select('desired_category',$categories , null, array('class' => 'pure-input-1')) }}
-                    <p class="error-message">{{ $errors->first('past_grader') }}</p>
+                    <p class="error-message">{{ $errors->first('desired_category') }}</p>
 
                     {{ Form::label('past_grader', 'Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό;') }}
                     {{ Form::select('past_grader',[
