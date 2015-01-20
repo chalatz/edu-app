@@ -36,10 +36,20 @@
                     @endif
                 </div>
                 
-                <div class="detail">
-                    <h3>Θα προτιμούσα να είμαι αξιολογητής στην κατηγορία:</h3>
-                    <p>{{ $categories[$user->grader->desired_category] }}</p>
-                </div>
+                @if($user->grader->desired_category)
+                    <div class="detail">
+                        <h3>Θα προτιμούσα να είμαι αξιολογητής στην κατηγορία:</h3>
+                        <p>{{ $categories[$user->grader->desired_category] }}</p>
+                    </div>
+                @endif
+
+                @if(isset($user->grader->past_grader))
+                    @if()
+                    <div class="detail">
+                        <h3>Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό;</h3>
+                        <p>απάντηση</p>
+                    </div>
+                @endif
 
             </section>
 
