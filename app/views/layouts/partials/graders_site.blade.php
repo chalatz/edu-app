@@ -22,15 +22,18 @@
         @endforeach
     </div>
 
-    <label>Νομικά υπεύθυνος Υποψήφιου Ιστότοπου που με πρότεινε</label>
-    @foreach($grader->sites as $site)
-        <p>{{ $site->responsible }}</p>
-    @endforeach
-    <hr>
+    <div class="detail">
+        <h3>Νομικά υπεύθυνος Υποψήφιου Ιστότοπου που με πρότεινε</h3>
+        @foreach($grader->sites as $site)
+            <p>{{ $site->responsible }}</p>
+        @endforeach
+    </div>
 
-    <label>Ιδιότητα Νομικά υπεύθυνου Υποψήφιου Ιστότοπου που με πρότεινε</label>
-    @foreach($grader->sites as $site)
-        <p>{{ $site->responsible_type }}</p>
-    @endforeach
+    <div class="detail">
+        <h3>Ιδιότητα Νομικά υπεύθυνου Υποψήφιου Ιστότοπου που με πρότεινε</h3>
+        @foreach($grader->sites as $site)
+            <p>{{ $site->responsible_type }}</p>
+        @endforeach
+    </div>
     
 </section>

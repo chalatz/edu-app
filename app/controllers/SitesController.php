@@ -88,8 +88,10 @@ class SitesController extends \BaseController {
 	            $confirmation_url = route('verify.grader', $confirmation_string);
 
 	            $site_title = $data['title'];
+                $site_responsible = $data['responsible'];
+                $site_responsible_type = $data['responsible_type'];
 	            
-	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title], function($message){
+	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
 	             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
 	            });
 	            
@@ -269,8 +271,10 @@ class SitesController extends \BaseController {
 	            $confirmation_url = route('verify.grader', $confirmation_string);
 
 	            $site_title = $user->site->title;
+                $site_responsible = $user->site->responsible;
+                $site_responsible_type = $user->site->responsible_type;
 	            
-	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title], function($message){
+	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
 	             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
 	            });
 	            
