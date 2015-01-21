@@ -98,13 +98,24 @@
                 <div class="detail">
                     <h3>Υπεύθυνος επικοινωνίας υποψηφιότητας</h3>
                     <p>{{ $user->site->contact_name }}</p>
-                </div>                
-
-
-                <div class="detail">
-                    <h3>Κινητό Τηλέφωνο</h3>
-                    <p>{{ $user->site->mobile_phone }}</p>
                 </div>
+                
+                <div class="detail">
+                    <h3>E-mail επικοινωνίας υποψηφιότητας</h3>
+                    <p>{{ $user->site->contact_email }}</p>
+                </div>
+                
+                <div class="detail">
+                    <h3>Τηλέφωνο επικοινωνίας υποψηφιότητας</h3>
+                    <p>{{ $user->site->phone }}</p>
+                </div>
+
+                @if($user->site->mobile_phone)
+                    <div class="detail">
+                        <h3>Κινητό Τηλέφωνο</h3>
+                        <p>{{ $user->site->mobile_phone }}</p>
+                    </div>
+                @endif
 
                 <div class="detail">
                     <h3>Περιφέρεια</h3>
@@ -146,7 +157,7 @@
                 <div class="detail">
                     <h3>Έχει ειδοποιηθεί ο αξιολογητής Α;</h3>
                     @if(isset($user->site->notify_grader))
-                        @if($user->site->notify_grader == 1)
+                        @if($user->site->notify_grader == 'yes')
                             <p>Ναι</p>
                         @else
                             <p>Όχι</p>

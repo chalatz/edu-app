@@ -15,12 +15,12 @@ class AddGraderLastNameToGradersTable extends Migration {
 		Schema::table('graders', function(Blueprint $table)
 		{
 			$table->string('grader_last_name', 100)->after('grader_name')->nullable();
-            $table->tinyInteger('wants_to_be_grader_b')->default(100);
+            $table->string('wants_to_be_grader_b', 10)->nullable();
             $table->string('languages', 200)->nullable();
             $table->string('languages_level', 200)->nullable();
             $table->string('from_who_email', 200)->after('from_who')->nullable();
-            $table->tinyInteger('desired_category')->default(100);
-            $table->tinyInteger('past_grader_more')->after('past_grader')->default(100);
+            $table->string('desired_category', 10)->nullable();
+            $table->string('past_grader_more', 10)->after('past_grader')->nullable();
             $table->tinyInteger('grader_district_id')->default(100);
             $table->string('grader_district_text', 200)->after('district_id')->nullable();
 		});
