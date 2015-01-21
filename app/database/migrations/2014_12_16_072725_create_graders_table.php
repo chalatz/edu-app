@@ -20,10 +20,10 @@ class CreateGradersTable extends Migration {
             $table->tinyInteger('district_id')->default(100);
             $table->tinyInteger('cat_id')->default(100);
             $table->string('from_who', 200)->nullable();
-            $table->tinyInteger('past_grader')->default(100);
+            $table->string('past_grader', 10)->nullable();
             $table->integer('site_1')->default(0);
             $table->integer('site_2')->default(0);
-            $table->tinyInteger('has_agreed')->default(100);
+            $table->string('has_agreed', 10)->nullable();
 			$table->timestamps();
 		});
 	}

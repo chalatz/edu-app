@@ -36,25 +36,58 @@
                     @endif
                 </div>
                 
-                @if($user->grader->desired_category && $user->grader->desired_category != 100)
+                @if($user->grader->desired_category)
                     <div class="detail">
                         <h3>Θα προτιμούσα να είμαι αξιολογητής στην κατηγορία:</h3>
                         <p>{{ $categories[$user->grader->desired_category] }}</p>
                     </div>
                 @endif
 
-                @if(isset($user->grader->past_grader))
-                    
+                @if($user->grader->past_grader)
                     <div class="detail">
                         <h3>Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό;</h3>
-                        <p>απάντηση</p>
+                        @if($user->grader->past_grader == 'yes')
+                            <p>Ναι</p>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    </div>
+                @endif
+                
+                @if($user->grader->past_grader_more)
+                    <div class="detail">
+                        <h3>Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς;</h3>
+                        @if($user->grader->past_grader_more == 'yes')
+                            <p>Ναι</p>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    </div>
+                @endif
+                
+                @if($user->grader->wants_to_be_grader_b)
+                    <div class="detail">
+                        <h3>Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β</h3>
+                        @if($user->grader->wants_to_be_grader_b == 'yes')
+                            <p>Ναι</p>
+                        @else
+                            <p>Όχι</p>
+                        @endif
+                    </div>
+                @endif
+                
+                @if($user->grader->languages)
+                    <div class="detail">
+                        <h3>Ξένες γλώσσες που γνωρίζω</h3>
+                        <p>{{ $user->grader->languages }}</p>
+                        @if($user->grader->languages_level)
+                            <h3>Επίπεδο ξένων γλωσσών που γνωρίζω</h3>
+                            <p>{{ $user->grader->languages_level }}</p>
+                        @endif
                     </div>
                 @endif
 
             </section>
-
-            <h2>Ονοματεπώνυμο</h2>
-            <p>{{ $user->grader->grader_name }}</p>
 
             <h2>Κατηγορία του Site που θα αξιολογήσω</h2>
             <p>{{ $categories[$user->grader->cat_id] }}</p>
