@@ -26,6 +26,9 @@
 <body>
 
 <div id="layout">
+
+    @include('layouts.partials.top')
+
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
         <!-- Hamburger icon -->
@@ -54,6 +57,9 @@
         </div>
         
     </div>
+
+    @include('layouts.partials.bottom')
+
 </div>
 
 
