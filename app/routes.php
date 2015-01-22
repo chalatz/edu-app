@@ -93,6 +93,50 @@ Route::get('selects', function(){
     return View::make('tests.select_lists', compact('districts'));
 });
 
+Route::get('optgroup', function(){
+
+    $data[ 'province' ] = array(
+ 
+        'Sardegna' => array(
+                    'CA' => 'Cagliari',
+                    'CI' => 'Carbonia-Iglesias',
+                    'NU' => 'Nuoro',
+                    'OT' => 'Olbia-Tempio',
+                    'OR' => 'Oristano',
+                    'VS' => 'Medio Campidano',
+                    'OG' => 'Ogliastra',
+                    'SS' => 'Sassari' 
+            ),
+        'Sicilia' => array(
+                    'AG' => 'Agrigento',
+                    'CL' => 'Caltanissetta',
+                    'CT' => 'Catania',
+                    'EN' => 'Enna',
+                    'ME' => 'Messina',
+                    'PA' => 'Palermo',
+                    'RG' => 'Ragusa',
+                    'SR' => 'Siracusa',
+                    'TP' => 'Trapani'
+            ),
+    );
+
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+
+    $districts = District::all();
+
+    foreach(District::all() as $district){
+        $counties = array($district->district_name => 'hello');
+    }
+
+    echo '<pre>';
+    print_r($districts);
+    echo '</pre>';
+
+    echo Form::select('counties', $counties);
+
+});
 
 # Test Email
 // Route::get('testemail', function(){
