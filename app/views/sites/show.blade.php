@@ -7,6 +7,8 @@
     @else
         @if(Auth::user()->id == $user->id)
 
+        <!-- {{ date("d - m - Y", strtotime($user->site->confirmed_at)) }} -->
+
             <?php $categories = Category::lists('category_name', 'id'); ?>
             <?php $districts = District::lists('district_name', 'id'); ?>
             <?php $counties = County::lists('county_name', 'id'); ?>

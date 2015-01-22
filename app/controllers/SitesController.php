@@ -306,6 +306,10 @@ class SitesController extends \BaseController {
 
         }
         
+        //-------------- Save current time --------
+        $objDateTime = new DateTime('NOW');
+        $input['confirmed_at'] = $objDateTime;
+        
         $user->site->fill($input)->save();
         
 		// ---------- Create the Grader ---
