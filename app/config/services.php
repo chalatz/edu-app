@@ -15,7 +15,7 @@ return array(
 	*/
 
 	'mandrill' => array(
-		'secret' => 'fh2I4pV5pOFoVNQ9rnWpgA',
+		'secret' => 'kUVo6mu0dHSIZbiJMKFd1Q',
 	),
 
 );

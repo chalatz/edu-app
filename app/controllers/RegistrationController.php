@@ -39,10 +39,12 @@ class RegistrationController extends \BaseController {
         
         if($user_type == 'site'){
             $thetitle = 'Υποψήφιος';
+            $therole_id = 1;
         }
         
         if($user_type == 'grader'){
             $thetitle = 'Αξιολογητής';
+            $therole_id = 2;
         }
         
         $confirmation_string = str_random(40);
@@ -57,7 +59,7 @@ class RegistrationController extends \BaseController {
         
         $user = User::create($user_data);
 
-        // --- Attach role (site) ---
+        // --- Attach roles (site or grader) ---
         
         // Get new user's id
         $new_user_id = $user->id;
@@ -65,8 +67,8 @@ class RegistrationController extends \BaseController {
         // Get the new user
         $new_user = User::find($new_user_id);
 		
-		// Attach to the user the Role with id:1 (site)
-		$new_user->roles()->attach(1);     
+		// Attach to the user the Role with id:1 (site) or id:2 (grader)
+		$new_user->roles()->attach($therole_id);   
         
 
         Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. <br>Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.');
