@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'chralatz@gmail.com', 'name' => null),
+	'from' => array('address' => 'info@eduwebawards.gr', 'name' => 'Edu Web Awards'),
 
 	/*
 	|--------------------------------------------------------------------------
