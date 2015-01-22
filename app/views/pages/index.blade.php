@@ -2,12 +2,22 @@
 
 @section('content')
 
-	<h3>Καλώς ορίσατε!</h3>
+	<h3>Καλώς ορίσατε στο Πληροφοριακό σύστημα του 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων!</h3>
 
     @if(Auth::check())
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
     @else
-        <p>{{ link_to('login', 'Συνδεθείτε') }} ή {{ link_to('register', 'Εγγραφείτε') }}</p>
+
+		<div class="pure-g">
+		    <div class="pure-u-12-24 block-module blue">
+		    	<p>{{ link_to('login', 'Συνδεθείτε') }}</p>
+		    </div>
+
+		    <div class="pure-u-12-24 block-module green">
+		    	<p>{{ link_to('register/site', 'Εγγραφείτε ως Υποψήφιος Ιστότοπος') }}</p>
+		    </div>
+		</div>
+
     @endif
 
 @stop
