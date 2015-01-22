@@ -97,6 +97,11 @@ a:hover {
     padding: 1em 1.5em;
 }
 
+.top-section {
+    background: #1f8dd6;
+    color: #fff;
+}
+
 .top-section-content {
     float: right;
 }
@@ -107,10 +112,38 @@ a:hover {
     width: 100%;
 }
 
+.block-module a,
+.top-section a,
 .bottom-section a {
     color: #fff;
 }
 
+.block-module a:hover,
+.top-section a:hover,
 .bottom-section a:hover {
     color: blue;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.blue {
+    background: #1f8dd6;
+}
+
+.green {
+   background: #5eb95e; 
+}
+
+.orange {
+    background: rgb(243, 123, 29);
+}
+
+.block-module p {
+    padding: 1em;
+    color: white;
+    font-size: 1.3em;
 }

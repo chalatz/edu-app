@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<meta name="description" content="Πληροφοριακό σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.">
 
-    <title>Edu Web Awards 2015</title>
+    <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -40,7 +40,7 @@
     <div id="main">
 
         <div class="header">
-            <h1>Edu Web Awards 2015</h1>
+            <img src="{{ asset('img/header-edu.jpg') }}" alt="Edu web Awards 2015">
             <h2>Πληροφοριακό σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         </div>
 

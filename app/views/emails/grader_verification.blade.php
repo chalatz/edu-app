@@ -2,7 +2,7 @@
 
 <p>Αυτό το μήνυμα έχει σταλεί για να επιβεβαιώσετε το e-mail σας, ως αξιολογητής στον 7ο Διαγωνισμό Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.</p>
 
-<p>Σας έχει προτείνει ο ιστότοπος με επωνυμία: <strong><span style="font-style=italic">{{ $site_title }}.</span><strong></p>
+<p>Σας έχει προτείνει ο ιστότοπος με επωνυμία: <strong><span style="font-style=italic">{{ $site_title }}.</span></strong></p>
 
 <p>Νομικά υπεύθυνος ιστότοπου που σας πρότεινε: <strong>{{ $site_responsible }}</strong></p>
 
