@@ -304,6 +304,10 @@ class SitesController extends \BaseController {
 
         }
         
+        //-------------- Save current time --------
+        $objDateTime = new DateTime('NOW');
+        $input['confirmed_at'] = $objDateTime;
+        
         $user->site->fill($input)->save();
         
 		// ---------- Create the Grader ---
@@ -358,6 +362,21 @@ class SitesController extends \BaseController {
             }
         }
             
+    }
+    
+    private function counties_array(){
+
+        $result = array();
+    
+        foreach(County::all() as $county){
+            if(!array_key_exists($county->district_name, $result)){
+                $result[$county->district_name] = array();
+            }
+            $result[$county->district_name][$county->id] = $county->county_name;
+        }
+        
+        return $result;
+        
     }
 
 	/**

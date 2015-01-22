@@ -9,11 +9,16 @@ class RegistrationController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($user_type)
 	{
         //if(Auth::check()) return Redirect::home();
         
-		return View::make('registration.create');
+        if($user_type == 'site' || $user_type == 'grader'){
+    		return View::make('registration.create', compact('user_type'));
+        } else {
+            return Redirect::home();
+        }
+            
 	}
 
 	/**
@@ -24,20 +29,30 @@ class RegistrationController extends \BaseController {
 	 */
 	public function store()
 	{
-        $validator = Validator::make($data = Input::only(['email', 'password', 'password_confirmation']), User::$rules, User::$error_messages);
+        $validator = Validator::make($data = Input::only(['email', 'password', 'password_confirmation', 'type']), User::$rules, User::$error_messages);
         
         if($validator->fails()){
             return Redirect::back()->withErrors($validator)->withInput();
+        }
+  
+        $user_type = Input::get('type');
+        
+        if($user_type == 'site'){
+            $thetitle = 'Υποψήφιος';
+        }
+        
+        if($user_type == 'grader'){
+            $thetitle = 'Αξιολογητής';
         }
         
         $confirmation_string = str_random(40);
         $confirmation_url = route('verify', $confirmation_string);
         
-        Mail::send('emails.verification', ['confirmation_url' => $confirmation_url], function($message){
+        Mail::send('emails.verification', ['confirmation_url' => $confirmation_url, 'thetitle' => $thetitle,], function($message){
              $message->to(Input::get('email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
          });
         
-        $user_data = Input::only('email', 'password');
+        $user_data = Input::only('email', 'password', 'type');
         $user_data['confirmation_string'] = $confirmation_string;
         
         $user = User::create($user_data);

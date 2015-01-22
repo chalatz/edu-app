@@ -14,6 +14,17 @@
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
                 <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
 
+                <?php
+                    $counties_array = array();
+                    foreach(County::all() as $county){
+                        if(!array_key_exists($county->district_name, $counties_array)){
+                            $counties_array[$county->district_name] = array();
+                        }
+                        $counties_array[$county->district_name][$county->id] = $county->county_name;
+                    }
+                    $counties_array = ['0' => 'Επιλέξτε...'] + $counties_array;
+                ?>
+
                 @include('layouts.partials.sites_form')
 
                 <fieldset>

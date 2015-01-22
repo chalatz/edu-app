@@ -15,7 +15,8 @@
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
 # Registration
-Route::get('/register', 'RegistrationController@create')->before('guest');
+Route::get('/register', function(){ return Redirect::home(); });
+Route::get('/register/{user_type}', 'RegistrationController@create')->before('guest');
 Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
 
 # Authentication
@@ -126,15 +127,20 @@ Route::get('optgroup', function(){
 
     $districts = District::all();
 
-    foreach(District::all() as $district){
-        $counties = array($district->district_name => 'hello');
+    $result = array();
+    
+    foreach(County::all() as $county){
+        if(!array_key_exists($county->district_name, $result)){
+            $result[$county->district_name] = array();
+        }
+        $result[$county->district_name][$county->id] = $county->county_name;
     }
 
     echo '<pre>';
-    print_r($districts);
+    print_r($result);
     echo '</pre>';
 
-    echo Form::select('counties', $counties);
+    echo Form::select('counties', $result);
 
 });
 
