@@ -31,9 +31,7 @@ class SitesController extends \BaseController {
             }
         }
         
-        $counties_array = $this->counties_array();
-        
-		return View::make('sites.create', $counties_array);
+		return View::make('sites.create');
 	}
 
 	/**

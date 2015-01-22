@@ -2,7 +2,13 @@
 
 @section('content')
 
-	<h1>Εγγραφή Υποψήφιου Ιστότοπου</h1>
+    @if($user_type == 'site')
+	    <h1>Εγγραφή Υποψήφιου Ιστότοπου</h1>
+    @endif
+
+    @if($user_type == 'grader')
+	    <h1>Εγγραφή Αξιολογητή</h1>
+    @endif
 
 	{{ Form::open(array('route' => 'registration.store', 'class' => 'pure-form pure-form-stacked')) }}
 
@@ -16,6 +22,8 @@
 
 		{{ Form::label('password_confirmation', 'Επιβεβαίωση Κωδικού Πρόσβασης') }}
 		{{ Form::password('password_confirmation') }}
+
+        {{ Form::hidden('type', $user_type) }}
 
 		{{ Form::button('Εγγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}
 
