@@ -82,6 +82,9 @@
     {{ Form::label('district_id', 'Περιφέρεια *') }}
     {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('district_id') }}</p>
+    
+    {{ Form::label('county_id', 'Περιφερειακή Ενότητα') }}
+    {{ Form::select('county_id', $counties_array, null, array('class' => 'pure-input-1')) }}
 
     <div id="district_text_wrapper">
         {{ Form::label('district_text', 'Ονομασία Περιφέρειας') }}

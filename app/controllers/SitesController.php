@@ -31,7 +31,9 @@ class SitesController extends \BaseController {
             }
         }
         
-		return View::make('sites.create');
+        $counties_array = $this->counties_array();
+        
+		return View::make('sites.create', $counties_array);
 	}
 
 	/**
@@ -358,6 +360,21 @@ class SitesController extends \BaseController {
             }
         }
             
+    }
+    
+    private function counties_array(){
+
+        $result = array();
+    
+        foreach(County::all() as $county){
+            if(!array_key_exists($county->district_name, $result)){
+                $result[$county->district_name] = array();
+            }
+            $result[$county->district_name][$county->id] = $county->county_name;
+        }
+        
+        return $result;
+        
     }
 
 	/**

@@ -126,15 +126,20 @@ Route::get('optgroup', function(){
 
     $districts = District::all();
 
-    foreach(District::all() as $district){
-        $counties = array($district->district_name => 'hello');
+    $result = array();
+    
+    foreach(County::all() as $county){
+        if(!array_key_exists($county->district_name, $result)){
+            $result[$county->district_name] = array();
+        }
+        $result[$county->district_name][$county->id] = $county->county_name;
     }
 
     echo '<pre>';
-    print_r($districts);
+    print_r($result);
     echo '</pre>';
 
-    echo Form::select('counties', $counties);
+    echo Form::select('counties', $result);
 
 });
 

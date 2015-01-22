@@ -9,6 +9,7 @@
 
             <?php $categories = Category::lists('category_name', 'id'); ?>
             <?php $districts = District::lists('district_name', 'id'); ?>
+            <?php $counties = County::lists('county_name', 'id'); ?>
 
             <p>{{ link_to_route('site.edit', 'Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου', Auth::user()->id, ['class' => 'pure-button button-secondary button-secondary-light-blue']) }}</p>    
 
@@ -123,7 +124,14 @@
                     @if($user->site->district_id == 14)
                         <p>{{ $user->site->district_text }}</p>
                     @endif
-                </div>               
+                </div>
+                
+                @if($user->site->county_id)
+                    <div class="detail">
+                        <h3>Περιφερειακή Ενότητα</h3>
+                        <p>{{ $counties[$user->site->county_id] }}</p>
+                    </div>
+                @endif
 
             </section>
 
