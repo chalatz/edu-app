@@ -130,9 +130,9 @@ Route::get('optgroup', function(){
     $result = array();
     
     foreach(County::all() as $county){
-        if(!array_key_exists($county->district_name, $result)){
-            $result[$county->district_name] = array();
-        }
+        //if(!array_key_exists($county->district_name, $result)){
+            //$result[$county->district_name] = array();
+        //}
         $result[$county->district_name][$county->id] = $county->county_name;
     }
 
