@@ -6,3 +6,5 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
+composer.json
+app/config/database.php
