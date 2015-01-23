@@ -24,7 +24,7 @@
                     @if($role->role == 'grader')
 
                         @if(!Auth::user()->grader)
-                            <li>{{ link_to_route('grader.create', 'Δημιουργία Καρτέλας Αξιολογητή') }}</li>
+<!--                             <li>{{ link_to_route('grader.create', 'Δημιουργία Καρτέλας Αξιολογητή') }}</li> -->
                         @else
                             <li>{{ link_to_route('grader.show', 'Καρτέλα Αξιολογητή', Auth::user()->id) }}</li>
                             <li>{{ link_to_route('grader.edit', 'Επεξεργασία Καρτέλας Αξιολογητή', Auth::user()->id) }}</li>

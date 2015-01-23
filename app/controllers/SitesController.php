@@ -113,7 +113,7 @@ class SitesController extends \BaseController {
         		if($grader_email == $user->email) {
         			// --- Attach role (grader) ---
         			$user->roles()->attach(2);
-        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον ευατό σας ως αξιολογητή.');
+        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον εαυτό σας ως αξιολογητή.');
         			Session::flash('alert-class', 'flash-info');
         		}
         		
@@ -296,7 +296,7 @@ class SitesController extends \BaseController {
         		if($same_user && $user->roles->count() <= 1) {
         			// --- Attach role (grader) ---
         			$user->roles()->attach(2);
-        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον ευατό σας ως αξιολογητή.');
+        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον εαυτό σας ως αξιολογητή.');
         			Session::flash('alert-class', 'flash-info');
         		}
         		
