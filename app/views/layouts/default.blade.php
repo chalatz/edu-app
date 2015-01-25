@@ -7,27 +7,21 @@
 
     <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="{{ asset('css/side-menu-old-ie.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/grids-responsive-old-ie.css') }}">
     <![endif]-->
     <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="{{ asset('css/side-menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <!--<![endif]-->
-    
-    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-  
+      
 </head>
 
 <body>
 
 <div id="layout">
 
-    @include('layouts.partials.top')
+    
 
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -38,6 +32,9 @@
     @include('layouts.partials.nav')
 
     <div id="main">
+
+        @include('layouts.partials.top')
+
 
         <div class="header">
             <img src="{{ asset('img/header-edu.jpg') }}" alt="Edu web Awards 2015">
@@ -56,9 +53,8 @@
             
         </div>
         
+        @include('layouts.partials.bottom')
     </div>
-
-    @include('layouts.partials.bottom')
 
 </div>
 

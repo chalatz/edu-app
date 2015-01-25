@@ -1,0 +1,148 @@
+body {
+    color: $font-color;
+}
+
+.pure-menu .pure-menu-heading {
+    text-transform: none;
+}
+
+.pure-menu a, .pure-menu .pure-menu-heading {
+    white-space: normal;
+}
+
+.pure-button {
+    margin: .5em 0;
+}
+
+form label {
+    font-weight: bold;
+}
+
+.instructions {
+    font-style: italic;
+    color: $light-gray;
+}
+
+label.error, .error-message {
+    color: $red;
+    font-style: italic;
+}
+
+.flash-message {
+    margin: .5em 0;
+    padding: .5em;
+    background-color: $light-gray;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.flash-success {
+    background-color: $green;
+}
+
+.flash-info {
+    background-color: #0078e7;
+}
+
+.flash-error {
+    background-color: $red;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.pure-form fieldset,
+.details-wrapper {
+    background: #f4f0ec;
+    padding: 0 .5em;
+    border-bottom: 2px solid $light-gray;
+    margin-bottom: 2em;
+}
+
+.details-wrapper {
+    padding: .5em;
+}
+
+.pure-form fieldset h3,
+.details-wrapper h2 {
+    background: $light-gray;
+    padding: .5em;
+    color: #fff;
+}
+
+a:hover {
+    color: blue;
+}
+
+.detail {
+    border-bottom: 1px dotted $light-gray;
+}
+
+.detail p {
+    margin-left: 1em;
+}
+
+.button-secondary-light-blue {
+    background: rgb(66, 184, 221);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.top-section,
+.bottom-section {
+    overflow: hidden;
+    padding: 1em 1.5em;
+}
+
+.top-section {
+    background: $blue;
+    color: #fff;
+}
+
+.top-section-content {
+    float: right;
+}
+
+.bottom-section {
+    background: $green;
+    color: #fff;
+}
+
+.block-module a,
+.top-section a,
+.bottom-section a {
+    color: #fff;
+}
+
+.block-module a:hover,
+.top-section a:hover,
+.bottom-section a:hover {
+    color: blue;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.blue {
+    background: $blue;
+}
+
+.green {
+   background: $green; 
+}
+
+.orange {
+    background: rgb(243, 123, 29);
+}
+
+.block-module p {
+    padding: 1em;
+    color: white;
+    font-size: 1.3em;
+}
