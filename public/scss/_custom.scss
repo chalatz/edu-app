@@ -107,7 +107,7 @@ a:hover {
 }
 
 .bottom-section {
-    background: $green;
+    background: $blue;
     color: #fff;
 }
 
@@ -138,11 +138,38 @@ img {
 }
 
 .orange {
-    background: rgb(243, 123, 29);
+    background: $orange;
 }
 
-.block-module p {
+.purple {
+    background: $purple;
+}
+
+.block-module {
+    p {
+        padding: 1em;
+        color: white;
+        font-size: 1.3em;
+    }
+}
+
+.big-link {
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 1.5em;
+}
+
+.register-block {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    border-radius: 6px;
     padding: 1em;
-    color: white;
-    font-size: 1.3em;
+    font-size: 2em;
+    &:hover {
+        text-decoration: underline;
+    }
 }

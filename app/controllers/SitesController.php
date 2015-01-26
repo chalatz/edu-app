@@ -65,6 +65,8 @@ class SitesController extends \BaseController {
         $user['has_site'] = 1;
         
         $user->save();
+        // --- Attach role (site) ---
+        $user->roles()->attach(1);
         
         $notify_grader = $data['notify_grader'];
 
