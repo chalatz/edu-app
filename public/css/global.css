@@ -4810,7 +4810,7 @@ a:hover {
   float: right; }
 
 .bottom-section {
-  background: #5eb95e;
+  background: #1f8dd6;
   color: #fff; }
 
 .block-module a,
@@ -4835,11 +4835,32 @@ img {
   background: #5eb95e; }
 
 .orange {
-  background: #f37b1d; }
+  background: #F37B1D; }
+
+.purple {
+  background: #BC58A5; }
 
 .block-module p {
   padding: 1em;
   color: white;
   font-size: 1.3em; }
+
+.big-link {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5em;
+  padding: 1.5em; }
+
+.register-block {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  border-radius: 6px;
+  padding: 1em;
+  font-size: 2em; }
+  .register-block:hover {
+    text-decoration: underline; }
 
 /*# sourceMappingURL=global.css.map */

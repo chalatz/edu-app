@@ -10,6 +10,10 @@
 	    <h1>Εγγραφή Αξιολογητή</h1>
     @endif
 
+    @if($user_type == 'user')
+	    <h1>Εγγραφή Χρήστη</h1>
+    @endif
+
 	{{ Form::open(array('route' => 'registration.store', 'class' => 'pure-form pure-form-stacked')) }}
 
 		{{ Form::label('email', 'Email') }}
