@@ -96,6 +96,16 @@
         the_checkbox.on('click', function(){
 
             if(the_checkbox.is(':checked')){
+
+                var grader_last_name = $('#grader_last_name'),
+                    grader_name = $('#grader_name'),
+                    grader_district = $('#grader_district'),
+                    grader_email = $('#grader_email'),
+                    contact_last_name_val = $('#contact_last_name').val(),
+                    contact_name_val = $('#contact_name').val(),
+                    district_id_val = $('#district_id').val(),
+                    contact_email_val = $('#contact_email').val();
+
                 grader_last_name.val(contact_last_name_val);
                 grader_name.val(contact_name_val);
                 grader_district.val(district_id_val);
