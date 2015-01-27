@@ -9,3 +9,4 @@ Thumbs.db
 Thumbs.db
 composer.json
 /app/config/database.php
+app/config/database.php
