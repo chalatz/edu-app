@@ -64,7 +64,11 @@
 
     <h3>Στοιχεία Επικοινωνίας Υποψηφιότητας</h3>
     
-    {{ Form::label('contact_name', 'Υπεύθυνος επικοινωνίας υποψηφιότητας *') }}
+    {{ Form::label('contact_last_name', 'Επώνυμο Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
+    {{ Form::text('contact_last_name', null, array('class' => 'pure-input-1', 'required')) }}
+    <p class="error-message">{{ $errors->first('contact_last_name') }}</p>
+
+    {{ Form::label('contact_name', 'Όνομα Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
     {{ Form::text('contact_name', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('contact_name') }}</p>
 
@@ -72,12 +76,9 @@
     {{ Form::email('contact_email', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('contact_email') }}</p>
 
-    {{ Form::label('phone', 'Τηλέφωνο επικοινωνίας *') }}
+    {{ Form::label('phone', 'Τηλέφωνα επικοινωνίας *') }}
     {{ Form::text('phone', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('phone') }}</p>
-
-    {{ Form::label('mobile_phone', 'Κινητό Τηλέφωνο') }}
-    {{ Form::text('mobile_phone', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('district_id', 'Περιφέρεια *') }}
     {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}

@@ -44,6 +44,7 @@ class SitesController extends \BaseController {
 		$validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
         
         $input = Input::all();
+
         $validator->sometimes('district_text', 'required', function($input){
             return $input->district_id == 14;
         });

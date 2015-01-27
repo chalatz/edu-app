@@ -9,7 +9,7 @@
         <p>και με την ιδιότητα:</p>
         <ul>
 	        @foreach(Auth::user()->roles as $role)
-				<li>{{ $role->role }}</li>
+				<li>{{ $role->role_name }}</li>
 	        @endforeach
 	    </ul>
 

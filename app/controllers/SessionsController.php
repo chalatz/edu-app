@@ -36,7 +36,7 @@ class SessionsController extends \BaseController {
         Session::flash('flash_message', '<i class="fa fa-exclamation-triangle"></i> Λανθασμένο email ή κωδικός πρόσβασης');
         Session::flash('alert-class', 'flash-error');
         
-        return Redirect::back()->withInput();
+        return Redirect::home();
         
 	}
     

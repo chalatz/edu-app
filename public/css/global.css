@@ -4863,4 +4863,8 @@ img {
   .register-block:hover {
     text-decoration: underline; }
 
+form .label-for-checkbox {
+  display: inline-block;
+  margin-left: .2em; }
+
 /*# sourceMappingURL=global.css.map */

@@ -14,7 +14,6 @@ class AddSomeFieldsToSitesTable extends Migration {
 	{
 		Schema::table('sites', function(Blueprint $table)
 		{
-			$table->string('mobile_phone', 20)->nullable()->after('phone');
             $table->string('district_text', 200)->nullable()->after('district_id');
             $table->string('county', 200)->nullable()->after('district_text');
             $table->string('grader_district', 200)->nullable()->after('grader_email');
@@ -23,6 +22,8 @@ class AddSomeFieldsToSitesTable extends Migration {
             $table->text('restricted_access_details')->nullable()->after('restricted_access');
             $table->string('uses_private_data', 10)->nullable();
             $table->string('received_permission',10)->nullable()->after('restricted_access_details');
+            $table->string('contact_last_name', 200)->nullable()->after('contact_name');
+            $table->string('proposes_himself', 10)->nullable();
 		});
 	}
 
@@ -36,7 +37,6 @@ class AddSomeFieldsToSitesTable extends Migration {
 	{
 		Schema::table('sites', function(Blueprint $table)
 		{
-			$table->dropColumn('mobile_phone');
             $table->dropColumn('district_text');
             $table->dropColumn('county');
             $table->dropColumn('grader_district');
@@ -45,6 +45,8 @@ class AddSomeFieldsToSitesTable extends Migration {
             $table->dropColumn('restricted_access_details');
             $table->dropColumn('uses_private_data');
             $table->dropColumn('received_permission');
+            $table->dropColumn('contact_last_name');
+            $table->dropColumn('proposes_himself');
 		});
 	}
 

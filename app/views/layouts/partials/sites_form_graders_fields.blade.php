@@ -1,3 +1,6 @@
+{{ Form::checkbox('proposes_himself', 'yes') }}
+{{ Form::label('proposes_himself', 'Προτείνω ως Αξιολογητή Α, τον Υπεύθυνο Επικοινωνίας', ['class' => 'label-for-checkbox']) }}
+
 {{ Form::label('grader_last_name', 'Επώνυμο προτεινόμενου αξιολογητή Α *') }}
 {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required')) }}
 <p class="error-message">{{ $errors->first('grader_last_name') }}</p>            

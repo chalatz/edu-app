@@ -81,6 +81,31 @@
         });
         
     };
+
+    var propose_myself = function(){
+        var the_checkbox = $('[name=proposes_himself]'),
+            grader_last_name = $('#grader_last_name'),
+            grader_name = $('#grader_name'),
+            grader_district = $('#grader_district'),
+            grader_email = $('#grader_email'),
+            contact_last_name_val = $('#contact_last_name').val(),
+            contact_name_val = $('#contact_name').val(),
+            district_id_val = $('#district_id').val(),
+            contact_email_val = $('#contact_email').val();
+
+        the_checkbox.on('click', function(){
+
+            if(the_checkbox.is(':checked')){
+                grader_last_name.val(contact_last_name_val);
+                grader_name.val(contact_name_val);
+                grader_district.val(district_id_val);
+                grader_email.val(contact_email_val);
+            } else {
+                console.log('not checked');
+            }
+
+        });
+    }
     
     confirm_form();
     depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);
@@ -88,4 +113,6 @@
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
     
+    propose_myself();
+
 })(jQuery);
