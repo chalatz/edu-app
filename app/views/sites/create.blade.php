@@ -23,15 +23,6 @@
             <h3>Στοιχεία Αξιολογητή Α</h3>
 
             @include('layouts.partials.sites_form_graders_fields')
-
-            {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής Α; *') }}
-            {{ Form::select('notify_grader',[
-                '' => 'Επιλέξτε...',
-                'yes' => 'Ναι',
-                'no' => 'Όχι',
-            ], null, array('class' => 'pure-input-1', 'required')) }}
-            <div class="instructions"><strong>ΠΡΟΣΟΧΗ: </strong>Εάν επιλέξετε Ναι, <strong>δε θα μπορείτε να καταχωρίσετε μετά κάποιον άλλον αξιολογητή!</strong> Εάν έχετε κάνει κάποιο λάθος, παρακαλούμε επικοινωνήστε μαζί μας.</div>
-            <p class="error-message">{{ $errors->first('notify_grader') }}</p>
         
         </fieldset>
             

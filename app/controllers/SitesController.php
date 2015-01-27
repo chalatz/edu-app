@@ -69,10 +69,9 @@ class SitesController extends \BaseController {
         // --- Attach role (site) ---
         $user->roles()->attach(1);
         
-        $notify_grader = $data['notify_grader'];
 
         // if the grader is to be notified
-        if($notify_grader == 'yes'){
+        if(!isset($input['proposes_himself'])){
 
         	$grader_email = $data['grader_email'];
 
@@ -113,12 +112,10 @@ class SitesController extends \BaseController {
 
         	} else {
         		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
-        		if($grader_email == $user->email) {
-        			// --- Attach role (grader) ---
-        			$user->roles()->attach(2);
-        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον εαυτό σας ως αξιολογητή.');
-        			Session::flash('alert-class', 'flash-info');
-        		}
+    			// --- Attach role (grader) ---
+    			$user->roles()->attach(2);
+    			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+    			Session::flash('alert-class', 'flash-info');
         		
         	}
 
@@ -127,7 +124,7 @@ class SitesController extends \BaseController {
 		$the_new_site = Site::create($data);
 
 		// ---------- Create the Grader ---
-		if($notify_grader == 'yes'){
+		if(!isset($input['proposes_himself'])){
             
             $grader_data = [
                 'grader_name' => $data['grader_name'],

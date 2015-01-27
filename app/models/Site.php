@@ -17,7 +17,6 @@ class Site extends \Eloquent {
         'grader_district' => 'required',
         'cat_id' => 'required',
         'district_id' => 'required',
-        'notify_grader' => 'required',
         'contact_last_name' => 'required',
 	];
     
