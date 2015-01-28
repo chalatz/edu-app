@@ -43,10 +43,29 @@
                     required: function(){
                         return $('select#uses_private_data').val() == 'yes';
                     }
+                },
+                level_english : {
+                    required: function(){
+                        return $('#level_english_check').is(':checked') === true;
+                    }
+                },
+                level_french : {
+                    required: function(){
+                        return $('#level_french_check').is(':checked') === true;
+                    }
+                },
+                level_german : {
+                    required: function(){
+                        return $('#level_german_check').is(':checked') === true;
+                    }
+                },
+                level_italian : {
+                    required: function(){
+                        return $('#level_italian_check').is(':checked') === true;
+                    }
                 }
             }
         });
-        
         
         $('#confirmMe').on('submit', function(e){
 
@@ -115,13 +134,30 @@
             }
 
         });
-    }
+    };
+
+    var langs = function(thebox, theselect){
+
+        theselect.on('change', function(){
+            if(theselect.val() !== ''){
+                thebox.prop('checked', true);
+            } else {
+                thebox.prop('checked', false);
+            }
+        });
+
+    };
     
     confirm_form();
     depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);
     depandable_fields($('#grader_district_text_wrapper'), $('.site-form select#grader_district'), $('#grader_district_text'), 14);
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
+
+    langs($('#level_english_check'), $('#level_english'));
+    langs($('#level_french_check'), $('#level_french'));
+    langs($('#level_german_check'), $('#level_german'));
+    langs($('#level_italian_check'), $('#level_italian'));        
     
     propose_myself();
 

@@ -49,11 +49,11 @@
 
     <div class= "pure-g">
         <div class="pure-u-1 pure-u-md-1-3">
-            {{ Form::checkbox('level_english_check', 'yes_english', false) }}
+            {{ Form::checkbox('level_english_check', 'yes_english', false, ['id' => 'level_english_check']) }}
             {{ Form::label('level_english_check', 'Αγγλικά', ['class' => 'label-for-checkbox']) }}
         </div>
         <div class="pure-u-1 pure-u-md-1-3">
-            {{ Form::select('level_english', $lang_levels, null, array('class' => '')) }}
+            {{ Form::select('level_english', $lang_levels, null, array('id' => 'level_english')) }}
         </div>
     </div>
     <hr>
@@ -61,11 +61,11 @@
     <div class= "pure-g">
         <p>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::checkbox('level_french_check', 'yes_french', false) }}
+                {{ Form::checkbox('level_french_check', 'yes_french', false, ['id' => 'level_french_check']) }}
                 {{ Form::label('level_french_check', 'Γαλλικά', ['class' => 'label-for-checkbox']) }}
             </div>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::select('level_french', $lang_levels, null, array('class' => '')) }}
+                {{ Form::select('level_french', $lang_levels, null, array('id' => 'level_french')) }}
             </div>
         </p>
     </div>
@@ -74,11 +74,11 @@
     <div class= "pure-g">
         <p>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::checkbox('level_german_check', 'yes_german', false) }}
+                {{ Form::checkbox('level_german_check', 'yes_german', false, ['id' => 'level_german_check']) }}
                 {{ Form::label('level_german_check', 'Γερμανικά', ['class' => 'label-for-checkbox']) }}
             </div>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::select('level_german', $lang_levels, null, array('class' => '')) }}
+                {{ Form::select('level_german', $lang_levels, null, array('id' => 'level_german')) }}
             </div>
         </p>
     </div>
@@ -87,11 +87,11 @@
     <div class= "pure-g">
         <p>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::checkbox('level_italian_check', 'yes_italian', false) }}
+                {{ Form::checkbox('level_italian_check', 'yes_italian', false, ['id' => 'level_italian_check']) }}
                 {{ Form::label('level_italian_check', 'Ιταλικά', ['class' => 'label-for-checkbox']) }}
             </div>
             <div class="pure-u-1 pure-u-md-1-3">
-                {{ Form::select('level_italian', $lang_levels, null, array('class' => '')) }}
+                {{ Form::select('level_italian', $lang_levels, null, array('id' => 'level_italian')) }}
             </div>
         </p>
     </div>
