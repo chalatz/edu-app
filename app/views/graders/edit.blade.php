@@ -13,6 +13,17 @@
 
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
                 <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
+                <?php 
+                    $lang_levels = [
+                        '' => 'Επιλέξτε Επίπεδο...',
+                        'A1' => 'B1 - Στοιχειώδης Γνώση',
+                        'A2' => 'A2 - Βασική Γνώση',
+                        'B1' => 'B1 - Μέτρια Γνώση',
+                        'B2' => 'B2 - Καλή Γνώση',
+                        'C1' => 'C1 - Πολύ καλή Γνώση',
+                        'C2' => 'C2 - Άριστη Γνώση',
+                    ];
+                ?>
 
                 @include('layouts.partials.graders_form')
 

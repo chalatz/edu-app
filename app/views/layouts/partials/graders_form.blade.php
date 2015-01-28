@@ -43,11 +43,57 @@
     'no' => 'Όχι',
     ], null, array('class' => 'pure-input-1')) }}
 
-    {{ Form::label('languages', 'Ξένες γλώσσες που γνωρίζω') }}
-    {{ Form::text('languages', null, array('class' => 'pure-input-1')) }}
-    <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
+    <hr>
 
-    {{ Form::label('languages_level', 'Επίπεδο ξένων γλωσσών που γνωρίζω') }}
-    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}
-    <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
+    <label>Ξένες γλώσσες που γνωρίζω</label>
+
+    <div class= "pure-g">
+        <div class="pure-u-1 pure-u-md-1-3">
+            {{ Form::checkbox('level_english_check', 'yes_english', false) }}
+            {{ Form::label('level_english_check', 'Αγγλικά', ['class' => 'label-for-checkbox']) }}
+        </div>
+        <div class="pure-u-1 pure-u-md-1-3">
+            {{ Form::select('level_english', $lang_levels, null, array('class' => '')) }}
+        </div>
+    </div>
+    <hr>
+
+    <div class= "pure-g">
+        <p>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::checkbox('level_french_check', 'yes_french', false) }}
+                {{ Form::label('level_french_check', 'Γαλλικά', ['class' => 'label-for-checkbox']) }}
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::select('level_french', $lang_levels, null, array('class' => '')) }}
+            </div>
+        </p>
+    </div>
+    <hr>
+
+    <div class= "pure-g">
+        <p>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::checkbox('level_german_check', 'yes_german', false) }}
+                {{ Form::label('level_german_check', 'Γερμανικά', ['class' => 'label-for-checkbox']) }}
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::select('level_german', $lang_levels, null, array('class' => '')) }}
+            </div>
+        </p>
+    </div>
+    <hr>
+
+    <div class= "pure-g">
+        <p>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::checkbox('level_italian_check', 'yes_italian', false) }}
+                {{ Form::label('level_italian_check', 'Ιταλικά', ['class' => 'label-for-checkbox']) }}
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                {{ Form::select('level_italian', $lang_levels, null, array('class' => '')) }}
+            </div>
+        </p>
+    </div>
+
 </fieldset>

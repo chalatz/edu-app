@@ -133,7 +133,7 @@ class GradersController extends \BaseController {
         
         //$input = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
         $input = Input::all();
-        
+       
         $user->grader->fill($input)->save();
         
         return Redirect::route('grader.show', $user->id);
