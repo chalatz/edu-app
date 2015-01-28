@@ -113,15 +113,24 @@ class SitesController extends \BaseController {
         	} else {
         		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
     			// --- Attach role (grader) ---
-    			$user->roles()->attach(2);
-    			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
-    			Session::flash('alert-class', 'flash-info');
+    			// $user->roles()->attach(2);
+    			// Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+    			// Session::flash('alert-class', 'flash-info');
         		
         	}
 
+        } else {
+            // The site has proposed itself
+            $user->roles()->attach(2);
+    		Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+    		Session::flash('alert-class', 'flash-info');
         }
 
 		$the_new_site = Site::create($data);
+        
+        //-------------- Save current time --------
+        //$objDateTime = new DateTime('NOW');
+        //$input['confirmed_at'] = $objDateTime;
 
 		// ---------- Create the Grader ---
 		if(!isset($input['proposes_himself'])){
@@ -235,8 +244,6 @@ class SitesController extends \BaseController {
         //$input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_last_name', 'grader_email', 'grader_district', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
         $input = Input::all();
         
-        $notify_grader = $input['notify_grader'];
-        
         $grader_email = $input['grader_email'];
         
         //check if the user exists
@@ -246,102 +253,11 @@ class SitesController extends \BaseController {
             $user_exists = true;
         }
         
-        // Check if the site and the grader are the same user
-        if($grader_email == $user->email){
-            $same_user = true;
-        } else {
-            $same_user = false;
-        }
-        
-        // if the grader is to be notified
-        if($notify_grader == 'yes'){
-
-        	// if the email does not exist
-        	if(!$user_exists){
-    			
-	            $confirmation_string = str_random(40);
-	            $password = str_random(6);
-	            $user_data = [
-	                'email' => $grader_email,
-	                'password' => $password,
-	                'type' => 'grader',
-	                'confirmation_string' => $confirmation_string,
-	            ];
-	            
-	            $confirmation_url = route('verify.grader', $confirmation_string);
-
-	            $site_title = $user->site->title;
-                $site_responsible = $user->site->responsible;
-                $site_responsible_type = $user->site->responsible_type;
-	            
-	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
-	             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
-	            });
-	            
-	            $the_new_user = User::create($user_data);
-
-                // --- Attach role (grader) ---
-		        // Get new user's id
-		        $new_user_id = $the_new_user->id;
-		        // Get the new user
-		        $new_user = User::find($new_user_id);
-				// Attach to the user the Role with id:2 (grader)
-				$new_user->roles()->attach(2);
-
-				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
-        		Session::flash('alert-class', 'flash-info');
-
-        	} else {
-        		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
-        		if($same_user && $user->roles->count() <= 1) {
-        			// --- Attach role (grader) ---
-        			$user->roles()->attach(2);
-        			Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον εαυτό σας ως αξιολογητή.');
-        			Session::flash('alert-class', 'flash-info');
-        		}
-        		
-        	}
-
-        }
-        
         //-------------- Save current time --------
-        $objDateTime = new DateTime('NOW');
-        $input['confirmed_at'] = $objDateTime;
+       //$objDateTime = new DateTime('NOW');
+        //$input['confirmed_at'] = $objDateTime;
         
         $user->site->fill($input)->save();
-        
-		// ---------- Create the Grader ---
-		if($notify_grader == 'yes' && !$user_exists){
-            
-            $grader_data = [
-                'grader_name' => $data['grader_name'],
-                'grader_last_name' => $data['grader_last_name'],
-                'district_id' => $data['grader_district'],
-                'grader_district_text' => $data['grader_district_text'],
-                'cat_id' => $data['cat_id'],
-                'from_who' => $data['title'],
-                'from_who_email' => $user->email,
-            ];
-            
-            if($input['grader_email'] != $user->email){
-                $grader_data['user_id'] = $new_user_id;
-            } else {
-                $grader_data['user_id'] = $user->id;
-            }
-
-            $new_grader = Grader::create($grader_data);
-
-            // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($user->site->id);
-            
-            if($input['grader_email'] == $user->email) {
-                
-                $grader_data['user_id'] = $user->id;
-
-            }
-            
-        }
         
         return Redirect::route('site.show', $user->id);
 	}

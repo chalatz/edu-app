@@ -17,8 +17,8 @@ class AddGraderBFieldsToGradersTable extends Migration {
 			$table->string('self_proposed', 10)->nullable();
 			$table->string('why_self_proposed', 250)->nullable();
 			$table->string('approver', 250)->nullable();
-			$table->dateTime('approved_at');
-			$table->dateTime('confirmed_at');
+			$table->dateTime('approved_at')->default('2015-01-01 10:00:00');
+			$table->dateTime('confirmed_at')->default('2015-01-01 10:00:00');
 			$table->string('was_proposed', 10)->nullable();
 			$table->string('proposer', 250)->nullable();
 		});

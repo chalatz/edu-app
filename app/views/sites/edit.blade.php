@@ -27,11 +27,13 @@
                 <fieldset>
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
-                    @if($check_grader_site != 'disabled')
+                    @if(!isset(Auth::user()->site->proposes_himself))
                     
                         @include('layouts.partials.sites_form_graders_fields')
                     
                     @else
+                    
+                        <p>Έχετε προτείνει τον εαυτό σας</p>
 
                         <p><strong>Επώνυμο προτεινόμενου αξιολογητή Α</strong></p>
                         <p>{{ $user->site->grader_last_name }}</p>
@@ -53,19 +55,6 @@
                         {{ Form::hidden('grader_district_text', null, array('class' => 'pure-input-1')) }}                      
                     
                     <div class="instructions"><strong>Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</strong></div>
-                    @endif
-
-                    @if($check_grader_site != 'disabled')
-                        {{ Form::label('notify_grader', 'Να ειδοποιηθεί ο αξιολογητής;') }}
-                        {{ Form::select('notify_grader',[
-                            '' => 'Επιλέξτε...',
-                            'yes' => 'Ναι',
-                            'no' => 'Όχι',
-                        ], null, array('class' => 'pure-input-1', 'required')) }}
-                        <div class="instructions"><strong>ΠΡΟΣΟΧΗ: </strong>Εάν επιλέξετε Ναι, <strong>δε θα μπορείτε να καταχωρίσετε μετά κάποιον άλλον αξιολογητή!</strong> Εάν έχετε κάνει κάποιο λάθος, παρακαλούμε επικοινωνήστε μαζί μας.</div>
-                        <p class="error-message">{{ $errors->first('notify_grader') }}</p>
-                    @else
-                        {{ Form::hidden('notify_grader') }}
                     @endif
                     
                 </fieldset>

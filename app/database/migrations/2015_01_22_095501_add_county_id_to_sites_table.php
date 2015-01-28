@@ -15,7 +15,6 @@ class AddCountyIdToSitesTable extends Migration {
 		Schema::table('sites', function(Blueprint $table)
 		{
 			$table->integer('county_id')->default(0)->after('county');
-            $table->dateTime('confirmed_at');
 		});
 	}
 
@@ -30,7 +29,6 @@ class AddCountyIdToSitesTable extends Migration {
 		Schema::table('sites', function(Blueprint $table)
 		{
 			$table->dropColumn('county_id');
-            $table->dropColumn('confirmed_at');
 		});
 	}
 
