@@ -21,5 +21,4 @@
 
 {{ Form::label('grader_email', 'E-mail αξιολογητή Α *') }}
 {{ Form::email('grader_email', null, array('class' => 'pure-input-1', 'required')) }}
-<div class="instructions">Εάν έχετε δηλώσει το δικό σας email, επιλέξτε παρακάτω την επιλογή <strong>Ναι</strong> για να καταχωρηθείτε και ως αξιολογητής.</div>
 <p class="error-message">{{ $errors->first('grader_email') }}</p>

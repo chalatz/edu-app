@@ -4,7 +4,7 @@
 
     <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
-    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked site-form', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
+    {{ Form::open(array('route' => 'site.store', 'class' => 'pure-form pure-form-stacked site-form create-site-form', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
         <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
         <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
