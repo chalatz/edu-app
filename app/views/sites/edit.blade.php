@@ -27,14 +27,12 @@
                 <fieldset>
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
-                    @if(!isset(Auth::user()->site->proposes_himself))
+                    @if(isset(Auth::user()->site->proposes_himself))
                     
-                        @include('layouts.partials.sites_form_graders_fields')
+                        <p>Έχετε προτείνει τον εαυτό σας</p>
                     
                     @else
                     
-                        <p>Έχετε προτείνει τον εαυτό σας</p>
-
                         <p><strong>Επώνυμο προτεινόμενου αξιολογητή Α</strong></p>
                         <p>{{ $user->site->grader_last_name }}</p>
                         {{ Form::hidden('grader_last_name', null, array('class' => 'pure-input-1')) }}
