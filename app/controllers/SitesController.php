@@ -145,11 +145,13 @@ class SitesController extends \BaseController {
                 'from_who_email' => $user->email,
             ];
             
-            if($data['grader_email'] != $user->email){
-                $grader_data['user_id'] = $new_user_id;
-            } else {
-                $grader_data['user_id'] = $user_id;
-            }
+//             if($data['grader_email'] != $user->email){
+//                 $grader_data['user_id'] = $new_user_id;
+//             } else {
+//                 $grader_data['user_id'] = $user_id;
+//             }
+            
+            $grader_data['user_id'] = $new_user_id;
 
             $new_grader = Grader::create($grader_data);
 
@@ -162,6 +164,26 @@ class SitesController extends \BaseController {
                 $grader_data['user_id'] = $user_id;
 
             }
+            
+        } else {
+            
+            $grader_data = [
+                'grader_name' => $data['contact_name'],
+                'grader_last_name' => $data['contact_last_name'],
+                'district_id' => $data['district_id'],
+                'grader_district_text' => $data['district_text'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+                'from_who_email' => $user->email,
+            ];
+            
+            $grader_data['user_id'] = $user_id;
+            
+            $new_grader = Grader::create($grader_data);
+            
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($the_new_site->id);
             
         }
 
@@ -203,14 +225,7 @@ class SitesController extends \BaseController {
             return Redirect::home();
         }
         
-        $check_grader_site = '';
-        if($this->check_grader_site()){
-            $check_grader_site = 'disabled';
-        } else {
-            $check_grader_site = '';
-        }
-        
-        return View::make('sites.edit', compact('user', 'check_grader_site'));
+        return View::make('sites.edit', compact('user'));
 	}
 
 	/**
