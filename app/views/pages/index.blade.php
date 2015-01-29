@@ -17,9 +17,11 @@
 
 		<div class="pure-g">
             @if(!Auth::user()->hasRole('site'))
+                @if(!(sizeof(Auth::user()->roles) == 1 && Auth::user()->hasRole('grader')))
                 <div class="pure-u-1 pure-u-md-1-1">
                     {{ link_to('register/site', 'Υποβολή Υποψηφιότητας Ιστότοπου', ['class' => 'big-link green']) }}
                 </div>
+            @endif
             @endif
             @if(!Auth::user()->hasRole('grader_b'))
                 <div class="pure-u-1 pure-u-md-1-1">
