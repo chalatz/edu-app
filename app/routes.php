@@ -37,6 +37,7 @@ Route::resource('site', 'SitesController');
 
 # Graders
 Route::get('/verify/grader/{confirmation_string}', ['as' => 'verify.grader', 'uses' => 'SessionsController@verify_grader']);
+Route::get('/agrees/grader/{grader_id}/{answer}', ['as' => 'agrees.grader', 'uses' =>'GradersController@agrees']);
 Route::resource('grader', 'GradersController');
 
 # Admin

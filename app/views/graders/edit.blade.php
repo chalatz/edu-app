@@ -9,6 +9,13 @@
 
             <h1>Επεξεργασία Στοιχείων Αξιολογητή</h1>
 
+
+                <p>
+                    {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-light-blue', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
+                    {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-light-blue', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
+                </p>
+            
+
             {{ Form::model($user->grader, array('method' => 'PATCH','route' => ['grader.update', $user->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>

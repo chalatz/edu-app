@@ -156,6 +156,44 @@ class GradersController extends \BaseController {
         return Redirect::route('grader.show', $user->id);
         
 	}
+    
+    public function agrees($grader_id, $answer){
+        
+        $grader = Grader::find($grader_id);
+        
+        $grader->has_agreed = $answer;        
+        
+        $grader->save();
+        
+        if($answer == 'no'){
+            $this->notify_site($grader);
+            User::destroy(Auth::user()->id);
+            $grader->delete();
+            Auth::logout();
+            return Redirect::home();
+        }
+        
+        return View::make('graders.agrees', compact('grader'));
+        
+    }
+    
+    private function notify_site($grader) {
+        
+        $last_name = $grader->grader_last_name;
+        $name = $grader->grader_name;
+        $email= $grader->from_who_email;
+        
+        $data = ['last_name' => $last_name, 'name' => $name];
+        
+        Mail::send('emails.notify_site', $data, function($message) use ($email){
+            $message->to($email)->subject('Αλλάξτε αξιολογητή');
+        });
+        
+    }
+    
+    private function update_site() {
+        
+    }
 
 	/**
 	 * Remove the specified grader from storage.

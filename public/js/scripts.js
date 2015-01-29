@@ -74,10 +74,10 @@
 //                 $("#dialog-confirm").dialog('open');
 //             }
 
-            if($('#confirmMe').valid() === true) {
-                e.preventDefault();
-                $("#dialog-confirm").dialog('open');
-            }
+//             if($('#confirmMe').valid() === true) {
+//                 e.preventDefault();
+//                 $("#dialog-confirm").dialog('open');
+//             }
 
         });
         
