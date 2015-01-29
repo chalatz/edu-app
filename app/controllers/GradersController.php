@@ -153,7 +153,7 @@ class GradersController extends \BaseController {
 
         $user->grader->fill($input)->save();
         
-        return Redirect::route('grader.show', $user->id);
+        return Redirect::home();
         
 	}
     

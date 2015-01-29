@@ -20,7 +20,7 @@
 		{{ Form::email('email') }}
         <p class="error-message">{{ $errors->first('email') }}</p>
 
-		{{ Form::label('password', 'Κωδικός Πρόσβασης') }}
+		{{ Form::label('password', 'Επιθυμητός Κωδικός Πρόσβασης') }}
 		{{ Form::password('password') }}
         <p class="error-message">{{ $errors->first('password') }}</p>
 

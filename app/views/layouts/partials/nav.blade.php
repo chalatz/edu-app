@@ -15,8 +15,7 @@
                         @if (!Auth::user()->site)
                             <li>{{ link_to_route('site.create', 'Υποβολή Υποψηφιότητας Ιστότοπου') }}</li>
                         @else
-                            <li>{{ link_to_route('site.show', 'Στοιχεία Υποψηφιότητας', Auth::user()->id) }}</li>
-                            <li>{{ link_to_route('site.edit', 'Επεξεργασία Υποψηφιότητας', Auth::user()->id) }}</li>
+                            <li>{{ link_to_route('site.edit', 'Υποψηφιότητα', Auth::user()->id) }}</li>
                         @endif
 
                     @endif
@@ -26,8 +25,7 @@
                         @if(!Auth::user()->grader)
 <!--                             <li>{{ link_to_route('grader.create', 'Δημιουργία Καρτέλας Αξιολογητή') }}</li> -->
                         @else
-                            <li>{{ link_to_route('grader.show', 'Καρτέλα Αξιολογητή', Auth::user()->id) }}</li>
-                            <li>{{ link_to_route('grader.edit', 'Επεξεργασία Καρτέλας Αξιολογητή', Auth::user()->id) }}</li>
+                            <li>{{ link_to_route('grader.edit', 'Αξιολογητής Α', Auth::user()->id) }}</li>
                         @endif
 
                     @endif

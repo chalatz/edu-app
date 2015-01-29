@@ -274,7 +274,7 @@ class SitesController extends \BaseController {
         
         $user->site->fill($input)->save();
         
-        return Redirect::route('site.show', $user->id);
+        return Redirect::home();
 	}
     
     private function check_grader_site(){
