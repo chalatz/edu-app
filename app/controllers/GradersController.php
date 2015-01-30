@@ -164,8 +164,11 @@ class GradersController extends \BaseController {
         $grader->has_agreed = $answer;        
         
         $grader->save();
+
+        $site_id = $grader->sites->first()->id;
         
         if($answer == 'no'){
+        	$this->update_site($site_id);
             $this->notify_site($grader);
             User::destroy(Auth::user()->id);
             $grader->delete();
@@ -191,8 +194,17 @@ class GradersController extends \BaseController {
         
     }
     
-    private function update_site() {
-        
+    private function update_site($id) {
+
+        $site = Site::find($id);
+
+        $site->grader_name = '';
+        $site->grader_last_name = '';
+        $site->grader_email = '';
+        $site->grader_district = '';
+        $site->grader_district_text = '';
+		        
+        $site->save();
     }
 
 	/**

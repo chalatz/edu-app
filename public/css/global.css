@@ -3444,10 +3444,13 @@ a:hover {
 .detail p {
   margin-left: 1em; }
 
-.button-secondary-light-blue {
-  background: #42b8dd;
-  color: white;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+.button-secondary-green {
+  background: #5eb95e;
+  color: white; }
+
+.button-secondary-red {
+  background: #dd514c;
+  color: white; }
 
 .top-section,
 .bottom-section {

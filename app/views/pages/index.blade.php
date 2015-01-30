@@ -6,14 +6,16 @@
 
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
 
-        <p>και με την/τις ιδιότητα/ες:</p>
-        <ul>
-	        @foreach(Auth::user()->roles as $role)
-                @if($role->id != 5)
-				    <li>{{ $role->role_name }}</li>
-                @endif
-	        @endforeach
-	    </ul>
+        @if(!(sizeof(Auth::user()->roles) == 1 && Auth::user()->hasRole('user')))
+            <p>και με την/τις ιδιότητα/ες:</p>
+            <ul>
+    	        @foreach(Auth::user()->roles as $role)
+                    @if($role->id != 5)
+    				    <li>{{ $role->role_name }}</li>
+                    @endif
+    	        @endforeach
+    	    </ul>
+        @endif
 
 		<div class="pure-g">
             @if(!Auth::user()->hasRole('site'))
@@ -29,8 +31,7 @@
 		</div>
 
     @else
-    <i class="fa fa-info-circle"></i>
-
+    
     	<h3>Καλώς ορίσατε στο Πληροφοριακό Σύστημα του <br> 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων!</h3>
 
     	<p>{{ link_to('login', 'Συνδεθείτε') }} ή {{ link_to('register/user', 'Εγγραφείτε') }}</p>

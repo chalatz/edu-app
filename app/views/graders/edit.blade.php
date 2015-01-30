@@ -11,8 +11,8 @@
 
 
                 <p>
-                    {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-light-blue', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
-                    {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-light-blue', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
+                    {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
+                    {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
                 </p>
             
 

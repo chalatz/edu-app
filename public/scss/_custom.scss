@@ -85,10 +85,14 @@ a:hover {
     margin-left: 1em;
 }
 
-.button-secondary-light-blue {
-    background: rgb(66, 184, 221);
+.button-secondary-green {
+    background: $green;
     color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary-red {
+    background: $red;
+    color: white;
 }
 
 .top-section,

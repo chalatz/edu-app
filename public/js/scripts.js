@@ -5,23 +5,6 @@
         var grader_field = $('input#grader_email'),
             grader_notify = $('select#notify_grader');
 
-         $("#dialog-confirm").dialog({
-            autoOpen: false,
-            resizable: true,
-            width: 500,
-            height: 300,
-            modal: true,
-            buttons: {
-                "Ναι, είμαι σίγουρος": function() {
-                    console.log('click');
-                    document.confirmMe.submit();
-                },
-               "Όχι ακόμα": function() {
-                    $( this ).dialog( "close" );
-                }
-            }
-        });
-
         $('#confirmMe').validate({
             rules: {
                 grader_district_text : {
@@ -143,7 +126,7 @@
     langs($('#level_english_check'), $('#level_english'));
     langs($('#level_french_check'), $('#level_french'));
     langs($('#level_german_check'), $('#level_german'));
-    langs($('#level_italian_check'), $('#level_italian'));        
+    langs($('#level_italian_check'), $('#level_italian'));
     
     propose_myself();
 
