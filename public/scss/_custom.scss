@@ -85,10 +85,14 @@ a:hover {
     margin-left: 1em;
 }
 
-.button-secondary-light-blue {
-    background: rgb(66, 184, 221);
+.button-secondary-green {
+    background: $green;
     color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary-red {
+    background: $red;
+    color: white;
 }
 
 .top-section,
@@ -145,6 +149,50 @@ img {
     background: $purple;
 }
 
+.red {
+    background: $red;
+}
+
+.blue-font {
+    color: $blue;
+}
+
+.green-font {
+   color: $green; 
+}
+
+.orange-font {
+    color: $orange;
+}
+
+.purple-font {
+    color: $purple;
+}
+
+.red-font {
+    color: $red;
+}
+
+.dark-blue-font {
+    color: darken($blue, 15%);
+}
+
+.dark-green-font {
+   color: darken($green, 15%); 
+}
+
+.dark-orange-font {
+    color: darken($orange, 15%);
+}
+
+.dark-purple-font {
+    color: darken($purple, 15%);
+}
+
+.dark-red-font {
+    color: darken($red, 15%);
+}
+
 .block-module {
     p {
         padding: 1em;
@@ -168,13 +216,14 @@ img {
     color: #fff;
     border-radius: 6px;
     padding: 1em;
-    font-size: 2em;
+    font-size: 1.5em;
+    line-height: 1.5em;
     &:hover {
         text-decoration: underline;
     }
 }
 
-.label-for-checkbox {
+ form .label-for-checkbox {
     display: inline-block;
     margin-left: .2em;
 }

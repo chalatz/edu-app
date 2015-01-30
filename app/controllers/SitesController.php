@@ -110,13 +110,6 @@ class SitesController extends \BaseController {
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
         		Session::flash('alert-class', 'flash-info');                  
 
-        	} else {
-        		// The user's email and the proposed email are the same (The site has proposed itself as a grader)
-    			// --- Attach role (grader) ---
-    			// $user->roles()->attach(2);
-    			// Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
-    			// Session::flash('alert-class', 'flash-info');
-        		
         	}
 
         } else {
@@ -144,12 +137,6 @@ class SitesController extends \BaseController {
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
             ];
-            
-//             if($data['grader_email'] != $user->email){
-//                 $grader_data['user_id'] = $new_user_id;
-//             } else {
-//                 $grader_data['user_id'] = $user_id;
-//             }
             
             $grader_data['user_id'] = $new_user_id;
 
@@ -225,7 +212,9 @@ class SitesController extends \BaseController {
             return Redirect::home();
         }
         
-        return View::make('sites.edit', compact('user'));
+        $grader = $user->site->graders->first();
+
+        return View::make('sites.edit', compact('user', 'grader'));
 	}
 
 	/**

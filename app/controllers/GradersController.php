@@ -21,18 +21,18 @@ class GradersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($grader_type)
 	{
 		if(Auth::guest()){
             return Redirect::home();
         } else {
         	//dd(!Auth::user()->grader);
-            if(!Auth::user()->hasRole('grader') || Auth::user()->grader) {
-                    return Redirect::home();
-            }
+            // if(!Auth::user()->hasRole('grader') || Auth::user()->grader) {
+            //         return Redirect::home();
+            // }
         }
         
-		return View::make('graders.create');
+		return View::make('graders.create', compact('grader_type'));
 	}
 
 	/**
@@ -42,7 +42,7 @@ class GradersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Grader::$rules, Grader::$error_messages);
+		$validator = Validator::make($data = Input::all(), Grader::$grader_b_rules, Grader::$error_messages);
 
 		if ($validator->fails())
 		{
@@ -64,6 +64,9 @@ class GradersController extends \BaseController {
         $user->save();
 
 		$grader = Grader::create($data);
+
+        // --- Attach role (site) ---
+        $user->roles()->attach(3);
 
 		return Redirect::home();
 	}
@@ -107,6 +110,21 @@ class GradersController extends \BaseController {
         
         return View::make('graders.edit', compact('user', 'grader'));
 	}
+
+    public function edit_b($userid)
+    {
+        try {
+            $user = User::with('grader')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        $grader = Grader::find($user->grader->id);
+        
+        return View::make('graders.edit_b', compact('user', 'grader'));
+    }
 
 	/**
 	 * Update the specified grader in storage.
@@ -164,16 +182,22 @@ class GradersController extends \BaseController {
         $grader->has_agreed = $answer;        
         
         $grader->save();
+
+        $site_id = $grader->sites->first()->id;
+
+        $site = Site::find($site_id);
+        $site->grader_agrees = $answer;
+        $site->save();
         
         if($answer == 'no'){
+        	$this->update_site($site_id);
             $this->notify_site($grader);
             User::destroy(Auth::user()->id);
             $grader->delete();
             Auth::logout();
-            return Redirect::home();
         }
         
-        return View::make('graders.agrees', compact('grader'));
+        return Redirect::home();
         
     }
     
@@ -191,8 +215,18 @@ class GradersController extends \BaseController {
         
     }
     
-    private function update_site() {
-        
+    private function update_site($id) {
+
+        $site = Site::find($id);
+
+        $site->grader_agrees = 'no';
+        $site->grader_name = '';
+        $site->grader_last_name = '';
+        $site->grader_email = '';
+        $site->grader_district = '';
+        $site->grader_district_text = '';
+		        
+        $site->save();
     }
 
 	/**

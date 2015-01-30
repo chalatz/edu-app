@@ -4,7 +4,7 @@
 		@if(Auth::check())
 			Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong>  | {{ link_to('/logout', 'Αποσύνδεση') }}
 		@else
-			{{ link_to('login', 'Συνδεθείτε') }}
+			{{ link_to('login', 'Είσοδος') }}
 		@endif
 	</div>
 

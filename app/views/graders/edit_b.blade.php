@@ -8,12 +8,6 @@
         @if(Auth::user()->id == $user->id)
 
             <h1>Επεξεργασία Στοιχείων Αξιολογητή</h1>
-
-
-                <p>
-                    {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
-                    {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
-                </p>
             
 
             {{ Form::model($user->grader, array('method' => 'PATCH','route' => ['grader.update', $user->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
@@ -32,9 +26,7 @@
                     ];
                 ?>
 
-                @include('layouts.partials.graders_form')
-
-                @include('layouts.partials.graders_site')
+                @include('layouts.partials.graders_b_form')
 
                 {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
