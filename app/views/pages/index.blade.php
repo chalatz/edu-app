@@ -11,7 +11,7 @@
             <ul>
     	        @foreach(Auth::user()->roles as $role)
                     @if($role->id != 5)
-    				    <li>{{ $role->role_name }}</li>
+    				    <strong><li>{{ $role->role_name }}</li></strong>
                     @endif
     	        @endforeach
     	    </ul>

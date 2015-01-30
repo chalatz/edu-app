@@ -28,9 +28,9 @@
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
                     
-                    @if(isset(Auth::user()->site->proposes_himself))
+                    @if(isset(Auth::user()->site->proposes_himself) && Auth::user()->site->proposes_himself == 'yes')
                     
-                        <p>Έχετε προτείνει τον εαυτό σας</p>
+                        <p>Έχετε προτείνει τον υπεύθυνο επικοινωνίας ως Αξιολογητή Α</p>
                     
                     @else
                     
