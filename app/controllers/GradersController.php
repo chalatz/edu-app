@@ -42,7 +42,7 @@ class GradersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Grader::$rules, Grader::$error_messages);
+		$validator = Validator::make($data = Input::all(), Grader::$grader_b_rules, Grader::$error_messages);
 
 		if ($validator->fails())
 		{
@@ -110,6 +110,21 @@ class GradersController extends \BaseController {
         
         return View::make('graders.edit', compact('user', 'grader'));
 	}
+
+    public function edit_b($userid)
+    {
+        try {
+            $user = User::with('grader')->whereId($userid)->firstOrFail();   
+        }
+        
+        catch(ModelNotFoundException $e){
+            return Redirect::home();
+        }
+        
+        $grader = Grader::find($user->grader->id);
+        
+        return View::make('graders.edit_b', compact('user', 'grader'));
+    }
 
 	/**
 	 * Update the specified grader in storage.

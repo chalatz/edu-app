@@ -8,9 +8,9 @@
     {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('grader_name') }}</p>
 
-    {{ Form::label('district_id', 'Περιφέρεια *') }}
-    {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
-    <p class="error-message">{{ $errors->first('district_id') }}</p>
+    {{ Form::label('grader_district_id', 'Περιφέρεια *') }}
+    {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+    <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
 
     <div id="grader_district_text_wrapper">
         {{ Form::label('grader_district_text', 'Ονομασία Περιφέρειας') }}
@@ -44,6 +44,7 @@
         {{ Form::label('why_self_proposed', 'Εξηγήστε τους λόγους για τους οποίους προτείνετε τον εαυτό σας ως Αξιολογητή Β') }}
         {{ Form::textarea('why_self_proposed', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1')) }}
     </div>
+    <hr>
 
     <label>Ξένες γλώσσες που γνωρίζω</label>
 

@@ -65,7 +65,7 @@
             rules: {
                 grader_district_text : {
                     required: function(){
-                        return $('select#district_id').val() == 14;
+                        return $('select#grader_district_id').val() == 14;
                     }
                 },
                 level_english : {
@@ -121,6 +121,10 @@
 
     var checkbox_toggle_visibility = function(thebox, wrapper) {
         wrapper.hide();
+
+        if($(this).is(':checked')){
+            wrapper.show();
+        }
 
         thebox.on('click', function(){
             if($(this).is(':checked')){
@@ -180,7 +184,7 @@
     
     confirm_form();
     depandable_fields($('#district_text_wrapper'), $('.site-form select#district_id'), $('#district_text'), 14);
-    depandable_fields($('#grader_district_text_wrapper'), $('.grader-form select#district_id'), $('#grader_district_text'), 14);
+    depandable_fields($('#grader_district_text_wrapper'), $('.grader-form select#grader_district_id'), $('#grader_district_text'), 14);
     depandable_fields($('#grader_district_text_wrapper'), $('.site-form select#grader_district'), $('#grader_district_text'), 14);
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');

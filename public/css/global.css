@@ -3552,7 +3552,7 @@ img {
   .register-block:hover {
     text-decoration: underline; }
 
-.label-for-checkbox {
+form .label-for-checkbox {
   display: inline-block;
   margin-left: .2em; }
 
