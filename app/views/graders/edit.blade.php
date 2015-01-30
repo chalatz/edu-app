@@ -10,7 +10,7 @@
             <h1>Επεξεργασία Στοιχείων Αξιολογητή Α</h1>
 
             @if(!isset(Auth::user()->site->proposes_himself) || Auth::user()->site->proposes_himself != 'yes')
-                @if(!(isset($grader->has_agreed) && $grader->has_agreed == 'yes'))
+                @if(!($grader->has_agreed == null && $grader->has_agreed == 'yes'))
                     <p>
                         {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
                         {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
