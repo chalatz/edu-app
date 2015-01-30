@@ -25,7 +25,7 @@
             @endif
             @if(!Auth::user()->hasRole('grader_b'))
                 <div class="pure-u-1 pure-u-md-1-1">
-                    {{ link_to('register/grader_b', 'Υποβολή Υποψηφιότητας Αξιολογητή Β', ['class' => 'big-link blue']) }}
+                    {{ link_to('grader/create/b', 'Υποβολή Υποψηφιότητας Αξιολογητή Β', ['class' => 'big-link blue']) }}
                 </div>
             @endif
 		</div>
@@ -42,16 +42,6 @@
     		</div>
     	</div>
         <p class="instructions">Για να χρησιμοποιήσετε το Πληροφοριακό Σύστημα του 7ου ΔΕΕΙ και να υποβάλλετε υποψηφιότητα στο διαγωνισμό ή να γίνετε αξιολογητής, θα πρέπει πρώτα να συνδεθείτε. Για να συνδεθείτε, θα πρέπει πρώτα να έχετε εγγραφεί και να επιβεβαιώσετε το email σας στο αυτοματοποιημένο mail που θα σας έλθει, πατώντας στον σύνδεσμο που περιέχει.</p>
-
-		<!-- <div class="pure-g">
-		    <div class="pure-u-1 pure-u-md-1-2 block-module blue">
-		    	<p>{{ link_to('login', 'Συνδεθείτε') }}</p>
-		    </div>
-
-		    <div class="pure-u-1 pure-u-md-1-2 block-module green">
-		    	<p>{{ link_to('register/site', 'Εγγραφείτε ως Υποψήφιος Ιστότοπος') }}</p>
-		    </div>
-		</div> -->
 
     @endif
 

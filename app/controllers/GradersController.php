@@ -21,18 +21,18 @@ class GradersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($grader_type)
 	{
 		if(Auth::guest()){
             return Redirect::home();
         } else {
         	//dd(!Auth::user()->grader);
-            if(!Auth::user()->hasRole('grader') || Auth::user()->grader) {
-                    return Redirect::home();
-            }
+            // if(!Auth::user()->hasRole('grader') || Auth::user()->grader) {
+            //         return Redirect::home();
+            // }
         }
         
-		return View::make('graders.create');
+		return View::make('graders.create', compact('grader_type'));
 	}
 
 	/**
@@ -64,6 +64,9 @@ class GradersController extends \BaseController {
         $user->save();
 
 		$grader = Grader::create($data);
+
+        // --- Attach role (site) ---
+        $user->roles()->attach(3);
 
 		return Redirect::home();
 	}
