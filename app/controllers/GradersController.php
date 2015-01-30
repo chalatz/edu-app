@@ -166,6 +166,10 @@ class GradersController extends \BaseController {
         $grader->save();
 
         $site_id = $grader->sites->first()->id;
+
+        $site = Site::find($site_id);
+        $site->grader_agrees = $answer;
+        $site->save();
         
         if($answer == 'no'){
         	$this->update_site($site_id);
@@ -173,10 +177,9 @@ class GradersController extends \BaseController {
             User::destroy(Auth::user()->id);
             $grader->delete();
             Auth::logout();
-            return Redirect::home();
         }
         
-        return View::make('graders.agrees', compact('grader'));
+        return Redirect::home();
         
     }
     
@@ -198,6 +201,7 @@ class GradersController extends \BaseController {
 
         $site = Site::find($id);
 
+        $site->grader_agrees = 'no';
         $site->grader_name = '';
         $site->grader_last_name = '';
         $site->grader_email = '';

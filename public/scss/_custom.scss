@@ -149,6 +149,50 @@ img {
     background: $purple;
 }
 
+.red {
+    background: $red;
+}
+
+.blue-font {
+    color: $blue;
+}
+
+.green-font {
+   color: $green; 
+}
+
+.orange-font {
+    color: $orange;
+}
+
+.purple-font {
+    color: $purple;
+}
+
+.red-font {
+    color: $red;
+}
+
+.dark-blue-font {
+    color: darken($blue, 15%);
+}
+
+.dark-green-font {
+   color: darken($green, 15%); 
+}
+
+.dark-orange-font {
+    color: darken($orange, 15%);
+}
+
+.dark-purple-font {
+    color: darken($purple, 15%);
+}
+
+.dark-red-font {
+    color: darken($red, 15%);
+}
+
 .block-module {
     p {
         padding: 1em;

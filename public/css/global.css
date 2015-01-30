@@ -3495,6 +3495,39 @@ img {
 .purple {
   background: #BC58A5; }
 
+.red {
+  background: #dd514c; }
+
+.blue-font {
+  color: #1f8dd6; }
+
+.green-font {
+  color: #5eb95e; }
+
+.orange-font {
+  color: #F37B1D; }
+
+.purple-font {
+  color: #BC58A5; }
+
+.red-font {
+  color: #dd514c; }
+
+.dark-blue-font {
+  color: #156193; }
+
+.dark-green-font {
+  color: #3d8d3d; }
+
+.dark-orange-font {
+  color: #ba570a; }
+
+.dark-purple-font {
+  color: #8e397b; }
+
+.dark-red-font {
+  color: #b92823; }
+
 .block-module p {
   padding: 1em;
   color: white;

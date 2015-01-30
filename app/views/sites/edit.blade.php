@@ -35,7 +35,10 @@
                     @else
                     
                         @if(sizeof(Auth::user()->site->graders) == 0)
-                            @include('layouts.partials.sites_form_graders_fields')
+                            @if(Auth::user()->site->grader_agrees == 'no')
+                                <div class="instructions red-font"><strong>O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                                <div class="instructions red-font"><strong>Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>                                
+                            @endif
                         @else
                     
                             <p><strong>Επώνυμο προτεινόμενου αξιολογητή Α</strong></p>
@@ -56,10 +59,18 @@
 
                             <p>{{ $user->site->grader_district_text }}</p>
                             {{ Form::hidden('grader_district_text', null, array('class' => 'pure-input-1')) }}
+
+                            @if(isset($grader->id))
+                                @if($grader->has_agreed)
+                                    <div class="instructions dark-green-font"><strong>O αξιολογητής που έχετε προτείνει, έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                                @endif
+                                @if(Auth::user()->site->grader_agrees == 'na')
+                                    <div class="instructions orange-font"><strong>O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί ακόμη την πρόσκλησή σας.</strong></div>                            
+                            @endif
+                        @endif
                     
                         @endif
                     
-                    <div class="instructions"><strong>Εάν επιθυμείτε να αλλάξετε τον αξιολογητή που προτείνετε, παρακαλούμε επικοινωνήστε μαζί μας.</strong></div>
                     @endif
                     
                 </fieldset>
@@ -67,11 +78,6 @@
                 {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
             {{ Form::close() }}
-
-            <div id="dialog-confirm" title = "Επιβεβαίωση αξιολογητή;">
-                <p>Είστε βέβαιοι ότι επιθυμείτε να δηλώσετε αυτόν τον αξιολογητή;</p>
-                <p>Εάν απαντήσετε θετικά, η ενέργεια αυτή δεν μπορεί να αναιρεθεί και θα πρέπει να επικοινωνήσετε μαζί μας.</p>
-            </div>
 
         @else
             <p class='flash-message flash-error'>Δεν έχετε δικαιώματα πρόσβασης σε αυτήν την σελίδα.</p>
