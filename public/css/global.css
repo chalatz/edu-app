@@ -3556,4 +3556,7 @@ form .label-for-checkbox {
   display: inline-block;
   margin-left: .2em; }
 
+.small {
+  font-size: .9em; }
+
 /*# sourceMappingURL=global.css.map */

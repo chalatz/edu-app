@@ -21,7 +21,7 @@ class CategoriesTableSeeder extends Seeder {
 		]);
 		Category::create([
 			'id' => 4,
-			'category_name' => '4. Υποστηρικτικές δομές εκπαίδευσης',
+			'category_name' => '4. Υποστηρικτικές δομές εκπαίδευσης **',
 		]);
 		Category::create([
 			'id' => 5,
