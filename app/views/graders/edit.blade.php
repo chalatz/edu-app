@@ -7,7 +7,7 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <h1>Επεξεργασία Στοιχείων Αξιολογητή Α</h1>
+            <h1>Καρτέλα Αξιολογητή Α</h1>
 
             @if(!isset(Auth::user()->site->proposes_himself) || Auth::user()->site->proposes_himself != 'yes')
                 @if($grader->has_agreed != 'yes')

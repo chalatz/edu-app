@@ -7,7 +7,7 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <h1>Επεξεργασία Στοιχείων Υποψηφιότητας Ιστότοπου</h1>
+            <h1>Καρτέλα Ιστότοπου</h1>
 
             {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked site-form',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
