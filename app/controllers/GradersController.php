@@ -51,6 +51,10 @@ class GradersController extends \BaseController {
         
         //$data = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
         $data = Input::all();
+
+        if(isset($data['desired_category'])){
+            $data['desired_category'] = implode('|', $data['desired_category']);
+        }  
         
         $user_id = Auth::user()->id;
         
@@ -151,6 +155,10 @@ class GradersController extends \BaseController {
         
         //$input = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
         $input = Input::all();
+
+        if(isset($input['desired_category'])){
+            $input['desired_category'] = implode('|', $input['desired_category']);
+        }   
 
         if(!isset($input['level_english_check'])){
         	$input['level_english_check'] = null;

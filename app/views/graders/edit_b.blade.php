@@ -7,9 +7,8 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <h1>Επεξεργασία Στοιχείων Αξιολογητή Β</h1>
+            <h1>Καρτέλα Αξιολογητή Β</h1>
             
-
             {{ Form::model($user->grader, array('method' => 'PATCH','route' => ['grader.update', $user->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>

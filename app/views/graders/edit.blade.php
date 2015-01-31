@@ -7,14 +7,12 @@
     @else
         @if(Auth::user()->id == $user->id)
 
-            <h1>Επεξεργασία Στοιχείων Αξιολογητή Α</h1>
+            <h1>Καρτέλα Αξιολογητή Α</h1>
 
             @if(!isset(Auth::user()->site->proposes_himself) || Auth::user()->site->proposes_himself != 'yes')
-                @if($grader->has_agreed != null && $grader->has_agreed != 'yes')
-                    <p>
-                        {{ link_to_route('agrees.grader', 'Συμφωνώ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}
-                        {{ link_to_route('agrees.grader', 'Δε Συμφωνώ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}
-                    </p>
+                @if($grader->has_agreed != 'yes')
+                    <p>{{ link_to_route('agrees.grader', 'Αποδέχομαι τη συμμετοχή μου ως Αξιολογητής Α στον 7ο ΔΕΕΙ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}</p>
+                    <p>{{ link_to_route('agrees.grader', 'Δεν αποδέχομαι τη συμμετοχή μου ως Αξιολογητής Α στον 7ο ΔΕΕΙ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}</p>
                 @endif
             @endif
             
@@ -23,6 +21,7 @@
 
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
                 <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
+                <?php $specialties = ['' => 'Επιλέξτε...'] + Specialty::lists('specialty_name', 'id'); ?>
                 <?php 
                     $lang_levels = [
                         '' => 'Επιλέξτε Επίπεδο...',

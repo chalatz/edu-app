@@ -173,6 +173,10 @@ img {
     color: $red;
 }
 
+.white-font {
+    color: #fff;
+}
+
 .dark-blue-font {
     color: darken($blue, 15%);
 }
@@ -226,4 +230,20 @@ img {
  form .label-for-checkbox {
     display: inline-block;
     margin-left: .2em;
+}
+
+.small {
+    font-size: .9em;
+}
+
+.little-block {
+    padding: .5em;
+    margin: .5em 0;
+    border-radius: 3px;
+}
+
+.anchor-block {
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
 }

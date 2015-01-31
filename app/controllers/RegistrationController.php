@@ -90,7 +90,7 @@ class RegistrationController extends \BaseController {
 		$new_user->roles()->attach($therole_id);   
         
 
-        Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. <br>Παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας. <br>Παρακαλούμε σημειώστε ότι υπάρχει η πιθανότητα να έρθει το email και μετά από 30 λεπτά.');
+        Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Σας έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. <br>Μόλις έλθει (μπορεί κα να καθυστερήσει έως 30 λεπτά), παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.');
         Session::flash('alert-class', 'flash-info');
 		return Redirect::home();
 	}

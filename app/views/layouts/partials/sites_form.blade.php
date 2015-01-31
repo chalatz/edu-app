@@ -8,16 +8,17 @@
 
     {{ Form::label('title', 'Επωνυμία Ιστότοπου *') }}
     {{ Form::text('title', null, array('class' => 'pure-input-1', 'required')) }}
-    <div class="instructions">Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας</div>
+    <div class="instructions">Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας (π.χ. 2ο Δημοτικό Σχολείο Σύρου)</div>
     <p class="error-message">{{ $errors->first('title') }}</p>
 
     {{ Form::label('cat_id', 'Κατηγορία *') }}
     {{ Form::select('cat_id', $categories, null, array('class' => 'pure-input-1', 'required')) }}
-    <div class="instructions">Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</div>
+    <div class="instructions small">** Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</div>
     <p class="error-message">{{ $errors->first('cat_id') }}</p>
 
-    {{ Form::label('creator', 'Δημιουργός / Δημιουργοί *') }}
+    {{ Form::label('creator', 'Δημιουργός / Δημιουργοί / Συντηρητές *') }}
     {{ Form::text('creator', null, array('class' => 'pure-input-1', 'required')) }}
+    <div class="instructions">Δηλώστε όλους όσους έχουν συμβάλει στη δημιουργία -  συντήρηση του Iστότοπου</div>
     <p class="error-message">{{ $errors->first('creator') }}</p>
 
     {{ Form::label('responsible', 'Νομικά υπεύθυνος *') }}
@@ -26,7 +27,7 @@
 
     {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου *') }}
     {{ Form::text('responsible_type', null, array('class' => 'pure-input-1', 'required')) }}
-    <div class="instructions">π.χ Διευθυντής, Υποδιευθυντής, κλπ</div>
+    <div class="instructions">π.χ Διευθυντής, Προϊστάμενος, Εκπαιδευτικός, κλπ</div>
     <p class="error-message">{{ $errors->first('responsible_type') }}</p>
     
     {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών;') }}
@@ -65,11 +66,11 @@
     <h3>Στοιχεία Επικοινωνίας Υποψηφιότητας</h3>
     
     {{ Form::label('contact_last_name', 'Επώνυμο Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
-    {{ Form::text('contact_last_name', null, array('class' => 'pure-input-1', 'required')) }}
+    {{ Form::text('contact_last_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('contact_last_name') }}</p>
 
     {{ Form::label('contact_name', 'Όνομα Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
-    {{ Form::text('contact_name', null, array('class' => 'pure-input-1', 'required')) }}
+    {{ Form::text('contact_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('contact_name') }}</p>
 
     {{ Form::label('contact_email', 'E-mail επικοινωνίας υποψηφιότητας *') }}

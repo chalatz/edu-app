@@ -19,7 +19,7 @@ class AddGraderLastNameToGradersTable extends Migration {
             $table->string('languages', 200)->nullable();
             $table->string('languages_level', 200)->nullable();
             $table->string('from_who_email', 200)->after('from_who')->nullable();
-            $table->string('desired_category', 10)->nullable();
+            $table->string('desired_category', 30)->nullable();
             $table->string('past_grader_more', 10)->after('past_grader')->nullable();
             $table->tinyInteger('grader_district_id')->default(100);
             $table->string('grader_district_text', 200)->after('district_id')->nullable();

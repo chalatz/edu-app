@@ -18,17 +18,10 @@
         <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
     </div>
 
-    <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
     <p>
         @foreach(Category::all() as $category)
-            <?php $checked = ''; ?>
-            @if(in_array($category->id, $cats_array))
-                <?php $checked = 'checked'; ?>
-            @else
-                <?php $checked = ''; ?>
-            @endif
-            {{ Form::checkbox('desired_category['.$category->id.']', $category->id, $checked) }}
+            {{ Form::checkbox('desired_category['.$category->id.']', $category->id) }}
             {{ $category->category_name }}<br>
         @endforeach
     </p>
