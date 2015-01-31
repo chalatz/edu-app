@@ -110,4 +110,10 @@
         </p>
     </div>
 
+    {{ Form::label('languages', 'Άλλες Ξένες Γλώσσες') }}
+    {{ Form::text('languages', null, array('class' => 'pure-input-1')) }}
+
+    {{ Form::label('languages_level', 'Επίπεδο Άλλων Ξένων Γλωσσών') }}
+    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}
+
 </fieldset>
