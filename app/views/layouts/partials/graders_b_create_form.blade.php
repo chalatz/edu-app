@@ -1,37 +1,27 @@
 <fieldset>
-    <h3>Στοιχεία Αξιολογητή</h3>
-
-    {{ Form::label('grader_last_name', 'Επώνυμο *') }}
+	
+	{{ Form::label('grader_last_name', 'Επώνυμο *') }}
     {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
 
-    {{ Form::label('grader_name', 'Όνομα *') }}
+	{{ Form::label('grader_name', 'Όνομα *') }}
     {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('grader_name') }}</p>
 
-    {{ Form::label('specialty', 'Ειδικότητα *') }}
-    {{ Form::select('specialty', $specialties, null, array('class' => 'pure-input-1', 'required')) }}
-    <p class="error-message">{{ $errors->first('specialty') }}</p>
+    {{ Form::label('grader_district_id', 'Περιφέρεια *') }}
+    {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+    <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
 
-    <div class="detail">
-        <label>Περιφέρεια</label>
-        <p>{{ $districts[$grader->district_id] }}</p>
-        @if($grader->district_id == 14)
-        <p>{{ $grader->grader_district_text }}</p>
-        @endif
+    <div id="grader_district_text_wrapper">
+        {{ Form::label('grader_district_text', 'Ονομασία Περιφέρειας') }}
+        {{ Form::text('grader_district_text', null, array('class' => 'pure-input-1')) }}
+        <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
     </div>
 
-    <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
     <p>
         @foreach(Category::all() as $category)
-            <?php $checked = ''; ?>
-            @if(in_array($category->id, $cats_array))
-                <?php $checked = 'checked'; ?>
-            @else
-                <?php $checked = ''; ?>
-            @endif
-            {{ Form::checkbox('desired_category['.$category->id.']', $category->id, $checked) }}
+            {{ Form::checkbox('desired_category['.$category->id.']', $category->id) }}
             {{ $category->category_name }}<br>
         @endforeach
     </p>
@@ -49,18 +39,18 @@
 
     {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς;') }}
     {{ Form::select('past_grader_more',[
-    '' => 'Επιλέξτε...',
-    'yes' => 'Ναι',
-    'no' => 'Όχι',
-    ], null, array('class' => 'pure-input-1')) }}
-
-    {{ Form::label('wants_to_be_grader_b', 'Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β') }}
-    {{ Form::select('wants_to_be_grader_b',[
         '' => 'Επιλέξτε...',
         'yes' => 'Ναι',
         'no' => 'Όχι',
     ], null, array('class' => 'pure-input-1')) }}
 
+    {{ Form::checkbox('self_proposed', 'yes') }}
+    {{ Form::label('self_proposed', 'Αυτοπροτείνομαι ως Αξιολογητής Β', ['class' => 'label-for-checkbox']) }}
+
+    <div id="why_self_proposed_wrapper">
+        {{ Form::label('why_self_proposed', 'Εξηγήστε τους λόγους για τους οποίους προτείνετε τον εαυτό σας ως Αξιολογητή Β') }}
+        {{ Form::textarea('why_self_proposed', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1')) }}
+    </div>
     <hr>
 
     <label>Ξένες γλώσσες που γνωρίζω</label>
@@ -118,6 +108,6 @@
     {{ Form::text('languages', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('languages_level', 'Επίπεδο Άλλων Ξένων Γλωσσών') }}
-    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}
+    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}    
 
-</fieldset>
+</fieldset>	

@@ -21,6 +21,7 @@
 
                 <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
                 <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
+                <?php $specialties = ['' => 'Επιλέξτε...'] + Specialty::lists('specialty_name', 'id'); ?>
                 <?php 
                     $lang_levels = [
                         '' => 'Επιλέξτε Επίπεδο...',

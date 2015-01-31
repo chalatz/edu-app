@@ -4,6 +4,7 @@
 
 	<?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
     <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
+    <?php $specialties = ['' => 'Επιλέξτε...'] + Specialty::lists('specialty_name', 'id'); ?>
 
     <?php
         $counties_array = array();
@@ -35,7 +36,7 @@
 
     	{{ Form::open(array('route' => 'grader.store', 'class' => 'pure-form pure-form-stacked grader-form', 'id' => 'confirmMeGrader', 'name' => 'confirmMeGrader')) }}
 
-        @include('layouts.partials.graders_b_form')
+        @include('layouts.partials.graders_b_create_form')
             
         {{ Form::button('Καταχώριση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}
 
