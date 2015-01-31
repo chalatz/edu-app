@@ -152,6 +152,8 @@ class GradersController extends \BaseController {
         //$input = Input::only('grader_name', 'district_id', 'cat_id', 'from_who', 'past_grader');
         $input = Input::all();
 
+        $input['desired_category'] = implode('|', $input['desired_category']);
+
         if(!isset($input['level_english_check'])){
         	$input['level_english_check'] = null;
         	$input['level_english'] = '';

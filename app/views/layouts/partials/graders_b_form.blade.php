@@ -18,9 +18,23 @@
         <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
     </div>
 
+    <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
-    {{ Form::select('desired_category',$categories , null, array('class' => 'pure-input-1')) }}
-    <p class="error-message">{{ $errors->first('desired_category') }}</p>
+    <p>
+        @foreach(Category::all() as $category)
+            <?php $checked = ''; ?>
+            @if(in_array($category->id, $cats_array))
+                <?php $checked = 'checked'; ?>
+            @else
+                <?php $checked = ''; ?>
+            @endif
+            {{ Form::checkbox('desired_category['.$category->id.']', $category->id, $checked) }}
+            {{ $category->category_name }}<br>
+        @endforeach
+    </p>
+    <div class="instructions"><strong>Επιλέξτε όσες κατηγορίες επιθυμείτε</strong></div>
+    <div class="instructions small">** Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</div>
+    <hr>
 
     {{ Form::label('past_grader', 'Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό;') }}
     {{ Form::select('past_grader',[
