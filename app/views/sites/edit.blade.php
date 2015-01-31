@@ -37,7 +37,7 @@
                         @if(sizeof(Auth::user()->site->graders) == 0)
                             @if(Auth::user()->site->grader_agrees == 'no')
                                 <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
-                                <div class="instructions white-font orange"><strong><i class="fa fa-rocket"></i> Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
+                                <div class="instructions white-font orange little-block"><strong><i class="fa fa-rocket"></i> Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
                                 @include('layouts.partials.sites_form_graders_fields')                                
                             @endif
                         @else

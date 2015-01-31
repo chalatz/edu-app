@@ -331,7 +331,7 @@ class SitesController extends \BaseController {
                 'from_who_email' => $user->email,
             ];
             
-            $grader_data['user_id'] = $new_user_id;
+            $grader_data['user_id'] = $user->id;
 
             $new_grader = Grader::create($grader_data);
 
