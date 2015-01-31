@@ -3513,6 +3513,9 @@ img {
 .red-font {
   color: #dd514c; }
 
+.white-font {
+  color: #fff; }
+
 .dark-blue-font {
   color: #156193; }
 
@@ -3558,5 +3561,15 @@ form .label-for-checkbox {
 
 .small {
   font-size: .9em; }
+
+.little-block {
+  padding: .5em;
+  margin: .5em 0;
+  border-radius: 3px; }
+
+.anchor-block {
+  display: block;
+  text-align: center;
+  font-size: 1.2em; }
 
 /*# sourceMappingURL=global.css.map */

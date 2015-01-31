@@ -36,8 +36,8 @@
                     
                         @if(sizeof(Auth::user()->site->graders) == 0)
                             @if(Auth::user()->site->grader_agrees == 'no')
-                                <div class="instructions red-font"><strong>O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
-                                <div class="instructions red-font"><strong>Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
+                                <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                                <div class="instructions white-font orange"><strong><i class="fa fa-rocket"></i> Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
                                 @include('layouts.partials.sites_form_graders_fields')                                
                             @endif
                         @else
@@ -63,10 +63,10 @@
 
                             @if(isset($grader->id))
                                 @if($grader->has_agreed)
-                                    <div class="instructions dark-green-font"><strong>O αξιολογητής που έχετε προτείνει, έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                                    <div class="instructions white-font green little-block"><strong><i class="fa fa-thumbs-o-up"></i> O αξιολογητής Α που έχετε προτείνει, έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
                                 @endif
                                 @if(Auth::user()->site->grader_agrees == 'na')
-                                    <div class="instructions orange-font"><strong>O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί ακόμη την πρόσκλησή σας.</strong></div>                            
+                                    <div class="instructions white-font orange little-block"><strong><i class="fa fa-info-circle"></i> O αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί ακόμη την πρόσκλησή σας.</strong></div>                            
                             @endif
                         @endif
                     
