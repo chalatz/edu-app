@@ -256,12 +256,121 @@ class SitesController extends \BaseController {
         } else {
             $user_exists = true;
         }
+
+        $site = $user->site;
         
         //-------------- Save current time --------
        //$objDateTime = new DateTime('NOW');
         //$input['confirmed_at'] = $objDateTime;
         
+        // if the grader is to be notified
+        if(!isset($input['proposes_himself'])){
+
+            $grader_email = $data['grader_email'];
+
+            // if the email does not exist
+            if(User::where('email', '=', $grader_email)->count() == 0){
+                
+                $confirmation_string = str_random(40);
+                $password = str_random(6);
+                $user_data = [
+                    'email' => $grader_email,
+                    'password' => $password,
+                    'type' => 'grader',
+                    'confirmation_string' => $confirmation_string,
+                ];
+                
+                $confirmation_url = route('verify.grader', $confirmation_string);
+
+                $site_title = $data['title'];
+                $site_responsible = $data['responsible'];
+                $site_responsible_type = $data['responsible_type'];
+                
+                Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
+                 $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+                });
+                
+                $the_new_user = User::create($user_data);
+
+                // --- Attach role (grader) ---
+                // Get new user's id
+                $new_user_id = $the_new_user->id;
+                // Get the new user
+                $new_user = User::find($new_user_id);
+                // Attach to the user the Role with id:2 (grader)
+                $new_user->roles()->attach(2);
+
+                Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
+                Session::flash('alert-class', 'flash-info');                  
+
+            }
+
+        } else {
+            // The site has proposed itself
+            $user->roles()->attach(2);
+            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+            Session::flash('alert-class', 'flash-info');
+        }
+
+        //$the_new_site = Site::create($data);
+        
+        //-------------- Save current time --------
+        //$objDateTime = new DateTime('NOW');
+        //$input['confirmed_at'] = $objDateTime;
+
+        // ---------- Create the Grader ---
+        if(!isset($input['proposes_himself'])){
+            
+            $grader_data = [
+                'grader_name' => $data['grader_name'],
+                'grader_last_name' => $data['grader_last_name'],
+                'district_id' => $data['grader_district'],
+                'grader_district_text' => $data['grader_district_text'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+                'from_who_email' => $user->email,
+            ];
+            
+            $grader_data['user_id'] = $new_user_id;
+
+            $new_grader = Grader::create($grader_data);
+
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($site->id);
+            
+            if($data['grader_email'] == $user->email) {
+                
+                $grader_data['user_id'] = $user_id;
+
+            }
+            
+        } else {
+            
+            $grader_data = [
+                'grader_name' => $data['contact_name'],
+                'grader_last_name' => $data['contact_last_name'],
+                'district_id' => $data['district_id'],
+                'grader_district_text' => $data['district_text'],
+                'cat_id' => $data['cat_id'],
+                'from_who' => $data['title'],
+                'from_who_email' => $user->email,
+            ];
+            
+            $grader_data['user_id'] = $user_id;
+            
+            $new_grader = Grader::create($grader_data);
+            
+            // ----- Attach to site ------------
+            $the_new_grader = Grader::find($new_grader->id);
+            $the_new_grader->sites()->attach($site->id);
+            
+        }
+        
         $user->site->fill($input)->save();
+
+        $site->grader_agrees = 'na';
+        $site->save();
         
         return Redirect::home();
 	}

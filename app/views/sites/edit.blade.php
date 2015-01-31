@@ -28,16 +28,17 @@
                     <h3>Στοιχεία Αξιολογητή Α</h3>
 
                     
-                    @if(isset(Auth::user()->site->proposes_himself))
+                    @if(isset(Auth::user()->site->proposes_himself) && Auth::user()->site->proposes_himself == 'yes')
                     
-                        <p>Έχετε προτείνει τον εαυτό σας</p>
+                        <p>Έχετε προτείνει τον υπεύθυνο επικοινωνίας ως Αξιολογητή Α</p>
                     
                     @else
                     
                         @if(sizeof(Auth::user()->site->graders) == 0)
                             @if(Auth::user()->site->grader_agrees == 'no')
                                 <div class="instructions red-font"><strong>O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
-                                <div class="instructions red-font"><strong>Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>                                
+                                <div class="instructions red-font"><strong>Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
+                                @include('layouts.partials.sites_form_graders_fields')                                
                             @endif
                         @else
                     

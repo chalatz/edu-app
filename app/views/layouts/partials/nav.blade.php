@@ -21,13 +21,15 @@
                     @endif
 
                     @if($role->role == 'grader')
-
-                        @if(!Auth::user()->grader)
-<!--                             <li>{{ link_to_route('grader.create', 'Δημιουργία Καρτέλας Αξιολογητή') }}</li> -->
-                        @else
+                        @if(Auth::user()->grader)
                             <li>{{ link_to_route('grader.edit', 'Αξιολογητής Α', Auth::user()->id) }}</li>
                         @endif
+                    @endif
 
+                    @if($role->role == 'grader_b')
+                        @if(Auth::user()->grader)
+                            <li>{{ link_to_route('grader_b.edit', 'Αξιολογητής B', Auth::user()->id) }}</li>
+                        @endif
                     @endif
 
                     @if($role->role == 'admin')
