@@ -96,4 +96,7 @@
         </p>
     </div>
 
+    {{ Form::label('languages', 'Όνομα *') }}
+    {{ Form::text('languages', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
+
 </fieldset>
