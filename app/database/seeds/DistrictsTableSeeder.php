@@ -61,7 +61,7 @@ class DistrictsTableSeeder extends Seeder {
 		]);
 		District::create([
 			'id' => 14,
-			'district_name' => 'Άλλη...',
+			'district_name' => 'Άλλη - Εκτός Ελλάδος',
 		]);
 	}
 
