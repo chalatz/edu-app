@@ -244,7 +244,7 @@ class SitesController extends \BaseController {
         catch(ModelNotFoundException $e){
             return Redirect::home();
         }
-        
+
         //$input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_last_name', 'grader_email', 'grader_district', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
         $input = Input::all();
         
@@ -300,6 +300,26 @@ class SitesController extends \BaseController {
                 // Attach to the user the Role with id:2 (grader)
                 $new_user->roles()->attach(2);
 
+
+                // --- Create the Grader
+                $grader_data = [
+                    'grader_name' => $data['grader_name'],
+                    'grader_last_name' => $data['grader_last_name'],
+                    'district_id' => $data['grader_district'],
+                    'grader_district_text' => $data['grader_district_text'],
+                    'cat_id' => $data['cat_id'],
+                    'from_who' => $data['title'],
+                    'from_who_email' => $user->email,
+                ];
+
+                $grader_data['user_id'] = $new_user_id;
+
+                $new_grader = Grader::create($grader_data);
+
+                // ----- Attach to site ------------
+                $the_new_grader = Grader::find($new_grader->id);
+                $the_new_grader->sites()->attach($site->id);
+
                 Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
                 Session::flash('alert-class', 'flash-info');                  
 
@@ -307,46 +327,6 @@ class SitesController extends \BaseController {
 
         } else {
             // The site has proposed itself
-            $user->roles()->attach(2);
-            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
-            Session::flash('alert-class', 'flash-info');
-        }
-
-        //$the_new_site = Site::create($data);
-        
-        //-------------- Save current time --------
-        //$objDateTime = new DateTime('NOW');
-        //$input['confirmed_at'] = $objDateTime;
-
-        // ---------- Create the Grader ---
-        if(!isset($input['proposes_himself'])){
-            
-            $grader_data = [
-                'grader_name' => $data['grader_name'],
-                'grader_last_name' => $data['grader_last_name'],
-                'district_id' => $data['grader_district'],
-                'grader_district_text' => $data['grader_district_text'],
-                'cat_id' => $data['cat_id'],
-                'from_who' => $data['title'],
-                'from_who_email' => $user->email,
-            ];
-            
-            $grader_data['user_id'] = $user->id;
-
-            $new_grader = Grader::create($grader_data);
-
-            // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($site->id);
-            
-            if($data['grader_email'] == $user->email) {
-                
-                $grader_data['user_id'] = $user_id;
-
-            }
-            
-        } else {
-            
             $grader_data = [
                 'grader_name' => $data['contact_name'],
                 'grader_last_name' => $data['contact_last_name'],
@@ -356,16 +336,26 @@ class SitesController extends \BaseController {
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
             ];
-            
+
             $grader_data['user_id'] = $user_id;
-            
+
             $new_grader = Grader::create($grader_data);
             
             // ----- Attach to site ------------
             $the_new_grader = Grader::find($new_grader->id);
             $the_new_grader->sites()->attach($site->id);
             
+            $user->roles()->attach(2);
+
+            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+            Session::flash('alert-class', 'flash-info');
         }
+
+        //$the_new_site = Site::create($data);
+        
+        //-------------- Save current time --------
+        //$objDateTime = new DateTime('NOW');
+        //$input['confirmed_at'] = $objDateTime;
         
         $user->site->fill($input)->save();
 

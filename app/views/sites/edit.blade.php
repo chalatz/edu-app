@@ -42,15 +42,15 @@
                             @endif
                         @else
                     
-                            <p><strong>Επώνυμο προτεινόμενου αξιολογητή Α</strong></p>
+                            <p><strong>Επώνυμο προτεινόμενου Αξιολογητή Α</strong></p>
                             <p>{{ $user->site->grader_last_name }}</p>
                             {{ Form::hidden('grader_last_name', null, array('class' => 'pure-input-1', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
 
-                            <p><strong>Όνομα προτεινόμενου αξιολογητή Α</strong></p>
+                            <p><strong>Όνομα προτεινόμενου Αξιολογητή Α</strong></p>
                             <p>{{ $user->site->grader_name }}</p>
                             {{ Form::hidden('grader_name', null, array('class' => 'pure-input-1', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
 
-                            <p><strong>E-mail αξιολογητή</strong></p>
+                            <p><strong>E-mail Αξιολογητή</strong></p>
                             <p>{{ $user->site->grader_email }}</p>
                             {{ Form::hidden('grader_email', null, array('class' => 'pure-input-1')) }}
 

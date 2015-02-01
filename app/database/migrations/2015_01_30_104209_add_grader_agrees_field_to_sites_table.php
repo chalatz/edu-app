@@ -15,6 +15,9 @@ class AddGraderAgreesFieldToSitesTable extends Migration {
 		Schema::table('sites', function(Blueprint $table)
 		{
 			$table->string('grader_agrees', 10)->nullable()->default('na')->after('phone');
+			$table->text('purpose')->nullable();
+			$table->integer('country_id')->default(1);
+			$table->integer('language_id')->default(100);
 		});
 	}
 
@@ -29,6 +32,9 @@ class AddGraderAgreesFieldToSitesTable extends Migration {
 		Schema::table('sites', function(Blueprint $table)
 		{
 			$table->dropColumn('grader_agrees');
+			$table->dropColumn('purpose');
+			$table->dropColumn('country_id');
+			$table->dropColumn('language_id');
 		});
 	}
 

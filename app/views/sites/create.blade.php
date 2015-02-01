@@ -8,6 +8,14 @@
 
         <?php $categories = ['' => 'Επιλέξτε...'] + Category::lists('category_name', 'id'); ?>
         <?php $districts = ['' => 'Επιλέξτε...'] + District::lists('district_name', 'id'); ?>
+        <?php $countries = Country::lists('country_name', 'id'); ?>
+        <?php $languages = [
+            '1' => 'Ελληνικά',
+            '2' => 'Αγγλικά',
+            '3' => 'Γαλλικά',
+            '4' => 'Γερμανικά',
+            '5' => 'Ιταλικά',
+        ]; ?>
 
         <?php
             $counties_array = array();
