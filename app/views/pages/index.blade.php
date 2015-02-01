@@ -20,12 +20,12 @@
 		<div class="pure-g">
             @if(!Auth::user()->hasRole('site'))
                 <div class="pure-u-1 pure-u-md-1-1">
-                    {{ link_to('register/site', 'Υποβολή Υποψηφιότητας Ιστότοπου', ['class' => 'big-link green']) }}
+                    {{ link_to('register/site', 'Υποβολή Υποψηφιότητας Ιστότοπου', ['class' => 'action-btn action-btn-green anchor-block']) }}
                 </div>
             @endif
             @if(!Auth::user()->hasRole('grader_b'))
                 <div class="pure-u-1 pure-u-md-1-1">
-                    {{ link_to('grader/create/b', 'Υποβολή Υποψηφιότητας Αξιολογητή Β', ['class' => 'big-link blue']) }}
+                    {{ link_to('grader/create/b', 'Υποβολή Υποψηφιότητας Αξιολογητή Β', ['class' => 'action-btn action-btn-blue anchor-block']) }}
                 </div>
             @endif
 		</div>
@@ -38,7 +38,7 @@
 
     	<div class="pure-g">
     		<div class="pure-u-1">
-    			{{ link_to('register/user', 'Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 7ου ΔΕΕΙ', ['class' => 'register-block block green']) }}
+    			{{ link_to('register/user', 'Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 7ου ΔΕΕΙ', ['class' => 'action-btn action-btn-green anchor-block']) }}
     		</div>
     	</div>
         <p class="instructions">Για να χρησιμοποιήσετε το Πληροφοριακό Σύστημα του 7ου ΔΕΕΙ και να υποβάλετε υποψηφιότητα στο διαγωνισμό ή να γίνετε αξιολογητής, θα πρέπει πρώτα να συνδεθείτε. Για να συνδεθείτε, θα πρέπει πρώτα να έχετε εγγραφεί και να επιβεβαιώσετε το email σας στο αυτοματοποιημένο mail που θα σας έλθει, πατώντας στον σύνδεσμο που περιέχει.</p>
