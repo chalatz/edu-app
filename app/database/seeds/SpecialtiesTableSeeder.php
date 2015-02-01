@@ -10,12 +10,15 @@ class SpecialtiesTableSeeder extends Seeder {
 
 		Specialty::create(['specialty_name' => 'ΠΕ01 - ΘΕΟΛΟΓΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ02 - ΦΙΛΟΛΟΓΟΙ']);
+		Specialty::create(['specialty_name' => 'ΠΕ02.50 - ΦΙΛΟΛΟΓΟΙ ΕΙΔΙΚΗΣ ΑΓΩΓΗΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ03 - ΜΑΘΗΜΑΤΙΚΟΙ']);
+		Specialty::create(['specialty_name' => 'ΠΕ03.50 - ΜΑΘΗΜΑΤΙΚΟΙ ΕΙΔΙΚΗΣ ΑΓΩΓΗΣ']);		
 		Specialty::create(['specialty_name' => 'ΠΕ04.01 - ΦΥΣΙΚΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ04.02 - ΧΗΜΙΚΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ04.03 - ΦΥΣΙΟΓΝΩΣΤΕΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ04.04 - ΒΙΟΛΟΓΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ04.05 - ΓΕΩΛΟΓΟΙ']);
+		Specialty::create(['specialty_name' => 'ΠΕ04.50 - ΦΥΣΙΚΟΙ ΕΙΔΙΚΗΣ ΑΓΩΓΗΣ']);		
 		Specialty::create(['specialty_name' => 'ΠΕ05 - ΓΑΛΛΙΚΗΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ06 - ΑΓΓΛΙΚΗΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ07 - ΓΕΡΜΑΝΙΚΗΣ']);
@@ -23,6 +26,7 @@ class SpecialtiesTableSeeder extends Seeder {
 		Specialty::create(['specialty_name' => 'ΠΕ09 - ΟΙΚΟΝΟΜΟΛΟΓΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ10 - ΚΟΙΝΩΝΙΟΛΟΓΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ11 - ΦΥΣΙΚΗΣ ΑΓΩΓΗΣ']);
+		Specialty::create(['specialty_name' => 'ΠΕ11.01 - ΦΥΣΙΚΗΣ ΑΓΩΓΗΣ ΕΙΔΙΚΗΣ ΑΓΩΓΗΣ']);		
 		Specialty::create(['specialty_name' => 'ΠΕ12.01	ΠΟΛΙΤΙΚΟΙ ΜΗΧΑΝΙΚΟΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ12.02	ΑΡΧΙΤΕΚΤΟΝΕΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ12.03	ΤΟΠΟΓΡΑΦΟΙ']);
@@ -100,9 +104,20 @@ class SpecialtiesTableSeeder extends Seeder {
 		Specialty::create(['specialty_name' => 'ΠΕ18.41 - ΔΡΑΜΑΤΙΚΗΣ ΤΕΧΝΗΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ19 - ΠΛΗΡΟΦΟΡΙΚΗΣ ΑΕΙ']);
 		Specialty::create(['specialty_name' => 'ΠΕ20 - ΠΛΗΡΟΦΟΡΙΚΗΣ ΤΕΙ']);
+		Specialty::create(['specialty_name' => 'ΠΕ21 - ΛΟΓΟΘΕΡΑΠΕΥΤΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ22 - ΕΠΑΓΓΕΛΜΑΤΙΚΩΝ ΣΥΜΒΟΥΛΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ23 - ΨΥΧΟΛΟΓΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ24 - ΠΑΙΔΟΨΥΧΙΑΤΡΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ25 - ΣΧΟΛΙΚΩΝ ΝΟΣΗΛΕΥΤΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ26 - ΛΟΓΟΘΕΡΑΠΕΥΤΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ28 - ΦΥΣΙΚΟΘΕΡΑΠΕΥΤΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ29 - ΕΡΓΟΘΕΡΑΠΕΥΤΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ30 - ΚΟΙΝΩΝΙΚΩΝ ΛΕΙΤΟΥΡΓΩΝ']);
 		Specialty::create(['specialty_name' => 'ΠΕ32 - ΘΕΑΤΡΙΚΩΝ ΣΠΟΥΔΩΝ']);
 		Specialty::create(['specialty_name' => 'ΠΕ33 - ΜΕΘΟΔΟΛΟΓΙΑΣ ΙΣΤΟΡΙΑΣ & ΘΕΩΡΙΑΣ ΤΗΣ ΕΠΙΣΤΗΜΗΣ (Μ.Ι.Θ.Ε.)']);
 		Specialty::create(['specialty_name' => 'ΠΕ34 - ΙΤΑΛΙΚΗΣ']);
+		Specialty::create(['specialty_name' => 'ΠΕ35 - ΠΑΙΔΙΑΤΡΩΝ']);
+		Specialty::create(['specialty_name' => 'ΠΕ36 - ΜΟΥΣΙΚΟΘΕΡΑΠΕΥΤΩΝ']);		
 		Specialty::create(['specialty_name' => 'ΠΕ42 - ΔΡΑΜΑΤΙΚΗΣ ΤΕΧΝΗΣ - ΑΝΩΤΕΡΗΣ ΕΚΠΑΙΔΕΥΣΗΣ']);
 		Specialty::create(['specialty_name' => 'ΠΕ60 - ΝΗΠΙΑΓΩΓΩΝ']);
 		Specialty::create(['specialty_name' => 'ΠΕ61 - ΝΗΠΙΑΓΩΓΩΝ ΕΙΔΙΚΗΣ ΑΓΩΓΗΣ ΚΑΙ ΕΚΠΑΙΔΕΥΣΗΣ']);
