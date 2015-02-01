@@ -18,7 +18,7 @@
 
     {{ Form::label('creator', 'Δημιουργός / Δημιουργοί / Συντηρητές *') }}
     {{ Form::text('creator', null, array('class' => 'pure-input-1', 'required')) }}
-    <div class="instructions">Δηλώστε όλους όσους έχουν συμβάλει στη δημιουργία -  συντήρηση του Iστότοπου</div>
+    <div class="instructions">Δηλώστε όλους όσους έχουν συμβάλει στη δημιουργία -  συντήρηση του Iστότοπου (Επώνυμο, Όνομα και Ειδικότητα)</div>
     <p class="error-message">{{ $errors->first('creator') }}</p>
 
     {{ Form::label('responsible', 'Νομικά υπεύθυνος *') }}
