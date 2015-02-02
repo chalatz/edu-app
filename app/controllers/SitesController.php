@@ -45,9 +45,9 @@ class SitesController extends \BaseController {
         
         $input = Input::all();
 
-        $validator->sometimes('district_text', 'required', function($input){
-            return $input->district_id == 14;
-        });
+//         $validator->sometimes('district_text', 'required', function($input){
+//             return $input->district_id == 14;
+//         });
 
 		if ($validator->fails())
 		{
@@ -77,6 +77,8 @@ class SitesController extends \BaseController {
 
         	// if the email does not exist
         	if(User::where('email', '=', $grader_email)->count() == 0){
+                
+                $the_new_site = Site::create($data);
     			
 	            $confirmation_string = str_random(40);
 	            $password = str_random(6);
@@ -106,6 +108,23 @@ class SitesController extends \BaseController {
 		        $new_user = User::find($new_user_id);
 				// Attach to the user the Role with id:2 (grader)
 				$new_user->roles()->attach(2);
+                
+                $grader_data = [
+                    'grader_name' => $data['grader_name'],
+                    'grader_last_name' => $data['grader_last_name'],
+                    'district_id' => $data['grader_district'],
+                    'cat_id' => $data['cat_id'],
+                    'from_who' => $data['title'],
+                    'from_who_email' => $user->email,
+                ];
+                
+                $grader_data['user_id'] = $new_user_id;
+                
+                $new_grader = Grader::create($grader_data);
+                
+                // ----- Attach to site ------------
+                $the_new_grader = Grader::find($new_grader->id);
+                $the_new_grader->sites()->attach($the_new_site->id);
 
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
         		Session::flash('alert-class', 'flash-info');                  
@@ -114,50 +133,13 @@ class SitesController extends \BaseController {
 
         } else {
             // The site has proposed itself
-            $user->roles()->attach(2);
-    		Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
-    		Session::flash('alert-class', 'flash-info');
-        }
-
-		$the_new_site = Site::create($data);
-        
-        //-------------- Save current time --------
-        //$objDateTime = new DateTime('NOW');
-        //$input['confirmed_at'] = $objDateTime;
-
-		// ---------- Create the Grader ---
-		if(!isset($input['proposes_himself'])){
-            
-            $grader_data = [
-                'grader_name' => $data['grader_name'],
-                'grader_last_name' => $data['grader_last_name'],
-                'district_id' => $data['grader_district'],
-                'cat_id' => $data['cat_id'],
-                'from_who' => $data['title'],
-                'from_who_email' => $user->email,
-            ];
-
-            $new_grader = Grader::create($grader_data);
-            
-            $grader_data['user_id'] = $new_user_id;
-
-            // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($the_new_site->id);
-            
-            if($data['grader_email'] == $user->email) {
-                
-                $grader_data['user_id'] = $userid;
-
-            }
-            
-        } else {
+             
+            $the_new_site = Site::create($data);
             
             $grader_data = [
                 'grader_name' => $data['contact_name'],
                 'grader_last_name' => $data['contact_last_name'],
                 'district_id' => $data['district_id'],
-                'grader_district_text' => $data['district_text'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
@@ -171,7 +153,14 @@ class SitesController extends \BaseController {
             $the_new_grader = Grader::find($new_grader->id);
             $the_new_grader->sites()->attach($the_new_site->id);
             
+            $user->roles()->attach(2);
+    		Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
+    		Session::flash('alert-class', 'flash-info');
         }
+        
+        //-------------- Save current time --------
+        //$objDateTime = new DateTime('NOW');
+        //$input['confirmed_at'] = $objDateTime;
 
 		return Redirect::home();
 	}
@@ -227,9 +216,6 @@ class SitesController extends \BaseController {
         $validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
 
         $input = Input::all();
-        $validator->sometimes('district_text', 'required', function($input){
-            return $input->district_id == 14;
-        });
         
 		if ($validator->fails())
 		{
@@ -305,7 +291,6 @@ class SitesController extends \BaseController {
                     'grader_name' => $data['grader_name'],
                     'grader_last_name' => $data['grader_last_name'],
                     'district_id' => $data['grader_district'],
-                    'grader_district_text' => $data['grader_district_text'],
                     'cat_id' => $data['cat_id'],
                     'from_who' => $data['title'],
                     'from_who_email' => $user->email,
