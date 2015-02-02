@@ -132,15 +132,14 @@ class SitesController extends \BaseController {
                 'grader_name' => $data['grader_name'],
                 'grader_last_name' => $data['grader_last_name'],
                 'district_id' => $data['grader_district'],
-                'grader_district_text' => $data['grader_district_text'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
             ];
-            
-            $grader_data['user_id'] = $new_user_id;
 
             $new_grader = Grader::create($grader_data);
+            
+            $grader_data['user_id'] = $new_user_id;
 
             // ----- Attach to site ------------
             $the_new_grader = Grader::find($new_grader->id);
@@ -148,7 +147,7 @@ class SitesController extends \BaseController {
             
             if($data['grader_email'] == $user->email) {
                 
-                $grader_data['user_id'] = $user_id;
+                $grader_data['user_id'] = $userid;
 
             }
             
@@ -331,13 +330,12 @@ class SitesController extends \BaseController {
                 'grader_name' => $data['contact_name'],
                 'grader_last_name' => $data['contact_last_name'],
                 'district_id' => $data['district_id'],
-                'grader_district_text' => $data['district_text'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
             ];
 
-            $grader_data['user_id'] = $user_id;
+            $grader_data['user_id'] = $userid;
 
             $new_grader = Grader::create($grader_data);
             

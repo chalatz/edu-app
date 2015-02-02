@@ -7,6 +7,13 @@
     @else
         @if(Auth::user()->id == $user->id)
 
+            @if(sizeof(Auth::user()->site->graders) == 0)
+                @if(Auth::user()->site->grader_agrees == 'no')
+                    <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O Αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                    <div class="instructions orange little-block white-font"><strong><i class="fa fa-rocket"></i> {{ link_to('#grader-a-details', 'Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.', ['class' => 'white-font']) }} </strong></div>                            
+                @endif
+            @endif
+
             <h1>Καρτέλα Ιστότοπου</h1>
 
             {{ Form::model($user->site, array('method' => 'PATCH','route' => ['site.update', $user->id], 'class' => 'pure-form pure-form-stacked site-form',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
@@ -33,7 +40,7 @@
                 @include('layouts.partials.sites_form')
 
                 <fieldset>
-                    <h3>Στοιχεία Αξιολογητή Α</h3>
+                    <h3 id="grader-a-details">Στοιχεία Αξιολογητή Α</h3>
 
                     
                     @if(isset(Auth::user()->site->proposes_himself) && Auth::user()->site->proposes_himself == 'yes')
@@ -44,8 +51,8 @@
                     
                         @if(sizeof(Auth::user()->site->graders) == 0)
                             @if(Auth::user()->site->grader_agrees == 'no')
-                                <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O αξιολογητής που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
-                                <div class="instructions white-font orange little-block"><strong><i class="fa fa-rocket"></i> Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α.</strong></div>
+                                <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O Αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
+                                <div class="instructions white-font orange little-block"><strong><i class="fa fa-rocket"></i> Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.</strong></div>
                                 @include('layouts.partials.sites_form_graders_fields')                                
                             @endif
                         @else
@@ -75,8 +82,8 @@
                                 @endif
                                 @if(Auth::user()->site->grader_agrees == 'na')
                                     <div class="instructions white-font orange little-block"><strong><i class="fa fa-info-circle"></i> O αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί ακόμη την πρόσκλησή σας.</strong></div>                            
+                                @endif
                             @endif
-                        @endif
                     
                         @endif
                     
