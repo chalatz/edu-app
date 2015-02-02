@@ -29,7 +29,7 @@
     {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('district_id') }}</p>
     
-    {{ Form::label('county_id', 'Περιφερειακή Ενότητα') }}
+    {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός)') }}
     {{ Form::select('county_id', $counties_array, null, array('class' => 'pure-input-1')) }}
     <p></p>
     {{ Form::label('country_id', 'Χώρα') }}

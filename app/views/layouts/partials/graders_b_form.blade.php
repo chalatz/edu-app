@@ -44,7 +44,7 @@
     ], null, array('class' => 'pure-input-1')) }}
     <p class="error-message">{{ $errors->first('past_grader') }}</p>
 
-    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς;') }}
+    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς Ιστοτόπων;') }}
     {{ Form::select('past_grader_more',[
         '' => 'Επιλέξτε...',
         'yes' => 'Ναι',

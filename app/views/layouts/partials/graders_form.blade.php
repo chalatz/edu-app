@@ -31,8 +31,10 @@
             @else
                 <?php $checked = ''; ?>
             @endif
-            {{ Form::checkbox('desired_category['.$category->id.']', $category->id, $checked) }}
-            {{ $category->category_name }}<br>
+            @if($category->id != $user->grader->cat_id)
+                {{ Form::checkbox('desired_category['.$category->id.']', $category->id, $checked) }}
+                {{ $category->category_name }}<br>
+            @endif
         @endforeach
     </p>
     <div class="instructions"><strong>Επιλέξτε όσες κατηγορίες επιθυμείτε</strong></div>
@@ -47,7 +49,7 @@
     ], null, array('class' => 'pure-input-1')) }}
     <p class="error-message">{{ $errors->first('past_grader') }}</p>
 
-    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς;') }}
+    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς Ιστοτόπων;') }}
     {{ Form::select('past_grader_more',[
     '' => 'Επιλέξτε...',
     'yes' => 'Ναι',
