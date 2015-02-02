@@ -45,10 +45,6 @@ class SitesController extends \BaseController {
         
         $input = Input::all();
 
-//         $validator->sometimes('district_text', 'required', function($input){
-//             return $input->district_id == 14;
-//         });
-
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();

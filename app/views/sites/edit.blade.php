@@ -73,9 +73,6 @@
                             <p>{{ District::find($user->site->grader_district)->district_name }}</p>
                             {{ Form::hidden('grader_district', null, array('class' => 'pure-input-1')) }}
 
-                            <p>{{ $user->site->grader_district_text }}</p>
-                            {{ Form::hidden('grader_district_text', null, array('class' => 'pure-input-1')) }}
-
                             @if(isset($grader->id))
                                 @if($grader->has_agreed)
                                     <div class="instructions white-font green little-block"><strong><i class="fa fa-thumbs-o-up"></i> O αξιολογητής Α που έχετε προτείνει, έχει αποδεχθεί την πρόσκλησή σας.</strong></div>

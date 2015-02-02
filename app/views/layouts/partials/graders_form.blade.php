@@ -16,9 +16,6 @@
     <div class="detail">
         <label>Περιφέρεια</label>
         <p>{{ $districts[$grader->district_id] }}</p>
-        @if($grader->district_id == 14)
-        <p>{{ $grader->grader_district_text }}</p>
-        @endif
     </div>
 
     <?php $cats_array = explode('|', $grader->desired_category); ?>

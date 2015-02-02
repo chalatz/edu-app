@@ -12,12 +12,6 @@
     {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
 
-    <div id="grader_district_text_wrapper">
-        {{ Form::label('grader_district_text', 'Ονομασία Περιφέρειας') }}
-        {{ Form::text('grader_district_text', null, array('class' => 'pure-input-1')) }}
-        <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
-    </div>
-
     <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
     <p>

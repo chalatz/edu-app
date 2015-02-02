@@ -16,9 +16,6 @@
         <h3>Περιφέρεια του Υποψήφιου Ιστότοπου</h3>
         @foreach($grader->sites as $site)
             <p>{{ $districts[$site->district_id] }}</p>
-            @if($site->district_id == 14)
-                <p>{{ $site->district_text }}</p>
-            @endif
         @endforeach
     </div>
 

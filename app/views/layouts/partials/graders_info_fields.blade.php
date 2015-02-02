@@ -15,9 +15,6 @@
     <div class="detail">
         <h3>Περιφέρεια</h3>
         <p>{{ $districts[$user->grader->district_id] }}</p>
-        @if($user->grader->district_id == 14)
-            <p>{{ $user->grader->grader_district_text }}</p>
-        @endif
     </div>
     
     @if($user->grader->desired_category)
@@ -91,9 +88,6 @@
         <h3>Περιφέρεια του Υποψήφιου Ιστότοπου</h3>
         @foreach($user->grader->sites as $site)
             <p>{{ $districts[$site->district_id] }}</p>
-            @if($site->district_id == 14)
-                <p>{{ $site->district_text }}</p>
-            @endif
         @endforeach
     </div>
 
