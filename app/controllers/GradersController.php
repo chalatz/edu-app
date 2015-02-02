@@ -203,7 +203,15 @@ class GradersController extends \BaseController {
             User::destroy(Auth::user()->id);
             $grader->delete();
             Auth::logout();
+            
+            Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Μετά την άρνησή σας, έχετε διαγραφτεί επιτυχώς από το Πληροφοριακό μας Σύστημα. Ευχαριστούμε.');
+            Session::flash('alert-class', 'flash-info');
+            
+            return Redirect::home();
         }
+        
+        Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Ευχαριστούμε που αποδεχτήκατε τη συμμετοχή σας ως Αξιολογητής Α στον 7ο ΔΕΕΙ.');
+        Session::flash('alert-class', 'flash-success');    
         
         return Redirect::home();
         

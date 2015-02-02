@@ -13,12 +13,6 @@
 {{ Form::select('grader_district', $districts, null, array('class' => 'pure-input-1', 'required')) }}
 <p class="error-message">{{ $errors->first('grader_district') }}</p>
 
-<div id="grader_district_text_wrapper">
-    {{ Form::label('grader_district_text', 'Ονομασία Περιφέρειας Αξιολογητή Α') }}
-    {{ Form::text('grader_district_text', null, array('class' => 'pure-input-1')) }}
-    <p class="error-message">{{ $errors->first('grader_district_text') }}</p>
-</div>
-
 {{ Form::label('grader_email', 'E-mail Αξιολογητή Α *') }}
 {{ Form::email('grader_email', null, array('class' => 'pure-input-1', 'required')) }}
 <p class="error-message">{{ $errors->first('grader_email') }}</p>

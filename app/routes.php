@@ -15,8 +15,9 @@
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
 
 # Registration
-Route::get('/register', function(){ return Redirect::home(); });
-Route::get('/register/{user_type}', 'RegistrationController@create');
+Route::get('/register/site', function(){ return Redirect::home(); });
+Route::get('/register/user', function(){ return Redirect::home(); });
+Route::get('/register', 'RegistrationController@create');
 Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
 
 # Authentication

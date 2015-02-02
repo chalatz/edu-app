@@ -136,6 +136,7 @@
     };
 
     var propose_myself = function(){
+        
         var the_checkbox = $('[name=proposes_himself]'),
             grader_last_name = $('#grader_last_name'),
             grader_name = $('#grader_name'),
@@ -147,24 +148,46 @@
             contact_email_val = $('#contact_email').val();
 
         the_checkbox.on('click', function(){
+            
+            var grader_last_name = $('#grader_last_name'),
+                    grader_name = $('#grader_name'),
+                    grader_district = $('#grader_district'),
+                    grader_email = $('#grader_email');
 
             if(the_checkbox.is(':checked')){
 
-                var grader_last_name = $('#grader_last_name'),
-                    grader_name = $('#grader_name'),
-                    grader_district = $('#grader_district'),
-                    grader_email = $('#grader_email'),
-                    contact_last_name_val = $('#contact_last_name').val(),
+                var contact_last_name_val = $('#contact_last_name').val(),
                     contact_name_val = $('#contact_name').val(),
                     district_id_val = $('#district_id').val(),
                     contact_email_val = $('#contact_email').val();
 
-                grader_last_name.val(contact_last_name_val);
-                grader_name.val(contact_name_val);
-                grader_district.val(district_id_val);
-                grader_email.val(contact_email_val);
+                if(contact_last_name_val.length > 0){
+                    grader_last_name.val(contact_last_name_val).prop('readonly', true);
+                }
+                if(contact_name_val.length > 0){
+                    grader_name.val(contact_name_val).prop('readonly', true);
+                }
+                if(district_id_val.length > 0){
+                    grader_district.val(district_id_val).find('option:not(:selected)').attr('disabled', true);
+                    
+                }
+                if(contact_email_val.length > 0){
+                    grader_email.val(contact_email_val).prop('readonly', true);
+                }
+                
             } else {
-                console.log('not checked');
+                if(grader_last_name.val().length > 0){
+                    grader_last_name.val('').prop('readonly', false);
+                }
+                if(grader_name.val().length > 0){
+                    grader_name.val('').prop('readonly', false);
+                }
+                if(grader_email.val().length > 0){
+                    grader_email.val('').prop('readonly', false);
+                }
+                if(grader_district.val().length > 0){
+                    grader_district.val('').find('option:not(:selected)').attr('disabled', false);
+                }
             }
 
         });

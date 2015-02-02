@@ -23,7 +23,7 @@ class CreateGradersTable extends Migration {
             $table->string('past_grader', 10)->nullable();
             $table->integer('site_1')->default(0);
             $table->integer('site_2')->default(0);
-            $table->string('has_agreed', 10)->nullable();
+            $table->string('has_agreed', 10)->nullable()->default('na');
 			$table->timestamps();
 		});
 	}

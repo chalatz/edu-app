@@ -15,9 +15,6 @@
     <div class="detail">
         <h3>Περιφέρεια</h3>
         <p>{{ $districts[$user->grader->district_id] }}</p>
-        @if($user->grader->district_id == 14)
-            <p>{{ $user->grader->grader_district_text }}</p>
-        @endif
     </div>
     
     @if($user->grader->desired_category)
@@ -75,15 +72,15 @@
 
 <section class="details-wrapper">
     
-    <h2>Στοιχεία Υποψήφιου Ιστότοπου που με πρότεινε</h2>
+    <h2>Στοιχεία Υποψήφιου Ιστότοπου που με πρότεινε ως Αξιολογητή Α</h2>
     
     <div class="detail">
-        <h3>Υποψήφιος Ιστότοπος που με πρότεινε ως αξιολογητή</h3>
+        <h3>Υποψήφιος Ιστότοπος που με πρότεινε</h3>
         <p>{{ $user->grader->from_who }}</p>
     </div>
 
     <div class="detail">
-        <h3>Κατηγορία του Υποψήφιου Ιστότοπου που με πρότεινε ως αξιολογητή</h3>
+        <h3>Κατηγορία του Υποψήφιου Ιστότοπου που με πρότεινε</h3>
         <p>{{ $categories[$user->grader->cat_id] }}</p>
     </div>
 
@@ -91,9 +88,6 @@
         <h3>Περιφέρεια του Υποψήφιου Ιστότοπου</h3>
         @foreach($user->grader->sites as $site)
             <p>{{ $districts[$site->district_id] }}</p>
-            @if($site->district_id == 14)
-                <p>{{ $site->district_text }}</p>
-            @endif
         @endforeach
     </div>
 

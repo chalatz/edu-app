@@ -123,9 +123,6 @@
                 <div class="detail">
                     <h3>Περιφέρεια</h3>
                     <p>{{ $districts[$user->site->district_id] }}</p>
-                    @if($user->site->district_id == 14)
-                        <p>{{ $user->site->district_text }}</p>
-                    @endif
                 </div>
                 
                 @if($user->site->county_id)
@@ -154,9 +151,6 @@
                 <div class="detail">
                     <h3>Περιφέρεια Αξιολογητή Α</h3>
                     <p>{{ $districts[$user->site->grader_district] }}</p>
-                    @if($user->site->grader_district == 14)
-                        <p>{{ $user->site->grader_district_text }}</p>
-                    @endif
                 </div>
 
                 <div class="detail">
