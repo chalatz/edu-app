@@ -41,6 +41,11 @@ class RolesTableSeeder extends Seeder {
 			'role' => 'user',
 			'role_name' =>'Χρήστης',
 		]);
+        Role::create([
+			'id' => 6,
+			'role' => 'ninja',
+			'role_name' =>'Ninja',
+		]);
 	}
 
 }
