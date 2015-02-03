@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Πληροφοριακό σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.">
-
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('img/favicon.ico') }}" />
     <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
 
     <!--[if lte IE 8]>
