@@ -10,7 +10,7 @@
             <div class="instructions orange little-block white-font"><strong><i class="fa fa-rocket"></i> {{ link_to('/site/'.Auth::user()->id.'/edit#grader-a-details', 'Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.', ['class' => 'white-font']) }} </strong></div>                            
         @endif
 
-        @if(Auth::user()->hasRole('grader') && Auth::user()->grader->has_agreed == 'na' && Auth::user()->site->proposes_himself != 'yes')
+        @if(Auth::user()->hasRole('grader') && !Auth::user()->hasRole('site') && Auth::user()->grader->has_agreed == 'na')
             <p>{{ link_to_route('agrees.grader', 'Αποδέχομαι τη συμμετοχή μου ως Αξιολογητής Α στον 7ο ΔΕΕΙ', [Auth::user()->grader->id, 'yes'], ['class' => 'pure-button button-secondary button-secondary-green anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι συμφωνείτε;");']) }}</p>
             <p>{{ link_to_route('agrees.grader', 'Δεν αποδέχομαι τη συμμετοχή μου ως Αξιολογητής Α στον 7ο ΔΕΕΙ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}</p>
 
