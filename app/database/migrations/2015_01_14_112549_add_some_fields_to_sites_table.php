@@ -23,7 +23,7 @@ class AddSomeFieldsToSitesTable extends Migration {
             $table->string('uses_private_data', 10)->nullable();
             $table->string('received_permission',10)->nullable()->after('restricted_access_details');
             $table->string('contact_last_name', 200)->nullable()->after('contact_name');
-            $table->string('proposes_himself', 10)->nullable()->default('na');
+            $table->string('proposes_himself', 10)->nullable();
 		});
 	}
 
