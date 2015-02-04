@@ -200,5 +200,8 @@
     checkbox_toggle_visibility($('[name=self_proposed]'), $('#why_self_proposed_wrapper'));
     
     propose_myself();
+    
+    // Data tables
+    $('#sites-table').dataTable().columnFilter();
 
 })(jQuery);

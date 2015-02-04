@@ -7,6 +7,8 @@
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('img/favicon.ico') }}" />
     <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
 
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+    
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="{{ asset('css/side-menu-old-ie.css') }}">
         <link rel="stylesheet" href="{{ asset('css/grids-responsive-old-ie.css') }}">
@@ -63,6 +65,8 @@
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.js') }}"></script>
 <script src="{{ asset('js/messages_el.js') }}"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('js/columnFilter.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>     
 </body>
 </html>
