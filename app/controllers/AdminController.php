@@ -4,6 +4,27 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends \BaseController {
     
+    
+    public function index(){
+         
+        return View::make('admin.index');    
+	}
+    
+    public function sites(){
+
+        $sites = Site::all();
+        return View::make('admin.sites', compact('sites'));
+        
+    }
+    
+    public function graders(){
+        
+        $graders = Grader::all();
+        return View::make('admin.graders', compact('graders'));
+        
+    }
+    
+    
     public function isAdmin(){
         if(!Auth::guest()){
             if(Auth::user()->type == 'admin'){
@@ -17,42 +38,5 @@ class AdminController extends \BaseController {
         
         return false;
     }
-    
-    public function index(){
-        
-        if($this->isAdmin()){
-		    return View::make('admin.index');
-        } else {
-            return Redirect::home();
-        }
-	}
-    
-    public function sites(){
-        
-        if($this->isAdmin()){
-            
-            $sites = Site::all();
-            
-		    return View::make('admin.sites', compact('sites'));
-            
-        } else {
-            return Redirect::home();
-        }
-        
-    }
-    
-    public function graders(){
-        
-        if($this->isAdmin()){
-            
-            $graders = Grader::all();
-            
-		    return View::make('admin.graders', compact('graders'));
-            
-        } else {
-            return Redirect::home();
-        }
-        
-    }    
     
 }
