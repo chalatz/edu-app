@@ -4,7 +4,6 @@
 
     @if(Auth::check())
 
-
         @if(Auth::user()->hasRole('site') && Auth::user()->site->grader_agrees == 'no')
             <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O Αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
             <div class="instructions orange little-block white-font"><strong><i class="fa fa-rocket"></i> {{ link_to('/site/'.Auth::user()->id.'/edit#grader-a-details', 'Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.', ['class' => 'white-font']) }} </strong></div>                            
