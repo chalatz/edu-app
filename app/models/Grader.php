@@ -14,6 +14,7 @@ class Grader extends \Eloquent {
         'grader_name' => 'required',
         'grader_last_name' => 'required',
         'grader_district_id' => 'required',
+        'specialty' => 'required',
     ];
     
     public static $error_messages = [

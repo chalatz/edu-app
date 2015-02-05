@@ -30,8 +30,9 @@
         @endif
 
 		<div class="pure-g">
-            @if(!Auth::user()->hasRole('site'))
-                @if(!(sizeof(Auth::user()->roles) == 1 && Auth::user()->hasRole('grader')))
+
+            @if(!Auth::user()->hasRole('site') && !Auth::user()->hasRole('grader'))
+
                 <div class="pure-u-1 pure-u-md-1-1">
                     {{ link_to('site/create', 'Υποβολή Υποψηφιότητας Ιστότοπου', ['class' => 'action-btn action-btn-green anchor-block']) }}
                 </div>

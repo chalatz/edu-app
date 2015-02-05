@@ -70,9 +70,19 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+
 Route::filter('admin', function(){
     
     if(!(Auth::check() && Auth::user()->hasRole('admin'))){
+        return Redirect::home();
+    }
+    
+});
+
+
+Route::filter('ninja', function(){
+    
+    if(!(Auth::check() && Auth::user()->hasRole('ninja'))){
         return Redirect::home();
     }
     
