@@ -20,6 +20,7 @@ class AdminController extends \BaseController {
     public function graders(){
         
         $graders = Grader::all();
+
         return View::make('admin.graders', compact('graders'));
         
     }

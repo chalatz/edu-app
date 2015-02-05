@@ -41,8 +41,7 @@
             <h2>Πληροφοριακό Σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         </div>
 
-        <div class="content">
-           
+        <div class="content admin-content">
             @if(Session::has('flash_message'))
                 <div class="flash-message {{Session::get('alert-class')}}">
                     {{ Session::get('flash_message') }}

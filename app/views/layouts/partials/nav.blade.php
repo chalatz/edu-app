@@ -33,8 +33,8 @@
                     @endif
 
                     @if($role->role == 'admin')
-                        <li>{{ link_to('/admin/sites', 'Sites') }}</li>
-                        <li>{{ link_to('/admin/graders', 'Αξιολογητές') }}</li>
+                        <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
+                        <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                     @endif
 
                 @endforeach

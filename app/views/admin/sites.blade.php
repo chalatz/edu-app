@@ -1,16 +1,13 @@
-@extends('layouts.default')
+@extends('layouts.admin')
 
 @section('content')
 
-    <?php $i = 1; ?>
+	<h1>Υποψήφιοι Ιστότοποι</h1>
 
-	<h1>Sites</h1>
-
-    <table id="sites-table" class="pure-table pure-table-horizontal pure-table-striped">
+    <table id="sites-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     
         <thead>
             <tr>
-                <th>#</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Email Επικοινωνίας</th>
@@ -25,7 +22,6 @@
             @foreach($sites as $site)
 
                 <tr>
-                    <td>{{ $i }}</td>
                     <td>{{ $site->title }}</td>
                     <td>{{ $site->site_url }}</td>
                     <td>{{ $site->contact_email }}</td>
@@ -35,13 +31,11 @@
                     <td>{{ $site->proposes_himself }}</td>
                 </tr>
 
-                <?php $i++; ?>
             @endforeach
         </tbody>
         
         <tfoot>
             <tr>
-                <th>#</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Email Επικοινωνίας</th>
