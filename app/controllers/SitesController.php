@@ -26,7 +26,7 @@ class SitesController extends \BaseController {
         if(Auth::guest()){
             return Redirect::home();
         } else {
-            if(Auth::user()->site) {
+            if(Auth::user()->site || Auth::user()->hasRole('grader')) {
                 return Redirect::home();
             }
         }

@@ -8,6 +8,10 @@
     {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('grader_name') }}</p>
 
+    {{ Form::label('specialty', 'Ειδικότητα *') }}
+    {{ Form::select('specialty', $specialties, null, array('class' => 'pure-input-1', 'required')) }}
+    <p class="error-message">{{ $errors->first('specialty') }}</p>
+    
     {{ Form::label('grader_district_id', 'Περιφέρεια *') }}
     {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
