@@ -2,6 +2,10 @@ body {
     color: $font-color;
 }
 
+.admin-content {
+    max-width: 100%;
+}
+
 .pure-menu .pure-menu-heading {
     text-transform: none;
 }
@@ -246,4 +250,16 @@ img {
     display: block;
     text-align: center;
     font-size: 1.2em;
+}
+
+.admin-content {
+
+    .admin-table {
+        margin: 4em 0;
+    }
+
+    .dataTables_wrapper {
+        @include clearfix;
+    }
+
 }

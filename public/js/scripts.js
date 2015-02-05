@@ -202,6 +202,25 @@
     propose_myself();
     
     // Data tables
-    $('#sites-table').dataTable().columnFilter();
+    $('#sites-table').dataTable({
+        "language": {
+            "sProcessing":   "Επεξεργασία...",
+            "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
+            "sZeroRecords":  "Δεν βρέθηκαν εγγραφές που να ταιριάζουν",
+            "sInfo":         "Εμφανίζονται _START_ εως _END_ από _TOTAL_ εγγραφές",
+            "sInfoEmpty":    "Εμφανίζονται 0 έως 0 από 0 εγγραφές",
+            "sInfoFiltered": "(φιλτραρισμένες από _MAX_ συνολικά εγγραφές)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Αναζήτηση:",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "Πρώτη",
+                "sPrevious": "Προηγούμενη",
+                "sNext":     "Επόμενη",
+                "sLast":     "Τελευταία"
+            }
+        }
+    }).columnFilter();
+    $('.admin-table tfoot tr').insertAfter('.admin-table thead');
 
 })(jQuery);
