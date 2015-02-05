@@ -25,6 +25,15 @@ class AdminController extends \BaseController {
         
     }
     
+    public function masquerade($user_id){
+        
+        $user = User::find($user_id);
+        
+        Auth::login($user);
+        
+        return Redirect::home();
+    }
+    
     
     public function isAdmin(){
         if(!Auth::guest()){
