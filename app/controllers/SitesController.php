@@ -215,7 +215,7 @@ class SitesController extends \BaseController {
         
 		if ($validator->fails())
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			//return Redirect::back()->withErrors($validator)->withInput();
 		}
         
 		try {
@@ -229,14 +229,14 @@ class SitesController extends \BaseController {
         //$input = Input::only('title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_last_name', 'grader_email', 'grader_district', 'notify_grader','mobile_phone', 'district_text', 'county', 'grader_district', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission');
         $input = Input::all();
         
-        $grader_email = $input['grader_email'];
+           $grader_email = $input['grader_email'];
         
-        //check if the user exists
-        if(User::where('email', '=', $grader_email)->count() == 0){
-            $user_exists = false;
-        } else {
-            $user_exists = true;
-        }
+//         //check if the user exists
+//         if(User::where('email', '=', $grader_email)->count() == 0){
+//             $user_exists = false;
+//         } else {
+//             $user_exists = true;
+//         }
 
         $site = $user->site;
         

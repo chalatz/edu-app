@@ -44,6 +44,11 @@
                     @if(Auth::user()->hasRole('site') && Auth::user()->site->proposes_himself == 'yes')
                     
                         <p>Έχετε προτείνει τον υπεύθυνο επικοινωνίας ως Αξιολογητή Α</p>
+                        
+                        {{ Form::hidden('grader_last_name') }}
+                        {{ Form::hidden('grader_name') }}
+                        {{ Form::hidden('grader_email') }}
+                        {{ Form::hidden('grader_district') }}
                     
                     @else
                     
