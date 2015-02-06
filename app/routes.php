@@ -21,8 +21,7 @@ Route::get('/register', 'RegistrationController@create');
 Route::post('/register', ['as' => 'registration.store', 'uses' => 'RegistrationController@store']);
 
 # Reminders
-// Route::controller('password', 'RemindersController'); 
-Route::get('password/remind',['as' => 'password.remind', 'uses' => 'PagesController@remind']);
+Route::controller('password', 'RemindersController');
 
 # Authentication
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
