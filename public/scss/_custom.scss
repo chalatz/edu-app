@@ -255,11 +255,20 @@ img {
 .admin-content {
 
     .admin-table {
-        margin: 4em 0;
+        margin: 1em 0;
     }
 
     .dataTables_wrapper {
         @include clearfix;
+    }
+
+    .dataTables_length,
+    .dataTables_filter {
+        @include clearfix;
+        display: block;
+        float: none;
+        text-align: left;
+        margin: 1.5em 0;
     }
 
 }
