@@ -14,7 +14,6 @@
 <![endif]-->
 
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="{{ asset('css/reveal.css') }}">
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
       
 </head>
