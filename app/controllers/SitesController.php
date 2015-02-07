@@ -92,7 +92,7 @@ class SitesController extends \BaseController {
                 $site_responsible_type = $data['responsible_type'];
 	            
 	            Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
-	             $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+	             $message->to(Input::get('grader_email'))->subject('Αξιολογητής Α - Επιβεβαίωση Συμμετοχής - Edu Web Awards 2015');
 	            });
 	            
 	            $the_new_user = User::create($user_data);
@@ -268,7 +268,7 @@ class SitesController extends \BaseController {
                 $site_responsible_type = $data['responsible_type'];
                 
                 Mail::send('emails.grader_verification', ['confirmation_url' => $confirmation_url, 'password' => $password, 'site_title' => $site_title, 'site_responsible' => $site_responsible, 'site_responsible_type' => $site_responsible_type], function($message){
-                 $message->to(Input::get('grader_email'))->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2015');
+                 $message->to(Input::get('grader_email'))->subject('Αξιολογητής Α - Επιβεβαίωση Συμμετοχής - Edu Web Awards 2015');
                 });
                 
                 $the_new_user = User::create($user_data);

@@ -19,7 +19,12 @@ class RemindersController extends Controller {
 	 */
 	public function postRemind()
 	{
-		switch ($response = Password::remind(Input::only('email')))
+		$response = Password::remind(Input::only('email'), function($message)
+			{
+    			$message->subject('Αλλαγή Κωδικού Πρόσβασης - Edu Web Awards 2015');
+			});
+
+		switch ($response)
 		{
 			case Password::INVALID_USER:
 				return Redirect::back()->with('error', Lang::get($response));
@@ -69,6 +74,8 @@ class RemindersController extends Controller {
 				return Redirect::back()->with('error', Lang::get($response));
 
 			case Password::PASSWORD_RESET:
+				Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ο κωδικός πρόσβασης έχει ενημερωθεί με επιτυχία!');
+            	Session::flash('alert-class', 'flash-success');
 				return Redirect::to('/');
 		}
 	}

@@ -13,14 +13,14 @@ return array(
 	|
 	*/
 
-	"password" => "Passwords must be at least six characters and match the confirmation.",
+	"password" => "Οι Κωδικοί Πρόσβασης θα πρέπει να περιέχουν τουλάχιστον 6 χαρακτήρες και να ταιριάζουν μεταξύ τους.",
 
-	"user" => "We can't find a user with that e-mail address.",
+	"user" => "Δε βρέθηκε Χρήστης με αυτό το email",
 
-	"token" => "This password reset token is invalid.",
+	"token" => "Μη έγκυρο token επαναφοράς Κωδικού Πρόσβασης.",
 
-	"sent" => "Password reminder sent!",
+	"sent" => "Η υπενθύμιση Κωδικού Πρόσβασης έχει σταλεί!",
 
-	"reset" => "Password has been reset!",
+	"reset" => "Επιτυχής επαναφορά του Κωδικού Πρόσβασης!",
 
 );
