@@ -47,6 +47,8 @@
 
     	<p>{{ link_to('login', 'Συνδεθείτε') }} ή {{ link_to('register', 'Εγγραφείτε') }}</p>
 
+        <p>{{ link_to('password/remind', 'Ξέχασα τον Κωδικό Πρόσβασής μου') }}</p>
+
     	<div class="pure-g">
     		<div class="pure-u-1">
     			{{ link_to('register', 'Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 7ου ΔΕΕΙ', ['class' => 'action-btn action-btn-green anchor-block']) }}

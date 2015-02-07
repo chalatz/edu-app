@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Password Reset</h2>
+		<h2>Επαναφορά Κωδικού Πρόσβασης</h2>
 
 		<div>
-			To reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.<br/>
-			This link will expire in {{ Config::get('auth.reminder.expire', 60) }} minutes.
+			<p>Για να επαναφέρετε τον Κωδικό Πρόσβασης, παρακαλούμε ανοίξτε τον παρακάτω σύνδεσμο:</p>
+			<p>{{ URL::to('password/reset', array($token)) }}</p>
+			<p>Ο σύνδεσμος αυτός θα παραμείνει ενεργός για {{ Config::get('auth.reminder.expire', 60) }} λεπτά.</p>
 		</div>
 	</body>
 </html>

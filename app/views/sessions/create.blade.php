@@ -14,6 +14,7 @@
 		{{ Form::password('password') }}
         {{ $errors->first('password') }}
 
+        <p>{{ link_to('password/remind', 'Ξέχασα τον Κωδικό Πρόσβασής μου') }}</p>
 
 		{{Form::button('Σύνδεση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
