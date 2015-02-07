@@ -18,10 +18,12 @@ class Site extends \Eloquent {
         'cat_id' => 'required',
         'district_id' => 'required',
         'contact_last_name' => 'required',
+        'i_agree' => 'accepted',
 	];
     
     public static $error_messages = [
         'required' => 'Το πεδίο είναι υποχρεωτικό.',
+        'accepted' => 'Το πεδίο είναι υποχρεωτικό.',
         'email' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση e-mail.',
         'url' => 'Το πεδίο δεν περιέχει έγκυρη διεύθυνση url.',
         'unique' => 'To :attribute αυτό δεν είναι διαθέσιμο.',
@@ -29,7 +31,7 @@ class Site extends \Eloquent {
     ];
 
 	// Don't forget to fill this array
-	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_last_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'grader_last_name', 'grader_district', 'notify_grader', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission', 'grader_district_text', 'uses_private_data', 'county_id', 'confirmed_at', 'proposes_himself', 'purpose', 'country_id', 'language_id'];
+	protected $fillable = ['user_id', 'title', 'site_url', 'cat_id', 'creator', 'responsible', 'contact_name', 'contact_last_name', 'contact_email', 'phone', 'district_id', 'grader_name', 'grader_email', 'grader_last_name', 'grader_district', 'notify_grader', 'district_text', 'responsible_type', 'restricted_access', 'restricted_access_details', 'received_permission', 'grader_district_text', 'uses_private_data', 'county_id', 'confirmed_at', 'proposes_himself', 'purpose', 'country_id', 'language_id', 'i_agree'];
     
     public function user(){
         $this->belongsTo('User');
