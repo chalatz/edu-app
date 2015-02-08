@@ -12,8 +12,6 @@ class AdminController extends \BaseController {
     
     public function sites(){
 
-        Session::put('ninja_id', Auth::user()->id);
-
         $sites = Site::all();
         return View::make('admin.sites', compact('sites'));
         
