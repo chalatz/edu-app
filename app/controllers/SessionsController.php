@@ -163,6 +163,10 @@ class SessionsController extends \BaseController {
 	{
 		Auth::logout();
 
+        if(Session::has('ninja_id')) {
+            Session::forget('ninja_id');
+        }
+
 		return Redirect::home();
 	}
 
