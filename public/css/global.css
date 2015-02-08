@@ -3709,10 +3709,21 @@ form .label-for-checkbox {
   font-size: 1.2em; }
 
 .admin-content .admin-table {
-  margin: 4em 0; }
+  margin: 1em 0; }
 .admin-content .dataTables_wrapper::after {
   clear: both;
   content: "";
   display: table; }
+.admin-content .dataTables_length,
+.admin-content .dataTables_filter {
+  display: block;
+  float: none;
+  text-align: left;
+  margin: 1.5em 0; }
+  .admin-content .dataTables_length::after,
+  .admin-content .dataTables_filter::after {
+    clear: both;
+    content: "";
+    display: table; }
 
 /*# sourceMappingURL=global.css.map */

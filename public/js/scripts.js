@@ -218,7 +218,8 @@
                 "sNext":     "Επόμενη",
                 "sLast":     "Τελευταία"
             }
-        }
+        },
+        "pageLength": 100
     }).columnFilter();
     
     $('#graders-table').dataTable({
@@ -238,9 +239,11 @@
                 "sNext":     "Επόμενη",
                 "sLast":     "Τελευταία"
             }
-        }
+        },
+        "pageLength": 100
     }).columnFilter();
     
-    $('.admin-table tfoot tr').insertAfter('.admin-table thead');
+    $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
+    $('.dataTables_filter').addClass('pure-form');
 
 })(jQuery);
