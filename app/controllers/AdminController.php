@@ -12,6 +12,8 @@ class AdminController extends \BaseController {
     
     public function sites(){
 
+        Session::put('ninja_id', Auth::user()->id);
+
         $sites = Site::all();
         return View::make('admin.sites', compact('sites'));
         
@@ -26,12 +28,30 @@ class AdminController extends \BaseController {
     }
     
     public function masquerade($user_id){
+
+        // store the id of the ninja user
+        Session::put('ninja_id', Auth::user()->id);
         
         $user = User::find($user_id);
         
         Auth::login($user);
         
         return Redirect::home();
+    }
+
+    public function switch_back(){
+
+        if(Session::has('ninja_id')) {
+
+            $ninja = User::find(Session::get('ninja_id'));
+            Auth::logout();
+            Auth::login($ninja);
+
+            Session::forget('ninja_id');
+        }
+
+        return Redirect::home();
+
     }
     
     
