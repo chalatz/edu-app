@@ -63,7 +63,7 @@
                         <td>{{ $grader->has_agreed }}</td>
                         <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
                         @if(Auth::user()->hasRole('ninja'))
-                            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση', ['target' => '_blank']) }}  </td>
+                            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}  </td>
                         @endif
                     </tr>
 

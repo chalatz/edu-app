@@ -65,7 +65,7 @@
                     <td>{{ $site->proposes_himself }}</td>
                     <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
                     @if(Auth::user()->hasRole('ninja'))
-                        <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση', ['target' => '_blank']) }}  </td>
+                        <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
                     @endif
                 </tr>
 
