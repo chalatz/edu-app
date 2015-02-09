@@ -117,19 +117,22 @@ class SitesController extends \BaseController {
                 $grader_data['user_id'] = $new_user_id;
                 
                 // Check if the grader already exists
-                $found_grader = Grader::where('user_id', '=', $user_id);
+                $found_grader = Grader::where('user_id', '=', $new_user_id);
                 if($found_grader->count() == 0){
                     $new_grader = Grader::create($grader_data);
+                    // ----- Attach to site ------------
+                    $the_new_grader = Grader::find($new_grader->id);
+                    $the_new_grader->sites()->attach($the_new_site->id);
                 } else {
                     $found_grader = $found_grader->first();
                     $found_grader->update($data);
+                    // ----- Attach to site ------------
+                    $found_grader->sites()->attach($the_new_site->id);
                 }
                 
                 //$new_grader = Grader::create($grader_data);
                 
-                // ----- Attach to site ------------
-                $the_new_grader = Grader::find($new_grader->id);
-                $the_new_grader->sites()->attach($the_new_site->id);
+                
 
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
         		Session::flash('alert-class', 'flash-info');                  
