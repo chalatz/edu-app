@@ -11,10 +11,25 @@ class GradersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$graders = Grader::all();
+		$graders = Grader::all()->with('grader');
 
 		return View::make('graders.index', compact('graders'));
 	}
+    
+    public function graders_b(){
+        
+        $users = User::all();
+    
+        $user_id = Auth::user()->id;
+        
+        $found = Grader::where('user_id', '=', 1);
+        
+        dd($found->id);
+
+            
+        
+        return View::make('graders.show_beta', compact('users'));
+    }
 
 	/**
 	 * Show the form for creating a new grader
@@ -66,8 +81,17 @@ class GradersController extends \BaseController {
         
         
         $user->save();
+        
+        // Check if the grader already exists
+        $found_grader = Grader::where('user_id', '=', $user_id);
+        if($found_grader->count() == 0){
+            $new_grader = Grader::create($data);
+        } else {
+            $found_grader = $found_grader->first();
+            $found_grader->update($data);
+        }
 
-		$grader = Grader::create($data);
+		//$grader = Grader::create($data);
 
         // --- Attach role (site) ---
         $user->roles()->attach(3);

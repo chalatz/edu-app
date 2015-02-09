@@ -44,6 +44,7 @@ Route::get('/verify/grader/{confirmation_string}', ['as' => 'verify.grader', 'us
 Route::get('/agrees/grader/{grader_id}/{answer}', ['as' => 'agrees.grader', 'uses' =>'GradersController@agrees']);
 Route::get('/grader/create/{grader_type}', ['as' => 'register.grader', 'uses' => 'GradersController@create']);
 Route::get('grader/{grader}/b/edit', ['as' => 'grader_b.edit', 'uses' => 'GradersController@edit_b']);
+Route::get('grader/show_b', ['as' => 'graders_b.show', 'uses' => 'GradersController@graders_b']);
 Route::resource('grader', 'GradersController');
 
 # Admin

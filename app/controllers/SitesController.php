@@ -116,7 +116,16 @@ class SitesController extends \BaseController {
                 
                 $grader_data['user_id'] = $new_user_id;
                 
-                $new_grader = Grader::create($grader_data);
+                // Check if the grader already exists
+                $found_grader = Grader::where('user_id', '=', $user_id);
+                if($found_grader->count() == 0){
+                    $new_grader = Grader::create($grader_data);
+                } else {
+                    $found_grader = $found_grader->first();
+                    $found_grader->update($data);
+                }
+                
+                //$new_grader = Grader::create($grader_data);
                 
                 // ----- Attach to site ------------
                 $the_new_grader = Grader::find($new_grader->id);
@@ -143,7 +152,16 @@ class SitesController extends \BaseController {
             
             $grader_data['user_id'] = $user_id;
             
-            $new_grader = Grader::create($grader_data);
+            // Check if the grader already exists
+            $found_grader = Grader::where('user_id', '=', $user_id);
+            if($found_grader->count() == 0){
+                $new_grader = Grader::create($grader_data);
+            } else {
+                $found_grader = $found_grader->first();
+                $found_grader->update($data);
+            }
+            
+            //$new_grader = Grader::create($grader_data);
             
             // ----- Attach to site ------------
             $the_new_grader = Grader::find($new_grader->id);
