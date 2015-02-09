@@ -156,16 +156,21 @@ class SitesController extends \BaseController {
             $found_grader = Grader::where('user_id', '=', $user_id);
             if($found_grader->count() == 0){
                 $new_grader = Grader::create($grader_data);
+                // ----- Attach to site ------------
+                $the_new_grader = Grader::find($new_grader->id);
+                $the_new_grader->sites()->attach($the_new_site->id);
             } else {
                 $found_grader = $found_grader->first();
                 $found_grader->update($data);
+                // ----- Attach to site ------------
+                $found_grader->sites()->attach($the_new_site->id);
             }
             
             //$new_grader = Grader::create($grader_data);
             
             // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($the_new_site->id);
+            // $the_new_grader = Grader::find($new_grader->id);
+            // $the_new_grader->sites()->attach($the_new_site->id);
             
             $user->roles()->attach(2);
     		Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
