@@ -56,6 +56,9 @@ Route::get('/admin/graders/', ['before' => 'auth|admin', 'as' => 'admin.graders'
 Route::get('/admin/masquerade/{user_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
 Route::get('/admin/switch-back', ['after' => 'auth|admin|ninja', 'as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);
 
+# Statitics
+Route::get('/admin/stats/', ['as' => 'admin.stats', 'uses' => 'AdminController@stats']);
+
 // Test Pivot
 Route::get('pivot', function(){
 

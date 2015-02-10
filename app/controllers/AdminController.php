@@ -52,6 +52,15 @@ class AdminController extends \BaseController {
 
     }
     
+    public function stats(){
+        
+        $sites = Site::all();
+        $cats = Category::all();
+        
+        return View::make('admin.stats', compact(['sites', 'cats']));
+        
+    }
+    
     
     public function isAdmin(){
         if(!Auth::guest()){
