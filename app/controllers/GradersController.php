@@ -221,6 +221,8 @@ class GradersController extends \BaseController {
         $site->grader_agrees = $answer;
         $site->save();
         
+        $this->notify_site($grader, $answer);
+        
         if($answer == 'no'){
         	$this->update_site($site_id);
             User::destroy(Auth::user()->id);
@@ -232,8 +234,6 @@ class GradersController extends \BaseController {
             
             return Redirect::home();
         }
-        
-        $this->notify_site($grader, $answer);
         
         Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Ευχαριστούμε που αποδεχτήκατε τη συμμετοχή σας ως Αξιολογητής Α στον 7ο ΔΕΕΙ.');
         Session::flash('alert-class', 'flash-success');    
@@ -254,7 +254,9 @@ class GradersController extends \BaseController {
             Mail::send('emails.notify_site', $data, function($message) use ($email){
                 $message->to($email)->subject('O Αξιολογητής Α έχει αποδεχθεί.');
             });
-        } else {
+        } 
+        
+        if($answer == 'no') {
             Mail::send('emails.notify_site_rejection', $data, function($message) use ($email){
                 $message->to($email)->subject('O Αξιολογητής Α έχει αρνηθεί.');
             });
