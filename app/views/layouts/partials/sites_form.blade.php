@@ -24,6 +24,11 @@
     {{ Form::label('responsible', 'Νομικά υπεύθυνος *') }}
     {{ Form::text('responsible', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('responsible') }}</p>
+    
+    {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου *') }}
+    {{ Form::text('responsible_type', null, array('class' => 'pure-input-1', 'required')) }}
+    <div class="instructions">π.χ Διευθυντής, Προϊστάμενος, Εκπαιδευτικός, κλπ</div>
+    <p class="error-message">{{ $errors->first('responsible_type') }}</p>
 
     {{ Form::label('district_id', 'Περιφέρεια *') }}
     {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
@@ -32,16 +37,14 @@
     {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός)') }}
     {{ Form::select('county_id', $counties_array, null, array('class' => 'pure-input-1')) }}
     <p></p>
+    
     {{ Form::label('country_id', 'Χώρα') }}
     {{ Form::select('country_id', $countries, null, array('class' => 'pure-input-1')) }}
     <p></p>
+    
     {{ Form::label('language_id', 'Γλώσσα Ιστότοπου') }}
     {{ Form::select('language_id', $languages, null, array('class' => 'pure-input-1')) }}
     <p></p>
-    {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου *') }}
-    {{ Form::text('responsible_type', null, array('class' => 'pure-input-1', 'required')) }}
-    <div class="instructions">π.χ Διευθυντής, Προϊστάμενος, Εκπαιδευτικός, κλπ</div>
-    <p class="error-message">{{ $errors->first('responsible_type') }}</p>
     
     {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών;') }}
     {{ Form::select('uses_private_data',[

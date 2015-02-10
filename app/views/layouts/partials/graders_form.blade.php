@@ -13,10 +13,9 @@
     {{ Form::select('specialty', $specialties, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('specialty') }}</p>
 
-    <div class="detail">
-        <label>Περιφέρεια</label>
-        <p>{{ $districts[$grader->district_id] }}</p>
-    </div>
+    {{ Form::label('grader_district_id', 'Περιφέρεια *') }}
+    {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
+    <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
 
     <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}

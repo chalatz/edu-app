@@ -87,7 +87,7 @@
     <div class="detail">
         <h3>Περιφέρεια του Υποψήφιου Ιστότοπου</h3>
         @foreach($user->grader->sites as $site)
-            <p>{{ $districts[$site->district_id] }}</p>
+            <p>{{ $districts[$site->grader_district_id] }}</p>
         @endforeach
     </div>
 
