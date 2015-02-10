@@ -11,7 +11,7 @@
     <hr>
 
     <h2>Κατηγορίες</h2>
-    <table class="pure-table pure-table-striped">
+    <table class="pure-table pure-table-striped stats-table">
         <thead>
             <tr>
                 <th>Κατηγορία</th>
@@ -27,16 +27,14 @@
                 </tr>
                 <?php $cats_count += Site::where('cat_id', '=', $cat->id)->count(); ?>
             @endforeach
-            <tr>
-                <td><strong>Σύνολα:</strong></td>
-                <td><strong>{{ $cats_count }}</strong></td>
-            </tr>
         </tbody>
     </table>
+
+    <p>Σύνολο: <strong>{{ $cats_count }}</strong></p>
     <hr>
 
     <h2>Περιφέρειες</h2>
-    <table class="pure-table pure-table-striped">
+    <table class="pure-table pure-table-striped stats-table">
         <thead>
             <tr>
                 <th>Περιφέρεια</th>
@@ -52,12 +50,10 @@
                 </tr>
                 <?php $districts_count += Site::where('district_id', '=', $district->id)->count(); ?>
             @endforeach
-            <tr>
-                <td><strong>Σύνολα:</strong></td>
-                <td><strong>{{ $districts_count }}</strong></td>
-            </tr>
         </tbody>
     </table>
+
+    <p>Σύνολο: <strong>{{ $districts_count }}</strong></p>
     <hr>
 
 @stop

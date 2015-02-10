@@ -246,6 +246,11 @@ img {
     border-radius: 3px;
 }
 
+.block {
+    padding: .5em 0;
+    margin: .5em 0;
+}
+
 .anchor-block {
     display: block;
     text-align: center;
@@ -265,10 +270,10 @@ img {
     .dataTables_length,
     .dataTables_filter {
         @include clearfix;
-        display: block;
-        float: none;
+        float: left;
         text-align: left;
-        margin: 1.5em 0;
+        margin: 0 2em .5em 0;
+        line-height: 2.5em;
     }
 
 }

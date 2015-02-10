@@ -46,7 +46,7 @@
 
                 <tr>
                     <td>{{ $site->title }}</td>
-                    <td>{{ $site->site_url }}</td>
+                    <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
                     <td>{{ $site->cat_id }}</td>
                     <td>{{ $site->creator }}</td>
                     <td>{{ $site->responsible }}</td>
