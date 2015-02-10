@@ -56,8 +56,9 @@ class AdminController extends \BaseController {
         
         $sites = Site::all();
         $cats = Category::all();
+        $districts = District::all();
         
-        return View::make('admin.stats', compact(['sites', 'cats']));
+        return View::make('admin.stats', compact(['sites', 'cats', 'districts']));
         
     }
     
