@@ -109,6 +109,7 @@ class SitesController extends \BaseController {
                     'grader_name' => $data['grader_name'],
                     'grader_last_name' => $data['grader_last_name'],
                     'district_id' => $data['grader_district'],
+                    'grader_district_id' => $data['grader_district'],
                     'cat_id' => $data['cat_id'],
                     'from_who' => $data['title'],
                     'from_who_email' => $user->email,
@@ -116,11 +117,23 @@ class SitesController extends \BaseController {
                 
                 $grader_data['user_id'] = $new_user_id;
                 
-                $new_grader = Grader::create($grader_data);
+                // Check if the grader already exists
+                $found_grader = Grader::where('user_id', '=', $new_user_id);
+                if($found_grader->count() == 0){
+                    $new_grader = Grader::create($grader_data);
+                    // ----- Attach to site ------------
+                    $the_new_grader = Grader::find($new_grader->id);
+                    $the_new_grader->sites()->attach($the_new_site->id);
+                } else {
+                    $found_grader = $found_grader->first();
+                    $found_grader->update($data);
+                    // ----- Attach to site ------------
+                    $found_grader->sites()->attach($the_new_site->id);
+                }
                 
-                // ----- Attach to site ------------
-                $the_new_grader = Grader::find($new_grader->id);
-                $the_new_grader->sites()->attach($the_new_site->id);
+                //$new_grader = Grader::create($grader_data);
+                
+                
 
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
         		Session::flash('alert-class', 'flash-info');                  
@@ -136,6 +149,7 @@ class SitesController extends \BaseController {
                 'grader_name' => $data['contact_name'],
                 'grader_last_name' => $data['contact_last_name'],
                 'district_id' => $data['district_id'],
+                'grader_district_id' => $data['grader_district'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
@@ -143,11 +157,25 @@ class SitesController extends \BaseController {
             
             $grader_data['user_id'] = $user_id;
             
-            $new_grader = Grader::create($grader_data);
+            // Check if the grader already exists
+            $found_grader = Grader::where('user_id', '=', $user_id);
+            if($found_grader->count() == 0){
+                $new_grader = Grader::create($grader_data);
+                // ----- Attach to site ------------
+                $the_new_grader = Grader::find($new_grader->id);
+                $the_new_grader->sites()->attach($the_new_site->id);
+            } else {
+                $found_grader = $found_grader->first();
+                $found_grader->update($data);
+                // ----- Attach to site ------------
+                $found_grader->sites()->attach($the_new_site->id);
+            }
+            
+            //$new_grader = Grader::create($grader_data);
             
             // ----- Attach to site ------------
-            $the_new_grader = Grader::find($new_grader->id);
-            $the_new_grader->sites()->attach($the_new_site->id);
+            // $the_new_grader = Grader::find($new_grader->id);
+            // $the_new_grader->sites()->attach($the_new_site->id);
             
             $user->roles()->attach(2);
     		Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχετε προσθέσει τον υπεύθυνο επικοινωνίας σας ως αξιολογητή Α.');
@@ -287,6 +315,7 @@ class SitesController extends \BaseController {
                     'grader_name' => $data['grader_name'],
                     'grader_last_name' => $data['grader_last_name'],
                     'district_id' => $data['grader_district'],
+                    'grader_district_id' => $data['grader_district'],
                     'cat_id' => $data['cat_id'],
                     'from_who' => $data['title'],
                     'from_who_email' => $user->email,
@@ -311,6 +340,7 @@ class SitesController extends \BaseController {
                 'grader_name' => $data['contact_name'],
                 'grader_last_name' => $data['contact_last_name'],
                 'district_id' => $data['district_id'],
+                'grader_district_id' => $data['grader_district'],
                 'cat_id' => $data['cat_id'],
                 'from_who' => $data['title'],
                 'from_who_email' => $user->email,
