@@ -52,12 +52,12 @@ Route::get('/admin/home/', ['before' => 'auth|admin', 'as' => 'admin.home', 'use
 Route::get('/admin/sites/', ['before' => 'auth|admin', 'as' => 'admin.sites', 'uses' => 'AdminController@sites']);
 Route::get('/admin/graders/', ['before' => 'auth|admin', 'as' => 'admin.graders', 'uses' => 'AdminController@graders']);
 
+# Statitics
+Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
+
 # Masquerade
 Route::get('/admin/masquerade/{user_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
 Route::get('/admin/switch-back', ['after' => 'auth|admin|ninja', 'as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);
-
-# Statitics
-Route::get('/admin/stats/', ['as' => 'admin.stats', 'uses' => 'AdminController@stats']);
 
 // Test Pivot
 Route::get('pivot', function(){

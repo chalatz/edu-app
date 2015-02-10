@@ -3703,6 +3703,10 @@ form .label-for-checkbox {
   margin: .5em 0;
   border-radius: 3px; }
 
+.block {
+  padding: .5em 0;
+  margin: .5em 0; }
+
 .anchor-block {
   display: block;
   text-align: center;
@@ -3716,10 +3720,10 @@ form .label-for-checkbox {
   display: table; }
 .admin-content .dataTables_length,
 .admin-content .dataTables_filter {
-  display: block;
-  float: none;
+  float: left;
   text-align: left;
-  margin: 1.5em 0; }
+  margin: 0 2em .5em 0;
+  line-height: 2.5em; }
   .admin-content .dataTables_length::after,
   .admin-content .dataTables_filter::after {
     clear: both;

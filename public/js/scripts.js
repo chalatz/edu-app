@@ -39,7 +39,7 @@
                 }
             },
 
-            messages:{  
+            messages:{
                 restricted_access_details: "Εφόσον έχετε επιλέξει ότι ο ιστότοπος έχει περιορισμένη πρόσβαση, αυτό το πεδίο είναι υποχρεωτικό",
                 received_permission: "Εφόσον έχετε επιλέξει Ναι στο προηγούμενο πεδίο, αυτό το πεδίο είναι υποχρεωτικό",
                 level_english : "Εφόσον έχετε επιλέξει τη γλώσσα Αγγλικά, αυτό το πεδίο είναι υποχρεωτικό",
@@ -242,8 +242,19 @@
         },
         "pageLength": 100
     }).columnFilter();
+
+    $('.stats-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false
+    });
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');
+    $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
+    $('select[name=sites-table_length]').on('change',function(){
+        $('.cloned-block').remove();
+        $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
+    });
 
 })(jQuery);
