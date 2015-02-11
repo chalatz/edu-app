@@ -157,6 +157,10 @@ img {
     background: $red;
 }
 
+.light-blue {
+    background: lighten($blue, 15%);
+}
+
 .blue-font {
     color: $blue;
 }

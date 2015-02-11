@@ -50,8 +50,11 @@ Route::resource('grader', 'GradersController');
 # Admin
 Route::get('/admin/home/', ['before' => 'auth|admin', 'as' => 'admin.home', 'uses' => 'AdminController@index']);
 Route::get('/admin/sites/', ['before' => 'auth|admin', 'as' => 'admin.sites', 'uses' => 'AdminController@sites']);
+Route::get('/admin/sites/print', ['before' => 'auth|admin', 'as' => 'admin.sites_print', 'uses' => 'AdminController@sites_print']);
 Route::get('/admin/graders/', ['before' => 'auth|admin', 'as' => 'admin.graders', 'uses' => 'AdminController@graders']);
+Route::get('/admin/graders/print', ['before' => 'auth|admin', 'as' => 'admin.graders_print', 'uses' => 'AdminController@graders_print']);
 Route::get('/admin/graders_b/', ['before' => 'auth|admin', 'as' => 'admin.graders_b', 'uses' => 'AdminController@graders_b']);
+Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.graders_b_print', 'uses' => 'AdminController@graders_b_print']);
 
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
