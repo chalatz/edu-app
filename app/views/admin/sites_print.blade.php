@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
-@section('content')
+@section('content')   
 
     <?php $languages = [
         '1' => 'Ελληνικά',
@@ -10,14 +10,7 @@
         '5' => 'Ιταλικά',
     ]; ?>
 
-	<h1>Υποψήφιοι Ιστότοποι</h1>
-
-    <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
-        {{ link_to('/admin/sites/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-    </p>
-
-    <table id="sites-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
+    <table class="pure-table pure-table-horizontal pure-table-striped">
     
         <thead>
             <tr>
@@ -40,9 +33,6 @@
                 <th>Τηλέφωνα</th>
                 <th>Αυτοπροτείνεται</th>
                 <th>Δημιουργήθηκε</th>
-                @if(Auth::user()->hasRole('ninja'))
-                    <th>Μεταμφίεση</th>
-                @endif
             </tr>
         </thead>
         
@@ -69,37 +59,10 @@
                     <td>{{ $site->phone }}</td>
                     <td>{{ $site->proposes_himself }}</td>
                     <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
-                    @if(Auth::user()->hasRole('ninja'))
-                        <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
-                    @endif
                 </tr>
 
             @endforeach
         </tbody>
-        
-        <tfoot>
-            <tr>
-                <th>Επωνυμία</th>
-                <th>URL</th>
-                <th>Κατηγορία</th>
-                <th>Δημιουργός/οί</th>
-                <th>Νομικά υπεύθυνος</th>
-                <th>Ιδιότητα Νομικά υπεύθυνου</th>
-                <th>Περιφέρεια</th>
-                <th>Χώρα</th>
-                <th>Γλώσσα</th>
-                <th>Προσωπικά Δεδομένα</th>
-                <th>Έχει λάβει άδεια;</th>
-                <th>Περιορισμένη Πρόσβαση</th>
-                <th>Λεπτομέρειες Εισόδου</th>
-                <th>Επώνυμο Υπεύθυνου επικοινωνίας</th>
-                <th>Όνομα Υπεύθυνου επικοινωνίας</th>
-                <th>Email Επικοινωνίας</th>
-                <th>Τηλέφωνα</th>
-                <th>Αυτοπροτείνεται</th>
-                <th>Δημιουργήθηκε</th>
-            </tr>
-        </tfoot>
 
     </table>
 

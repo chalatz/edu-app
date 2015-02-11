@@ -5,6 +5,11 @@
 
 	<h1>Αξιολογητές Β</h1>
 
+    <p style="float: left" class="little-block light-blue white-font">
+        <i class="fa fa-table"></i> 
+        {{ link_to('/admin/graders_b/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
+    </p>    
+
     <table id="graders-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     
         <thead>

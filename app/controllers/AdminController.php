@@ -69,7 +69,29 @@ class AdminController extends \BaseController {
         return View::make('admin.stats', compact(['sites', 'cats', 'districts']));
         
     }
+
+    public function sites_print(){
+
+        $sites = Site::all();
+        return View::make('admin.sites_print', compact('sites'));
+        
+    }
+
+    public function graders_print(){
+        
+        $graders = Grader::all();
+
+        return View::make('admin.graders_print', compact('graders'));
+        
+    }    
     
+    public function graders_b_print(){
+        
+        $graders = Grader::all();
+
+        return View::make('admin.graders_b_print', compact('graders'));
+        
+    }     
     
     public function isAdmin(){
         if(!Auth::guest()){

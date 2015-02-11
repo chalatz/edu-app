@@ -1,16 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
-
-	<h1>Αξιολογητές Α</h1>
-
-    <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
-        {{ link_to('/admin/graders/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-    </p>
-
-    <table id="graders-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
+    <table class="pure-table pure-table-horizontal pure-table-striped">
     
         <thead>
             <tr>
@@ -32,9 +24,6 @@
                 <th>Αυτοπροτάθηκε</th>
                 <th>Αποδέχτηκε</th>
                 <th>Δημιουργήθηκε</th>
-                @if(Auth::user()->hasRole('ninja'))
-                    <th>Μεταμφίεση</th>
-                @endif
             </tr>
         </thead>
         
@@ -66,10 +55,7 @@
                         <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }} @endif</td>
                         <td>@if($grader->user->email == $grader->from_who_email) yes @else no @endif</td>
                         <td>{{ $grader->has_agreed }}</td>
-                        <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
-                        @if(Auth::user()->hasRole('ninja'))
-                            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}  </td>
-                        @endif
+                        <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>               
                     </tr>
 
                 @endif
@@ -77,29 +63,6 @@
             @endforeach
         </tbody>
         
-        <tfoot>
-        
-            <th>Eπώνυμο</th>
-            <th>Όνομα</th>
-            <th>Email</th>
-            <th>Ειδικότητα</th>
-            <th>Περιφέρεια</th>
-            <th>Κατηγορίες που επιθυμεί</th>
-            <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
-            <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
-            <th>Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β</th>
-            <th>Ξένες Γλώσσες</th>
-            <th>Άλλες Ξένες Γλώσσες</th>
-            <th>Ιστότοπος που τον πρότεινε</th>
-            <th>Email Ιστότοπου</th>
-            <th>Κατηγορία Ιστότοπου</th>
-            <th>Περιφέρεια Ιστότοπου</th>
-            <th>Αυτοπροτάθηκε</th>
-            <th>Αποδέχτηκε</th>
-            <th>Δημιουργήθηκε</th>    
-        
-        </tfoot>
-
     </table>
 
 @stop
