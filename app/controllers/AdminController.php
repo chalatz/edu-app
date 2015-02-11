@@ -24,6 +24,14 @@ class AdminController extends \BaseController {
         return View::make('admin.graders', compact('graders'));
         
     }
+
+    public function graders_b(){
+        
+        $graders = Grader::all();
+
+        return View::make('admin.graders_b', compact('graders'));
+        
+    }    
     
     public function masquerade($user_id){
 
