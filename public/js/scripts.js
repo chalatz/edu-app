@@ -256,5 +256,9 @@
         $('.cloned-block').remove();
         $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
     });
+    $('select[name=graders-table_length]').on('change',function(){
+        $('.cloned-block').remove();
+        $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
+    });
 
 })(jQuery);
