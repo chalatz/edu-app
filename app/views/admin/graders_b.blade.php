@@ -43,7 +43,7 @@
                             Έχει Εγκριθεί από: <em>{{ User::find($grader->approver)->email }}</em>
                             @endif
                             @if(!isset($grader->approved) || $grader->approved == 'no')
-                                {{ link_to_route('admin.approve_grader_b', 'Εγκρίνω', [$grader->id, Auth::user()->id]) }}
+                                {{ link_to_route('admin.approve_grader_b', 'Εγκρίνω', [$grader->id, Auth::user()->id], ['onclick' => 'return confirm("Είστε σίγουρος;");']) }}
                             @endif
                         </td>
                         <td>{{ $grader->grader_last_name }}</td>
