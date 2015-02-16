@@ -44,6 +44,30 @@ class AdminController extends \BaseController {
         
         return Redirect::home();
     }
+    
+    public function approve($grader_id, $user_id){
+        
+        $user = User::find($user_id);
+        $grader = Grader::find($grader_id);
+        
+        if($user->hasRole('admin')){
+            
+            //-------------- Save current time --------
+            $objDateTime = new DateTime('NOW');
+            
+            $grader->approved_at = $objDateTime;
+            $grader->approver = $user->id;
+            $grader->approved = 'yes';
+            
+            $grader->save();
+            
+            return Redirect::back();
+            
+        } else {
+            return Redirect::home();
+        }
+        
+    }
 
     public function switch_back(){
 
