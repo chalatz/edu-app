@@ -55,6 +55,7 @@ Route::get('/admin/graders/', ['before' => 'auth|admin', 'as' => 'admin.graders'
 Route::get('/admin/graders/print', ['before' => 'auth|admin', 'as' => 'admin.graders_print', 'uses' => 'AdminController@graders_print']);
 Route::get('/admin/graders_b/', ['before' => 'auth|admin', 'as' => 'admin.graders_b', 'uses' => 'AdminController@graders_b']);
 Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.graders_b_print', 'uses' => 'AdminController@graders_b_print']);
+Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|admin', 'as' => 'admin.approve_grader_b', 'uses' => 'AdminController@approve']);
 
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);

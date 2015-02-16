@@ -14,6 +14,7 @@
     
         <thead>
             <tr>
+                <th>Έγκριση</th>
                 <th>Eπώνυμο</th>
                 <th>Όνομα</th>
                 <th>Email</th>
@@ -37,6 +38,14 @@
                 @if($grader->user->hasRole('grader_b'))
 
                     <tr>
+                        <td>
+                            @if($grader->approved && $grader->approved == 'yes')
+                            Έχει Εγκριθεί από: <em>{{ User::find($grader->approver)->email }}</em>
+                            @endif
+                            @if(!isset($grader->approved) || $grader->approved == 'no')
+                                {{ link_to_route('admin.approve_grader_b', 'Εγκρίνω', [$grader->id, Auth::user()->id]) }}
+                            @endif
+                        </td>
                         <td>{{ $grader->grader_last_name }}</td>
                         <td>{{ $grader->grader_name }}</td>
                         <td>{{ $grader->user->email }}</td>
@@ -64,7 +73,7 @@
         </tbody>
         
         <tfoot>
-        
+            <th></th>
             <th>Eπώνυμο</th>
             <th>Όνομα</th>
             <th>Email</th>
