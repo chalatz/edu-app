@@ -6,6 +6,9 @@
 <meta name="description" content="Πληροφοριακό σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.">
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('img/favicon.ico') }}" />
     
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>    
+    
 <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
 
 <!--[if lte IE 8]>
