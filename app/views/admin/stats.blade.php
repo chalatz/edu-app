@@ -28,25 +28,33 @@
         
         <tbody>
             @foreach($cats as $cat)
+                <?php $cat_count = Site::where('cat_id', '=', $cat->id)->count(); ?>
+                <?php $cat_count_100 = ($cat_count / $cats_total) * 100; ?>    
+            
                 <tr>
                     <td>{{ $cat->category_name }}</td>
-                    <td>{{ Site::where('cat_id', '=', $cat->id)->count() }}</td>
+                    <td>{{ $cat_count }} ({{ round($cat_count_100, 2) }}%)</td>
                 </tr>
-                <?php $cats_count += Site::where('cat_id', '=', $cat->id)->count(); ?>
             
                 <script>
                     var cat_name = "{{ $cat->category_name }}",
-                        cat_count = {{ Site::where('cat_id', '=', $cat->id)->count() }};
+                        cat_count_100 = {{ $cat_count_100 }};
                     cat_names.push(cat_name);
-                    cat_counts.push(cat_count);
+                    cat_counts.push(cat_count_100);
                 </script>
             @endforeach
         </tbody>
     </table>
 
-    <p>Σύνολο: <strong>{{ $cats_count }}</strong></p>
+    <p>Σύνολο: <strong>{{ $cats_total }}</strong></p>
 
     <div class="ct-chart ct-golden-section cats-bars-chart"></div>
+
+    <div class="pie-legend">
+        @foreach($cats as $cat)
+            <div class="pie-legend-item">{{ $cat->category_name }}</div>
+        @endforeach
+    </div>
 
     <hr>
 
@@ -65,7 +73,9 @@
                     <td>{{ $district->district_name }}</td>
                     <td>{{ Site::where('district_id', '=', $district->id)->count() }}</td>
                 </tr>
-                <?php $districts_count += Site::where('district_id', '=', $district->id)->count(); ?>
+                <?php 
+                    $districts_count += Site::where('district_id', '=', $district->id)->count();
+                ?>
             
                 <script>
                     var district_name = "{{ $district->district_name }}",
@@ -85,11 +95,10 @@
 
     <script>
         var cats_data = {
-            labels: cat_names,
-            series: [
-            cat_counts
-          ]
+            series: cat_counts
         };
+        
+        var sum = function(a, b) { return a + b };
         
         var districts_data = {
             labels: district_names,
@@ -100,6 +109,15 @@
 
         var options = {
           seriesBarDistance: 15
+        };
+        
+        var bar_options = {
+          seriesBarDistance: 10,
+          reverseData: true,
+          horizontalBars: true,
+          axisY: {
+            offset: 70
+          }
         };
 
         var responsiveOptions = [
@@ -121,8 +139,15 @@
           }]
         ];
 
-        new Chartist.Bar('.cats-bars-chart', cats_data, options, responsiveOptions);
-        new Chartist.Bar('.districts-bars-chart', districts_data, options, responsiveOptions);
+        //new Chartist.Pie('.cats-bars-chart', cats_data, options, responsiveOptions);
+        
+        new Chartist.Pie('.cats-bars-chart', cats_data, {
+          labelInterpolationFnc: function(value) {
+            return Math.round(value / cats_data.series.reduce(sum) * 100) + '%';
+          }
+        });
+        
+        new Chartist.Bar('.districts-bars-chart', districts_data, bar_options, responsiveOptions);
         
     </script>
 

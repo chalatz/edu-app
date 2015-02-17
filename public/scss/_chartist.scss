@@ -1,0 +1,53 @@
+$pie-colors: (#d70206, #F05B4F, #F4C63D, #453D3F) !default;
+
+.pie-legend {
+
+	font-size: 1em;
+	line-height: 2em;
+
+	.pie-legend-item {
+		&::before {
+			content: "";
+			width: 2em;
+			font-size: 1em;
+			height: 1em;
+			line-height: 2em;
+			font-size: 1em;
+			display: inline-block;
+			margin-right: .3em;
+		}
+
+		&:nth-child(1) {
+			&::before {
+				background: #d70206;
+			}
+		}
+		&:nth-child(2) {
+			&::before {
+				background: #f05b4f;
+			}
+		}
+		&:nth-child(3) {
+			&::before {
+				background: #f4c63d;
+			}
+		}
+		&:nth-child(4) {
+			&::before {
+				background: #d17905;
+			}
+		}
+		&:nth-child(5) {
+			&::before {
+				background: #453d3f;
+			}
+		}
+		&:nth-child(6) {
+			&::before {
+				background: #59922b;
+			}
+		}
+		
+	}
+
+}
