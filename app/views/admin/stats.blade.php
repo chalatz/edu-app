@@ -29,7 +29,6 @@
         <tbody>
             @foreach($cats as $cat)
                 <?php $cat_count = Site::where('cat_id', '=', $cat->id)->count(); ?>
-                <?php $cats_count += Site::where('cat_id', '=', $cat->id)->count(); ?>
                 <?php $cat_count_100 = ($cat_count / $cats_total) * 100; ?>    
             
                 <tr>
@@ -47,9 +46,15 @@
         </tbody>
     </table>
 
-    <p>Σύνολο: <strong>{{ $cats_count }}</strong></p>
+    <p>Σύνολο: <strong>{{ $cats_total }}</strong></p>
 
     <div class="ct-chart ct-golden-section cats-bars-chart"></div>
+
+    <div class="pie-legend">
+        @foreach($cats as $cat)
+            <div class="pie-legend-item">{{ $cat->category_name }}</div>
+        @endforeach
+    </div>
 
     <hr>
 
