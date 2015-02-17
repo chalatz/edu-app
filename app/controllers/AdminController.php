@@ -90,7 +90,13 @@ class AdminController extends \BaseController {
         $cats = Category::all();
         $districts = District::all();
         
-        return View::make('admin.stats', compact(['sites', 'cats', 'districts']));
+        $cats_total = 0;
+
+        foreach($cats as $cat){
+            $cats_total += Site::where('cat_id', '=', $cat->id)->count(); 
+        }
+        
+        return View::make('admin.stats', compact(['sites', 'cats', 'districts', 'cats_total']));
         
     }
 
