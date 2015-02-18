@@ -14,6 +14,9 @@
     
         <thead>
             <tr>
+                @if(Auth::user()->hasRole('ninja'))
+                    <th>Μεταμφίεση</th>
+                @endif
                 <th>Έγκριση</th>
                 <th>Eπώνυμο</th>
                 <th>Όνομα</th>
@@ -38,9 +41,12 @@
                 @if($grader->user->hasRole('grader_b'))
 
                     <tr>
+                        @if(Auth::user()->hasRole('ninja'))
+                            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}  </td>
+                        @endif
                         <td>
                             @if($grader->approved && $grader->approved == 'yes')
-                            Έχει Εγκριθεί από: <em>{{ User::find($grader->approver)->email }}</em>
+                                Έχει Εγκριθεί από: <em>{{ User::find($grader->approver)->email }}</em>
                             @endif
                             @if(!isset($grader->approved) || $grader->approved == 'no')
                                 {{ link_to_route('admin.approve_grader_b', 'Εγκρίνω', [$grader->id, Auth::user()->id], ['onclick' => 'return confirm("Είστε σίγουρος;");']) }}
@@ -73,6 +79,9 @@
         </tbody>
         
         <tfoot>
+             @if(Auth::user()->hasRole('ninja'))
+                <th></th>
+            @endif
             <th></th>
             <th>Eπώνυμο</th>
             <th>Όνομα</th>
