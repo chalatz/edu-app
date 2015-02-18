@@ -23,6 +23,7 @@
             <tr>
                 <th>Κατηγορία</th>
                 <th>Πλήθος Υποψ.</th>
+                <th>Πλήθος Υποψ. %</th>
             </tr>
         </thead>
         
@@ -33,7 +34,8 @@
             
                 <tr>
                     <td>{{ $cat->category_name }}</td>
-                    <td>{{ $cat_count }} ({{ round($cat_count_100, 2) }}%)</td>
+                    <td>{{ $cat_count }} </td>
+                    <td>{{ round($cat_count_100, 2) }}</td>
                 </tr>
             
                 <script>
@@ -48,12 +50,17 @@
 
     <p>Σύνολο: <strong>{{ $cats_total }}</strong></p>
 
-    <div class="ct-chart ct-golden-section cats-bars-chart"></div>
-
-    <div class="pie-legend">
-        @foreach($cats as $cat)
-            <div class="pie-legend-item">{{ $cat->category_name }}</div>
-        @endforeach
+    <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-2-3">
+            <div class="ct-chart ct-golden-section cats-bars-chart"></div>            
+        </div>
+        <div class="pure-u-1 pure-u-md-1-3">
+          <div class="pie-legend">
+            @foreach($cats as $cat)
+                <div class="pie-legend-item">{{ $cat->category_name }}</div>
+            @endforeach
+        </div>  
+        </div>    
     </div>
 
     <hr>
