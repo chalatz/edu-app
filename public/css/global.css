@@ -3508,12 +3508,19 @@ Example markup
 </div>
 
 */
+.semi-transparent {
+  opacity: .5; }
+
 .ct-chart-pie .ct-label {
   fill: #fff;
   display: block;
   width: 100%;
   height: 100%;
   font-size: 1.2em; }
+.ct-chart-pie .ct-series {
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear; }
 
 .pie-legend {
   font-size: 1em;

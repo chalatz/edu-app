@@ -187,6 +187,36 @@
 
     };
     
+    var funky_charts = function(){
+        var pie_pieces = [],
+            rows = [],
+            assoc = [];
+        
+        $('.ct-chart-pie .ct-series').each(function(index){
+            pie_pieces[index] = '.' + $(this).attr('class').replace(' ', '.');
+        });
+        pie_pieces.reverse();
+        
+        $('.stats-cats-row').each(function(index){
+           rows[index] = $(this).attr('id');
+        });
+        
+        $('.stats-cats-row').on('mouseover', function(){
+            var $this = $(this),
+                row_id = $this.attr('id'),
+                the_index = rows.indexOf(row_id);
+            
+            $(pie_pieces[the_index]).siblings().css({'opacity':'.2'});
+            
+        });
+        
+        $('.stats-cats-row').on('mouseleave', function(){
+            $('.ct-series').css({'opacity':'1'});
+        });
+    };
+    
+    funky_charts();
+    
     confirm_form();
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
