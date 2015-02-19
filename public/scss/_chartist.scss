@@ -1,6 +1,11 @@
 $pie-colors: (#d70206, #F05B4F, #F4C63D, #453D3F) !default;
 
+.semi-transparent {
+    opacity: .5;
+}
+
 .ct-chart-pie {
+    
 	.ct-label {
 		fill: #fff;
 		display: block;
@@ -8,6 +13,11 @@ $pie-colors: (#d70206, #F05B4F, #F4C63D, #453D3F) !default;
 		height: 100%;
 		font-size: 1.2em;
 	}
+    
+    .ct-series {
+        @include transition(all .2s linear);
+    }
+    
 }
 
 .pie-legend {

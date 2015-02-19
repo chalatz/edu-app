@@ -18,7 +18,7 @@
     <hr>
 
     <h2>Κατηγορίες</h2>
-    <table class="pure-table pure-table-striped stats-table">
+    <table class="pure-table pure-table-striped stats-table cats-stats-table">
         <thead>
             <tr>
                 <th>Κατηγορία</th>
@@ -32,7 +32,7 @@
                 <?php $cat_count = Site::where('cat_id', '=', $cat->id)->count(); ?>
                 <?php $cat_count_100 = ($cat_count / $cats_total) * 100; ?>    
             
-                <tr>
+                <tr class="stats-cats-row" id="stats-cats-row-{{$cat->id}}">
                     <td>{{ $cat->category_name }}</td>
                     <td>{{ $cat_count }} </td>
                     <td>{{ round($cat_count_100, 2) }}</td>
