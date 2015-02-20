@@ -57,7 +57,7 @@
         <div class="pure-u-1 pure-u-md-1-3">
           <div class="pie-legend">
             @foreach($cats as $cat)
-                <div class="pie-legend-item">{{ $cat->category_name }}</div>
+                <div class="pie-legend-item" id="pie-legend-item-{{$cat->id}}">{{ $cat->category_name }}</div>
             @endforeach
         </div>  
         </div>    

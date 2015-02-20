@@ -190,7 +190,7 @@
     var funky_charts = function(){
         var pie_pieces = [],
             rows = [],
-            assoc = [];
+            legend_items = [];
         
         $('.ct-chart-pie .ct-series').each(function(index){
             pie_pieces[index] = '.' + $(this).attr('class').replace(' ', '.');
@@ -199,6 +199,22 @@
         
         $('.stats-cats-row').each(function(index){
            rows[index] = $(this).attr('id');
+        });
+        
+        $('.pie-legend-item').each(function(index){
+            legend_items[index] = $(this).attr('id');
+        });
+        
+        $('.pie-legend-item').on('mouseover', function(){
+            var $this = $(this),
+                legend_item_id = $this.attr('id'),
+                the_index = legend_items.indexOf(legend_item_id);
+            
+            $(pie_pieces[the_index]).siblings().css({'opacity':'.2'});
+        });
+        
+        $('.pie-legend-item').on('mouseleave', function(){
+            $('.ct-series').css({'opacity':'1'});
         });
         
         $('.stats-cats-row').on('mouseover', function(){
@@ -213,9 +229,9 @@
         $('.stats-cats-row').on('mouseleave', function(){
             $('.ct-series').css({'opacity':'1'});
         });
+        
+        
     };
-    
-    funky_charts();
     
     confirm_form();
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
@@ -289,6 +305,10 @@
     $('select[name=graders-table_length]').on('change',function(){
         $('.cloned-block').remove();
         $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
+    });
+    
+    $( window ).load(function() {
+        funky_charts();
     });
 
 })(jQuery);
