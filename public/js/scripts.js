@@ -210,7 +210,7 @@
                 legend_item_id = $this.attr('id'),
                 the_index = legend_items.indexOf(legend_item_id);
             
-            $(pie_pieces[the_index]).siblings().css({'opacity':'.2'});
+            $(pie_pieces[the_index]).siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
         });
         
         $('.pie-legend-item').on('mouseleave', function(){
@@ -222,7 +222,7 @@
                 row_id = $this.attr('id'),
                 the_index = rows.indexOf(row_id);
             
-            $(pie_pieces[the_index]).siblings().css({'opacity':'.2'});
+            $(pie_pieces[the_index]).siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
             
         });
         
