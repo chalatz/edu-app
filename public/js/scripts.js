@@ -248,6 +248,7 @@
     
     // Data tables
     $('#sites-table').dataTable({
+        "dom": 'lfriptip',
         "language": {
             "sProcessing":   "Επεξεργασία...",
             "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
@@ -269,6 +270,7 @@
     }).columnFilter();
     
     $('#graders-table').dataTable({
+        "dom": 'lfriptip',
         "language": {
             "sProcessing":   "Επεξεργασία...",
             "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
@@ -297,15 +299,6 @@
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');
-    $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
-    $('select[name=sites-table_length]').on('change',function(){
-        $('.cloned-block').remove();
-        $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
-    });
-    $('select[name=graders-table_length]').on('change',function(){
-        $('.cloned-block').remove();
-        $('.dataTables_info').clone().insertBefore($('.admin-table')).addClass('block cloned-block');
-    });
     
     $( window ).load(function() {
         funky_charts();
