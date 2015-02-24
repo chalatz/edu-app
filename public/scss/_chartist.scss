@@ -20,6 +20,14 @@ $pie-colors: (#d70206, #F05B4F, #F4C63D, #453D3F) !default;
     
 }
 
+.districts-bars-chart {
+    .ct-labels {
+        .ct-label {
+            color: #000000;
+        }
+    }
+}
+
 .pie-legend {
 
 	font-size: 1em;

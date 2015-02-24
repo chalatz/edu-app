@@ -3522,6 +3522,9 @@ Example markup
   -moz-transition: all 0.2s linear;
   transition: all 0.2s linear; }
 
+.districts-bars-chart .ct-labels .ct-label {
+  color: #000000; }
+
 .pie-legend {
   font-size: 1em;
   line-height: 2em; }
