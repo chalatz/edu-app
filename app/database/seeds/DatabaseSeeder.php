@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CountiesTableSeeder');
 		$this->call('SpecialtiesTableSeeder');
 		$this->call('CountriesTableSeeder');
+        $this->call('BetaCriteriaTableSeeder');
+        $this->call('GamaCriteriaTableSeeder');
+        $this->call('DeltaCriteriaTableSeeder');
+        $this->call('EpsilonCriteriaTableSeeder');
+        $this->call('StCriteriaTableSeeder');
 	}
 
 }
