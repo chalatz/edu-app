@@ -41,6 +41,10 @@ class SitesController extends \BaseController {
 	 */
 	public function store()
 	{
+        if(Auth::guest()){
+            return Redirect::home();
+        }
+        
 		$validator = Validator::make($data = Input::all(), Site::$rules, Site::$error_messages);
         
         $input = Input::all();

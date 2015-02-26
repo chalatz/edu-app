@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('BetaCriteriaTableSeeder');
         $this->call('GamaCriteriaTableSeeder');
         $this->call('DeltaCriteriaTableSeeder');
+        $this->call('EpsilonCriteriaTableSeeder');
+        $this->call('StCriteriaTableSeeder');
 	}
 
 }
