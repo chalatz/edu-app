@@ -16,10 +16,10 @@ class CreateEvaluationsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('grader_id');
-			$table->integer('site_id');
+			$table->integer('grader_id')->default(0);
+			$table->integer('site_id')->default(0);
 
-			$table->string('phase', 10);
+			$table->string('phase', 10)->default('a');
 
 			$table->integer('bk1_1')->default(0);
             $table->integer('bk1_2')->default(0);
