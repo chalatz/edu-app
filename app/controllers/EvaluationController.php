@@ -97,7 +97,22 @@ class EvaluationController extends \BaseController {
         
         $evaluation = Evaluation::find($id);
         
-		
+		if(isset($input['bk1'])){
+            $evaluation->bk1 = $input['bk1'];
+        }
+        if(isset($input['bk2'])){
+            $evaluation->bk2 = $input['bk2'];
+        }
+        if(isset($input['bk3'])){
+            $evaluation->bk3 = $input['bk3'];
+        }
+        
+        if(isset($input['gk1'])){
+            $evaluation->gk1 = $input['gk1'];
+        }
+        
+        $evaluation->save();
+        
 	}
 
 	/**
