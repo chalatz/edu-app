@@ -66,11 +66,21 @@ class EvaluationController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($criterion, $user_id){
+	public function edit($user_id, $criterion, $grader_id, $site_id){
         
         if(Auth::user()->id != $user_id){
             return Redirect::home();
         }
+        
+        $user_id = Auth::user()->id;
+		
+        $user = User::find($user_id);
+        
+        $grader = Grader::where('user_id', '=', $user_id)->first();
+        
+        $evaluation = Evaluation::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->first();
+        
+        return View::make('evaluations.edit', compact('evaluation', 'criterion'));
         
 	}
 
@@ -81,9 +91,13 @@ class EvaluationController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update($id) {
+		
+		$input = Input::all();
+        
+        $evaluation = Evaluation::find($id);
+        
+		
 	}
 
 	/**
