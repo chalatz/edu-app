@@ -42,21 +42,36 @@ class EvaluationController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
+	public function show(){
+        
+        $user_id = Auth::user()->id;
+		
+        $user = User::find($user_id);
+        
+        $grader = Grader::where('user_id', '=', $user_id)->first();
+        
+        $grader_id = $grader->id;
+        
+        $evaluations = Evaluation::where('grader_id', '=', $grader_id)->get();
+                
+        return View::make('evaluations.show', compact('user', 'grader', 'evaluations'));
+        
 	}
+    
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /evaluation/{id}/edit
+	 * GET /evaluate/{criterion}/user/{user_id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		//
+	public function edit($criterion, $user_id){
+        
+        if(Auth::user()->id != $user_id){
+            return Redirect::home();
+        }
+        
 	}
 
 	/**
@@ -82,5 +97,6 @@ class EvaluationController extends \BaseController {
 	{
 		//
 	}
+    
 
 }
