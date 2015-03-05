@@ -1,6 +1,6 @@
-<?php $criteria = BetaCriterion::all()->first(); ?>
+<?php $criteria = StCriterion::all()->first(); ?>
 
-<h3>Β: {{ $criteria->main_title }}</h3>
+<h3>ΣΤ: {{ $criteria->main_title }}</h3>
 <h4>Ποσοστό επί του συνόλου: {{ $criteria->weight }}%</h4>
 
 <div class="criterion-wrapper">
@@ -18,18 +18,18 @@
         </thead>
         <tbody>
             <tr>
-                <td><strong>Βκ1</strong></td>
-                <td>{{ $criteria->bk1_title }}</td>
-                <td>{{ $criteria->bk1_1_title }}</td>
-                <td>{{ $criteria->bk1_2_title }}</td>
-                <td>{{ $criteria->bk1_3_title }}</td>
-                <td>{{ $criteria->bk1_4_title }}</td>
-                <td>{{ $criteria->bk1_5_title }}</td>
+                <td><strong>ΣΤκ1</strong></td>
+                <td>{{ $criteria->stk1_title }}</td>
+                <td>{{ $criteria->stk1_1_title }}</td>
+                <td>{{ $criteria->stk1_2_title }}</td>
+                <td>{{ $criteria->stk1_3_title }}</td>
+                <td>{{ $criteria->stk1_4_title }}</td>
+                <td>{{ $criteria->stk1_5_title }}</td>
             </tr>
         </tbody>
     </table>
-    <label for="bk1">Βκ1 ({{ $criteria->bk1_weight }}%)</label>
-        {{ Form::select('bk1',[
+    <label for="stk1">ΣΤκ1 ({{ $criteria->stk1_weight }}%)</label>
+        {{ Form::select('stk1',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
             2 => '2',
@@ -37,7 +37,7 @@
             4 => '4',
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
-        <p class="error-message">{{ $errors->first('bk1') }}</p>
+        <p class="error-message">{{ $errors->first('stk1') }}</p>
 </div>
 
 <div class="criterion-wrapper">
@@ -55,18 +55,18 @@
         </thead>
         <tbody>
             <tr>
-                <td><strong>Βκ2</strong></td>
-                <td>{{ $criteria->bk2_title }}</td>
-                <td>{{ $criteria->bk2_1_title }}</td>
-                <td>{{ $criteria->bk2_2_title }}</td>
-                <td>{{ $criteria->bk2_3_title }}</td>
-                <td>{{ $criteria->bk2_4_title }}</td>
-                <td>{{ $criteria->bk2_5_title }}</td>
+                <td><strong>ΣΤκ2</strong></td>
+                <td>{{ $criteria->stk2_title }}</td>
+                <td>{{ $criteria->stk2_1_title }}</td>
+                <td>{{ $criteria->stk2_2_title }}</td>
+                <td>{{ $criteria->stk2_3_title }}</td>
+                <td>{{ $criteria->stk2_4_title }}</td>
+                <td>{{ $criteria->stk2_5_title }}</td>
             </tr>
         </tbody>
     </table>
-    <label for="bk2">Βκ2 ({{ $criteria->bk2_weight }}%)</label>
-        {{ Form::select('bk2',[
+    <label for="stk2">ΣΤκ2 ({{ $criteria->stk2_weight }}%)</label>
+        {{ Form::select('stk2',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
             2 => '2',
@@ -74,7 +74,7 @@
             4 => '4',
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
-        <p class="error-message">{{ $errors->first('bk2') }}</p>
+        <p class="error-message">{{ $errors->first('stk2') }}</p>
 </div>   
 
 <div class="criterion-wrapper">
@@ -92,18 +92,18 @@
         </thead>
         <tbody>
             <tr>
-                <td><strong>Βκ3</strong></td>
-                <td>{{ $criteria->bk3_title }}</td>
-                <td>{{ $criteria->bk3_1_title }}</td>
-                <td>{{ $criteria->bk3_2_title }}</td>
-                <td>{{ $criteria->bk3_3_title }}</td>
-                <td>{{ $criteria->bk3_4_title }}</td>
-                <td>{{ $criteria->bk3_5_title }}</td>
+                <td><strong>ΣΤκ3</strong></td>
+                <td>{{ $criteria->stk3_title }}</td>
+                <td>{{ $criteria->stk3_1_title }}</td>
+                <td>{{ $criteria->stk3_2_title }}</td>
+                <td>{{ $criteria->stk3_3_title }}</td>
+                <td>{{ $criteria->stk3_4_title }}</td>
+                <td>{{ $criteria->stk3_5_title }}</td>
             </tr>
         </tbody>
     </table>
-    <label for="bk3">Βκ3 ({{ $criteria->bk3_weight }}%)</label>
-        {{ Form::select('bk3',[
+    <label for="stk3">ΣΤκ3 ({{ $criteria->stk3_weight }}%)</label>
+        {{ Form::select('stk3',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
             2 => '2',
@@ -111,6 +111,6 @@
             4 => '4',
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
-        <p class="error-message">{{ $errors->first('bk3') }}</p>
+        <p class="error-message">{{ $errors->first('stk3') }}</p>
 
-</div>    
+</div>

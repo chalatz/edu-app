@@ -97,6 +97,8 @@ class EvaluationController extends \BaseController {
         
         $evaluation = Evaluation::find($id);
         
+        $total_grade = $evaluation->total_grade;
+        
         // ----- Beta Form
         if(isset($input['bk1']) && isset($input['bk2']) && isset($input['bk3'])){
             
@@ -125,6 +127,9 @@ class EvaluationController extends \BaseController {
                                    $input['gk3'] * (20/5) +
                                    $input['gk4'] * (20/5) +
                                    $input['gk5'] * (20/5);
+            
+            $total_grade += $input['gama_grade'] * .3;
+            
         } // Gama Form
         
         // ----- Delta Form
@@ -142,6 +147,9 @@ class EvaluationController extends \BaseController {
                                     $input['dk3'] * (20/5) +
                                     $input['dk4'] * (20/5) +
                                     $input['dk5'] * (20/5);
+            
+            $total_grade += $input['delta_grade'] * .2;
+            
         } // Delta Form
 
         // ----- Epsilon Form
@@ -155,6 +163,9 @@ class EvaluationController extends \BaseController {
 
             $input['epsilon_grade'] = $input['ek1'] * (50/5) + 
                                       $input['ek2'] * (50/5);
+            
+            $total_grade += $input['epsilon_grade'] * .15;
+            
         } // Epsilon Form
 
         // ----- St Form
@@ -167,10 +178,21 @@ class EvaluationController extends \BaseController {
             }
 
             $input['st_grade'] = $input['stk1'] * (28/5) + $input['stk2'] * (32/5) + $input['stk3'] * (40/5);
+            
+            $total_grade += $input['st_grade'] * .2;
 
         } // St Form
         
         $evaluation->fill($input)->save();
+        
+        $beta_grade = $evaluation->beta_grade * .15;
+        $gama_grade = $evaluation->gama_grade * .3;
+        $delta_grade = $evaluation->delta_grade * .2;
+        $epsilon_grade = $evaluation->epsilon_grade * .15;
+        $st_grade = $evaluation->st_grade * .2;
+        
+        $evaluation->total_grade = $beta_grade + $gama_grade + $delta_grade + $epsilon_grade + $st_grade;
+        $evaluation->save();
         
 	}
 
