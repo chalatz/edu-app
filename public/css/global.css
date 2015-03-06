@@ -3778,4 +3778,23 @@ form .label-for-checkbox {
 .four-oh-four {
   text-align: center; }
 
+.evaluation-summaries {
+  margin-bottom: 2em;
+  border: 1px solid #666;
+  padding: 1em; }
+  .evaluation-summaries .site-index {
+    font-size: 2em;
+    background: #F37B1D;
+    color: white;
+    width: 2em;
+    text-align: center;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    margin-bottom: .5em; }
+  .evaluation-summaries .site-info {
+    font-size: 1.2em; }
+  .evaluation-summaries .site-info-label {
+    font-size: 1em; }
+
 /*# sourceMappingURL=global.css.map */

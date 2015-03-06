@@ -1,0 +1,27 @@
+.evaluation-summaries {
+
+	margin-bottom: 2em;
+	border: 1px solid #666;
+	padding: 1em;
+
+	.site-index {
+		font-size: 2em;
+		background: $orange;
+		color: white;
+		width: 2em;
+		text-align: center;
+		height: 2em;
+		line-height: 2em;
+		border-radius: 50%;
+		margin-bottom: .5em;
+	}
+
+	.site-info {
+		font-size: 1.2em;
+	}
+
+	.site-info-label {
+		font-size: 1em;
+	}
+
+}
