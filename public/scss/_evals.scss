@@ -1,8 +1,19 @@
 .evaluation-summaries {
 
 	margin-bottom: 2em;
-	border: 1px solid #666;
+	background: lighten(#666, 50%);
 	padding: 1em;
+
+	.site-index-wrapper {
+		text-align: center;
+		border-bottom: 1px solid #666;
+		margin-bottom: 1em;
+	}
+
+	.site-index,
+	.site-index-text {
+		display: inline-block;
+	}
 
 	.site-index {
 		font-size: 2em;
@@ -16,12 +27,89 @@
 		margin-bottom: .5em;
 	}
 
+	.site-index-text {
+		font-size: 1.7em;
+		margin-left: .5em;
+	}
+
 	.site-info {
 		font-size: 1.2em;
+		padding: .5em;
 	}
 
 	.site-info-label {
 		font-size: 1em;
+	}
+
+	.site-name,
+	.site-url {
+		font-weight: bold;
+		font-size: 1.2em;
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.site-total-grade-wrapper {
+		font-weight: bold;
+		margin: .5em 0;
+	}
+
+	.sites-meter {
+		position: relative;
+		background: $red;
+		padding: .3em .5em;
+		.meter-number {
+			position: relative;
+			z-index: 10;
+			color: white;
+			font-size: 1.1em;
+			text-shadow: 1px 1px 1px #444;
+		}
+		.progress-bar {
+			position: absolute;
+			background: $green;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: 0%;
+		}
+	}
+
+}
+
+.criteria-section {
+
+	.criterion-link-wrapper {
+		margin-bottom: .5em;
+		border-bottom: 1px solid #666;
+		padding: .5em 0;
+	}
+
+	.action-btn {
+		margin: 0;
+	}
+
+	.criterion-link {
+		background: $blue;
+		text-decoration: none;
+		display: block;
+		text-align: center;
+		padding: .5em;
+		color: #fff;
+		font-weight: bold;
+
+		&:hover {
+			background: lighten($blue, 10%);
+		}
+	}
+
+	.criteron-check {
+		width: 50%;
+		padding: .5em;
 	}
 
 }

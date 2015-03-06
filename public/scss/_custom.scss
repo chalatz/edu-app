@@ -205,6 +205,10 @@ img {
     color: darken($red, 15%);
 }
 
+.gray-font {
+    color: #666;
+}
+
 .block-module {
     p {
         padding: 1em;
@@ -259,6 +263,10 @@ img {
     display: block;
     text-align: center;
     font-size: 1.2em;
+}
+
+.info-block {
+    padding: .5em;
 }
 
 .admin-content {
