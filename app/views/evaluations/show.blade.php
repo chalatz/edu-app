@@ -39,19 +39,19 @@
                         <span class="site-info-label">URL:</span>
                         <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
                     </div>
-                    <div class="sites-meter">
-                        <div class="progress-bar" {{$progress_length}}></div>
-                        <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
-                    </div>
                     <div class="site-total-grade-wrapper">
                         @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
-                            <span class="site-total-grade">Βαθμολογία Ιστότοπου:</span>
-                            <span class="site-total-grade">{{ $evaluation->total_grade }}</span>
+                            <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
+                            <span class="site-total-grade">{{ $evaluation->total_grade }}%</span>
                         @else
                             <span class="gray-font">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</span>
                         @endif
                         
                     </div>
+                    <div class="sites-meter">
+                        <div class="progress-bar" {{$progress_length}}></div>
+                        <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
+                    </div>                    
                 </div>
                 
                 <div class="criteria-section">
@@ -61,7 +61,7 @@
                             @if($evaluation->beta_grade > 0)
                                 <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
                             @else
-                                <div class="info-block red white-font">Δεν έχει καταχωρηθεί Βαθμολογία</div>
+                                <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
                             @endif
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             @if($evaluation->gama_grade > 0)
                                 <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
                             @else
-                                <div class="info-block red white-font">Δεν έχει καταχωρηθεί Βαθμολογία</div>
+                                <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
                             @endif
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             @if($evaluation->delta_grade > 0)
                                 <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
                             @else
-                                <div class="info-block red white-font">Δεν έχει καταχωρηθεί Βαθμολογία</div>
+                                <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
                             @endif
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             @if($evaluation->epsilon_grade > 0)
                                 <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
                             @else
-                                <div class="info-block red white-font">Δεν έχει καταχωρηθεί Βαθμολογία</div>
+                                <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
                             @endif
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                             @if($evaluation->st_grade > 0)
                                 <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
                             @else
-                                <div class="info-block red white-font">Δεν έχει καταχωρηθεί Βαθμολογία</div>
+                                <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
                             @endif
                         </div>
                     </div>
