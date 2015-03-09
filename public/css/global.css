@@ -3804,7 +3804,8 @@ form .label-for-checkbox {
     height: 2em;
     line-height: 2em;
     border-radius: 50%;
-    margin-bottom: .5em; }
+    margin-bottom: .5em;
+    text-shadow: 1px 1px 8px #444; }
   .evaluation-summaries .site-index-text {
     font-size: 1.7em;
     margin-left: .5em; }
@@ -3825,7 +3826,16 @@ form .label-for-checkbox {
         text-decoration: underline; }
   .evaluation-summaries .site-total-grade-wrapper {
     font-weight: bold;
-    margin: .5em 0; }
+    margin: .5em 0;
+    line-height: 2.5em; }
+  .evaluation-summaries .site-total-grade {
+    font-size: 1.7em;
+    background: #1f8dd6;
+    font-weight: bold;
+    color: #fff;
+    padding: .3em;
+    border-radius: 50%;
+    text-shadow: 1px 1px 1px #666; }
   .evaluation-summaries .sites-meter {
     position: relative;
     background: #dd514c;
@@ -3863,5 +3873,7 @@ form .label-for-checkbox {
 .criteria-section .criteron-check {
   width: 50%;
   padding: .5em; }
+.criteria-section .info-block {
+  box-shadow: 4px 3px 0px 0px #aaa; }
 
 /*# sourceMappingURL=global.css.map */
