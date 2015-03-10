@@ -3565,6 +3565,15 @@ body {
 .pure-button {
   margin: .5em 0; }
 
+.pure-button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: #42b8dd;
+  /* this is a light blue */ }
+  .pure-button-secondary:hover {
+    color: white; }
+
 form label {
   font-weight: bold; }
 
@@ -3781,6 +3790,9 @@ form .label-for-checkbox {
     content: "";
     display: table; }
 
+.anchor-button {
+  margin-right: 2em; }
+
 .four-oh-four {
   text-align: center; }
 
@@ -3805,7 +3817,7 @@ form .label-for-checkbox {
     line-height: 2em;
     border-radius: 50%;
     margin-bottom: .5em;
-    text-shadow: 1px 1px 8px #444; }
+    text-shadow: 2px 2px 0 #444; }
   .evaluation-summaries .site-index-text {
     font-size: 1.7em;
     margin-left: .5em; }
@@ -3836,23 +3848,28 @@ form .label-for-checkbox {
     padding: .3em;
     border-radius: 50%;
     text-shadow: 1px 1px 1px #666; }
-  .evaluation-summaries .sites-meter {
+
+.sites-meter {
+  position: relative;
+  background: #dd514c;
+  padding: .3em .5em; }
+  .sites-meter .meter-number {
     position: relative;
-    background: #dd514c;
-    padding: .3em .5em; }
-    .evaluation-summaries .sites-meter .meter-number {
-      position: relative;
-      z-index: 10;
-      color: white;
-      font-size: 1.1em;
-      text-shadow: 1px 1px 1px #444; }
-    .evaluation-summaries .sites-meter .progress-bar {
-      position: absolute;
-      background: #5eb95e;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 0%; }
+    z-index: 10;
+    color: white;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 1px #444; }
+  .sites-meter .progress-bar {
+    position: absolute;
+    background: #5eb95e;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0%; }
+
+.big-meter {
+  font-size: 1.5em;
+  padding: .5em; }
 
 .criteria-section .criterion-link-wrapper {
   margin-bottom: .5em;

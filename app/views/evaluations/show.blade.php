@@ -3,9 +3,30 @@
 
 @section('content')
 
-    <?php $site_index = 0; ?>
+    <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
 
     <h1>Οι Αξιολογήσεις Μου</h1>
+
+    <div class="block">
+        <h3>{{ $evaluations_count }} Αναθέσεις</h3>
+        <p>
+            @foreach($evaluations as $evaluation)
+                <?php
+                    $i++;
+                    if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
+                ?>
+                <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+            @endforeach
+        </p>
+        <?php
+            $sites_percent = $sites_meter * 100 / $evaluations_count;
+            $sites_progress_length = 'style="width:'.$sites_percent.'%"';
+        ?>
+        <div class="sites-meter big-meter">
+            <div class="progress-bar" {{$sites_progress_length}}></div>
+            <div class="meter-number">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</div>
+        </div>
+    </div>
 
     @foreach($evaluations as $evaluation)
 
@@ -24,7 +45,7 @@
 
         <div class="evaluation-summaries">
             
-            <div class="evaluation-single-summary">
+            <div class="evaluation-single-summary" id="evaluation-{{$site_index}}">
                 
                 <div class="site-section">
                     <div class="site-index-wrapper">

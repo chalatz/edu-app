@@ -25,7 +25,7 @@
 		line-height: 2em;
 		border-radius: 50%;
 		margin-bottom: .5em;
-        text-shadow: 1px 1px 8px #444;
+        text-shadow: 2px 2px 0 #444;
 	}
 
 	.site-index-text {
@@ -69,28 +69,32 @@
         border-radius: 50%;
         text-shadow: 1px 1px 1px #666;
     }
+}
 
-	.sites-meter {
-		position: relative;
-		background: $red;
-		padding: .3em .5em;
-		.meter-number {
-			position: relative;
-			z-index: 10;
-			color: white;
-			font-size: 1.1em;
-			text-shadow: 1px 1px 1px #444;
-		}
-		.progress-bar {
-			position: absolute;
-			background: $green;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			width: 0%;
-		}
-	}
+.sites-meter {
+    position: relative;
+    background: $red;
+    padding: .3em .5em;
+    .meter-number {
+        position: relative;
+        z-index: 10;
+        color: white;
+        font-size: 1.1em;
+        text-shadow: 1px 1px 1px #444;
+    }
+    .progress-bar {
+        position: absolute;
+        background: $green;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+    }
+}
 
+.big-meter {
+    font-size: 1.5em;
+    padding: .5em;
 }
 
 .criteria-section {
