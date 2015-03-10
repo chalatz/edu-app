@@ -1,74 +1,74 @@
 .evaluation-summaries {
-
+    margin-top: 1em;
 	margin-bottom: 2em;
 	background: lighten(#666, 50%);
 	padding: 1em;
+}
 
-	.site-index-wrapper {
-		text-align: center;
-		border-bottom: 1px solid #666;
-		margin-bottom: 1em;
-	}
+.site-index-wrapper {
+    text-align: center;
+    border-bottom: 1px solid #666;
+    margin-bottom: 1em;
+}
 
-	.site-index,
-	.site-index-text {
-		display: inline-block;
-	}
+.site-index,
+.site-index-text {
+    display: inline-block;
+}
 
-	.site-index {
-		font-size: 2em;
-		background: $orange;
-		color: white;
-		width: 2em;
-		text-align: center;
-		height: 2em;
-		line-height: 2em;
-		border-radius: 50%;
-		margin-bottom: .5em;
-        text-shadow: 2px 2px 0 #444;
-	}
+.site-index {
+    font-size: 2em;
+    background: $orange;
+    color: white;
+    width: 2em;
+    text-align: center;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    margin-bottom: .5em;
+    text-shadow: 2px 2px 0 #444;
+}
 
-	.site-index-text {
-		font-size: 1.7em;
-		margin-left: .5em;
-	}
+.site-index-text {
+    font-size: 1.7em;
+    margin-left: .5em;
+}
 
-	.site-info {
-		font-size: 1.2em;
-		padding: .5em;
-	}
+.site-info {
+    font-size: 1.2em;
+    padding: .5em;
+}
 
-	.site-info-label {
-		font-size: 1em;
-	}
+.site-info-label {
+    font-size: 1em;
+}
 
-	.site-name,
-	.site-url {
-		font-weight: bold;
-		font-size: 1.2em;
-		a {
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	.site-total-grade-wrapper {
-		font-weight: bold;
-		margin: .5em 0;
-        line-height: 2.5em;
-	}
-    
-    .site-total-grade {
-        font-size: 1.7em;
-        background: $blue;
-        font-weight: bold;
-        color: #fff;
-        padding: .3em;
-        border-radius: 50%;
-        text-shadow: 1px 1px 1px #666;
+.site-name,
+.site-url {
+    font-weight: bold;
+    font-size: 1.2em;
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
     }
+}
+
+.site-total-grade-wrapper {
+    font-weight: bold;
+    margin: .5em 0;
+    line-height: 2.5em;
+}
+
+.site-total-grade {
+    font-size: 1.7em;
+    background: $blue;
+    font-weight: bold;
+    color: #fff;
+    padding: .3em;
+    border-radius: 50%;
+    text-shadow: 1px 1px 1px #666;
 }
 
 .sites-meter {
@@ -132,4 +132,14 @@
         box-shadow: 4px 3px 0px 0px #aaa;
     }
 
+}
+
+.dynamic-criterion-grade-wrapper {
+    display: none;
+    font-size: 1.3em;
+}
+
+.dynamic-criterion-grade {
+    font-weight: bold;
+    font-size: 1.5em;
 }

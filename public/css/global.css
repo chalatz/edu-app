@@ -3797,57 +3797,67 @@ form .label-for-checkbox {
   text-align: center; }
 
 .evaluation-summaries {
+  margin-top: 1em;
   margin-bottom: 2em;
   background: #e6e6e6;
   padding: 1em; }
-  .evaluation-summaries .site-index-wrapper {
-    text-align: center;
-    border-bottom: 1px solid #666;
-    margin-bottom: 1em; }
-  .evaluation-summaries .site-index,
-  .evaluation-summaries .site-index-text {
-    display: inline-block; }
-  .evaluation-summaries .site-index {
-    font-size: 2em;
-    background: #F37B1D;
-    color: white;
-    width: 2em;
-    text-align: center;
-    height: 2em;
-    line-height: 2em;
-    border-radius: 50%;
-    margin-bottom: .5em;
-    text-shadow: 2px 2px 0 #444; }
-  .evaluation-summaries .site-index-text {
-    font-size: 1.7em;
-    margin-left: .5em; }
-  .evaluation-summaries .site-info {
-    font-size: 1.2em;
-    padding: .5em; }
-  .evaluation-summaries .site-info-label {
-    font-size: 1em; }
-  .evaluation-summaries .site-name,
-  .evaluation-summaries .site-url {
-    font-weight: bold;
-    font-size: 1.2em; }
-    .evaluation-summaries .site-name a,
-    .evaluation-summaries .site-url a {
-      text-decoration: none; }
-      .evaluation-summaries .site-name a:hover,
-      .evaluation-summaries .site-url a:hover {
-        text-decoration: underline; }
-  .evaluation-summaries .site-total-grade-wrapper {
-    font-weight: bold;
-    margin: .5em 0;
-    line-height: 2.5em; }
-  .evaluation-summaries .site-total-grade {
-    font-size: 1.7em;
-    background: #1f8dd6;
-    font-weight: bold;
-    color: #fff;
-    padding: .3em;
-    border-radius: 50%;
-    text-shadow: 1px 1px 1px #666; }
+
+.site-index-wrapper {
+  text-align: center;
+  border-bottom: 1px solid #666;
+  margin-bottom: 1em; }
+
+.site-index,
+.site-index-text {
+  display: inline-block; }
+
+.site-index {
+  font-size: 2em;
+  background: #F37B1D;
+  color: white;
+  width: 2em;
+  text-align: center;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 50%;
+  margin-bottom: .5em;
+  text-shadow: 2px 2px 0 #444; }
+
+.site-index-text {
+  font-size: 1.7em;
+  margin-left: .5em; }
+
+.site-info {
+  font-size: 1.2em;
+  padding: .5em; }
+
+.site-info-label {
+  font-size: 1em; }
+
+.site-name,
+.site-url {
+  font-weight: bold;
+  font-size: 1.2em; }
+  .site-name a,
+  .site-url a {
+    text-decoration: none; }
+    .site-name a:hover,
+    .site-url a:hover {
+      text-decoration: underline; }
+
+.site-total-grade-wrapper {
+  font-weight: bold;
+  margin: .5em 0;
+  line-height: 2.5em; }
+
+.site-total-grade {
+  font-size: 1.7em;
+  background: #1f8dd6;
+  font-weight: bold;
+  color: #fff;
+  padding: .3em;
+  border-radius: 50%;
+  text-shadow: 1px 1px 1px #666; }
 
 .sites-meter {
   position: relative;
@@ -3892,5 +3902,13 @@ form .label-for-checkbox {
   padding: .5em; }
 .criteria-section .info-block {
   box-shadow: 4px 3px 0px 0px #aaa; }
+
+.dynamic-criterion-grade-wrapper {
+  display: none;
+  font-size: 1.3em; }
+
+.dynamic-criterion-grade {
+  font-weight: bold;
+  font-size: 1.5em; }
 
 /*# sourceMappingURL=global.css.map */

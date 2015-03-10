@@ -233,6 +233,37 @@
         
     };
     
+    var dynamic_grade = function(){
+        
+        var wrapper = $('.dynamic-criterion-grade-wrapper'),
+            grade = $('.dynamic-criterion-grade'),
+            grade_select = $('.criterion-wrapper select'),
+            total_grade = 0,
+            arr = [];
+        
+        wrapper.show();
+        grade.text('0%');
+        
+        grade_select.on('change', function(){
+            var $this = $(this),
+                the_name = $this.attr('name'),
+                the_label = $('label[for=' +the_name+ ']'),
+                the_label_text = the_label.text(),
+                the_value = $this.val(),
+                the_number = the_label_text.substring(the_label_text.length-4, the_label_text.length-2);
+            
+            if(the_value == ''){
+                the_value = 0;
+            }
+            
+            arr[the_label_text] = the_value * the_number;
+            
+            total_grade += the_value * the_number;
+            
+        });
+        
+    };
+    
     confirm_form();
     depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
     depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
@@ -245,6 +276,8 @@
     checkbox_toggle_visibility($('[name=self_proposed]'), $('#why_self_proposed_wrapper'));
     
     propose_myself();
+    
+    dynamic_grade();
     
     // Data tables
     $('#sites-table').dataTable({
