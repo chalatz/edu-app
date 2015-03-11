@@ -179,3 +179,29 @@ Route::get('optgroup', function(){
 // Route::get('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
 // Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@logmein']);
 // Route::resource('users', 'UsersController');
+
+Route::get('panormighty', function(){
+    
+    global $sites, $graders, $l, $gIndex, $sIndex;
+    
+    $graders = DB::table('graders')
+             ->join('grader_site', 'grader_site.grader_id', '=', 'graders.id')
+             ->select('grader_site.grader_id', 'grader_site.site_id', 'graders.cat_id', 
+                      'graders.district_id', 'graders.specialty')
+             ->get();
+    //$sites = Site::all();
+    //
+   
+    
+    $sites = DB::table('sites')
+             ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
+             ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
+             ->get();
+
+
+   
+    
+
+    
+});
+
