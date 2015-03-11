@@ -57,6 +57,11 @@ Route::get('/admin/graders_b/', ['before' => 'auth|admin', 'as' => 'admin.grader
 Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.graders_b_print', 'uses' => 'AdminController@graders_b_print']);
 Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|admin', 'as' => 'admin.approve_grader_b', 'uses' => 'AdminController@approve']);
 
+# Evaluation Forms
+Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
+Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
+Route::resource('evaluation', 'EvaluationController');
+
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
 
@@ -219,6 +224,25 @@ Route::get('panormighty', function(){
     //file_put_contents('/home/codio/workspace/the_sites.inc', serialize($sites));
 
     //var_dump($graders);
+    
+});
+
+Route::get('assign', function(){
+    
+    $assignments = Assignment::all();
+    
+    foreach($assignments as $assignment){
+//         $evaluation = new Evaluation;
+//         $evaluation->site_id = $assignment->site_id;
+//         $evaluation->grader_id = $assignment->grader1_id;
+//         $evaluation->save();
+
+//         $evaluation = new Evaluation;
+//         $evaluation->site_id = $assignment->site_id;
+//         $evaluation->grader_id = $assignment->grader2_id;
+//         $evaluation->save();
+        
+    }
     
 });
 
