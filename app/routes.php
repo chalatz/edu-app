@@ -57,11 +57,6 @@ Route::get('/admin/graders_b/', ['before' => 'auth|admin', 'as' => 'admin.grader
 Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.graders_b_print', 'uses' => 'AdminController@graders_b_print']);
 Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|admin', 'as' => 'admin.approve_grader_b', 'uses' => 'AdminController@approve']);
 
-# Evaluation Forms
-Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
-Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
-Route::resource('evaluation', 'EvaluationController');
-
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
 
@@ -180,10 +175,12 @@ Route::get('optgroup', function(){
 // Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@logmein']);
 // Route::resource('users', 'UsersController');
 
+// $sql = "SELECT `id`,`grader_district_id`,`cat_id` FROM `graders`";
+// 
+// SELECT grader_site.grader_id, sites.`id` as site_id, sites.`cat_id`,sites.`district_id` FROM `sites` inner join grader_site on grader_site.site_id = sites.id
+
 Route::get('panormighty', function(){
-    
     global $sites, $graders, $l, $gIndex, $sIndex;
-    
     $graders = DB::table('graders')
              ->join('grader_site', 'grader_site.grader_id', '=', 'graders.id')
              ->select('grader_site.grader_id', 'grader_site.site_id', 'graders.cat_id', 
@@ -191,17 +188,47 @@ Route::get('panormighty', function(){
              ->get();
     //$sites = Site::all();
     //
-   
     
     $sites = DB::table('sites')
              ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
              ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
              ->get();
-
-
-   
     
+    
+    $s2 = [];
+    $sIndex = [];
+    foreach ($sites as $s) {
+        $s2[$s->id] = ["cat" => $s->cat_id, "district" => $s->district_id,
+                      "grader" => $s->grader_id];        
+        $sIndex[] = $s->id;
+    }
+    $sites = $s2;
+    
+    $g2 = [];
+    $gIndex = [];
+    foreach ($graders as $g) {
+        $g2[$g->grader_id] = ["cat" => $g->cat_id, "district" => $g->district_id,
+                      "site" => $g->site_id, "specialty" => $g->specialty];  
+        $gIndex[] = $g->grader_id;
+    }
+    
+   
+    $graders = $g2;
 
+    //file_put_contents('/home/codio/workspace/the_graders.inc', serialize($graders));
+    //file_put_contents('/home/codio/workspace/the_sites.inc', serialize($sites));
+
+    //var_dump($graders);
     
 });
+
+
+
+
+
+
+
+
+
+
 
