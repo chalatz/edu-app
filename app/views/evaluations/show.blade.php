@@ -128,6 +128,17 @@
                     </div>
                 </div>
                 
+                <div>
+                    {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_comments_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked')) }}
+
+                        {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
+                        {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}
+
+                        {{Form::button('Αποστολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+
+                    {{ Form::close() }}
+                </div>
+                
             </div>
         
         

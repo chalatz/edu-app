@@ -200,6 +200,20 @@ class EvaluationController extends \BaseController {
 		return Redirect::route('grader.evaluate_show');
         
 	}
+    
+    public function do_comments_submit($id) {
+        
+        $input = Input::all();
+        
+        $evaluation = Evaluation::find($id);
+        
+        $evaluation->fill($input)->save();
+        
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Σχολίου.');
+        Session::flash('alert-class', 'flash-success');
+        return Redirect::route('grader.evaluate_show');
+        
+    }
 
 	/**
 	 * Remove the specified resource from storage.

@@ -60,8 +60,8 @@ Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|a
 # Evaluation Forms
 Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
 Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
+Route::put('/comments_submit/{id}', ['as' => 'do_comments_submit', 'uses' => 'EvaluationController@do_comments_submit']);
 Route::resource('evaluation', 'EvaluationController');
-
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
 

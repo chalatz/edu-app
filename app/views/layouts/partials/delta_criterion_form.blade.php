@@ -3,8 +3,7 @@
 <h3>Δ: {{ $criteria->main_title }}</h3>
 <h4>Ποσοστό επί του συνόλου: {{ $criteria->weight }}%</h4>
 
-<div class="criterion-wrapper">
-    
+<div class="criterion-wrapper">    
     <table class="pure-table">
         <thead>
             <tr>
@@ -28,7 +27,7 @@
             </tr>
         </tbody>
     </table>
-    <label for="dk1">Δκ1 ({{ $criteria->dk1_weight }}%)</label>
+    <label for="dk1">Δκ1 ({{ $criteria->dk1_weight }}%) *</label>
         {{ Form::select('dk1',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
@@ -38,10 +37,13 @@
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('dk1') }}</p>
+    
+    {{ Form::label('dk1_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για το Κριτήριο Δκ1') }}
+    {{ Form::textarea('dk1_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για το Κριτήριο.')) }}
+    
 </div>
 
-<div class="criterion-wrapper">
-    
+<div class="criterion-wrapper">    
     <table class="pure-table">
         <thead>
             <tr>
@@ -65,7 +67,7 @@
             </tr>
         </tbody>
     </table>
-    <label for="dk2">Δκ2 ({{ $criteria->dk2_weight }}%)</label>
+    <label for="dk2">Δκ2 ({{ $criteria->dk2_weight }}%) *</label>
         {{ Form::select('dk2',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
@@ -75,10 +77,13 @@
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('dk2') }}</p>
+    
+    {{ Form::label('dk2_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για το Κριτήριο Δκ2') }}
+    {{ Form::textarea('dk2_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για το Κριτήριο.')) }}
+    
 </div>   
 
-<div class="criterion-wrapper">
-    
+<div class="criterion-wrapper">    
     <table class="pure-table">
         <thead>
             <tr>
@@ -102,7 +107,7 @@
             </tr>
         </tbody>
     </table>
-    <label for="dk3">Δκ3 ({{ $criteria->dk3_weight }}%)</label>
+    <label for="dk3">Δκ3 ({{ $criteria->dk3_weight }}%) *</label>
         {{ Form::select('dk3',[
             '' => 'Βαθμολογήστε (1 έως 5)',
             1 => '1',
@@ -112,10 +117,13 @@
             5 => '5',
         ], null, array('class' => 'pure-input-1', 'required')) }}
         <p class="error-message">{{ $errors->first('dk3') }}</p>
+    
+    {{ Form::label('dk3_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για το Κριτήριο Δκ3') }}
+    {{ Form::textarea('dk3_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για το Κριτήριο.')) }}
+    
 </div>
 
-<div class="criterion-wrapper">
-    
+<div class="criterion-wrapper">   
     <table class="pure-table">
         <thead>
             <tr>
@@ -139,7 +147,7 @@
             </tr>
         </tbody>
     </table>
-    <label for="dk4">Δκ4 ({{ $criteria->dk4_weight }}%)</label>
+    <label for="dk4">Δκ4 ({{ $criteria->dk4_weight }}%) *</label>
     {{ Form::select('dk4',[
         '' => 'Βαθμολογήστε (1 έως 5)',
         1 => '1',
@@ -148,11 +156,14 @@
         4 => '4',
         5 => '5',
     ], null, array('class' => 'pure-input-1', 'required')) }}
-    <p class="error-message">{{ $errors->first('dk4') }}</p>  
-    </div>
-
-<div class="criterion-wrapper">
+    <p class="error-message">{{ $errors->first('dk4') }}</p>
     
+    {{ Form::label('dk4_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για το Κριτήριο Δκ4') }}
+    {{ Form::textarea('dk4_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για το Κριτήριο.')) }}
+
+</div>
+
+<div class="criterion-wrapper">    
     <table class="pure-table">
         <thead>
             <tr>
@@ -176,7 +187,7 @@
             </tr>
         </tbody>
     </table>
-    <label for="dk5">Δκ5 ({{ $criteria->dk5_weight }}%)</label>
+    <label for="dk5">Δκ5 ({{ $criteria->dk5_weight }}%) *</label>
     {{ Form::select('dk5',[
         '' => 'Βαθμολογήστε (1 έως 5)',
         1 => '1',
@@ -186,4 +197,13 @@
         5 => '5',
     ], null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('dk5') }}</p>
+    
+    {{ Form::label('dk5_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για το Κριτήριο Δκ5') }}
+    {{ Form::textarea('dk5_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για το Κριτήριο.')) }}
+    
+</div>
+
+<div class="criterion-wrapper">
+    {{ Form::label('delta_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Δ Άξονα') }}
+    {{ Form::textarea('delta_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Άξονα.')) }}
 </div>
