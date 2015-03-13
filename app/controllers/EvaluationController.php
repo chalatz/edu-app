@@ -214,6 +214,26 @@ class EvaluationController extends \BaseController {
         return Redirect::route('grader.evaluate_show');
         
     }
+    
+    public function do_is_educational_submit($id) {
+        
+        $validator = Validator::make($data = Input::all(), Evaluation::$is_educational_rules, Evaluation::$error_messages);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        $input = Input::all();
+        
+        $evaluation = Evaluation::find($id);
+        
+        $evaluation->fill($input)->save();
+        
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Απάντησης.');
+        Session::flash('alert-class', 'flash-success');
+        return Redirect::route('grader.evaluate_show');
+        
+    }    
 
 	/**
 	 * Remove the specified resource from storage.

@@ -15,7 +15,7 @@
 
     <p class="dynamic-criterion-grade-wrapper">Βαθμός: <span class="dynamic-criterion-grade green-font"></span></p>
 
-    {{ Form::model($evaluation, array('method' => 'PATCH','route' => ['evaluation.update', $evaluation->id], 'class' => 'pure-form pure-form-stacked',  'id' => 'confirmMe', 'name' => 'confirmMe')) }}
+    {{ Form::model($evaluation, array('method' => 'PATCH','route' => ['evaluation.update', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
         @include('layouts.partials.' .$criterion. '_criterion_form')
             

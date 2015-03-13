@@ -81,6 +81,55 @@
             }
         });
         
+        $('#confirmAlpha-1').validate({
+            rules: {
+                why_not_educational : {
+                    required: function(){
+                        return $('select.is_educational-1').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not_educational: "Εφόσον έχετε επιλέξει ότι ο ιστότοπος δεν είναι εκπαιδευτικός, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        $('#confirmAlpha-2').validate({
+            rules: {
+                why_not_educational : {
+                    required: function(){
+                        return $('select.is_educational-2').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not_educational: "Εφόσον έχετε επιλέξει ότι ο ιστότοπος δεν είναι εκπαιδευτικός, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        $('#confirmAlpha-3').validate({
+            rules: {
+                why_not_educational : {
+                    required: function(){
+                        return $('select.is_educational-3').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not_educational: "Εφόσον έχετε επιλέξει ότι ο ιστότοπος δεν είναι εκπαιδευτικός, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        $('#confirmAlpha-4').validate({
+            rules: {
+                why_not_educational : {
+                    required: function(){
+                        return $('select.is_educational-4').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not_educational: "Εφόσον έχετε επιλέξει ότι ο ιστότοπος δεν είναι εκπαιδευτικός, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        
     };
     
     var depandable_fields = function(wrapper, depender, dependee, depender_value) {
