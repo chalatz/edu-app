@@ -192,13 +192,11 @@ Route::get('panormighty', function(){
                       'graders.district_id', 'graders.specialty')
              ->get();
     //$sites = Site::all();
-    //
     
     $sites = DB::table('sites')
              ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
              ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
              ->get();
-    
     
     $s2 = [];
     $sIndex = [];
@@ -225,24 +223,27 @@ Route::get('panormighty', function(){
 
     //var_dump($graders);
     
+    //dd(count($graders));
+    
 });
 
 Route::get('assign', function(){
     
-    $assignments = Assignment::all();
+//     $assignments = Assignment::all();
     
-    foreach($assignments as $assignment){
+//     foreach($assignments as $assignment){
 //         $evaluation = new Evaluation;
 //         $evaluation->site_id = $assignment->site_id;
 //         $evaluation->grader_id = $assignment->grader1_id;
 //         $evaluation->save();
-
+//     }
+    
+//     foreach($assignments as $assignment){
 //         $evaluation = new Evaluation;
 //         $evaluation->site_id = $assignment->site_id;
 //         $evaluation->grader_id = $assignment->grader2_id;
-//         $evaluation->save();
-        
-    }
+//         $evaluation->save(); 
+//     }
     
 });
 
