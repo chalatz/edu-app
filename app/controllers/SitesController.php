@@ -23,6 +23,12 @@ class SitesController extends \BaseController {
 	 */
 	public function create()
 	{
+        
+        // Disable sites creation
+        Session::flash('flash_message', '<i class="fa fa-exclamation"></i> Η υποβολή υποψηφιοτήτων έχει λήξει.');
+        Session::flash('alert-class', 'flash-info'); 
+        return Redirect::home();
+        
         if(Auth::guest()){
             return Redirect::home();
         } else {
@@ -135,9 +141,7 @@ class SitesController extends \BaseController {
                     $found_grader->sites()->attach($the_new_site->id);
                 }
                 
-                //$new_grader = Grader::create($grader_data);
-                
-                
+                //$new_grader = Grader::create($grader_data);                
 
 				Session::flash('flash_message', '<i class="fa fa-info-circle"></i> Έχει σταλεί ένα e-mail στον αξιολογητή που έχετε προτείνει.');
         		Session::flash('alert-class', 'flash-info');                  
