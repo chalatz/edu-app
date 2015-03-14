@@ -3903,6 +3903,25 @@ form .label-for-checkbox {
 .criteria-section .info-block {
   box-shadow: 4px 3px 0px 0px #aaa; }
 
+.criterion-wrapper {
+  background: #008080;
+  padding: .5em;
+  margin-bottom: 1.5em;
+  box-shadow: 8px 8px 0px 0px #aaa; }
+  .criterion-wrapper table {
+    margin-bottom: 1.5em; }
+  .criterion-wrapper .criterion-title {
+    font-weight: bold; }
+  .criterion-wrapper label {
+    color: #fff;
+    font-size: 1.2em; }
+  .criterion-wrapper .error, .criterion-wrapper .error-message {
+    color: red; }
+  .criterion-wrapper td {
+    background: #fff; }
+  .criterion-wrapper td:nth-child(2) {
+    font-weight: bold; }
+
 .dynamic-criterion-grade-wrapper {
   display: none;
   font-size: 1.3em; }

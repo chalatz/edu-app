@@ -4,7 +4,7 @@
 
     <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
 
-    <h1>Οι Αξιολογήσεις Μου</h1>
+    <h1>Οι Αναθέσεις Μου</h1>
 
     <div class="block">
         <h3>{{ $evaluations_count }} Αναθέσεις</h3>

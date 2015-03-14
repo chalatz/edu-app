@@ -134,6 +134,38 @@
 
 }
 
+.criterion-wrapper {
+    background: #008080;
+    padding: .5em;
+    margin-bottom: 1.5em;
+    box-shadow: 8px 8px 0px 0px #aaa;
+    
+    table {
+        margin-bottom: 1.5em;
+    }
+    
+    .criterion-title {
+        font-weight: bold;
+    }
+    
+    label {
+        color: #fff;
+        font-size: 1.2em;
+    }
+    
+    .error, .error-message {
+        color: red;
+    }
+    
+    td {
+        background: #fff;
+    }
+    
+    td:nth-child(2) {
+        font-weight: bold;
+    }
+}
+
 .dynamic-criterion-grade-wrapper {
     display: none;
     font-size: 1.3em;

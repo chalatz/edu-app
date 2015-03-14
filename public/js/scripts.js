@@ -326,7 +326,7 @@
     
     propose_myself();
     
-    dynamic_grade();
+    //dynamic_grade();
     
     // Data tables
     $('#sites-table').dataTable({

@@ -11,3 +11,17 @@ $blue: #1f8dd6;
 $purple: #BC58A5;
 
 $orange: #F37B1D;
+
+@function makelongshadow($shadow_color) {
+  $val: 0px 0px $shadow_color;
+  @for $i from 1 through 200 {
+    $val: #{$val}, #{$i}px #{$i}px #{$shadow_color};
+  }
+  @return $val;
+}
+
+@mixin longshadow($shadow_color) {
+  text-shadow: makelongshadow($shadow_color);
+}
+
+//$color: #E13E06;

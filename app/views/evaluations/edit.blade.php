@@ -13,7 +13,9 @@
         </div>
     </div>
 
-    <p class="dynamic-criterion-grade-wrapper">Βαθμός: <span class="dynamic-criterion-grade green-font"></span></p>
+    <p>{{ link_to_route('grader.evaluate_show', '&larr; Επιστροφή στις Αναθέσεις Μου') }}</p>
+
+    <p class="dynamic-criterion-grade-wrapper">Βαθμός: <span class="dynamic-criterion-grade green-font">{{ $evaluation->total_grade }}%</span></p>
 
     {{ Form::model($evaluation, array('method' => 'PATCH','route' => ['evaluation.update', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmMe', 'name' => 'confirmMe')) }}
 
@@ -22,5 +24,7 @@
         {{Form::button('Αποθήκευση', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
     {{ Form::close() }}
+
+    <p>{{ link_to_route('grader.evaluate_show', '&larr; Επιστροφή στις Αναθέσεις Μου') }}</p>
 
 @stop
