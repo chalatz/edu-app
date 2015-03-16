@@ -186,18 +186,21 @@ Route::get('optgroup', function(){
 // SELECT grader_site.grader_id, sites.`id` as site_id, sites.`cat_id`,sites.`district_id` FROM `sites` inner join grader_site on grader_site.site_id = sites.id
 
 Route::get('panormighty', function(){
+    
     global $sites, $graders, $l, $gIndex, $sIndex;
+    
     $graders = DB::table('graders')
              ->join('grader_site', 'grader_site.grader_id', '=', 'graders.id')
              ->select('grader_site.grader_id', 'grader_site.site_id', 'graders.cat_id', 
                       'graders.district_id', 'graders.specialty')
              ->get();
-    //$sites = Site::all();
     
     $sites = DB::table('sites')
              ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
              ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
              ->get();
+    
+    //dd(count($sites));
     
     $s2 = [];
     $sIndex = [];
@@ -206,6 +209,7 @@ Route::get('panormighty', function(){
                       "grader" => $s->grader_id];        
         $sIndex[] = $s->id;
     }
+    
     $sites = $s2;
     
     $g2 = [];
