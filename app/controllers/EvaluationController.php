@@ -44,6 +44,10 @@ class EvaluationController extends \BaseController {
 	 */
 	public function show(){
         
+        if(Auth::user()->grader->can_evaluate =='no'){
+            return Redirect::home();
+        }
+        
         $user_id = Auth::user()->id;
 		
         $user = User::find($user_id);
@@ -69,6 +73,10 @@ class EvaluationController extends \BaseController {
 	public function edit($user_id, $criterion, $grader_id, $site_id){
         
         if(Auth::user()->id != $user_id){
+            return Redirect::home();
+        }
+        
+        if(Auth::user()->grader->can_evaluate =='no'){
             return Redirect::home();
         }
         

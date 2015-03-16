@@ -130,6 +130,19 @@
             }
         });
         
+        $('#confirmCanEvaluate').validate({
+            rules: {
+                why_not : {
+                    required: function(){
+                        return $('select#can_evaluate').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        
     };
     
     var depandable_fields = function(wrapper, depender, dependee, depender_value) {

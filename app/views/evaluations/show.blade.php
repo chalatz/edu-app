@@ -2,170 +2,211 @@
 
 @section('content')
 
-    <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
+    @if($user->grader->can_evaluate == 'na')
 
-    <h1>Οι Αναθέσεις Μου</h1>
+        <div class="flash-message orange">Σας έχουν ανατεθεί οι παρακάτω Ιστότοποι:</div>
 
-    <div class="block">
-        <h3>{{ $evaluations_count }} Αναθέσεις</h3>
-        <p>
-            @foreach($evaluations as $evaluation)
-                <?php
-                    $i++;
-                    if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
-                ?>
-                <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
-            @endforeach
-        </p>
-        <?php
-            $sites_percent = $sites_meter * 100 / $evaluations_count;
-            $sites_progress_length = 'style="width:'.$sites_percent.'%"';
-        ?>
-        <div class="sites-meter big-meter">
-            <div class="progress-bar" {{$sites_progress_length}}></div>
-            <div class="meter-number">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</div>
-        </div>
-    </div>
-
-    @foreach($evaluations as $evaluation)
-
-        <?php
-            $meter = 0;
-            if($evaluation->beta_grade > 0){ $meter++; }
-            if($evaluation->gama_grade > 0){ $meter++; }
-            if($evaluation->delta_grade > 0){ $meter++; }
-            if($evaluation->epsilon_grade > 0){ $meter++; }
-            if($evaluation->st_grade > 0){ $meter++; }
-            $percent = $meter * 100 / 5;
-            $progress_length = 'style="width:'.$percent.'%"';
-        ?>
-
-        <?php $site_index++ ?>
+        @foreach($evaluations as $evaluation)
+            <div class="evaluation-summaries">                   
+                <div class="site-info">
+                    <span class="site-info-label">Ιστότοπος:</span>
+                    <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
+                </div>           
+                <div class="site-info">
+                    <span class="site-info-label">URL:</span>
+                    <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
+                </div>
+                <hr>
+            </div>
+        @endforeach
 
         <div class="evaluation-summaries">
-            
-            <div class="evaluation-single-summary" id="evaluation-{{$site_index}}">
-                
-                <div class="site-section">
-                    <div class="site-index-wrapper">
-                        <div class="site-index">{{ $site_index }}η</div>
-                        <div class="site-index-text">ανάθεση</div>
-                    </div>
-                    <div class="site-info">
-                        <span class="site-info-label">Ιστότοπος:</span>
-                        <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
-                    </div>
-                    <div class="site-info">
-                        <span class="site-info-label">URL:</span>
-                        <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
-                    </div>
-                                       
-                </div>
-                
-                @if($evaluation->is_educational == 'yes')
-                    <div class="site-total-grade-wrapper">
-                        @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
-                        <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
-                        <span class="site-total-grade">{{ $evaluation->total_grade }}%</span>
-                        @else
-                        <span class="gray-font">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</span>
-                        @endif
+            {{ Form::model($grader, array('method' => 'PUT','route' => ['grader.can_avaluate', $grader->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmCanEvaluate', 'name' => 'confirmCanEvaluate')) }}
+
+                {{ Form::label('can_evaluate', 'Αποδέχεστε να αξιολόγήσετε αυτούς τους Ιστότοπους;') }}
+                {{ Form::select('can_evaluate',[
+                    '' => 'Επιλέξτε...',
+                    'yes' => 'Ναι',
+                    'no' => 'Όχι',
+                    ], null, array('class' => 'pure-input-1 can_evaluate', 'required')) }}
+                    <div class="instructions"><strong>Μόνο</strong> εάν επιβεβαιώσετε ότι αποδέχεστε, θα μπορέσετε να προχωρήσετε στην αξιολόγηση.</div>        
+                    <p class="error-message">{{ $errors->first('can_evaluate') }}</p>    
+
+                {{ Form::label('why_not', 'Εάν ΔΕΝ αποδέχεστε να αξιολογήσετε και εφόσον συντρέχει πολύ σοβαρός λόγος, παρακαλούμε αιτιολογήστε') }}
+                {{ Form::textarea('why_not', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Γιατί ΔΕΝ αποδέχεστε να αξιολογήσετε;')) }}
+
+                {{Form::button('Υποβολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+
+            {{ Form::close() }}    
+        </div>
+
+    @endif
+
+    @if($user->grader->can_evaluate == 'yes')
+        <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
+
+        <h1>Οι Αναθέσεις μου</h1>
+
+        <div class="block">
+            <h3>{{ $evaluations_count }} Αναθέσεις</h3>
+            <p>
+                @foreach($evaluations as $evaluation)
+                    <?php
+                        $i++;
+                        if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
+                    ?>
+                    <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+                @endforeach
+            </p>
+            <?php
+                $sites_percent = $sites_meter * 100 / $evaluations_count;
+                $sites_progress_length = 'style="width:'.$sites_percent.'%"';
+            ?>
+            <div class="sites-meter big-meter">
+                <div class="progress-bar" {{$sites_progress_length}}></div>
+                <div class="meter-number">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</div>
+            </div>
+        </div>
+
+        @foreach($evaluations as $evaluation)
+
+            <?php
+                $meter = 0;
+                if($evaluation->beta_grade > 0){ $meter++; }
+                if($evaluation->gama_grade > 0){ $meter++; }
+                if($evaluation->delta_grade > 0){ $meter++; }
+                if($evaluation->epsilon_grade > 0){ $meter++; }
+                if($evaluation->st_grade > 0){ $meter++; }
+                $percent = $meter * 100 / 5;
+                $progress_length = 'style="width:'.$percent.'%"';
+            ?>
+
+            <?php $site_index++ ?>
+
+            <div class="evaluation-summaries">
+
+                <div class="evaluation-single-summary" id="evaluation-{{$site_index}}">
+
+                    <div class="site-section">
+                        <div class="site-index-wrapper">
+                            <div class="site-index">{{ $site_index }}η</div>
+                            <div class="site-index-text">ανάθεση</div>
+                        </div>
+                        <div class="site-info">
+                            <span class="site-info-label">Ιστότοπος:</span>
+                            <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
+                        </div>
+                        <div class="site-info">
+                            <span class="site-info-label">URL:</span>
+                            <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
+                        </div>
 
                     </div>
-                    <div class="sites-meter">
-                        <div class="progress-bar" {{$progress_length}}></div>
-                        <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
-                    </div> 
-                
-                    <div class="criteria-section">
-                        <div class="criterion-link-wrapper">
-                            {{ link_to_route('grader.evaluate_edit', 'Β Άξονας (Ταυτότητα - Ενημέρωση)', [Auth::user()->id, 'beta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
-                            <div class="criteron-check">
-                                @if($evaluation->beta_grade > 0)
-                                    <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
-                                @else
-                                    <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="criterion-link-wrapper">
-                            {{ link_to_route('grader.evaluate_edit', 'Γ Άξονας (Περιεχόμενο)', [Auth::user()->id, 'gama', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
-                            <div class="criteron-check">
-                                @if($evaluation->gama_grade > 0)
-                                    <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
-                                @else
-                                    <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="criterion-link-wrapper">
-                            {{ link_to_route('grader.evaluate_edit', 'Δ Άξονας (Διεπαφή - Αισθητική)', [Auth::user()->id, 'delta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
-                            <div class="criteron-check">
-                                @if($evaluation->delta_grade > 0)
-                                    <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
-                                @else
-                                    <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="criterion-link-wrapper">
-                            {{ link_to_route('grader.evaluate_edit', 'Ε Άξονας (Προσωπικά Δεδομένα)', [Auth::user()->id, 'epsilon', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
-                            <div class="criteron-check">
-                                @if($evaluation->epsilon_grade > 0)
-                                    <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
-                                @else
-                                    <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="criterion-link-wrapper">
-                            {{ link_to_route('grader.evaluate_edit', 'ΣΤ Άξονας (Αλληλεπίδραση)', [Auth::user()->id, 'st', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
-                            <div class="criteron-check">
-                                @if($evaluation->st_grade > 0)
-                                    <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
-                                @else
-                                    <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
 
-                    <div>
-                        {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_comments_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked')) }}
+                    @if($evaluation->is_educational == 'yes')
+                        <div class="site-total-grade-wrapper">
+                            @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
+                            <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
+                            <span class="site-total-grade">{{ $evaluation->total_grade }}%</span>
+                            @else
+                            <span class="gray-font">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</span>
+                            @endif
 
-                            {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
-                            {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}
+                        </div>
+                        <div class="sites-meter">
+                            <div class="progress-bar" {{$progress_length}}></div>
+                            <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
+                        </div> 
+
+                        <div class="criteria-section">
+                            <div class="criterion-link-wrapper">
+                                {{ link_to_route('grader.evaluate_edit', 'Β Άξονας (Ταυτότητα - Ενημέρωση)', [Auth::user()->id, 'beta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                <div class="criteron-check">
+                                    @if($evaluation->beta_grade > 0)
+                                        <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
+                                    @else
+                                        <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="criterion-link-wrapper">
+                                {{ link_to_route('grader.evaluate_edit', 'Γ Άξονας (Περιεχόμενο)', [Auth::user()->id, 'gama', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                <div class="criteron-check">
+                                    @if($evaluation->gama_grade > 0)
+                                        <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
+                                    @else
+                                        <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="criterion-link-wrapper">
+                                {{ link_to_route('grader.evaluate_edit', 'Δ Άξονας (Διεπαφή - Αισθητική)', [Auth::user()->id, 'delta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                <div class="criteron-check">
+                                    @if($evaluation->delta_grade > 0)
+                                        <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
+                                    @else
+                                        <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="criterion-link-wrapper">
+                                {{ link_to_route('grader.evaluate_edit', 'Ε Άξονας (Προσωπικά Δεδομένα)', [Auth::user()->id, 'epsilon', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                <div class="criteron-check">
+                                    @if($evaluation->epsilon_grade > 0)
+                                        <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
+                                    @else
+                                        <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="criterion-link-wrapper">
+                                {{ link_to_route('grader.evaluate_edit', 'ΣΤ Άξονας (Αλληλεπίδραση)', [Auth::user()->id, 'st', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                <div class="criteron-check">
+                                    @if($evaluation->st_grade > 0)
+                                        <div class="info-block green white-font">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
+                                    @else
+                                        <div class="info-block red white-font">Δεν έχετε καταχωρήσει Βαθμολογία</div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_comments_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked')) }}
+
+                                {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
+                                {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}
+
+                                {{Form::button('Αποστολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+
+                            {{ Form::close() }}
+                        </div>
+                    @else
+                        {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_is_educational_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmAlpha-'.$site_index, 'name' => 'confirmAlpha-'.$site_index)) }}
+
+                            {{ Form::label('is_educational', 'Είναι ο Ιστότοπος Εκπαιδευτικός;') }}
+                            {{ Form::select('is_educational',[
+                                '' => 'Επιλέξτε...',
+                                'yes' => 'Ναι',
+                                'no' => 'Όχι',
+                            ], null, array('class' => 'pure-input-1 is_educational-'.$site_index, 'required')) }}
+                            <div class="instructions"><strong>Μόνο</strong> εάν επιβεβαιώσετε ότι ο ιστότοπος ότι είναι εκπαιδευτικός, θα μπορέσετε να προχωρήσετε στην αξιολόγησή του.</div>        
+                            <p class="error-message">{{ $errors->first('is_educational') }}</p>    
+
+                            {{ Form::label('why_not_educational', 'Εάν ο ιστότοπος ΔΕΝ είναι εκπαιδευτικός, αιτιολογήστε') }}
+                            {{ Form::textarea('why_not_educational', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Γιατί ο Ιστότοπος ΔΕΝ είναι εκπαιδευτικός;')) }}
 
                             {{Form::button('Αποστολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
                         {{ Form::close() }}
-                    </div>
-                @else
-                    {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_is_educational_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmAlpha-'.$site_index, 'name' => 'confirmAlpha-'.$site_index)) }}
+                    @endif
 
-                        {{ Form::label('is_educational', 'Είναι ο Ιστότοπος Εκπαιδευτικός;') }}
-                        {{ Form::select('is_educational',[
-                            '' => 'Επιλέξτε...',
-                            'yes' => 'Ναι',
-                            'no' => 'Όχι',
-                        ], null, array('class' => 'pure-input-1 is_educational-'.$site_index, 'required')) }}
-                        <div class="instructions"><strong>Μόνο</strong> εάν επιβεβαιώσετε ότι ο ιστότοπος ότι είναι εκπαιδευτικός, θα μπορέσετε να προχωρήσετε στην αξιολόγησή του.</div>        
-                        <p class="error-message">{{ $errors->first('is_educational') }}</p>    
-                
-                        {{ Form::label('why_not_educational', 'Εάν ο ιστότοπος ΔΕΝ είναι εκπαιδευτικός, αιτιολογήστε') }}
-                        {{ Form::textarea('why_not_educational', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Γιατί ο Ιστότοπος ΔΕΝ είναι εκπαιδευτικός;')) }}
-        
-                        {{Form::button('Αποστολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+                </div>
 
-                    {{ Form::close() }}
-                @endif
-                
             </div>
-        
-        
-            
-        </div>
 
-    @endforeach
+        @endforeach
+
+    @endif
 
 @stop
