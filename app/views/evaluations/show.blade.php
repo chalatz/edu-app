@@ -87,10 +87,10 @@
                     @if($evaluation->is_educational == 'yes')
                         <div class="site-total-grade-wrapper">
                             @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
-                            <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
-                            <span class="site-total-grade">{{ $evaluation->total_grade }}%</span>
+                                <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
+                                <span class="site-total-grade">{{ $evaluation->total_grade }}</span>
                             @else
-                            <span class="gray-font">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</span>
+                                <span class="gray-font">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</span>
                             @endif
 
                         </div>

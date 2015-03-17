@@ -43,10 +43,10 @@ class EvaluationController extends \BaseController {
 	 * @return Response
 	 */
 	public function show(){
-        
-        if(Auth::user()->grader->can_evaluate =='no'){
+            
+        if( !(Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) ){
             return Redirect::home();
-        }
+        }   
         
         $user_id = Auth::user()->id;
 		
