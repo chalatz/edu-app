@@ -76,7 +76,9 @@ class EvaluationController extends \BaseController {
             return Redirect::home();
         }
         
-        if(Auth::user()->grader->can_evaluate =='no'){
+        $evaluation = Evaluation::whereGrader_id($grader_id)->whereSite_id($site_id)->first();        
+        
+        if($evaluation->can_evaluate =='no'){
             return Redirect::home();
         }
         
@@ -87,7 +89,7 @@ class EvaluationController extends \BaseController {
         $grader = Grader::where('user_id', '=', $user_id)->first();
         
         //$evaluation = Evaluation::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->get();
-        $evaluation = Evaluation::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
+        //$evaluation = Evaluation::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
 
         return View::make('evaluations.edit', compact('evaluation', 'criterion'));
         

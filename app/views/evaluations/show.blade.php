@@ -184,7 +184,7 @@
                 @endif
                 @if($evaluation->can_evaluate == 'no')
                     <div class="flash-message flash-error">
-                        <i class="fa fa-user-times"></i> Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας αποστείλλουμε οδηγίες.
+                        <i class="fa fa-user-times"></i> Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας αποστείλλουμε περαιτέρω οδηγίες.
                     </div>
                 @endif
             </div>
