@@ -278,31 +278,31 @@ class GradersController extends \BaseController {
         $site->save();
     }
     
-        public function do_grader_can_evaluate($id) {
-        
-            $validator = Validator::make($data = Input::all(), Grader::$can_evaluate_rules, Grader::$error_messages);
+//     public function do_grader_can_evaluate($id) {
 
-            if ($validator->fails()) {
-                return Redirect::back()->withErrors($validator)->withInput();
-            }
+//         $validator = Validator::make($data = Input::all(), Grader::$can_evaluate_rules, Grader::$error_messages);
 
-            $input = Input::all();
+//         if ($validator->fails()) {
+//             return Redirect::back()->withErrors($validator)->withInput();
+//         }
 
-            $grader = grader::find($id);
+//         $input = Input::all();
 
-            $grader->fill($input)->save();
+//         $grader = grader::find($id);
 
-            if($input['can_evaluate'] == 'yes'){
-                Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή σας.');
-                Session::flash('alert-class', 'flash-success');
-                return Redirect::route('grader.evaluate_show');
-            } else {
-                Session::flash('flash_message', 'Η αυτοεξαίρεσή σας έχει καταχωρηθεί. Θα εξεταστεί και θα σας αποσταλλούν νέες οδηγίες.');
-                Session::flash('alert-class', 'flash-info');
-                return Redirect::home();
-            }                 
+//         $grader->fill($input)->save();
 
-        }
+//         if($input['can_evaluate'] == 'yes'){
+//             Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή σας.');
+//             Session::flash('alert-class', 'flash-success');
+//             return Redirect::route('grader.evaluate_show');
+//         } else {
+//             Session::flash('flash_message', 'Η αυτοεξαίρεσή σας έχει καταχωρηθεί. Θα εξεταστεί και θα σας αποσταλλούν νέες οδηγίες.');
+//             Session::flash('alert-class', 'flash-info');
+//             return Redirect::home();
+//         }                 
+
+//     }
 
 	/**
 	 * Remove the specified grader from storage.

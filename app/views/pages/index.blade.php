@@ -17,11 +17,9 @@
         @endif
 
         @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && (Auth::user()->grader->can_evaluate != 'no') )
-            @if(Evaluation::where('grader_id', Auth::user()->grader->id)->count() > 0)
-                <div>
-                    {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
-                </div>
-            @endif
+            <div>
+                {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
+            </div>
         @endif
 
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>

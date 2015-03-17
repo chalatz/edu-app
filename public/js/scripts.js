@@ -130,18 +130,55 @@
             }
         });
         
-        $('#confirmCanEvaluate').validate({
+        $('#confirmCanEvaluate-1').validate({
             rules: {
                 why_not : {
                     required: function(){
-                        return $('select#can_evaluate').val() == 'no';
+                        return $('select.can_evaluate-1').val() == 'no';
                     }
                 }
             },
             messages:{
-                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε, αυτό το πεδίο είναι υποχρεωτικό"
+                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε τον Ιστότοπο, αυτό το πεδίο είναι υποχρεωτικό"
             }
         });
+        $('#confirmCanEvaluate-2').validate({
+            rules: {
+                why_not : {
+                    required: function(){
+                        return $('select.can_evaluate-2').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε τον Ιστότοπο, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        $('#confirmCanEvaluate-3').validate({
+            rules: {
+                why_not : {
+                    required: function(){
+                        return $('select.can_evaluate-3').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε τον Ιστότοπο, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });
+        $('#confirmCanEvaluate-4').validate({
+            rules: {
+                why_not : {
+                    required: function(){
+                        return $('select.can_evaluate-4').val() == 'no';
+                    }
+                }
+            },
+            messages:{
+                why_not: "Εφόσον έχετε επιλέξει ότι ΔΕΝ επιθυμείτε να αξιολογήσετε τον Ιστότοπο, αυτό το πεδίο είναι υποχρεωτικό"
+            }
+        });        
+        
         
     };
     

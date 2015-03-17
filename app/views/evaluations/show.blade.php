@@ -2,107 +2,88 @@
 
 @section('content')
 
-    @if($user->grader->can_evaluate == 'na')
+    <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
 
-        <div class="flash-message orange">Σας έχουν ανατεθεί οι παρακάτω Ιστότοποι:</div>
+    <h1>Οι Αναθέσεις μου</h1>
 
-        @foreach($evaluations as $evaluation)
-            <div class="evaluation-summaries">                   
-                <div class="site-info">
-                    <span class="site-info-label">Ιστότοπος:</span>
-                    <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
-                </div>           
-                <div class="site-info">
-                    <span class="site-info-label">URL:</span>
-                    <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
-                </div>
-                <hr>
-            </div>
-        @endforeach
+    <div class="block">
+        <h3>{{ $evaluations_count }} Αναθέσεις</h3>
+        <p>
+            @foreach($evaluations as $evaluation)
+                <?php
+                    $i++;
+                    if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
+                ?>
+                <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+            @endforeach
+        </p>
+        <?php
+            $sites_percent = $sites_meter * 100 / $evaluations_count;
+            $sites_progress_length = 'style="width:'.$sites_percent.'%"';
+        ?>
+        <div class="sites-meter big-meter">
+            <div class="progress-bar" {{$sites_progress_length}}></div>
+            <div class="meter-number">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</div>
+        </div>
+    </div>
+
+    @foreach($evaluations as $evaluation)
+
+        <?php
+            $meter = 0;
+            if($evaluation->beta_grade > 0){ $meter++; }
+            if($evaluation->gama_grade > 0){ $meter++; }
+            if($evaluation->delta_grade > 0){ $meter++; }
+            if($evaluation->epsilon_grade > 0){ $meter++; }
+            if($evaluation->st_grade > 0){ $meter++; }
+            $percent = $meter * 100 / 5;
+            $progress_length = 'style="width:'.$percent.'%"';
+        ?>
+
+        <?php $site_index++ ?>
 
         <div class="evaluation-summaries">
-            {{ Form::model($grader, array('method' => 'PUT','route' => ['grader.can_avaluate', $grader->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmCanEvaluate', 'name' => 'confirmCanEvaluate')) }}
 
-                {{ Form::label('can_evaluate', 'Αποδέχεστε να αξιολόγήσετε αυτούς τους Ιστότοπους;') }}
-                {{ Form::select('can_evaluate',[
-                    '' => 'Επιλέξτε...',
-                    'yes' => 'Ναι',
-                    'no' => 'Όχι',
-                    ], null, array('class' => 'pure-input-1 can_evaluate', 'required')) }}
-                    <div class="instructions"><strong>Μόνο</strong> εάν επιβεβαιώσετε ότι αποδέχεστε, θα μπορέσετε να προχωρήσετε στην αξιολόγηση.</div>        
-                    <p class="error-message">{{ $errors->first('can_evaluate') }}</p>    
+            <div class="evaluation-single-summary" id="evaluation-{{$site_index}}">
 
-                {{ Form::label('why_not', 'Εάν ΔΕΝ αποδέχεστε να αξιολογήσετε και εφόσον συντρέχει πολύ σοβαρός λόγος, παρακαλούμε αιτιολογήστε') }}
-                {{ Form::textarea('why_not', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Γιατί ΔΕΝ αποδέχεστε να αξιολογήσετε;')) }}
-
-                {{Form::button('Υποβολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
-
-            {{ Form::close() }}    
-        </div>
-
-    @endif
-
-    @if($user->grader->can_evaluate == 'yes')
-        <?php $site_index = 0; $i =0; $evaluations_count = $evaluations->count(); $sites_meter = 0; ?>
-
-        <h1>Οι Αναθέσεις μου</h1>
-
-        <div class="block">
-            <h3>{{ $evaluations_count }} Αναθέσεις</h3>
-            <p>
-                @foreach($evaluations as $evaluation)
-                    <?php
-                        $i++;
-                        if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
-                    ?>
-                    <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
-                @endforeach
-            </p>
-            <?php
-                $sites_percent = $sites_meter * 100 / $evaluations_count;
-                $sites_progress_length = 'style="width:'.$sites_percent.'%"';
-            ?>
-            <div class="sites-meter big-meter">
-                <div class="progress-bar" {{$sites_progress_length}}></div>
-                <div class="meter-number">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</div>
-            </div>
-        </div>
-
-        @foreach($evaluations as $evaluation)
-
-            <?php
-                $meter = 0;
-                if($evaluation->beta_grade > 0){ $meter++; }
-                if($evaluation->gama_grade > 0){ $meter++; }
-                if($evaluation->delta_grade > 0){ $meter++; }
-                if($evaluation->epsilon_grade > 0){ $meter++; }
-                if($evaluation->st_grade > 0){ $meter++; }
-                $percent = $meter * 100 / 5;
-                $progress_length = 'style="width:'.$percent.'%"';
-            ?>
-
-            <?php $site_index++ ?>
-
-            <div class="evaluation-summaries">
-
-                <div class="evaluation-single-summary" id="evaluation-{{$site_index}}">
-
-                    <div class="site-section">
-                        <div class="site-index-wrapper">
-                            <div class="site-index">{{ $site_index }}η</div>
-                            <div class="site-index-text">ανάθεση</div>
-                        </div>
-                        <div class="site-info">
-                            <span class="site-info-label">Ιστότοπος:</span>
-                            <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
-                        </div>
-                        <div class="site-info">
-                            <span class="site-info-label">URL:</span>
-                            <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
-                        </div>
-
+                <div class="site-section">
+                    <div class="site-index-wrapper">
+                        <div class="site-index">{{ $site_index }}η</div>
+                        <div class="site-index-text">ανάθεση</div>
+                    </div>
+                    <div class="site-info">
+                        <span class="site-info-label">Ιστότοπος:</span>
+                        <span class="site-name">{{ Site::find($evaluation->site_id)->title }}</span>
+                    </div>
+                    <div class="site-info">
+                        <span class="site-info-label">URL:</span>
+                        <span class="site-url"><a href="{{ Site::find($evaluation->site_id)->site_url }}" target="_blank">{{ Site::find($evaluation->site_id)->site_url }}</a></span>
                     </div>
 
+                </div>
+                
+                @if($evaluation->can_evaluate == 'na')
+                    <div>
+                        {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_can_evaluate_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmCanEvaluate-'.$site_index, 'name' => 'confirmCanEvaluate-'.$site_index)) }}
+                            {{ Form::label('can_evaluate', 'Αποδέχεστε να αξιολογήσετε αυτόν τον ιστότοπο;') }}
+                            {{ Form::select('can_evaluate',[
+                                '' => 'Επιλέξτε...',
+                                'yes' => 'Ναι',
+                                'no' => 'Όχι',
+                            ], null, array('class' => 'pure-input-1 can_evaluate-'.$site_index, 'required')) }}
+                            <div class="instructions"><strong>Μόνο</strong> εάν αποδεχτείτε, θα μπορέσετε να προχωρήσετε στην αξιολόγησή του.</div>        
+                            <p class="error-message">{{ $errors->first('can_evaluate') }}</p>    
+
+                            {{ Form::label('why_not', 'Εάν ΔΕΝ αποδέχεστε να αξιολογήσετε αυτόν τον ιστότοπο και εφόσον συντρέχει πολύ σοβαρός λόγος, παρακαλούμε αιτιολογήστε') }}
+                            {{ Form::textarea('why_not', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Γιατί ΔΕΝ αποδέχεστε να αξιολογήσετε αυτόν τον Ιστότοπο;')) }}
+
+                            {{Form::button('Υποβολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+
+                    {{ Form::close() }}
+                    </div>
+                @endif
+
+                @if($evaluation->can_evaluate == 'yes')                
                     @if($evaluation->is_educational == 'yes')
                         <div class="site-total-grade-wrapper">
                             @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
@@ -177,14 +158,14 @@
                                 {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
                                 {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}
 
-                                {{Form::button('Αποστολή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+                                {{Form::button('Υποβολή Σχολίου', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
 
                             {{ Form::close() }}
                         </div>
                     @else
                         {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_is_educational_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmAlpha-'.$site_index, 'name' => 'confirmAlpha-'.$site_index)) }}
 
-                            {{ Form::label('is_educational', 'Είναι ο Ιστότοπος Εκπαιδευτικός;') }}
+                            {{ Form::label('is_educational', 'Α Άξονας: Είναι ο Ιστότοπος Εκπαιδευτικός;') }}
                             {{ Form::select('is_educational',[
                                 '' => 'Επιλέξτε...',
                                 'yes' => 'Ναι',
@@ -200,13 +181,16 @@
 
                         {{ Form::close() }}
                     @endif
-
-                </div>
-
+                @endif
+                @if($evaluation->can_evaluate == 'no')
+                    <div class="flash-message flash-error">
+                        <i class="fa fa-user-times"></i> Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας αποστείλλουμε οδηγίες.
+                    </div>
+                @endif
             </div>
 
-        @endforeach
+        </div>
 
-    @endif
+    @endforeach
 
 @stop

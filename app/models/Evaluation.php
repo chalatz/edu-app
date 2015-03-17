@@ -2,6 +2,10 @@
 
 class Evaluation extends \Eloquent {
     
+     public static $can_evaluate_rules = [
+		'can_evaluate' => 'required',
+	];
+    
     public static $is_educational_rules = [
 		'is_educational' => 'required',
 	];
@@ -61,6 +65,7 @@ class Evaluation extends \Eloquent {
         'beta_comment','gama_comment','delta_comment','epsilon_comment','st_comment',
         'total_grade',
         'is_educational', 'why_not_educational',
+        'can_evaluate', 'why_not',
     ];
     
 }
