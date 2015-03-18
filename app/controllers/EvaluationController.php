@@ -255,6 +255,10 @@ class EvaluationController extends \BaseController {
         
         $input = Input::all();
         
+        //-------------- Save current time --------
+        $objDateTime = new DateTime('NOW');
+        $input['assigned_at'] = $objDateTime;
+        
         $evaluation = Evaluation::find($id);
         
         $evaluation->fill($input)->save();
