@@ -372,7 +372,10 @@
     langs($('#level_german_check'), $('#level_german'));
     langs($('#level_italian_check'), $('#level_italian'));
 
-    checkbox_toggle_visibility($('[name=self_proposed]'), $('#why_self_proposed_wrapper'));
+    checkbox_toggle_visibility($('input[name=self_proposed]'), $('#why_self_proposed_wrapper'));
+    if($('input[name=self_proposed]').is(':checked') == true){
+        $('#why_self_proposed_wrapper').show();
+    }
     
     propose_myself();
     
