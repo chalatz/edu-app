@@ -129,7 +129,28 @@ class AdminController extends \BaseController {
 
         return View::make('admin.graders_b_print', compact('graders'));
         
-    }     
+    }
+    
+    public function send_to_graders_a_to_accept(){
+        
+        $graders = Grader::all();       
+        
+        foreach ($graders as $grader){
+            if($grader->user->hasRole('grader')){
+                if($grader->user->email != $grader->from_who_email && $grader->has_agreed == 'na'){
+                    $grader_email = $grader->user->email;
+                    $grader_last_name = $grader->grader_last_name;
+                    $grader_first_name = $grader->grader_name;
+                    $site_title = $grader->sites->first()->title;                 
+
+                    Mail::send('emails.send_to_graders_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title], function($message) use ($grader_email){
+                        $message->to($grader_email)->subject('Αποδοχή συμμετοχής ως Αξιολογητής Α - Edu Web Awards 2015');
+                    });
+                }
+            }
+        }
+        
+    }
     
     public function isAdmin(){
         if(!Auth::guest()){
