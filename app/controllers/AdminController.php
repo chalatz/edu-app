@@ -131,24 +131,37 @@ class AdminController extends \BaseController {
         
     }
     
-    public function send_to_graders_a_to_accept(){
+    public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       
         
         foreach ($graders as $grader){
-            if($grader->user->hasRole('grader')){
-                if($grader->user->email != $grader->from_who_email && $grader->has_agreed == 'na'){
+            if($grader->user->hasRole('grader') && !$grader->user->hasRole('grader_b')){
+                if($grader->user->email != $grader->from_who_email && $grader->has_agreed == 'na' && $grader->from_who_email != '2006@windtools.gr'){
                     $grader_email = $grader->user->email;
                     $grader_last_name = $grader->grader_last_name;
                     $grader_first_name = $grader->grader_name;
-                    $site_title = $grader->sites->first()->title;                 
+                    $site_title = $grader->sites->first()->title;
+                    $site = $grader->sites->first();
+                    $from_who_email = $grader->from_who_email;
+                    
+                    echo $from_who_email . "<br>";
 
-                    Mail::send('emails.send_to_graders_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title], function($message) use ($grader_email){
-                        $message->to($grader_email)->subject('Αποδοχή συμμετοχής ως Αξιολογητής Α - Edu Web Awards 2015');
-                    });
+//                     Mail::send('emails.send_to_graders_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title], function($message) use ($grader_email){
+//                         $message->to($grader_email)->subject('Αποδοχή συμμετοχής ως Αξιολογητής Α - Edu Web Awards 2015');
+//                     });
+
+                        Mail::send('emails.send_to_sites_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($from_who_email){
+                            $message->to($from_who_email)->subject('Σχετικά με τον Αξιολογητή Α που έχετε προτείνει - Edu Web Awards 2015');
+                        });                        
+
                 }
             }
         }
+        
+        Mail::send('emails.send_to_sites_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($from_who_email){
+            $message->to('chalatz@yahoo.gr')->subject('Σχετικά με τον Αξιολογητή Α που έχετε προτείνει - Edu Web Awards 2015');
+        });
         
     }
     
