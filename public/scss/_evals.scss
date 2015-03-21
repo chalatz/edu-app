@@ -3,6 +3,7 @@
 	margin-bottom: 2em;
 	background: lighten(#666, 50%);
 	padding: 1em;
+    overflow: hidden;
 }
 
 .site-index-wrapper {
@@ -164,6 +165,14 @@
     td:nth-child(2) {
         font-weight: bold;
     }
+}
+
+label[for$="_comment"] {
+    color: #c0c0c0;
+}
+
+label[for=site_comment] {
+    color: #708090;
 }
 
 .dynamic-criterion-grade-wrapper {

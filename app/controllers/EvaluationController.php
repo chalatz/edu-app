@@ -42,7 +42,7 @@ class EvaluationController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show(){
+	public function show(){        
             
         if( !(Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) ){
             return Redirect::home();
@@ -255,9 +255,11 @@ class EvaluationController extends \BaseController {
         
         $input = Input::all();
         
-        //-------------- Save current time --------
-        $objDateTime = new DateTime('NOW');
-        $input['assigned_at'] = $objDateTime;
+        //-------------- Save current time --------                
+        $today = new DateTime('NOW');
+        $input['assigned_at'] = $today;
+        $today2 = new DateTime('NOW');
+        $input['assigned_until'] = $today2->modify('+7 days');
         
         $evaluation = Evaluation::find($id);
         

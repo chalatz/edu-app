@@ -3553,6 +3553,11 @@ Example markup
 body {
   color: #444; }
 
+.row {
+  margin-bottom: 1em;
+  width: 100%;
+  clear: both; }
+
 .admin-content {
   max-width: 100%; }
 
@@ -3648,7 +3653,7 @@ a:hover {
   background: #1f8dd6;
   color: #fff; }
 
-.top-section-content {
+.top-section-content, .float-right {
   float: right; }
 
 .bottom-section {
@@ -3796,11 +3801,15 @@ form .label-for-checkbox {
 .four-oh-four {
   text-align: center; }
 
+.inline-block {
+  display: inline-block; }
+
 .evaluation-summaries {
   margin-top: 1em;
   margin-bottom: 2em;
   background: #e6e6e6;
-  padding: 1em; }
+  padding: 1em;
+  overflow: hidden; }
 
 .site-index-wrapper {
   text-align: center;
@@ -3921,6 +3930,12 @@ form .label-for-checkbox {
     background: #fff; }
   .criterion-wrapper td:nth-child(2) {
     font-weight: bold; }
+
+label[for$="_comment"] {
+  color: #c0c0c0; }
+
+label[for=site_comment] {
+  color: #708090; }
 
 .dynamic-criterion-grade-wrapper {
   display: none;

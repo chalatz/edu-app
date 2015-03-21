@@ -8,15 +8,21 @@
 
     <div class="block">
         <h3>{{ $evaluations_count }} Αναθέσεις</h3>
-        <p>
+        <div class="pure-g row">
             @foreach($evaluations as $evaluation)
                 <?php
                     $i++;
                     if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
-                ?>
-                <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+                ?>                
+                <div class="pure-u-1 pure-u-md-1-{{ $evaluations_count }}">
+                    <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+                    @if($evaluation->can_evaluate == 'yes')
+                        <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
+                        <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>
+                    @endif
+                </div>                                        
             @endforeach
-        </p>
+        </div>
         <?php
             $sites_percent = $sites_meter * 100 / $evaluations_count;
             $sites_progress_length = 'style="width:'.$sites_percent.'%"';
@@ -158,7 +164,7 @@
                                 {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
                                 {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}
 
-                                {{Form::button('Υποβολή Σχολίου', array('type' => 'submit', 'class' => 'pure-button pure-button-primary'))}}
+                                {{Form::button('Υποβολή Σχολίου', array('type' => 'submit', 'class' => 'pure-button pure-button-primary float-right'))}}
 
                             {{ Form::close() }}
                         </div>
@@ -166,6 +172,7 @@
                         {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_is_educational_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmAlpha-'.$site_index, 'name' => 'confirmAlpha-'.$site_index)) }}
 
                             {{ Form::label('is_educational', 'Α Άξονας: Είναι ο Ιστότοπος Εκπαιδευτικός;') }}
+                            <div>Ο Ιστότοπος θεωρείται εκπαιδευτικός εφόσον πληροί τους <a href="http://www.eduwebawards.gr/requirements/" target="_blank">Όρους Συμμετοχής.</a></div>
                             {{ Form::select('is_educational',[
                                 '' => 'Επιλέξτε...',
                                 'yes' => 'Ναι',
