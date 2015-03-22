@@ -52,7 +52,7 @@ class EvaluationController extends \BaseController {
 		
         $user = User::find($user_id);
         
-        $grader = Grader::where('user_id', '=', $user_id)->first();
+        $grader = Grader::where('user_id', '=', $user_id)->first();       
         
         $grader_id = $grader->id;
         
@@ -265,8 +265,11 @@ class EvaluationController extends \BaseController {
         
         $evaluation->fill($input)->save();
         
-        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή.');
-        Session::flash('alert-class', 'flash-success');
+        if($input['can_evaluate'] == 'yes'){
+            Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή.');
+            Session::flash('alert-class', 'flash-success');
+        }
+        
         return Redirect::route('grader.evaluate_show');
         
     }

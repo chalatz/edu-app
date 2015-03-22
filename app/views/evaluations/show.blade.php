@@ -105,7 +105,14 @@
                             <div class="sites-meter">
                                 <div class="progress-bar" {{$progress_length}}></div>
                                 <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
-                            </div> 
+                            </div>
+                
+                            @if(Site::find($evaluation->site_id)->restricted_access == 'yes')
+                                <hr>
+                                <h4>Ο Ιστότοπος έχει δηλώσει ότι έχει περιορισμένη πρόσβαση και ως πληροφορίες εισόδου έχει δώσει τα εξής:</h4>
+                                <p><em>{{ Site::find($evaluation->site_id)->restricted_access_details }}</em></p>
+                                <hr>
+                            @endif               
 
                             <div class="criteria-section">
                                 <div class="criterion-link-wrapper">

@@ -205,9 +205,9 @@ Route::get('panormighty', function(){
     $sites = DB::table('sites')
              ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
              ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
-             ->get();
+             ->get();      
     
-    //dd(count($sites));
+    //dd(count($graders));
     
     $s2 = [];
     $sIndex = [];
@@ -235,7 +235,7 @@ Route::get('panormighty', function(){
 
     //var_dump($graders);
     
-    //dd(count($graders));
+    //dd(count($sites));
     
 });
 
