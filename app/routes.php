@@ -67,7 +67,9 @@ Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/si
 Route::put('/comments_submit/{id}', ['as' => 'do_comments_submit', 'uses' => 'EvaluationController@do_comments_submit']);
 Route::put('/is_educational_submit/{id}', ['as' => 'do_is_educational_submit', 'uses' => 'EvaluationController@do_is_educational_submit']);
 Route::put('/can_evaluate/{id}', ['as' => 'do_can_evaluate_submit', 'uses' => 'EvaluationController@do_can_evaluate_submit']);
+Route::get('evaluation/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation.finalize', 'uses' => 'EvaluationController@finalize']);
 Route::resource('evaluation', 'EvaluationController');
+
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
 

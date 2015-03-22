@@ -269,7 +269,30 @@ class EvaluationController extends \BaseController {
         Session::flash('alert-class', 'flash-success');
         return Redirect::route('grader.evaluate_show');
         
-    }     
+    }
+    
+    public function finalize($id){
+        
+        $evaluation = Evaluation::find($id);
+        
+        $grader_id = $evaluation->grader_id;
+        
+        $grader = Grader::find($grader_id);
+        
+        $user = $grader->user;
+        
+        if(Auth::user()->id != $user->id){
+            return Redirect::home();
+        }
+        
+        $evaluation->finalized = 'yes';
+        $evaluation->save();
+        
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Οριστικής Υποβολής Βαθμολογίας.');
+        Session::flash('alert-class', 'flash-success');
+        return Redirect::route('grader.evaluate_show');
+        
+    }
 
 	/**
 	 * Remove the specified resource from storage.

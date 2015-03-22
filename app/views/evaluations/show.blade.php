@@ -168,6 +168,9 @@
 
                             {{ Form::close() }}
                         </div>
+                        <div class="row">
+                            Οριστική Υποβολή Βαθμολογίας με id: {{ $evaluation->id }}
+                        </div>
                     @else
                         {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_is_educational_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmAlpha-'.$site_index, 'name' => 'confirmAlpha-'.$site_index)) }}
 
