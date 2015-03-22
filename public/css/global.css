@@ -3804,6 +3804,9 @@ form .label-for-checkbox {
 .inline-block {
   display: inline-block; }
 
+.overflow-hidden {
+  overflow: hidden; }
+
 .evaluation-summaries {
   margin-top: 1em;
   margin-bottom: 2em;
@@ -3930,6 +3933,8 @@ form .label-for-checkbox {
     background: #fff; }
   .criterion-wrapper td:nth-child(2) {
     font-weight: bold; }
+  .criterion-wrapper select {
+    border: 3px solid #0f4467; }
 
 label[for$="_comment"] {
   color: #c0c0c0; }

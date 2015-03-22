@@ -78,7 +78,7 @@ class EvaluationController extends \BaseController {
         
         $evaluation = Evaluation::whereGrader_id($grader_id)->whereSite_id($site_id)->first();        
         
-        if($evaluation->can_evaluate =='no'){
+        if($evaluation->can_evaluate =='no' || $evaluation->finalized == 'yes'){
             return Redirect::home();
         }
         

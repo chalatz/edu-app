@@ -165,6 +165,10 @@
     td:nth-child(2) {
         font-weight: bold;
     }
+    
+    select {
+        border: 3px solid darken($blue, 25%);
+    }
 }
 
 label[for$="_comment"] {
