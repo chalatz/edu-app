@@ -161,6 +161,57 @@ class AdminController extends \BaseController {
         
     }
     
+    public function send_to_graders_a_to_begin(){
+        
+        $graders = Grader::all();
+        
+        $from = 0;
+        $to = 3;
+        
+        $evals = array();
+        
+        foreach($graders as $grader){
+            if($grader->user->hasRole('grader')){
+                $grader_id = $grader->id;
+                if($grader_id > $from && $grader_id <= $to){
+                    $grader_email = $grader->user->email;
+                    $grader_last_name = $grader->grader_last_name;
+                    $grader_first_name = $grader->grader_name;
+                    
+                    $evaluations = Evaluation::where('grader_id', $grader_id)->get();                    
+
+                    $i = 0;
+                    foreach($evaluations as $evaluation) {
+                        $site = Site::find($evaluation->site_id);
+                        $evals['site_title'][$i] = $site->title;
+                        $evals['site_url'][$i] = $site->site_url;
+                        $i++;
+                    }                    
+                    
+                    echo "last name: " . $grader_last_name . "<br>";
+                    echo "first name: " . $grader_first_name . "<br>";
+                    echo "|||||||||||||||||||||" . "<br>";
+                    
+                    for($j = 0; $j<sizeof($evals); $j++){                
+                        echo "site title: " . $evals['site_title'][$j] . "<br>";
+                        echo "site url: " . $evals['site_url'][$j] . "<br>";
+                        echo "*********************" . "<br>";
+                    }                    
+                    echo "----------------------------" . "<br>";
+                    
+                    $the_evals =  json_encode($evals);
+                    
+                    Mail::send('emails.send_to_graders_a_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'the_evals' => $the_evals], function($message) use ($grader_email){
+                        $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Α - Edu Web Awards 2015');
+                    });                    
+                                                                 
+                }
+            }
+        }
+               
+        
+    }
+    
     public function isAdmin(){
         if(!Auth::guest()){
             if(Auth::user()->type == 'admin'){
