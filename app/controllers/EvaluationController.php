@@ -287,8 +287,12 @@ class EvaluationController extends \BaseController {
         if(Auth::user()->id != $user->id){
             return Redirect::home();
         }
+
+        $today = new DateTime('NOW');
         
         $evaluation->finalized = 'yes';
+        $evaluation->finalized_at = $today;
+
         $evaluation->save();
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Οριστικής Υποβολής Βαθμολογίας.');

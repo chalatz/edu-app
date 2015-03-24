@@ -166,7 +166,7 @@ class AdminController extends \BaseController {
         $graders = Grader::all();
         
         $from = 0;
-        $to = 3;
+        $to = 1;
         
         $evals = array();
         

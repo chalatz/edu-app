@@ -3807,6 +3807,9 @@ form .label-for-checkbox {
 .overflow-hidden {
   overflow: hidden; }
 
+.underlined {
+  text-decoration: underline; }
+
 .evaluation-summaries {
   margin-top: 1em;
   margin-bottom: 2em;

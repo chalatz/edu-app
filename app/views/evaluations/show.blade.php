@@ -15,7 +15,7 @@
                     if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) { $sites_meter++; }
                 ?>                
                 <div class="pure-u-1 pure-u-md-1-{{ $evaluations_count }}">
-                    <a class="anchor-button pure-button pure-button-secondary" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
+                    <a class="anchor-button pure-button pure-button-secondary orange" href="#evaluation-{{$i}}"><i class="fa fa-tasks"></i> {{$i}}η ανάθεση</a>
                     @if($evaluation->can_evaluate == 'yes')
                         <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
                         <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>
@@ -186,7 +186,7 @@
                             @endif
                 
                         @else
-                            <div class="flash-message flash-success">Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο.</div>                                               
+                            <div class="flash-message flash-success">Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο, στις <span class="underlined">{{ date('d / m / y', strtotime($evaluation->finalized_at)) }}</span></div>                                               
                         @endif
                                         
                     @else

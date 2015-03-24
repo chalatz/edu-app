@@ -3,6 +3,13 @@
 <h3>Β: {{ $criteria->main_title }}</h3>
 <h4>Ποσοστό επί του συνόλου: {{ $criteria->weight }}%</h4>
 
+@if(Site::find($evaluation->site_id)->purpose)
+    <hr>
+    <h4>Σκοπός - Στόχοι Ιστότοπου:</h4>
+    <p><em>{{ Site::find($evaluation->site_id)->purpose }}</em></p>
+    <hr>
+@endif 
+
 <div class="criterion-wrapper">
     <table class="pure-table">
         <thead>
