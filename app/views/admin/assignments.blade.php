@@ -16,7 +16,7 @@
                 <th>Περιφέρεια Αξιολογητή</th>
                 <th>Κατηγορία Ιστότοπου</th>
                 <th>Κατηγορία Αξιολογητή</th>
-                <th>evaluation_id</th>
+                <th>grader email</th>
             </tr>                
         </thead>
         
@@ -32,7 +32,7 @@
                     <td>{{ $grader->district_id }}</td>
                     <td>{{ $site->cat_id }}</td>
                     <td>{{ $grader->cat_id }}</td>
-                    <td>{{ $evaluation->id }}</td>
+                    <td>{{ $grader->user->email }}</td>
                 </tr>
             @endforeach
         </tbody>
