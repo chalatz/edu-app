@@ -37,6 +37,7 @@
                         <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                         <li>{{ link_to('/admin/graders_b', 'Αξιολογητές Β') }}</li>
                         <li>{{ link_to('/admin/stats', 'Στατιστικά') }}</li>
+                        <li>{{ link_to('/admin/evaluations-report/', 'Αξιολογήσεις Α') }}</li>
                     @endif
 
                 @endforeach

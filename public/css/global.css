@@ -3959,4 +3959,24 @@ label[for=site_comment] {
   font-weight: bold;
   font-size: 1.5em; }
 
+.pagination {
+  list-style: none;
+  text-align: center; }
+  .pagination a {
+    text-decoration: none;
+    display: block; }
+    .pagination a:hover {
+      color: #fff; }
+  .pagination li {
+    display: inline-block;
+    display: inline-block;
+    border: 1px solid #1f8dd6;
+    width: 2.5em;
+    line-height: 2em;
+    margin-right: 1em; }
+    .pagination li.active, .pagination li:hover {
+      background: #1f8dd6;
+      color: #fff;
+      font-weight: bold; }
+
 /*# sourceMappingURL=global.css.map */

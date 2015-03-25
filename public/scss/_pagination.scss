@@ -1,0 +1,29 @@
+.pagination {
+
+	list-style: none;
+	text-align: center;
+	a {
+		text-decoration: none;
+		display: block;
+		&:hover {
+			color: #fff;
+		}
+	}
+
+	li {
+		display: inline-block;
+
+		 	display: inline-block;
+			border: 1px solid $blue;
+			width: 2.5em;
+			line-height: 2em;
+			margin-right: 1em;			
+		
+		&.active, &:hover {
+				background: $blue;
+				color: #fff;
+				font-weight: bold;
+			}
+	}
+
+}
