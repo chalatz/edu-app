@@ -4,7 +4,7 @@
 <h4>Ποσοστό επί του συνόλου: {{ $criteria->weight }}%</h4>
 
 <div class="module row lighter-blue">
-    <h4>Σκοπός - Στόχοι Ιστότοπου:</h4>
+    <h4>Σκοπός - Στόχοι Ιστότοπου (από την αίτηση):</h4>
     @if(Site::find($evaluation->site_id)->purpose)
         <p><em>{{ Site::find($evaluation->site_id)->purpose }}</em></p>
     @else

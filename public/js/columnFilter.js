@@ -656,7 +656,8 @@
             sRangeSeparator: "~",
             iFilteringDelay: 500,
             aoColumns: null,
-            sRangeFormat: "From {from} to {to}",
+            //sRangeFormat: "From {from} to {to}",
+            sRangeFormat: "",
             sDateFromToken: "from",
             sDateToToken: "to"
         };

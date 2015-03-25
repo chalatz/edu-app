@@ -445,8 +445,18 @@
                 "sLast":     "Τελευταία"
             }
         },
-        "pageLength": 100
-    }).columnFilter();
+        "pageLength": 200,
+        "lengthMenu": [ [50, 100, 200, 300, -1], [50, 100, 200, 300, "Όλα"] ]
+    }).columnFilter(
+        { sPlaceHolder: "head:after",
+                         aoColumns: [
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "number-range" }
+                         ]
+        }
+    );
 
     $('.stats-table').dataTable({
         paging: false,
@@ -456,6 +466,9 @@
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');
+
+    $('.grade-number-index input').eq(0).attr('placeholder', 'Από');
+    $('.grade-number-index input').eq(1).attr('placeholder', 'έως');
     
     $( window ).load(function() {
         funky_charts();

@@ -3816,6 +3816,12 @@ form .label-for-checkbox {
 .underlined {
   text-decoration: underline; }
 
+.grade-number-index span {
+  display: block; }
+.grade-number-index input {
+  width: 4em;
+  margin-bottom: 6px; }
+
 .evaluation-summaries {
   margin-top: 1em;
   margin-bottom: 2em;

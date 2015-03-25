@@ -333,3 +333,13 @@ img {
 .underlined {
     text-decoration: underline;
 }
+
+.grade-number-index {
+    span {
+        display: block;
+    }
+    input {
+        width: 4em;
+        margin-bottom: 6px;
+    }
+}
