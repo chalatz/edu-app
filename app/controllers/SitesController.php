@@ -26,8 +26,10 @@ class SitesController extends \BaseController {
         
         // Disable sites creation
         Session::flash('flash_message', '<i class="fa fa-exclamation"></i> Η υποβολή υποψηφιοτήτων έχει λήξει.');
-        Session::flash('alert-class', 'flash-info'); 
-        return Redirect::home();          
+        Session::flash('alert-class', 'flash-info');
+        if(Auth::user()->id != 59 || Auth::user()->id != 273){
+            return Redirect::home();
+        }
         
         if(Auth::guest()){
             return Redirect::home();
