@@ -32,6 +32,14 @@ class AdminController extends \BaseController {
         return View::make('admin.graders_b', compact('graders'));
         
     }
+
+    public function evaluations_report(){
+
+        $evaluations = Evaluation::all();
+
+        return View::make('admin.evaluations_report', compact('evaluations'));
+
+    }
     
     public function assignments(){
         
