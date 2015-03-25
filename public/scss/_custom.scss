@@ -2,6 +2,10 @@ body {
     color: $font-color;
 }
 
+.module {
+    padding: .5em;
+}
+
 .row {
     margin-bottom: 1em;
     width: 100%;
@@ -155,6 +159,10 @@ img {
 
 .blue {
     background: $blue;
+}
+
+.lighter-blue {
+    background: lighten($blue, 25%);
 }
 
 .green {

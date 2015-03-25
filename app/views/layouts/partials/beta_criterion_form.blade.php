@@ -3,12 +3,14 @@
 <h3>Β: {{ $criteria->main_title }}</h3>
 <h4>Ποσοστό επί του συνόλου: {{ $criteria->weight }}%</h4>
 
-@if(Site::find($evaluation->site_id)->purpose)
-    <hr>
+<div class="module row lighter-blue">
     <h4>Σκοπός - Στόχοι Ιστότοπου:</h4>
-    <p><em>{{ Site::find($evaluation->site_id)->purpose }}</em></p>
-    <hr>
-@endif 
+    @if(Site::find($evaluation->site_id)->purpose)
+        <p><em>{{ Site::find($evaluation->site_id)->purpose }}</em></p>
+    @else
+        <p><em>Ο Υποψήφιος δεν έχει δηλώσει σκοπούς-στόχους στην αίτησή του. Παρακαλούμε δείτε εάν αναφέρονται μέσα στον ίδιο τον Ιστότοπο.</em></p>
+    @endif
+</div>
 
 <div class="criterion-wrapper">
     <table class="pure-table">

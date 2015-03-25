@@ -3553,6 +3553,9 @@ Example markup
 body {
   color: #444; }
 
+.module {
+  padding: .5em; }
+
 .row {
   margin-bottom: 1em;
   width: 100%;
@@ -3677,6 +3680,9 @@ img {
 
 .blue {
   background: #1f8dd6; }
+
+.lighter-blue {
+  background: #87c5ee; }
 
 .green {
   background: #5eb95e; }
