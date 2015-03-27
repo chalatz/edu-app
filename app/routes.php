@@ -63,6 +63,9 @@ Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'adm
 // Emails to Graders A to start grading 
 // Route::get('/admin/send-to-graders-a-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_begin', 'uses' => 'AdminController@send_to_graders_a_to_begin']);
 
+# Manual Assignments
+Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.assign_to_site', 'uses' => 'AdminController@assign_to_site']);
+
 # Evaluation Forms
 Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
 Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);

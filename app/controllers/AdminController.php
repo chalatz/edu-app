@@ -140,6 +140,22 @@ class AdminController extends \BaseController {
         
     }
     
+    public function assign_to_site($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_to_site', compact('site', 'evaluations'));
+        }
+        
+        return View::make('admin.assign_to_site', compact('site'));
+        
+    }
+    
     public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       
