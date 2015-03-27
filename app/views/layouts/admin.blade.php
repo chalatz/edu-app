@@ -7,6 +7,7 @@
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('img/favicon.ico') }}" />
     
 <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<link rel="stylesheet" href="{{ asset('css/chosen.min.css') }}">
 <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>    
     
 <title>Edu Web Awards 2015 - Πληροφοριακό Σύστημα</title>
@@ -67,6 +68,7 @@
 <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('js/columnFilter.js') }}"></script>
 <script src="{{ asset('js/reveal.js') }}"></script>
+<script src="{{ asset('js/chosen.min.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>     
 </body>
 </html>

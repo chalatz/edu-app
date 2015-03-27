@@ -470,6 +470,8 @@
     $('.grade-number-index input').eq(0).attr('placeholder', 'Από');
     $('.grade-number-index input').eq(1).attr('placeholder', 'έως');
     
+    $(".chosen-select").chosen();
+    
     $( window ).load(function() {
         funky_charts();
     });

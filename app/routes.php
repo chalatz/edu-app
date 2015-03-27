@@ -65,6 +65,10 @@ Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'adm
 
 # Manual Assignments
 Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.assign_to_site', 'uses' => 'AdminController@assign_to_site']);
+Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/', ['before' => 'auth|admin|ninja', 'as' => 'admin.confirm_delete_evaluation_site_grader', 'uses' => 'AdminController@confirm_delete_evaluation_site_grader']);
+Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin|ninja', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);
+
+Route::get('/evaluation/delete/{id}/', ['before' => 'auth|admin|ninja', 'as' => 'evaluation.delete', 'uses' => 'EvaluationController@delete']);
 
 # Evaluation Forms
 Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
@@ -80,7 +84,6 @@ Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'u
 
 # Masquerade
 Route::get('/admin/masquerade/{user_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
-Route::get('/admin/switch-back', ['after' => 'auth|admin|ninja', 'as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);
 
 // Test Pivot
 Route::get('pivot', function(){

@@ -156,6 +156,23 @@ class AdminController extends \BaseController {
         
     }
     
+    public function confirm_delete_evaluation_site_grader($evaluation_id) {
+        
+        $evaluation = Evaluation::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_site_grader', compact('evaluation', 'grader', 'site'));
+        
+    }
+    
+    public function assign_evaluation_grader_site($evaluation_id, $site_id, grader_id){
+        
+        
+        
+    }
+    
     public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       
