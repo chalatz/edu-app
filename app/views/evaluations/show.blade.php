@@ -68,6 +68,13 @@
 
                 </div>
                 
+                @if(Site::find($evaluation->site_id)->restricted_access == 'yes')
+                    <hr>
+                    <h4>Ο Ιστότοπος έχει δηλώσει ότι έχει περιορισμένη πρόσβαση και ως πληροφορίες εισόδου έχει δώσει τα εξής:</h4>
+                    <p><em>{{ Site::find($evaluation->site_id)->restricted_access_details }}</em></p>
+                    <hr>
+                @endif
+                
                 @if($evaluation->can_evaluate == 'na')
                     <div>
                         {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_can_evaluate_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked', 'id' => 'confirmCanEvaluate-'.$site_index, 'name' => 'confirmCanEvaluate-'.$site_index)) }}
@@ -105,14 +112,7 @@
                             <div class="sites-meter">
                                 <div class="progress-bar" {{$progress_length}}></div>
                                 <div class="meter-number">Βαθμολογήσατε {{ $meter }} από 5 άξονες</div>
-                            </div>
-                
-                            @if(Site::find($evaluation->site_id)->restricted_access == 'yes')
-                                <hr>
-                                <h4>Ο Ιστότοπος έχει δηλώσει ότι έχει περιορισμένη πρόσβαση και ως πληροφορίες εισόδου έχει δώσει τα εξής:</h4>
-                                <p><em>{{ Site::find($evaluation->site_id)->restricted_access_details }}</em></p>
-                                <hr>
-                            @endif               
+                            </div>                                                           
 
                             <div class="criteria-section">
                                 <div class="criterion-link-wrapper">
