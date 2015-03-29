@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Αναθέσεις Ιστότοπου σε Αξιολογητές Α</h1>
+	<h1>Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
 
     <p>Έπωνυμία: {{ $site->title }}</p>
     <p>URL: {{ $site->site_url }}</p>
@@ -31,7 +31,7 @@
                             @if($evaluation->can_evaluate == 'na') Άγνωστο @endif
                         </td>
                         <td>@if($evaluation->can_evaluate == 'no') {{ $evaluation->why_not }} @endif</td>
-                        <td>{{ link_to_route('admin.confirm_delete_evaluation_site_grader', 'Διαγραφή', [$evaluation->id], ['class' => 'red-font']) }}</td>
+                        <td>{{ link_to_route('admin.confirm_delete_evaluation_site_grader_b', 'Διαγραφή', [$evaluation->id], ['class' => 'red-font']) }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -40,14 +40,14 @@
         <p>Δεν υπάρχουν αναθέσεις για αυτόν τον Ιστότοπο</p>
     @endif
 
-    <h3>Αξιολογητές Α</h3>
+    <h3>Αξιολογητές Β (εγκεκριμένοι)</h3>
 
     {{ Form::open(array('route' => 'evaluation.store', 'class' => 'pure-form pure-form-stacked')) }}
     
         <select name="grader_id" id="grader_id" class="chosen-select">
-            <option value="">Επιλέξτε Αξιολογητή Α...</option>
+            <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach(Grader::all() as $grader)
-                 @if($grader->user->hasRole('grader'))
+                 @if($grader->approved == 'yes')
                     <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }}</option>
                 @endif
             @endforeach
@@ -55,7 +55,7 @@
         <p class="error-message">{{ $errors->first('grader_id') }}</p>
 
         {{ Form::hidden('site_id', $site->id); }}
-        {{ Form::hidden('grader_type', 'a'); }}
+        {{ Form::hidden('grader_type', 'b'); }}
                         
         <p>{{ Form::button('Υποβολη Ανάθεσης', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}</p>
 

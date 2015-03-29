@@ -179,7 +179,6 @@
             }
         });        
         
-        
     };
     
     var depandable_fields = function(wrapper, depender, dependee, depender_value) {

@@ -155,6 +155,22 @@ class AdminController extends \BaseController {
         return View::make('admin.assign_to_site', compact('site'));
         
     }
+
+    public function assign_b_to_site($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_b_to_site', compact('site', 'evaluations'));
+        }
+        
+        return View::make('admin.assign_b_to_site', compact('site'));
+        
+    }
     
     public function confirm_delete_evaluation_site_grader($evaluation_id) {
         
@@ -166,6 +182,17 @@ class AdminController extends \BaseController {
         return View::make('admin.confirm_delete_evaluation_site_grader', compact('evaluation', 'grader', 'site'));
         
     }
+
+    public function confirm_delete_evaluation_site_grader_b($evaluation_id) {
+        
+        $evaluation = Evaluation::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_site_grader_b', compact('evaluation', 'grader', 'site'));
+        
+    }    
     
     
     // Assign a grader to a site

@@ -32,7 +32,39 @@ class EvaluationController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
+        $validator = Validator::make($data = Input::only('grader_id'), Evaluation::$grader_a_rules, Evaluation::$error_messages);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $input = Input::only('grader_id', 'site_id', 'grader_type');
+
+        $grader_id = $input['grader_id'];
+        $site_id = $input['site_id'];
+        $grader_type = $input['grader_type'];
+
+        $evaluation = new Evaluation;
+
+        $evaluation->grader_id = $grader_id;
+        $evaluation->site_id = $site_id;
+
+        $evaluation->save();
+
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Ανάθεσης.');
+        Session::flash('alert-class', 'flash-success');
+
+        if($grader_type == 'a'){
+            return Redirect::route('admin.assign_to_site', $site_id);
+        }
+
+        if($grader_type == 'b'){
+            return Redirect::route('admin.assign_b_to_site', $site_id);
+        }
+
+        return Redirect::home();
+
 	}
 
 	/**
@@ -314,14 +346,26 @@ class EvaluationController extends \BaseController {
 		$evaluation = Evaluation::find($id);
         
         $site_id = $evaluation->site_id;
+
+        $input = Input::all();
+
+        $grader_type = $input['grader_type'];
         
         $evaluation->delete();
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
         
-        return Redirect::route('admin.assign_to_site', [$site_id]);
-        
+        if($grader_type == 'a'){
+            return Redirect::route('admin.assign_to_site', [$site_id]);
+        }
+
+        if($grader_type == 'b'){
+            return Redirect::route('admin.assign_b_to_site', [$site_id]);
+        }
+
+        return Redirect::home();
+
 	}
     
 
