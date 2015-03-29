@@ -313,12 +313,14 @@ class EvaluationController extends \BaseController {
         
 		$evaluation = Evaluation::find($id);
         
+        $site_id = $evaluation->site_id;
+        
         $evaluation->delete();
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
         
-        return Redirect::home();
+        return Redirect::route('admin.assign_to_site', [$site_id]);
         
 	}
     

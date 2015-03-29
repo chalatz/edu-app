@@ -19,7 +19,7 @@
 
     {{ Form::open(['method' => 'DELETE', 'route' => ['evaluation.destroy', $evaluation->id], 'class' => 'pure-form']) }}
 
-        {{Form::button('Διαγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary red'))}}
+        {{Form::button('Διαγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary red', 'onclick' => 'return confirm("Είστε σίγουρος ότι επιθυμείτε να διαγράψετε αυτήν την ανάθεση;");'))}}
 
     {{ Form::close() }}
 
