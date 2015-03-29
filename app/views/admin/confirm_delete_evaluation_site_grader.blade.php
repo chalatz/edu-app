@@ -17,9 +17,14 @@
         </tbody>
     </table>
 
-    <p>
-        {{ link_to_route ('evaluation.delete', 'Διαγραφή', [$evaluation->id], ['class' => 'anchor-button pure-button pure-button-secondary red'])}}
-        {{ link_to_route('admin.assign_to_site', 'Επιστροφή', [$site->id]) }}
-    </p>        
+    {{ Form::open(['method' => 'DELETE', 'route' => ['evaluation.destroy', $evaluation->id], 'class' => 'pure-form']) }}
+
+        {{Form::button('Διαγραφή', array('type' => 'submit', 'class' => 'pure-button pure-button-primary red'))}}
+
+    {{ Form::close() }}
+
+
+    {{ link_to_route('admin.assign_to_site', '&larr; Επιστροφή', [$site->id]) }}
+       
 
 @stop

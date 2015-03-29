@@ -167,7 +167,7 @@ class AdminController extends \BaseController {
         
     }
     
-    public function assign_evaluation_grader_site($evaluation_id, $site_id, grader_id){
+    public function assign_evaluation_grader_site($evaluation_id, $site_id, $grader_id){
         
         
         

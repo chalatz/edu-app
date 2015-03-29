@@ -68,8 +68,6 @@ Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin|ninja', 'as'
 Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/', ['before' => 'auth|admin|ninja', 'as' => 'admin.confirm_delete_evaluation_site_grader', 'uses' => 'AdminController@confirm_delete_evaluation_site_grader']);
 Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin|ninja', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);
 
-Route::get('/evaluation/delete/{id}/', ['before' => 'auth|admin|ninja', 'as' => 'evaluation.delete', 'uses' => 'EvaluationController@delete']);
-
 # Evaluation Forms
 Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
 Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
