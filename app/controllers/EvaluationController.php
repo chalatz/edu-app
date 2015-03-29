@@ -299,7 +299,7 @@ class EvaluationController extends \BaseController {
         Session::flash('alert-class', 'flash-success');
         return Redirect::route('grader.evaluate_show');
         
-    }
+    }    
 
 	/**
 	 * Remove the specified resource from storage.
@@ -310,7 +310,18 @@ class EvaluationController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        
+		$evaluation = Evaluation::find($id);
+        
+        $site_id = $evaluation->site_id;
+        
+        $evaluation->delete();
+        
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
+        Session::flash('alert-class', 'flash-success');
+        
+        return Redirect::route('admin.assign_to_site', [$site_id]);
+        
 	}
     
 
