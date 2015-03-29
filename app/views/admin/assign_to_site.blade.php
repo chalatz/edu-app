@@ -39,15 +39,21 @@
     @endif
 
     <h3>Αξιολογητές Α</h3>
+
+    {{ Form::open(array('route' => 'evaluation.store', 'class' => 'pure-form pure-form-stacked')) }}
     
-    <select name="grader_id" id="grader_id" class="chosen-select">
-        <option value="">Επιλέξτε Αξιολογητή Α...</option>
-        @foreach(Grader::all() as $grader)
-             @if($grader->user->hasRole('grader'))
-                <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }}</option>
-            @endif
-        @endforeach
-    </select>
+        <select name="grader_id" id="grader_id" class="chosen-select">
+            <option value="">Επιλέξτε Αξιολογητή Α...</option>
+            @foreach(Grader::all() as $grader)
+                 @if($grader->user->hasRole('grader'))
+                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }}</option>
+                @endif
+            @endforeach
+        </select>
+                        
+        <p>{{ Form::button('Υποβολη Ανάθεσης', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}</p>
+
+    {{ Form::close() }}
 
 
 @stop
