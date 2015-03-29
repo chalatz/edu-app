@@ -39,7 +39,6 @@
 
 
         <div class="header">
-            <img src="{{ asset('img/header-edu.jpg') }}" alt="Edu web Awards 2015">
             <h2>Πληροφοριακό Σύστημα 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         </div>
 

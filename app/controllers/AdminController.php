@@ -27,7 +27,7 @@ class AdminController extends \BaseController {
 
     public function graders_b(){
         
-        $graders = Grader::all();
+        $graders = Grader::with('user')->get();
 
         return View::make('admin.graders_b', compact('graders'));
         
