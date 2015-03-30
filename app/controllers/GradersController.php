@@ -221,11 +221,11 @@ class GradersController extends \BaseController {
         $site->grader_agrees = $answer;
         $site->save();
         
-        $this->notify_site($grader, $answer);
+        //$this->notify_site($grader, $answer);
         
         if($answer == 'no'){
         	$this->update_site($site_id);
-            User::destroy(Auth::user()->id);
+            //User::destroy(Auth::user()->id);
             $grader->delete();
             Auth::logout();
             
