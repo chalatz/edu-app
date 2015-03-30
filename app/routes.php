@@ -63,6 +63,9 @@ Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'adm
 // Emails to Graders A to start grading 
 // Route::get('/admin/send-to-graders-a-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_begin', 'uses' => 'AdminController@send_to_graders_a_to_begin']);
 
+# Notify late graders
+Route::get('/admin/notify/late/graders/', ['before' => 'auth|admin|ninja', 'as' => 'admin.notify_late_graders', 'uses' => 'AdminController@notify_late_graders']);
+
 # Evaluation Forms
 Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
 Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);

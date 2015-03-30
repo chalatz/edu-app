@@ -140,6 +140,41 @@ class AdminController extends \BaseController {
         
     }
     
+    public function notify_late_graders(){
+        
+        $evaluations = Evaluation::all();
+        
+        $today = new DateTime('NOW');
+        
+        $expires_today = [];
+        $expires_in_two_days = [];
+        
+        foreach($evaluations as $evaluation) {
+            
+            $assigned_until = new DateTime($evaluation->assigned_until);
+            
+            $days_diff = $today->diff($assigned_until)->format('%R%a');
+            
+            if($days_diff == '+0' || $days_diff == '-0'){
+                $grader_id = $evaluation->grader_id;
+                $email = Grader::find($grader_id)->user->email;
+                $expires_today[] = $email;
+            }
+            
+            if($days_diff == '-2'){
+                $grader_id = $evaluation->grader_id;
+                $email = Grader::find($grader_id)->user->email;
+                $expires_in_two_days[] = $email;
+            }
+            
+            //echo($days_diff). "<br>";
+            
+        }   
+
+        return View::make('admin.notify_late_graders', compact('expires_today','expires_in_two_days'));
+        
+    }
+    
     public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       
