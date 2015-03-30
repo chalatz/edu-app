@@ -16,10 +16,12 @@
             <p>{{ link_to_route('agrees.grader', 'Δεν αποδέχομαι τη συμμετοχή μου ως Αξιολογητής Α στον 7ο ΔΕΕΙ', [Auth::user()->grader->id, 'no'], ['class' => 'pure-button button-secondary button-secondary-red anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι διαφωνείτε;");']) }}</p>
         @endif
 
-        @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation::where('grader_id', Auth::user()->grader->id)->count() > 0 )
-            <div>
-                {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
-            </div>
+        @if(Auth::user()->grader)
+            @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation::where('grader_id', Auth::user()->grader->id)->count() > 0 )
+                <div>
+                    {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
+                </div>
+            @endif
         @endif
 
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
