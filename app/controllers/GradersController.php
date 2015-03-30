@@ -225,7 +225,7 @@ class GradersController extends \BaseController {
         
         if($answer == 'no'){
         	$this->update_site($site_id);
-            //User::destroy(Auth::user()->id);
+            User::destroy(Auth::user()->id);
             $grader->delete();
             Auth::logout();
             
