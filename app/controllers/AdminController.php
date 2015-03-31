@@ -17,6 +17,14 @@ class AdminController extends \BaseController {
         
     }
     
+    public function sites_grades_a(){
+        
+        $sites = Site::all();
+        
+        return View::make('admin.sites_grades_a', compact('sites'));
+        
+    }
+    
     public function graders(){
         
         $graders = Grader::all();

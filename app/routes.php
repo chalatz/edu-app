@@ -58,6 +58,7 @@ Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.g
 Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|admin', 'as' => 'admin.approve_grader_b', 'uses' => 'AdminController@approve']);
 Route::get('/admin/assignments/', ['before' => 'auth|admin', 'as' => 'admin.assignments', 'uses' => 'AdminController@assignments']);
 Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'admin.evaluations_report', 'uses' => 'AdminController@evaluations_report']);
+Route::get('/admin/sites/grades/a/', ['before' => 'auth|admin', 'as' => 'admin.sites_grades_a', 'uses' => 'AdminController@sites_grades_a']);
 // Send email to graders_a to accept
 // Route::get('/admin/send-to-graders-a-to-accept', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_accept', 'uses' => 'AdminController@send_to_graders_a_to_accept']);
 // Emails to Graders A to start grading 
