@@ -64,7 +64,7 @@ class EvaluationController extends \BaseController {
             $site_url = $site->site_url;
             
             Mail::send('emails.send_to_new_grader_a',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
-                $message->to($grader_email)->subject(' Νέα Ανάθεση Υποψήφιου Ιστότοπου σε Αξιολογητή Α - Edu Web Awards 2015');
+                $message->to($grader_email)->subject('Νέα Ανάθεση Υποψήφιου Ιστότοπου σε Αξιολογητή Α - Edu Web Awards 2015');
             });             
         }
         

@@ -66,6 +66,9 @@ Route::get('/admin/sites/grades/a/', ['before' => 'auth|admin', 'as' => 'admin.s
 // Emails to Graders A that have not yet accepted 
 // Route::get('/admin/send-to-late-graders', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_late_graders', 'uses' => 'AdminController@send_to_late_graders']);
 
+# Notify late graders
+Route::get('/admin/notify/late/graders/', ['before' => 'auth|admin|ninja', 'as' => 'admin.notify_late_graders', 'uses' => 'AdminController@notify_late_graders']);
+
 # Manual Assignments
 Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_to_site', 'uses' => 'AdminController@assign_to_site']);
 Route::get('/admin/assign/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_to_site', 'uses' => 'AdminController@assign_b_to_site']);
