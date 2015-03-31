@@ -57,8 +57,7 @@
         {{ Form::hidden('site_id', $site->id); }}
         {{ Form::hidden('grader_type', 'a'); }}
 
-        <p>{{ Form::checkbox('send_to_grader', 'send_to_grader', false) }} Να σταλεί email στον Αξιολογητή;</p>
-        <p>{{ Form::checkbox('send_to_site', 'send_to_site', false) }} Να σταλεί email στον Ιστότοπο;</p>
+        <p>{{ Form::checkbox('send_to_grader', 'send_to_grader', true) }} Να σταλεί email στον Αξιολογητή;</p>
 
         <p>{{ Form::button('Υποβολη Ανάθεσης', array('type' => 'submit', 'class' => 'pure-button pure-button-primary')) }}</p>
 

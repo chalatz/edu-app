@@ -39,11 +39,13 @@ class EvaluationController extends \BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $input = Input::only('grader_id', 'site_id', 'grader_type');
+        $input = Input::all();                     
 
         $grader_id = $input['grader_id'];
         $site_id = $input['site_id'];
         $grader_type = $input['grader_type'];
+        
+        //dd($grader_id);
 
         $evaluation = new Evaluation;
 
@@ -51,7 +53,21 @@ class EvaluationController extends \BaseController {
         $evaluation->site_id = $site_id;
 
         $evaluation->save();
-
+        
+        if(isset($input['send_to_grader'])){
+            $grader = Grader::find($grader_id);
+            $grader_email = $grader->user->email;
+            $grader_last_name = $grader->grader_last_name;
+            $grader_first_name = $grader->grader_name;
+            $site = Site::find($site_id);
+            $site_title = $site->title;
+            $site_url = $site->site_url;
+            
+            Mail::send('emails.send_to_new_grader_a',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
+                $message->to($grader_email)->subject(' Νέα Ανάθεση Υποψήφιου Ιστότοπου σε Αξιολογητή Α - Edu Web Awards 2015');
+            });             
+        }
+        
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
 
