@@ -13,7 +13,8 @@
                 <th colspan="2">Αξιολογητές</th>
                 <th colspan="2">Βαθμολογίες</th>
                 <th>Διαφορά</th>
-                <th>Ανάθεση</th>
+                <th>Ανάθεση B</th>
+                <th>Ανάθεση Α</th>
                 @if(Auth::user()->hasRole('ninja'))
                     <th>Μεταμφίεση</th>
                 @endif
@@ -53,7 +54,9 @@
                         <td style="background: #5eb95e; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
                     @endif
                     
-                    <td></td>
+                    <td>{{ link_to_route('admin.assign_b_to_site', 'Νέα Ανάθεση Β', [$site->id]) }}</td>
+                    
+                    <td>{{ link_to_route('admin.assign_to_site', 'Νέα Ανάθεση Α', [$site->id]) }}</td>
 
                     @if(Auth::user()->hasRole('ninja'))
                         <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
