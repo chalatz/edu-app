@@ -202,6 +202,26 @@ class AdminController extends \BaseController {
         
     }
     
+    public function send_to_late_graders() {
+        
+        $evaluations = Evaluation::distinct()->select('grader_id')->where('can_evaluate', '=', 'na')->groupBy('grader_id')->get();
+
+        foreach($evaluations as $evaluation){
+            $grader = Grader::find($evaluation->grader_id);
+            if($grader->user->hasRole('grader')){
+                echo $grader->user->email . "<br>";
+                
+                $grader_email = $grader->user->email;
+                
+//                 Mail::send('emails.send_to_late_graders',[], function($message) use ($grader_email){
+//                     $message->to($grader_email)->subject('Αποδοχή συμμετοχής ως Αξιολογητής Α - Edu Web Awards 2015');
+//                 }); 
+                
+            }
+        }             
+        
+    }
+    
     public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       

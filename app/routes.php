@@ -62,6 +62,8 @@ Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'adm
 // Route::get('/admin/send-to-graders-a-to-accept', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_accept', 'uses' => 'AdminController@send_to_graders_a_to_accept']);
 // Emails to Graders A to start grading 
 // Route::get('/admin/send-to-graders-a-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_begin', 'uses' => 'AdminController@send_to_graders_a_to_begin']);
+// Emails to Graders A that have not yet accepted 
+// Route::get('/admin/send-to-late-graders', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_late_graders', 'uses' => 'AdminController@send_to_late_graders']);
 
 # Manual Assignments
 Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_to_site', 'uses' => 'AdminController@assign_to_site']);
@@ -85,6 +87,7 @@ Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'u
 # Masquerade
 Route::get('/admin/masquerade/{user_id}', ['before' => 'auth|admin|ninja', 'as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
 Route::get('/admin/switch-back', ['after' => 'auth|admin|ninja', 'as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);
+
 // Test Pivot
 Route::get('pivot', function(){
 
