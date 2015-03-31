@@ -140,6 +140,68 @@ class AdminController extends \BaseController {
         
     }
     
+    public function assign_to_site($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_to_site', compact('site', 'evaluations'));
+        }
+        
+        return View::make('admin.assign_to_site', compact('site'));
+        
+    }
+
+    public function assign_b_to_site($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_b_to_site', compact('site', 'evaluations'));
+        }
+        
+        return View::make('admin.assign_b_to_site', compact('site'));
+        
+    }
+    
+    public function confirm_delete_evaluation_site_grader($evaluation_id) {
+        
+        $evaluation = Evaluation::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_site_grader', compact('evaluation', 'grader', 'site'));
+        
+    }
+
+    public function confirm_delete_evaluation_site_grader_b($evaluation_id) {
+        
+        $evaluation = Evaluation::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_site_grader_b', compact('evaluation', 'grader', 'site'));
+        
+    }    
+    
+    
+    // Assign a grader to a site
+    public function assign_evaluation_grader_site($evaluation_id, $site_id, $grader_id){
+        
+        
+        
+    }
+    
     public function send_to_graders_a_to_accept(){        
         
         $graders = Grader::all();       

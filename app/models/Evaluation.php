@@ -2,7 +2,7 @@
 
 class Evaluation extends \Eloquent {
     
-     public static $can_evaluate_rules = [
+    public static $can_evaluate_rules = [
 		'can_evaluate' => 'required',
 	];
     
@@ -41,6 +41,10 @@ class Evaluation extends \Eloquent {
         'stk1' => 'required',
         'stk2' => 'required',
         'stk3' => 'required',
+    ];
+
+    public static $grader_a_rules = [
+        'grader_id' => 'required',
     ];
     
     public static $error_messages = [
