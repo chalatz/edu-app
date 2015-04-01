@@ -165,7 +165,14 @@ class AdminController extends \BaseController {
                                         ->orWhere('delta_grade', '=', 0)
                                         ->orWhere('epsilon_grade', '=', 0)
                                         ->orWhere('st_grade', '=', 0)
-                                        ->distinct()->groupBy('grader_id')->get();       
+                                        ->distinct()->groupBy('grader_id')->get(); 
+        
+        $evaluations_all = Evaluation::where('beta_grade', '=', 0)
+                                        ->orWhere('gama_grade', '=', 0)
+                                        ->orWhere('delta_grade', '=', 0)
+                                        ->orWhere('epsilon_grade', '=', 0)
+                                        ->orWhere('st_grade', '=', 0)
+                                        ->get(); 
         
         $today = new DateTime('NOW');
         
@@ -175,28 +182,28 @@ class AdminController extends \BaseController {
         $expires_today = [];
         $expires_in_two_days = [];
         
-        foreach($evaluations as $evaluation) {                      
+//         foreach($evaluations as $evaluation) {                      
             
-            $assigned_until = new DateTime($evaluation->assigned_until);
+//             $assigned_until = new DateTime($evaluation->assigned_until);
 
-            $days_diff = $today->diff($assigned_until)->format('%R%a');
+//             $days_diff = $today->diff($assigned_until)->format('%R%a');
             
-            if($assigned_until < $holy_tuesday_2015 && $assigned_until > $default_date) {
-                $grader_id = $evaluation->grader_id;
-                $grader = Grader::find($grader_id);
-                $grader_email = $grader->user->email;
-                $grader_last_name = $grader->grader_last_name;
-                $grader_first_name = $grader->grader_name;
-                echo $grader->user->email ." , ". $assigned_until->format('d / m / Y') ."<br>";
+//             if($assigned_until < $holy_tuesday_2015 && $assigned_until > $default_date) {
+//                 $grader_id = $evaluation->grader_id;
+//                 $grader = Grader::find($grader_id);
+//                 $grader_email = $grader->user->email;
+//                 $grader_last_name = $grader->grader_last_name;
+//                 $grader_first_name = $grader->grader_name;
+//                 echo $grader->user->email ." , ". $assigned_until->format('d / m / Y') ."<br>";
                 
-                $evaluation->assigned_until = $holy_tuesday_2015;
-                $evaluation->save();
+//                 $evaluation->assigned_until = $holy_tuesday_2015;
+//                 $evaluation->save();
                 
-                Mail::send('emails.expires_then',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - 7ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015');
-                });
+//                 Mail::send('emails.expires_then',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
+//                     $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - 7ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015');
+//                 });
                 
-            }
+//             }
 
 //             if($days_diff == '+0' || $days_diff == '-0') {
 //                 $grader_id = $evaluation->grader_id;
@@ -223,9 +230,27 @@ class AdminController extends \BaseController {
 //                 $expires_in_two_days[] = $grader_email;
 //             }
 
-            //echo($days_diff). "<br>";
+//             //echo($days_diff). "<br>";
             
-        }   
+//         }
+        
+        foreach($evaluations_all as $evaluation) {
+            $assigned_until = new DateTime($evaluation->assigned_until);
+
+            $days_diff = $today->diff($assigned_until)->format('%R%a');
+            
+            if($assigned_until < $holy_tuesday_2015 && $assigned_until > $default_date) {
+                $grader_id = $evaluation->grader_id;
+                $grader = Grader::find($grader_id);
+                $grader_email = $grader->user->email;
+                $grader_last_name = $grader->grader_last_name;
+                $grader_first_name = $grader->grader_name;
+                echo $grader->user->email ." , ". $assigned_until->format('d / m / Y') ."<br>";
+                
+                $evaluation->assigned_until = $holy_tuesday_2015;
+                $evaluation->save();                
+            }
+        }
 
         //return View::make('admin.notify_late_graders', compact('expires_today','expires_in_two_days'));
         
