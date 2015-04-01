@@ -29,6 +29,8 @@ Route::get('logout',['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 Route::get('verify/{confirmation_string}', ['as' => 'verify', 'uses' => 'SessionsController@verify']);
 Route::get('change-password', ['as' => 'change_password', 'uses' => 'SessionsController@change_password']);
 Route::post('change-password', ['as' => 'do_change_password', 'uses' => 'SessionsController@do_change_password']);
+Route::get('admin/change-password/{user_id}', ['before' => 'auth|admin|ninja', 'as' => 'change_password_ninja', 'uses' => 'SessionsController@change_password_ninja']);
+Route::post('admin/change-password', ['before' => 'auth|admin|ninja', 'as' => 'do_change_password_ninja', 'uses' => 'SessionsController@do_change_password_ninja']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
 
 # Profile

@@ -115,7 +115,7 @@ class SessionsController extends \BaseController {
         return View::make('sessions.change_password');
     }
     
-    public function do_change_password(){
+    public function do_change_password() {
         
         $validator = Validator::make($data = Input::only(['current_password', 'new_password', 'new_password_confirmation']), User::$change_password_rules, User::$error_messages);
         
@@ -151,6 +151,38 @@ class SessionsController extends \BaseController {
         }
         
     }
+    
+    public function change_password_ninja($user_id) {
+        
+        $user = User::find($user_id);
+        
+        return View::make('sessions.change_password_ninja', compact('user'));
+    }
+    
+    public function do_change_password_ninja() {
+        
+        $user_id = Input::get('user_id');       
+        
+        $validator = Validator::make($data = Input::all(), User::$change_password_ninja_rules, User::$error_messages);
+        
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        
+        $user = User::find($user_id);
+        
+        $new_password = Input::get('new_password');
+        
+        $user->password = $new_password;
+        $user->save();        
+
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ο κωδικός πρόσβασης έχει ενημερωθεί με επιτυχία!');        
+        Session::flash('alert-class', 'flash-success');
+        
+        return Redirect::home();
+        
+        
+    }    
 
 	/**
 	 * Remove the specified resource from storage.

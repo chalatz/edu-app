@@ -20,6 +20,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'new_password' => 'required|confirmed',
     ];
     
+    public static $change_password_ninja_rules = [
+        'new_password' => 'required|confirmed',
+    ];
+    
     public static $login_rules= [
 		'email' => 'required|email',
 		'password' => 'required',
