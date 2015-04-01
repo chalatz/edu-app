@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@eduwebawards.gr', 'name' => 'Edu Web Awards'),
+	'from' => array('address' => 'info@eduwebawards.gr', 'name' => 'Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων'),
 
 	/*
 	|--------------------------------------------------------------------------
