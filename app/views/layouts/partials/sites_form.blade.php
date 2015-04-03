@@ -11,14 +11,10 @@
     <div class="instructions">Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας (π.χ. 2ο Δημοτικό Σχολείο Σύρου)</div>
     <p class="error-message">{{ $errors->first('title') }}</p>
 
-<!--     {{ Form::label('cat_id', 'Κατηγορία *') }}
+    {{ Form::label('cat_id', 'Κατηγορία *') }}
     {{ Form::select('cat_id', $categories, null, array('class' => 'pure-input-1', 'required')) }}
     <div class="instructions small">** Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</div>
-    <p class="error-message">{{ $errors->first('cat_id') }}</p> -->
-
-    {{ Form::hidden('cat_id') }}
-    <label>Κατηγορία</label>
-    <p>{{ $categories[$user->site->cat_id] }}</p>
+    <p class="error-message">{{ $errors->first('cat_id') }}</p>
 
     {{ Form::label('creator', 'Δημιουργός / Δημιουργοί / Συντηρητές *') }}
     {{ Form::text('creator', null, array('class' => 'pure-input-1', 'required')) }}
