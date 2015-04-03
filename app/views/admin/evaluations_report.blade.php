@@ -52,8 +52,16 @@
                     <td>{{ $site->title }}</td>
                     <td><a href="{{ $site->site_url }}" target="_blank">{{ $site->site_url }}</a></td>
                     <td>{{ $site->cat_id }}</td>
-                    <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
-                    <td>{{ $grader->user->email }}</td>
+                    @if($grader)
+                        <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                    @else
+                        <td>--</td>
+                    @endif
+                    @if($grader)
+                        <td>{{ $grader->user->email }}</td>
+                    @else
+                        <td>--</td>
+                    @endif
                     <td>{{ $site->contact_last_name }} {{ $site->contact_name }}</td>
                     <td>{{ $site->contact_email }}</td>
                     <td>

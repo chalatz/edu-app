@@ -35,7 +35,11 @@
 
                     @foreach($evaluations as $evaluation)                    
                         <?php $grader = Grader::find($evaluation->grader_id); ?>
-                        <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>                        
+                        @if($grader)
+                            <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                        @else
+                            <td>--</td>
+                        @endif                        
                     @endforeach
                     
                     @foreach($evaluations as $evaluation)
