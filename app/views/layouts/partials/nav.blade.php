@@ -36,8 +36,9 @@
                         <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
                         <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                         <li>{{ link_to('/admin/graders_b', 'Αξιολογητές Β') }}</li>
-                        <li>{{ link_to('/admin/stats', 'Στατιστικά') }}</li>
                         <li>{{ link_to('/admin/evaluations-report/', 'Αξιολογήσεις Α') }}</li>
+                        <li>{{ link_to('/admin/sites/grades/a/', 'Διαχείριση Αναθέσεων Φάσης Α') }}</li>
+                        <li>{{ link_to('/admin/stats', 'Στατιστικά') }}</li>
                     @endif
 
                 @endforeach

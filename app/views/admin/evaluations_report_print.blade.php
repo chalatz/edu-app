@@ -1,30 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
-	<h1>Αξιολογήσεις Α</h1>
-
-    <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
-        {{ link_to('/admin/evaluations-report/print/', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-    </p>
-
-    <table id="evaluations-report-table" class="admin-table pure-table pure-table-horizontal pure-table-striped pure-form">
+    <table>
     
         <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="grade-number-index"></th>
             <tr>
                 <th>Επωνυμία</th>
                 <th>URL</th>
@@ -79,11 +59,7 @@
                 </tr>
 
             @endforeach
-        </tbody>
-        
-        <tfoot>        
- 
-        </tfoot>
+        </tbody>        
 
     </table>
 

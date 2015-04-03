@@ -10,11 +10,13 @@
             <tr>
                 <th>Επωνυμία</th>
                 <th>URL</th>
-                <th colspan="2">Αξιολογητές</th>
-                <th colspan="2">Βαθμολογίες</th>
+                <th>Αξιολογητές</th>
+                <th></th>
+                <th>Βαθμολογίες</th>
+                <th></th>
                 <th>Διαφορά</th>
-                <th>Ανάθεση B</th>
                 <th>Ανάθεση Α</th>
+                <th>Ανάθεση Β</th>
                 @if(Auth::user()->hasRole('ninja'))
                     <th>Μεταμφίεση</th>
                 @endif
@@ -54,10 +56,11 @@
                         <td style="background: #5eb95e; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
                     @endif
                     
-                    <td>{{ link_to_route('admin.assign_b_to_site', 'Νέα Ανάθεση Β', [$site->id]) }}</td>
-                    
-                    <td>{{ link_to_route('admin.assign_to_site', 'Νέα Ανάθεση Α', [$site->id]) }}</td>
+                    <td>{{ link_to_route('admin.assign_to_site', 'Ανάθεση σε Αξιολ. Α', [$site->id]) }}</td>
 
+
+                    <td>{{ link_to_route('admin.assign_b_to_site', 'Ανάθεση σε Αξιολ. Β', [$site->id]) }}</td>
+                    
                     @if(Auth::user()->hasRole('ninja'))
                         <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
                     @endif
@@ -68,12 +71,7 @@
         </tbody>
         
         <tfoot>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
+
         </tfoot>
 
     </table>

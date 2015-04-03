@@ -49,6 +49,15 @@ class AdminController extends \BaseController {
         return View::make('admin.evaluations_report', compact('evaluations'));
 
     }
+
+    public function evaluations_report_print(){
+
+        // $evaluations = Evaluation::simplePaginate(10);
+        $evaluations = Evaluation::all();
+
+        return View::make('admin.evaluations_report_print', compact('evaluations'));
+
+    }    
     
     public function assignments(){
         
