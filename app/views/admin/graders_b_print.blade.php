@@ -2,7 +2,7 @@
 
     @section('content')
     
-        <table class="pure-table pure-table-horizontal pure-table-striped">
+        <table>
         
             <thead>
                 <tr>
@@ -16,6 +16,7 @@
                     <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
                     <th>Ξένες Γλώσσες</th>
                     <th>Άλλες Ξένες Γλώσσες</th>
+                    <th>Γιατί αυτοπροτείνεται</th>
                     <th>Δημιουργήθηκε</th>
                 </tr>
             </thead>
@@ -41,6 +42,7 @@
                                 @if($grader->level_italian_check == 'yes_italian') Ιταλικά - {{ $grader->level_italian }} @endif
                             </td>
                             <td>@if(isset($grader->languages)) {{ $grader->languages }}  {{ $grader->languages_level }} @endif</td>
+                            <td>{{ $grader->why_self_proposed }}</td>
                             <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
                         </tr>
 

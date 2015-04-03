@@ -51,6 +51,18 @@
     </div>
     <hr>
 
+    {{ Form::label('personal_url', 'URL Προσωπικού Ιστότοπου') }}
+    {{ Form::text('personal_url', null, array('class' => 'pure-input-1')) }}    
+
+    {{ Form::label('personal_xp', 'Εμπειρία Δημιουργίας - Αξιολόγησης Ιστότοπων') }}
+    {{ Form::text('personal_xp', null, array('class' => 'pure-input-1')) }}    
+
+    {{ Form::label('personal_cv', 'Υποβολή Βιογραφικού') }}
+    {{ Form::text('personal_cv', null, array('class' => 'pure-input-1')) }}
+    <div class="instructions">Παραθέστε έναν σύνδεσμο από Google Drive, Dropbox κλπ ή οπουδήποτε μπορούμε να δούμε το Βιογραφικό σας.</div>    
+   
+    <hr>    
+
     <label>Ξένες γλώσσες που γνωρίζω</label>
 
     <div class= "pure-g">
@@ -106,6 +118,10 @@
     {{ Form::text('languages', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('languages_level', 'Επίπεδο Άλλων Ξένων Γλωσσών') }}
-    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}    
+    {{ Form::text('languages_level', null, array('class' => 'pure-input-1')) }}
+
+    <hr>
+    {{ Form::label('comments', 'Παρατηρήσεις, Σχόλια') }}
+    {{ Form::textarea('comments', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1')) }}    
 
 </fieldset>	
