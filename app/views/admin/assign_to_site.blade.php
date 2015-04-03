@@ -48,7 +48,7 @@
             <option value="">Επιλέξτε Αξιολογητή Α...</option>
             @foreach(Grader::all() as $grader)
                  @if($grader->user->hasRole('grader'))
-                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }}</option>
+                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}</option>
                 @endif
             @endforeach
         </select>
