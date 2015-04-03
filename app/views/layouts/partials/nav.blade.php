@@ -1,7 +1,7 @@
 <div id="menu">
     <div class="pure-menu pure-menu-open">
         <a class="pure-menu-heading" href="#">Edu Web Awards 2015</a>
-
+dev
         <ul>
             <li>{{ link_to('/', 'Αρχική') }}</li>
             @if (Auth::guest())
