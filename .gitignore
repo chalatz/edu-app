@@ -11,3 +11,4 @@ composer.json
 /app/config/database.php
 app/config/database.php
 **.sass-cache**
+cron.txt

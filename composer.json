@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"guzzlehttp/guzzle": "4.*"
+		"guzzlehttp/guzzle": "4.*",
+		"indatus/dispatcher": "1.4.*@dev"
 	},
 	"require-dev": {
 	    "way/generators": "~2.0"

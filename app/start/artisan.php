@@ -11,3 +11,5 @@
 |
 */
 
+//Artisan::add(new LogCommand);
+//Artisan::add(new EmailLateGraders);
