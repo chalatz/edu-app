@@ -40,7 +40,9 @@ class EmailLateGraders extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		return $scheduler;
+		return $scheduler->daily()
+            			->hours(8)
+            			->minutes(15);;
 	}
 
 	/**
