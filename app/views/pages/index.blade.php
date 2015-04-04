@@ -24,6 +24,12 @@
             @endif
         @endif
 
+        @if(Auth::user()->id == 59)
+            <div>
+                {{ link_to('/admin/manual-cron/', 'Manual Cron', ['class' => 'action-btn action-btn-purple anchor-block']) }}
+            </div>
+        @endif
+
         <p>Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong></p>
 
         @if(!(sizeof(Auth::user()->roles) == 1 && Auth::user()->hasRole('user')))
