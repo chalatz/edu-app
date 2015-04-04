@@ -229,11 +229,10 @@ class AdminController extends \BaseController {
                 $new_date = $today->modify('+2 days');
                 $new_date_formatted = $new_date->format('d / m / Y');
                 
-                Mail::send('emails.expires_today',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'new_date_formatted' => $new_date_formatted], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
-                });
+                // Mail::send('emails.expires_today',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'new_date_formatted' => $new_date_formatted], function($message) use ($grader_email){
+                //     $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
+                // });
 
-                //echo $assigned_until->format('d / m / Y') ." , ". $days_diff ."<br>";
             }
 
             if($days_diff == '+2'){
@@ -248,11 +247,10 @@ class AdminController extends \BaseController {
 
                 $assigned_until_formatted = $assigned_until->format('d / m / Y');
 
-                Mail::send('emails.expires_in_two_days',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'assigned_until_formatted' => $assigned_until_formatted], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
-                });
+                // Mail::send('emails.expires_in_two_days',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'assigned_until_formatted' => $assigned_until_formatted], function($message) use ($grader_email){
+                //     $message->to($grader_email)->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
+                // });
 
-                echo $assigned_until->format('d / m / Y') ." , ". $days_diff ."<br>";
             }
             
         }
