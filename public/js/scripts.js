@@ -452,6 +452,7 @@
                             { type: "text" }, { type: "text" }, { type: "text" },
                             { type: "text" }, { type: "text" }, { type: "text" },
                             { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
                             { type: "number-range" }
                          ]
         }
