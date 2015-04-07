@@ -4,6 +4,11 @@
 
 	<h1>Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων</h1>
 
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="green white-font">Διαφορά μικρότερη από 20%</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="red white-font">Διαφορά μεγαλύτερη από 20%</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em; background: #000" class="white-font">Δεν έχει βαθμολογήσει κανένας</div>
+
     <table id="sites-grades-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     
         <thead>
@@ -53,12 +58,27 @@
                             $j = $j + 1;
                         ?>
                     @endforeach
-                    <?php $dif = abs($tg[0] - $tg[1]); ?>      
-                    @if($dif > 20) 
-                        <td style="background: #dd514c; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
-                    @else
-                        <td style="background: #5eb95e; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
-                    @endif
+                    <?php
+                        $bgc = '#fff';
+                        $dif = abs($tg[0] - $tg[1]);
+                        if( $dif > 20 && ( abs($tg[0]) >= 20 || abs($tg[1]) >= 20 ) ) {
+                            $bgc = '#dd514c';
+                        }
+                        if($dif <= 20 && (abs($tg[0]) >= 20 || abs($tg[1]) >= 20)) {
+                            $bgc = '#5eb95e';
+                        }
+                        if(abs($tg[0]) == 0 && abs($tg[1]) >= 20) {
+                            $bgc = '#F37B1D';
+                        }
+                        if(abs($tg[0]) >= 0 && abs($tg[1]) == 0) {
+                            $bgc = '#F37B1D';
+                        }
+                        if(abs($tg[0]) == 0 && abs($tg[1]) == 0) {
+                            $bgc = '#000';
+                        }
+                    ?>
+                    
+                    <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
                     
                     <td>{{ link_to_route('admin.assign_to_site', 'Ανάθεση σε Αξιολ. Α', [$site->id]) }}</td>
 
