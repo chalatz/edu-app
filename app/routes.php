@@ -132,9 +132,11 @@ Route::get('pivot', function(){
 
 // Test Flash
 Route::get('flash', function(){
+    
     Session::flash('flash_message', 'Yo');
     Session::flash('alert-class', 'flash-info');
     return Redirect::home();
+    
 });
 
 // Test Select Lists from DB

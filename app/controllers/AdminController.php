@@ -173,45 +173,48 @@ class AdminController extends \BaseController {
         $today = new DateTimeImmutable('NOW');
 
         foreach($evaluations_all as $evaluation){
+            
+            if($evaluation->is_educational != 'no' && $evaluation->can_evaluate != 'no'){
 
-            $assigned_until = new DateTimeImmutable($evaluation->assigned_until);
+                $assigned_until = new DateTimeImmutable($evaluation->assigned_until);
 
-            $days_diff = $today->diff($assigned_until)->format('%R%a');
+                $days_diff = $today->diff($assigned_until)->format('%R%a');
 
-            if($days_diff == '+0' || $days_diff == '-0') {
-                $grader_id = $evaluation->grader_id;
-                $grader = Grader::find($grader_id);
-                $site = Site::find($evaluation->site_id);
-                $site_sitle = $site->title;
-                $site_url = $site->site_url;
-                $grader_email = $grader->user->email;
-                $grader_last_name = $grader->grader_last_name;
-                $grader_first_name = $grader->grader_name;
-                
-                $new_date = $today->modify('+2 days');
-                $new_date_formatted = $new_date->format('d / m / Y');
-                
-                Mail::send('emails.expires_today',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'new_date_formatted' => $new_date_formatted], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
-                });
-            }
+                if($days_diff == '+0' || $days_diff == '-0') {
+                    $grader_id = $evaluation->grader_id;
+                    $grader = Grader::find($grader_id);
+                    $site = Site::find($evaluation->site_id);
+                    $site_sitle = $site->title;
+                    $site_url = $site->site_url;
+                    $grader_email = $grader->user->email;
+                    $grader_last_name = $grader->grader_last_name;
+                    $grader_first_name = $grader->grader_name;
 
-            if($days_diff == '+2'){
-                $grader_id = $evaluation->grader_id;
-                $grader = Grader::find($grader_id);
-                $site = Site::find($evaluation->site_id);
-                $site_sitle = $site->title;
-                $site_url = $site->site_url;
-                $grader_email = $grader->user->email;
-                $grader_last_name = $grader->grader_last_name;
-                $grader_first_name = $grader->grader_name;
+                    $new_date = $today->modify('+2 days');
+                    $new_date_formatted = $new_date->format('d / m / Y');
 
-                $assigned_until_formatted = $assigned_until->format('d / m / Y');
+                    Mail::send('emails.expires_today',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'new_date_formatted' => $new_date_formatted], function($message) use ($grader_email){
+                        $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
+                    });
+                }
 
-                Mail::send('emails.expires_in_two_days',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'assigned_until_formatted' => $assigned_until_formatted], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
-                });
-            }
+                if($days_diff == '+2'){
+                    $grader_id = $evaluation->grader_id;
+                    $grader = Grader::find($grader_id);
+                    $site = Site::find($evaluation->site_id);
+                    $site_sitle = $site->title;
+                    $site_url = $site->site_url;
+                    $grader_email = $grader->user->email;
+                    $grader_last_name = $grader->grader_last_name;
+                    $grader_first_name = $grader->grader_name;
+
+                    $assigned_until_formatted = $assigned_until->format('d / m / Y');
+
+                    Mail::send('emails.expires_in_two_days',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'assigned_until_formatted' => $assigned_until_formatted], function($message) use ($grader_email){
+                        $message->to($grader_email)->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
+                    });
+                }
+            }    
 
         } // end foreach
 
