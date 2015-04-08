@@ -57,7 +57,22 @@ class AdminController extends \BaseController {
 
         return View::make('admin.evaluations_report_print', compact('evaluations'));
 
-    }    
+    }
+    
+    public function not_graded(){
+        
+        $evaluations = Evaluation::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->orderBy('grader_id')
+            ->distinct()->groupBy('grader_id')
+            ->get();
+
+        return View::make('admin.not_graded', compact('evaluations'));
+        
+    }
     
     public function assignments(){
         
@@ -168,6 +183,7 @@ class AdminController extends \BaseController {
                                 ->orWhere('delta_grade', '=', 0)
                                 ->orWhere('epsilon_grade', '=', 0)
                                 ->orWhere('st_grade', '=', 0)
+                                ->distinct()->groupBy('grader_id')
                                 ->get();
 
         $today = new DateTimeImmutable('NOW');
