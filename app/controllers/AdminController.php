@@ -74,6 +74,34 @@ class AdminController extends \BaseController {
         
     }
     
+    public function sites_that_graded(){
+        
+        $sites = Site::all();
+        
+        $graders = Grader::all(); 
+        
+        $evaluations = Evaluation::where('total_grade', '>=', 20)
+                        ->Where('can_evaluate', '=', 'yes')
+                        ->Where('is_educational', '=', 'yes')
+                        ->orderBy('grader_id')
+                        ->get();
+
+        return View::make('admin.sites_that_graded', compact('sites', 'graders', 'evaluations'));
+        
+    }
+        
+    public function sites_bye_bye(){
+        
+        $evaluations = Evaluation::where('total_grade', '<', 20)
+                        ->distinct()
+                        ->groupBy('grader_id')
+                        ->orderBy('grader_id')
+                        ->get();
+
+        return View::make('admin.sites_bye_bye', compact('evaluations'));
+        
+    }
+    
     public function assignments(){
         
         $evaluations = Evaluation::all();
