@@ -7,8 +7,11 @@
         <thead>
             <tr>
                 <th>aa</th>
-                <th>Grader</th>
-                <th>Site</th>
+                <th>grader id</th>                
+                <th>Υποψήφιος Ιστότοπος</th>
+                <th>email επικοινωνίας Ιστότοπου</th>
+                <th>Αξιολογητής</th>
+                <th>email Αξιολογητή</th>       
             </tr>
         </thead>
         
@@ -19,10 +22,13 @@
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{$evaluation->grader_id}}</td>
-                    <?php $grader = Grader::find($evaluation->grader_id); ?>
+                    <?php $grader = Grader::find($evaluation->grader_id); ?>                                        
                     @foreach($grader->sites as $site)
-                        <td>{{ $site->title }}</td>                        
+                        <td>{{ $site->title }} ({{ $site->site_url }})</td>
+                        <td>{{ $site->contact_email }}</td>
                     @endforeach
+                    <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                    <td>{{ $grader->user->email }}</td>                    
                 </tr>
                 <?php $i++; ?>
             @endforeach            
