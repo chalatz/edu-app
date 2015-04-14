@@ -93,6 +93,7 @@ class AdminController extends \BaseController {
     public function sites_bye_bye(){
         
         $evaluations = Evaluation::where('total_grade', '<', 20)
+                        ->Where('can_evaluate', '=', 'na')
                         ->distinct()
                         ->groupBy('grader_id')
                         ->orderBy('grader_id')
