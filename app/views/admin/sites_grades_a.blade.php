@@ -15,6 +15,7 @@
             <tr>
                 <th>Επωνυμία</th>
                 <th>URL</th>
+                <th>Κατηγορία</th>
                 <th>Αξιολογητές</th>
                 <th></th>
                 <th>Βαθμολογίες</th>
@@ -37,6 +38,7 @@
                 <tr>
                     <td>{{ $site->title }}</td>
                     <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
+                    <td>{{ $site->cat_id }}</td>
 
                     @foreach($evaluations as $evaluation)                    
                         <?php $grader = Grader::find($evaluation->grader_id); ?>

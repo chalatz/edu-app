@@ -19,7 +19,7 @@ class AdminController extends \BaseController {
     
     public function sites_grades_a(){
         
-        $sites = Site::all();
+        $sites = Site::orderBy('cat_id')->get();
         
         return View::make('admin.sites_grades_a', compact('sites'));
         
