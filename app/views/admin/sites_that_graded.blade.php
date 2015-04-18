@@ -9,6 +9,7 @@
                 <th>Grader</th>
                 <th>Site</th>
                 <th>count</th>
+                <th>Cat</th>
             </tr>
         </thead>
         
@@ -19,8 +20,9 @@
                     <td>{{$evaluation->grader_id}}</td>
                     <?php $grader = Grader::find($evaluation->grader_id); ?>
                     @foreach($grader->sites as $site)
-                        <td>{{ $site->title }} ({{ $site->site_url }})</td>
+                        <td>{{ $site->title }} ({{ $site->site_url }})</td>                       
                         <td>{{ Evaluation::where('site_id', '=', $site->id)->Where('total_grade', '>=', '20')->Where('can_evaluate', '=', 'yes')->Where('is_educational', '=', 'yes')->count() }}</td>
+                        <td>{{ $site->cat_id }}</td>                   
                     @endforeach
                 </tr>
             @endforeach            
