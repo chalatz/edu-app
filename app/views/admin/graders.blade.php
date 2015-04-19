@@ -17,6 +17,7 @@
                 <th>Eπώνυμο</th>
                 <th>Όνομα</th>
                 <th>Email</th>
+                <th>Τηλ. Ιστότοπου που τον πρότεινε</th>
                 <th>Ειδικότητα</th>
                 <th>Περιφέρεια</th>
                 <th>Κατηγορίες που επιθυμεί</th>
@@ -47,6 +48,7 @@
                         <td>{{ $grader->grader_last_name }}</td>
                         <td>{{ $grader->grader_name }}</td>
                         <td>{{ $grader->user->email }}</td>
+                        <td>@foreach($grader->sites as $site) {{ $site->phone }} @endforeach</td>
                         <td>@if(isset($grader->specialty)) {{Specialty::find($grader->specialty)->specialty_name}} @endif</td>
                         <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }}@endif</td>
                         <td>{{ $grader->desired_category }}</td>
@@ -82,6 +84,7 @@
             <th>Eπώνυμο</th>
             <th>Όνομα</th>
             <th>Email</th>
+            <th>Τηλέφωνο</th>
             <th>Ειδικότητα</th>
             <th>Περιφέρεια</th>
             <th>Κατηγορίες που επιθυμεί</th>
