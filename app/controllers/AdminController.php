@@ -21,7 +21,16 @@ class AdminController extends \BaseController {
         
         $sites = Site::orderBy('cat_id')->get();
         
-        return View::make('admin.sites_grades_a', compact('sites'));
+        $max_evals = 0;
+        
+        foreach($sites as $site){
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
+        
+        return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
         
     }
     

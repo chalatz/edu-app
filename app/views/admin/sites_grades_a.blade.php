@@ -11,15 +11,17 @@
 
     <table id="sites-grades-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     
-        <thead>
+        <thead>            
             <tr>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
-                <th>Αξιολογητές</th>
-                <th></th>
-                <th>Βαθμολογίες</th>
-                <th></th>
+                @for($i = 1; $i <= $max_evals; $i++)
+                    <th>Αξιολ. {{$i}}</th>
+                @endfor
+                @for($i = 1; $i <= $max_evals; $i++)
+                    <th>Βαθμός {{$i}}</th>
+                @endfor                
                 <th>Διαφορά</th>
                 <th>Ανάθεση Α</th>
                 <th>Ανάθεση Β</th>
@@ -33,25 +35,38 @@
             @foreach($sites as $site)
             <?php
                 $evaluations = Evaluation::where('site_id', $site->id)->get();
+                $eval_count = $evaluations->count();
             ?>
 
                 <tr>
                     <td>{{ $site->title }}</td>
                     <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
                     <td>{{ $site->cat_id }}</td>
-
+                    <?php $i = 0; ?>
                     @foreach($evaluations as $evaluation)                    
                         <?php $grader = Grader::find($evaluation->grader_id); ?>
                         @if($grader)
                             <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
                         @else
                             <td>--</td>
-                        @endif                        
-                    @endforeach
+                        @endif                           
+                    @endforeach                    
+                    @if($max_evals > $eval_count)
+                        <?php $remaining = $max_evals - $eval_count; ?>                 
+                        <?php for($i = 0; $i < $remaining; $i++): ?>
+                            <td></td>
+                        <?php endfor; ?>
+                    @endif 
                     
                     @foreach($evaluations as $evaluation)
                         <td>{{ $evaluation->total_grade }}</td>
                     @endforeach
+                    @if($max_evals > $eval_count)
+                        <?php $remaining = $max_evals - $eval_count; ?>                 
+                        <?php for($i = 0; $i < $remaining; $i++): ?>
+                            <td></td>
+                        <?php endfor; ?>
+                    @endif
                     
                     <?php $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; ?>                        
                     @foreach($evaluations as $evaluation)
@@ -97,7 +112,23 @@
         </tbody>
         
         <tfoot>
-
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                @for($i = 1; $i <= $max_evals; $i++)
+                    <th></th>
+                @endfor
+                @for($i = 1; $i <= $max_evals; $i++)
+                    <th></th>
+                @endfor                
+                <th></th>
+                <th></th>
+                <th></th>
+                @if(Auth::user()->hasRole('ninja'))
+                    <th></th>
+                @endif
+            </tr>
         </tfoot>
 
     </table>
