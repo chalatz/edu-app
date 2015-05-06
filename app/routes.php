@@ -263,6 +263,13 @@ Route::get('panormighty', function(){
     
 });
 
+Route::get('give-codes', function(){
+    for($i=1; $i <= 100; $i++){
+        $s= "i" . sprintf("%03d", $i);
+        echo $s . "<br>";
+    }
+});
+
 Route::get('assign', function(){
     
 //     $assignments = Assignment::all();

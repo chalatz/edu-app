@@ -14,6 +14,7 @@
     
         <thead>
             <tr>
+                <th>Κωδικός</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
@@ -40,6 +41,7 @@
             @foreach($sites as $site)
 
                 <tr>
+                    <td>i{{ sprintf("%03d", $site->id) }}</td>
                     <td>{{ $site->title }}</td>
                     <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
                     <td>{{ $site->cat_id }}</td>

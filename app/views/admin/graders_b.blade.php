@@ -18,6 +18,7 @@
                     <th>Μεταμφίεση</th>
                 @endif
                 <th>Έγκριση</th>
+                <th>Κωδικός</th>
                 <th>Eπώνυμο</th>
                 <th>Όνομα</th>
                 <th>Email</th>
@@ -52,6 +53,7 @@
                                 {{ link_to_route('admin.approve_grader_b', 'Εγκρίνω', [$grader->id, Auth::user()->id], ['onclick' => 'return confirm("Είστε σίγουρος;");']) }}
                             @endif
                         </td>
+                        <td>αξ{{ sprintf("%03d", $grader->id) }}</td>
                         <td>{{ $grader->grader_last_name }}</td>
                         <td>{{ $grader->grader_name }}</td>
                         <td>{{ $grader->user->email }}</td>
@@ -83,6 +85,7 @@
                 <th></th>
             @endif
             <th></th>
+            <th>Κωδικός</th>
             <th>Eπώνυμο</th>
             <th>Όνομα</th>
             <th>Email</th>

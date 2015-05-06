@@ -14,6 +14,7 @@
     
         <thead>
             <tr>
+                <th>Κωδικός</th>
                 <th>Eπώνυμο</th>
                 <th>Όνομα</th>
                 <th>Email</th>
@@ -45,6 +46,7 @@
                 @if($grader->user->hasRole('grader'))
 
                     <tr>
+                        <td>αξ{{ sprintf("%03d", $grader->id) }}</td>
                         <td>{{ $grader->grader_last_name }}</td>
                         <td>{{ $grader->grader_name }}</td>
                         <td>{{ $grader->user->email }}</td>
@@ -80,7 +82,7 @@
         </tbody>
         
         <tfoot>
-        
+            <th>Κωδικός</th>
             <th>Eπώνυμο</th>
             <th>Όνομα</th>
             <th>Email</th>

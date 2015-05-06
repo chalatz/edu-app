@@ -13,6 +13,7 @@
     
         <thead>            
             <tr>
+                <th>Κωδικός</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
@@ -39,6 +40,7 @@
             ?>
 
                 <tr>
+                    <td>i{{ sprintf("%03d", $site->id) }}</td>
                     <td>{{ $site->title }}</td>
                     <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
                     <td>{{ $site->cat_id }}</td>
@@ -46,7 +48,7 @@
                     @foreach($evaluations as $evaluation)                    
                         <?php $grader = Grader::find($evaluation->grader_id); ?>
                         @if($grader)
-                            <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                            <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} (αξ{{ sprintf("%03d", $grader->id) }})</td>
                         @else
                             <td>--</td>
                         @endif                           
@@ -113,6 +115,7 @@
         
         <tfoot>
             <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>

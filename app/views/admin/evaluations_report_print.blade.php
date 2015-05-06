@@ -6,6 +6,7 @@
     
         <thead>
             <tr>
+                <th>Κωδικός</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
@@ -29,6 +30,7 @@
                 <?php $grader = Grader::find($evaluation->grader_id); ?>
 
                 <tr>
+                    <td>i{{ sprintf("%03d", $site->id) }}</td>
                     <td>{{ $site->title }}</td>
                     <td><a href="{{ $site->site_url }}" target="_blank">{{ $site->site_url }}</a></td>
                     <td>{{ $site->cat_id }}</td>
