@@ -58,18 +58,9 @@
                         <?php for($i = 0; $i < $remaining; $i++): ?>
                             <td></td>
                         <?php endfor; ?>
-                    @endif 
-                    
-                    @foreach($evaluations as $evaluation)
-                        <td>{{ $evaluation->total_grade }}</td>
-                    @endforeach
-                    @if($max_evals > $eval_count)
-                        <?php $remaining = $max_evals - $eval_count; ?>                 
-                        <?php for($i = 0; $i < $remaining; $i++): ?>
-                            <td></td>
-                        <?php endfor; ?>
                     @endif
-                    
+
+                    <?php // tg stands for total grades ?>
                     <?php $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; ?>                        
                     @foreach($evaluations as $evaluation)
                         <?php
@@ -77,22 +68,36 @@
                             $j = $j + 1;
                         ?>
                     @endforeach
+
+                    <?php $tg_rsorted = $tg; rsort($tg_rsorted); ?>
+                    
+                    @foreach($evaluations as $evaluation)
+                        <td>{{ $evaluation->total_grade }}</td>
+                    @endforeach
+
+                    @if($max_evals > $eval_count)
+                        <?php $remaining = $max_evals - $eval_count; ?>                 
+                        <?php for($i = 0; $i < $remaining; $i++): ?>
+                            <td></td>
+                        <?php endfor; ?>
+                    @endif
+                    
                     <?php
                         $bgc = '#fff';
-                        $dif = abs($tg[0] - $tg[1]);
-                        if( $dif > 20 && ( abs($tg[0]) >= 20 || abs($tg[1]) >= 20 ) ) {
+                        $dif = abs($tg_rsorted[0] - $tg_rsorted[1]);
+                        if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20 ) ) {
                             $bgc = '#dd514c';
                         }
-                        if($dif <= 20 && (abs($tg[0]) >= 20 || abs($tg[1]) >= 20)) {
+                        if($dif <= 20 && (abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20)) {
                             $bgc = '#5eb95e';
                         }
-                        if(abs($tg[0]) == 0 && abs($tg[1]) >= 20) {
+                        if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) >= 20) {
                             $bgc = '#F37B1D';
                         }
-                        if(abs($tg[0]) >= 0 && abs($tg[1]) == 0) {
+                        if(abs($tg_rsorted[0]) >= 0 && abs($tg_rsorted[1]) == 0) {
                             $bgc = '#F37B1D';
                         }
-                        if(abs($tg[0]) == 0 && abs($tg[1]) == 0) {
+                        if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) == 0) {
                             $bgc = '#000';
                         }
                     ?>
