@@ -291,6 +291,10 @@ class EvaluationController extends \BaseController {
         $input = Input::all();
         
         $evaluation = Evaluation::find($id);
+
+        if($input['is_educational'] == 'no'){
+            $evaluation->total_grade = 1;
+        }
         
         $evaluation->fill($input)->save();
         
@@ -318,12 +322,16 @@ class EvaluationController extends \BaseController {
         
         $evaluation = Evaluation::find($id);
         
-        $evaluation->fill($input)->save();
-        
         if($input['can_evaluate'] == 'yes'){
             Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή.');
             Session::flash('alert-class', 'flash-success');
         }
+
+        if($input['can_evaluate'] == 'no'){
+            $evaluation->total_grade = -1;
+        }
+
+        $evaluation->fill($input)->save();
         
         return Redirect::route('grader.evaluate_show');
         
