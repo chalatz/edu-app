@@ -72,7 +72,9 @@
                     <?php $tg_rsorted = $tg; rsort($tg_rsorted); ?>
                     
                     @foreach($evaluations as $evaluation)
-                        <td>{{ $evaluation->total_grade }}</td>
+                        <td @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) style="color: green; font-weight: bold" @endif>
+                            {{ $evaluation->total_grade }}
+                        </td>
                     @endforeach
 
                     @if($max_evals > $eval_count)
