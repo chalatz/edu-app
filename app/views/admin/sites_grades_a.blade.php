@@ -2,13 +2,26 @@
 
 @section('content')
 
-	<h1>Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων</h1>
+	<h1>Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων (με τους αποκλειόμενους)</h1>
+    <p class="instructions">Μαζί με τους ιστότοπους των οποίων οι προτεινόμενοι αξιολογητές Α δεν αξιολόγησαν</p>
 
-    <div class="aligned-block green white-font">Διαφορά μικρότερη από 20%</div>
-    <div class="aligned-block red white-font">Διαφορά μεγαλύτερη από 20%</div>
-    <div class="aligned-block orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
-    <div class="aligned-block dark-gray white-font">Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί.</div>
-    <div class="aligned-block black white-font">Δεν έχει βαθμολογήσει κανένας</div>
+    <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-4">
+            <div class="aligned-block green white-font">Διαφορά μικρότερη από 20%</div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-4">
+            <div class="aligned-block red white-font">Διαφορά μεγαλύτερη από 20%</div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-4">
+            <div class="aligned-block orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-4">
+            <div class="aligned-block black white-font">Δεν έχει βαθμολογήσει κανένας</div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1">
+            <div class="aligned-block dark-gray white-font">Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί</div>
+        </div>
+    </div>
 
     <table id="sites-grades-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     

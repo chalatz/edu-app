@@ -3798,7 +3798,7 @@ form .label-for-checkbox {
 .aligned-block {
   margin-right: 1em;
   margin-bottom: 1em;
-  display: inline-block;
+  text-align: center;
   padding: 0.5em; }
 
 .admin-content .admin-table {

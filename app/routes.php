@@ -62,6 +62,7 @@ Route::get('/admin/assignments/', ['before' => 'auth|admin', 'as' => 'admin.assi
 Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'admin.evaluations_report', 'uses' => 'AdminController@evaluations_report']);
 Route::get('/admin/evaluations-report/print/', ['before' => 'auth|admin', 'as' => 'admin.evaluations_report_print', 'uses' => 'AdminController@evaluations_report_print']);
 Route::get('/admin/sites/grades/a/', ['before' => 'auth|admin', 'as' => 'admin.sites_grades_a', 'uses' => 'AdminController@sites_grades_a']);
+Route::get('/admin/sites/grades/a/ok', ['before' => 'auth|admin', 'as' => 'admin.sites_grades_a_ok', 'uses' => 'AdminController@sites_grades_a_ok']);
 Route::get('/admin/not-graded', ['before' => 'auth|admin', 'as' => 'admin.not_graded', 'uses' => 'AdminController@not_graded']);
 Route::get('/admin/sites-that-graded', ['before' => 'auth|admin', 'as' => 'admin.sites_that_graded', 'uses' => 'AdminController@sites_that_graded']);
 Route::get('/admin/sites-bye-bye', ['before' => 'auth|admin', 'as' => 'admin.sites_bye_bye', 'uses' => 'AdminController@sites_bye_bye']);
