@@ -4,11 +4,10 @@
 
 	<h1>Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων</h1>
 
-    <div class="aligned-block green white-font">Διαφορά μικρότερη από 20%</div>
-    <div class="aligned-block red white-font">Διαφορά μεγαλύτερη από 20%</div>
-    <div class="aligned-block orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
-    <div class="aligned-block dark-gray white-font">Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί.</div>
-    <div class="aligned-block black white-font">Δεν έχει βαθμολογήσει κανένας</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="green white-font">Διαφορά μικρότερη από 20%</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="red white-font">Διαφορά μεγαλύτερη από 20%</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em" class="orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
+    <div style="margin-right: 1em; display: inline-block; padding: .5em; background: #000" class="white-font">Δεν έχει βαθμολογήσει κανένας</div>
 
     <table id="sites-grades-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
     
@@ -97,11 +96,8 @@
                         if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) >= 20) {
                             $bgc = '#F37B1D';
                         }
-                        if(abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) <= 1) {
+                        if(abs($tg_rsorted[0]) >= 0 && abs($tg_rsorted[1]) == 0) {
                             $bgc = '#F37B1D';
-                        }
-                        if(abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) == 0) {
-                            $bgc = '#b2beb5';
                         }
                         if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) == 0) {
                             $bgc = '#000';

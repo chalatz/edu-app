@@ -3696,8 +3696,17 @@ img {
 .red {
   background: #dd514c; }
 
+.dark-gray {
+  background: #b2beb5; }
+
 .light-blue {
   background: #5aafe7; }
+
+.white {
+  background: #fff; }
+
+.black {
+  background: #000; }
 
 .blue-font {
   color: #1f8dd6; }
@@ -3716,6 +3725,9 @@ img {
 
 .white-font {
   color: #fff; }
+
+.black-font {
+  color: #000; }
 
 .dark-blue-font {
   color: #156193; }
@@ -3782,6 +3794,12 @@ form .label-for-checkbox {
 
 .info-block {
   padding: .5em; }
+
+.aligned-block {
+  margin-right: 1em;
+  margin-bottom: 1em;
+  display: inline-block;
+  padding: 0.5em; }
 
 .admin-content .admin-table {
   margin: 1em 0; }
