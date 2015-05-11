@@ -27,8 +27,24 @@
 
                     @if($grader->user->hasRole('grader_b'))
 
+                    <?php
+                        $grader_code = '';
+                        if($grader->user->hasRole('grader')){
+                            $grader_code = 'ΑΑ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->user->hasRole('grader_b')){
+                            $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->user->hasRole('grader') && $grader->user->hasRole('grader_b')){
+                            $grader_code = 'ΑΑΒ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->user->hasRole('admin')){
+                            $grader_code = 'ΑΓ' . sprintf("%03d", $grader->id);
+                        }
+                    ?>                    
+
                         <tr>
-                            <td>αξ{{ sprintf("%03d", $grader->id) }}</td>
+                            <td>{{ $grader_code }}</td>
                             <td>{{ $grader->grader_last_name }}</td>
                             <td>{{ $grader->grader_name }}</td>
                             <td>{{ $grader->user->email }}</td>

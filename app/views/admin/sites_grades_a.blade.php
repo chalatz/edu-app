@@ -60,9 +60,24 @@
                     <td>{{ $site->cat_id }}</td>
                     <?php $i = 0; ?>
                     @foreach($evaluations as $evaluation)                    
-                        <?php $grader = Grader::find($evaluation->grader_id); ?>
+                        <?php
+                            $grader = Grader::find($evaluation->grader_id);
+                            $grader_code = '';
+                            if($grader->user->hasRole('grader')){
+                                $grader_code = 'ΑΑ' . sprintf("%03d", $grader->id);
+                            }
+                            if($grader->approved == 'yes'){
+                                $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
+                            }
+                            if($grader->user->hasRole('grader') && $grader->approved == 'yes'){
+                                $grader_code = 'ΑΑΒ' . sprintf("%03d", $grader->id);
+                            }
+                            if($grader->user->hasRole('admin')){
+                                $grader_code = 'ΑΓ' . sprintf("%03d", $grader->id);
+                            }
+                        ?>
                         @if($grader)
-                            <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} (αξ{{ sprintf("%03d", $grader->id) }})</td>
+                            <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} ({{ $grader_code }})</td>
                         @else
                             <td>--</td>
                         @endif                           

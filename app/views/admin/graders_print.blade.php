@@ -33,8 +33,24 @@
 
                 @if($grader->user->hasRole('grader'))
 
+                    <?php
+                        $grader_code = '';
+                        if($grader->user->hasRole('grader')){
+                            $grader_code = 'ΑΑ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->approved == 'yes'){
+                            $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->user->hasRole('grader') && $grader->approved == 'yes'){
+                            $grader_code = 'ΑΑΒ' . sprintf("%03d", $grader->id);
+                        }
+                        if($grader->user->hasRole('admin')){
+                            $grader_code = 'ΑΓ' . sprintf("%03d", $grader->id);
+                        }
+                    ?>                    
+
                     <tr>
-                        <td>αξ{{ sprintf("%03d", $grader->id) }}</td>
+                        <td>{{ $grader_code }}</td>
                         <td>{{ $grader->grader_last_name }}</td>
                         <td>{{ $grader->grader_name }}</td>
                         <td>{{ $grader->user->email }}</td>
@@ -51,7 +67,7 @@
                             @if($grader->level_italian_check == 'yes_italian') Ιταλικά - {{ $grader->level_italian }} @endif
                         </td>
                         <td>@if(isset($grader->languages)) {{ $grader->languages }}  {{ $grader->languages_level }} @endif</td>
-                        <td>@foreach($grader->sites as $site) {{$site->title}} ({{ $site->site_url }})<br> @endforeach</td>
+                        <td>@foreach($grader->sites as $site) {{$site->title}} ({{ $site->site_url }}) (i{{ sprintf("%03d", $site->id) }})<br> @endforeach</td>
                         <td>{{ $grader->from_who_email }}</td>
                         <td>@if($grader->cat_id !=100) {{ $grader->cat_id }} @endif</td>
                         <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }} @endif</td>

@@ -27,7 +27,7 @@
             <th></th>
             <th class="grade-number-index"></th>
             <tr>
-                <th>Κωδικός</th>
+                <th>Κωδικός Site</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
@@ -48,7 +48,22 @@
         <tbody>
             @foreach($evaluations as $evaluation)
                 <?php $site =  Site::find($evaluation->site_id); ?>
-                <?php $grader = Grader::find($evaluation->grader_id); ?>
+                <?php
+                    $grader = Grader::find($evaluation->grader_id);
+                    $grader_code = '';
+                    if($grader->user->hasRole('grader')){
+                        $grader_code = 'ΑΑ' . sprintf("%03d", $grader->id);
+                    }
+                    if($grader->approved == 'yes'){
+                        $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
+                    }
+                    if($grader->user->hasRole('grader') && $grader->approved == 'yes'){
+                        $grader_code = 'ΑΑΒ' . sprintf("%03d", $grader->id);
+                    }
+                    if($grader->user->hasRole('admin')){
+                        $grader_code = 'ΑΓ' . sprintf("%03d", $grader->id);
+                    }
+                ?>
 
                 <tr>
                     <td>i{{ sprintf("%03d", $site->id) }}</td>
@@ -56,7 +71,7 @@
                     <td><a href="{{ $site->site_url }}" target="_blank">{{ $site->site_url }}</a></td>
                     <td>{{ $site->cat_id }}</td>
                     @if($grader)
-                        <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} (αξ{{ sprintf("%03d", $grader->id) }})</td>
+                        <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} ({{ $grader_code }})</td>
                     @else
                         <td>--</td>
                     @endif
