@@ -24,7 +24,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
         
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -41,7 +41,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
 
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -87,7 +87,7 @@ class AdminController extends \BaseController {
     public function evaluations_report(){
 
         // $evaluations = Evaluation::simplePaginate(10);
-        $evaluations = Evaluation::all();
+        $evaluations = Evaluation::where('phase', 'a')->get();
 
         return View::make('admin.evaluations_report', compact('evaluations'));
 
@@ -437,10 +437,10 @@ class AdminController extends \BaseController {
         
         $site = Site::find($site_id);
         
-        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        $evaluations_count = Evaluation::where('site_id', $site_id)->where('phase', 'a')->count();
         
         if($evaluations_count > 0){
-            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            $evaluations = Evaluation::where('site_id', $site_id)->where('phase', 'a')->get();
             
             return View::make('admin.assign_to_site', compact('site', 'evaluations'));
         }
@@ -453,7 +453,7 @@ class AdminController extends \BaseController {
         
         $site = Site::find($site_id);
         
-        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        $evaluations_count = Evaluation::where('site_id', $site_id)->where('phase', 'a')->count();
         
         if($evaluations_count > 0){
             $evaluations = Evaluation::where('site_id', $site_id)->get();

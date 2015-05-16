@@ -49,12 +49,12 @@
         <tbody>
             @foreach($sites as $site)
                 <?php
-                    $evaluations = Evaluation::where('site_id', $site->id)->get();
+                    $evaluations = Evaluation::where('site_id', $site->id)->where('phase', 'a')->get();
                     $eval_count = $evaluations->count();
 
                     $tg_sum = 0;
                     foreach($site->graders as $grader){
-                        $graders_evals = Evaluation::where('grader_id', $grader->id)->get();
+                        $graders_evals = Evaluation::where('grader_id', $grader->id)->where('phase', 'a')->get();
                         foreach($graders_evals as $grader_eval){
                             $tg_sum += $grader_eval->total_grade;
                         }
