@@ -58,13 +58,13 @@ class AdminController extends \BaseController {
         $max_evals = 0;
         
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
         }
 
-        return View::make('admin.a_list', compact('sites', 'max_evals'));
+        return View::make('admin.a_list', compact('sites', 'max_evals', 'cat_id'));
 
     }
     
