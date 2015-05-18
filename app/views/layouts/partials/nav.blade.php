@@ -36,10 +36,10 @@
                         <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
                         <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                         <li>{{ link_to('/admin/graders_b', 'Αξιολογητές Β') }}</li>
-                        <li>{{ link_to('/admin/a-list/1', 'Κατατάξεις Φάσης Α') }}</li>
+                        <li>{{ link_to('/admin/a-list/1', 'Αποτ. Φ. Α') }}</li>
                         <li>{{ link_to('/admin/evaluations-report/', 'Αξιολογήσεις Α') }}</li>
-                        <li>{{ link_to('/admin/sites/grades/a/ok', 'Διαχείριση Αναθέσεων Φάσης Α (χωρίς τους αποκλειόμενους)') }}</li>
-                        <li>{{ link_to('/admin/sites/grades/a/', 'Διαχείριση Αναθέσεων Φάσης Α (με τους αποκλειόμενους)') }}</li>
+                        <li>{{ link_to('/admin/sites/grades/a/ok', 'Διαχ. Αναθ. Φ. Α (χωρίς τους αποκλειόμενους)') }}</li>
+                        <li>{{ link_to('/admin/sites/grades/a/', 'Διαχ. Αναθ. Φ. Α (με τους αποκλειόμενους)') }}</li>
                         <li>{{ link_to('/admin/stats', 'Στατιστικά') }}</li>
                     @endif
 
