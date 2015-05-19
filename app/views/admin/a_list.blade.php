@@ -4,6 +4,12 @@
 
     <h1>Φάση Α - Αποτελέσματα Κατηγορίας {{ $cat_id }}</h1>
 
+    <p style="text-align: center" class="little-block light-blue white-font">
+        <i class="fa fa-table"></i> 
+        {{ link_to('/admin/a-list/print/'.$cat_id, 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
+        (Επιλογή όλων, αντιγραφή και επικόλληση στο excel)
+    </p>
+
     <div class="pure-g">
         @for($l =1; $l <= 6; $l++)
                 @if($l != $cat_id && $l !=5)

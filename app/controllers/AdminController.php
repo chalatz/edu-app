@@ -67,6 +67,23 @@ class AdminController extends \BaseController {
         return View::make('admin.a_list', compact('sites', 'max_evals', 'cat_id'));
 
     }
+
+    public function a_list_print($cat_id){
+
+        $sites = Site::where('cat_id', $cat_id)->get();
+
+        $max_evals = 0;
+        
+        foreach($sites as $site){
+            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
+
+        return View::make('admin.a_list_print', compact('sites', 'max_evals', 'cat_id'));
+
+    }
     
     public function graders(){
         
