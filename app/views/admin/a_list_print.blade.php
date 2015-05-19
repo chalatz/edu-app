@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <h1>Φάση Α - Αποτελέσματα Κατηγορίας {{ $cat_id }}</h1>
-
     <table id="a-list-table-print">
     
         <thead>            

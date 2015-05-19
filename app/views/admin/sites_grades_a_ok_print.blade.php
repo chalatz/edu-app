@@ -1,35 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
-    <h1>Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων (χωρίς τους αποκλειόμενους)</h1>
-    <p class="instructions">Χωρίς τους ιστότοπους των οποίων οι προτεινόμενοι αξιολογητές Α δεν αξιολόγησαν</p>
-
-    <p style="text-align: center" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
-        {{ link_to('/admin/sites/grades/a/ok/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-        (Επιλογή όλων, αντιγραφή και επικόλληση στο excel)
-    </p>
-
-    <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-            <div class="aligned-block green white-font">Διαφορά μικρότερη από 20%</div>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-4">
-            <div class="aligned-block red white-font">Διαφορά μεγαλύτερη από 20%</div>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-4">
-            <div class="aligned-block orange white-font">Έχει βαθμολογήσει μόνο ο ένας</div>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-4">
-            <div class="aligned-block black white-font">Δεν έχει βαθμολογήσει κανένας</div>
-        </div>
-        <div class="pure-u-1 pure-u-md-1">
-            <div class="aligned-block dark-gray white-font">Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί</div>
-        </div>
-    </div>
-
-    <table id="sites-grades-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
+    <table id="sites-grades-table-print">
     
         <thead>            
             <tr>
@@ -43,12 +16,7 @@
                 @for($i = 1; $i <= $max_evals; $i++)
                     <th>Βαθμός {{$i}}</th>
                 @endfor                
-                <th>Διαφορά</th>
-                <th>Ανάθεση Α</th>
-                <th>Ανάθεση Β</th>
-                @if(Auth::user()->hasRole('ninja'))
-                    <th>Μεταμφίεση</th>
-                @endif
+                <th>Διαφορά</th>            
             </tr>
         </thead>
         
@@ -152,42 +120,12 @@
                         ?>
                         
                         <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
-                        
-                        <td>{{ link_to_route('admin.assign_to_site', 'Ανάθεση σε Αξιολ. Α', [$site->id]) }}</td>
-
-
-                        <td>{{ link_to_route('admin.assign_b_to_site', 'Ανάθεση σε Αξιολ. Β', [$site->id]) }}</td>
-                        
-                        @if(Auth::user()->hasRole('ninja'))
-                            <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
-                        @endif
                                             
                     </tr>
                 @endif
 
             @endforeach
-        </tbody>
-        
-        <tfoot>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                @for($i = 1; $i <= $max_evals; $i++)
-                    <th></th>
-                @endfor
-                @for($i = 1; $i <= $max_evals; $i++)
-                    <th></th>
-                @endfor                
-                <th></th>
-                <th></th>
-                <th></th>
-                @if(Auth::user()->hasRole('ninja'))
-                    <th></th>
-                @endif
-            </tr>
-        </tfoot>
+        </tbody>    
 
     </table>
 
