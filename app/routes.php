@@ -89,13 +89,16 @@ Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/b/', ['before' => 
 Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);
 
 # Evaluation Forms
-Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
-Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
-Route::put('/comments_submit/{id}', ['as' => 'do_comments_submit', 'uses' => 'EvaluationController@do_comments_submit']);
-Route::put('/is_educational_submit/{id}', ['as' => 'do_is_educational_submit', 'uses' => 'EvaluationController@do_is_educational_submit']);
-Route::put('/can_evaluate/{id}', ['as' => 'do_can_evaluate_submit', 'uses' => 'EvaluationController@do_can_evaluate_submit']);
-Route::get('evaluation/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation.finalize', 'uses' => 'EvaluationController@finalize']);
-Route::resource('evaluation', 'EvaluationController');
+//Phase A complete, no more evaluations allowed
+Route::group(['before' => 'auth|admin'], function(){
+    Route::get('/evaluate/show', ['before' => 'auth', 'as' =>'grader.evaluate_show', 'uses' => 'EvaluationController@show']);
+    Route::get('/evaluate/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['before' => 'auth', 'as' =>'grader.evaluate_edit', 'uses' => 'EvaluationController@edit']);
+    Route::put('/comments_submit/{id}', ['as' => 'do_comments_submit', 'uses' => 'EvaluationController@do_comments_submit']);
+    Route::put('/is_educational_submit/{id}', ['as' => 'do_is_educational_submit', 'uses' => 'EvaluationController@do_is_educational_submit']);
+    Route::put('/can_evaluate/{id}', ['as' => 'do_can_evaluate_submit', 'uses' => 'EvaluationController@do_can_evaluate_submit']);
+    Route::get('evaluation/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation.finalize', 'uses' => 'EvaluationController@finalize']);
+    Route::resource('evaluation', 'EvaluationController');
+});
 
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);
@@ -296,6 +299,30 @@ Route::get('assign', function(){
 });
 
 
+// ninja stuff goes here
+Route::group(['before' => 'auth|admin|nonja'], function(){
+
+    Route::get('/admin/finalize/assignments/a', function(){
+      
+        $evaluations = Evaluation::all();
+        foreach ($evaluations as $evaluation) {
+            if($evaluation->finalized != 'yes'){
+                $today = new DateTime('NOW');
+        
+                $evaluation->finalized = 'yes';
+                $evaluation->finalized_at = $today;
+
+                $evaluation->save();                
+            }
+        }
+
+        Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής οριστικοποίηση βαθμολογιών.');
+        Session::flash('alert-class', 'flash-success');
+        return Redirect::home();
+
+    });
+
+});
 
 
 

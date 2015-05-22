@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Φάση Α - Αποτελέσματα Κατηγορίας <span id="the_cat_id">{{ $cat_id }}</span> </h1>
+    <h1>Φάση Α - Αποτελέσματα Κατηγορίας <span id="the_cat_id">{{ $cat_id }}</span></h1>
 
     <p style="text-align: center" class="little-block light-blue white-font">
         <i class="fa fa-table"></i> 
