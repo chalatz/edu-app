@@ -539,6 +539,29 @@
         });
     }
 
-    get_ten_highest();
+    function get_the_highest(){
+        var mos = [], i = 0, pillow = [];
+        $('td.mo').each(function(){
+          mos[i] = $(this).text() * 1;
+          i++;
+        });
+
+        var the_cat_id = $('#the_cat_id').text();
+
+        pillows = [80, 77.5, 76.5, 68, 0, 80];
+        var pillow = pillows[the_cat_id - 1];
+
+        $('td.mo').each(function(){
+        var $this = $(this),
+            the_val = $(this).text() * 1;
+          if(the_val >= pillow){
+            $(this).css({"background":"#1f8dd6", "color":"#fff", "font-weight":"bold"});
+          }
+        });
+
+    }
+
+    //get_ten_highest();
+    get_the_highest();
 
 })(jQuery);
