@@ -240,6 +240,10 @@ Route::get('panormighty', function(){
              ->get();      
     
     //dd(count($graders));
+
+    echo "<pre>";
+    print_r($graders);
+    echo "</pre>";
     
     $s2 = [];
     $sIndex = [];
@@ -265,10 +269,64 @@ Route::get('panormighty', function(){
     //file_put_contents('/home/codio/workspace/the_graders.inc', serialize($graders));
     //file_put_contents('/home/codio/workspace/the_sites.inc', serialize($sites));
 
+    // echo "<pre>";
+    // print_r($graders);
+    // echo "</pre>";
     //var_dump($graders);
     
     //dd(count($sites));
     
+});
+
+Route::get('panormighty_b', function(){
+
+    $graders = Grader::where('approved', 'yes')->get();
+
+    $g = array();
+    $i = 0;
+
+    foreach ($graders as $grader) {
+
+        if(!$grader->user->hasRole('admin')){
+
+            $g[$i]['id'] = $grader->id;
+            $g[$i]['district'] = $grader->grader_district_id;
+            $g[$i]['desired_cats'] = explode('|', $grader->desired_category);
+            $evaluations = Evaluation::where('grader_id', $grader->id)->get();
+            $past_evals = [];
+            foreach ($evaluations as $evaluation) {
+                $past_evals[] = $evaluation->site_id;
+            }
+            $g[$i]['past_evals'] = $past_evals;
+
+            $i++;
+
+        }
+
+    }
+
+    $winners='364|59|312|16|207|88|276|144|453|488|82|111|6|383|208|456|146|289|239|449|491|130|440|336|167|295|444|277|246|362|391|388|358|235|342|512|273|263|294|14|394|371|281|475|327|253|499|285|500|379|249|151|331|64|61|149|32|382|40|237|34|179|173|30|129|3|71|166|185|202';
+    $site_ids = explode('|', $winners);
+    $s = [];
+    $j = 0;
+
+    foreach($site_ids as $id){
+        $site = Site::find($id);
+        $the_grader = $site->graders->first();
+        $s[$j]['grader'] = $the_grader->id;
+        $s[$j]['id'] = $id;
+        $s[$j]['cat'] = $site->cat_id;
+        $s[$j]['district'] = $site->district_id;
+        $j++;
+    }
+
+    echo "<pre>";
+    print_r($g);
+    echo "</pre>";
+
+    //file_put_contents('/var/www/html/eduapp/the_graders.inc', serialize($g));
+    //file_put_contents('/var/www/html/eduapp/the_sites.inc', serialize($s));
+
 });
 
 Route::get('give-codes', function(){
