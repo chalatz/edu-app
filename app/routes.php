@@ -305,7 +305,7 @@ Route::get('panormighty_b', function(){
 
     }
 
-    $winners='364|59|312|16|207|88|276|144|453|488|82|111|6|383|208|456|146|289|239|449|491|130|440|336|167|295|444|277|246|362|391|388|358|235|342|512|273|263|294|14|394|371|281|475|327|253|499|285|500|379|249|151|331|64|61|149|32|382|40|237|34|179|173|30|129|3|71|166|185|202';
+    $winners='364|59|312|207|16|88|276|488|144|453|82|111|383|6|361|426|414|509|456|208|146|289|449|239|491|130|440|336|167|295|444|2|47|441|236|277|246|362|391|388|358|512|235|342|273|263|294|14|371|394|188|204|473|281|475|327|499|253|285|500|379|249|151|331|64|61|149|382|32|40|237|34|179|173|30|129|185|166|3|71|202|380|165|224|39';
     $site_ids = explode('|', $winners);
     $s = [];
     $j = 0;
@@ -321,11 +321,11 @@ Route::get('panormighty_b', function(){
     }
 
     echo "<pre>";
-    print_r($g);
+    print_r($s);
     echo "</pre>";
 
-    //file_put_contents('/var/www/html/eduapp/the_graders.inc', serialize($g));
-    //file_put_contents('/var/www/html/eduapp/the_sites.inc', serialize($s));
+    //file_put_contents('/var/www/html/eduapp/the_b_graders.inc', serialize($g));
+    //file_put_contents('/var/www/html/eduapp/the_b_sites.inc', serialize($s));
 
 });
 
@@ -335,27 +335,6 @@ Route::get('give-codes', function(){
         echo $s . "<br>";
     }
 });
-
-Route::get('assign', function(){
-    
-//     $assignments = Assignment::all();
-    
-//     foreach($assignments as $assignment){
-//         $evaluation = new Evaluation;
-//         $evaluation->site_id = $assignment->site_id;
-//         $evaluation->grader_id = $assignment->grader1_id;
-//         $evaluation->save();
-//     }
-    
-//     foreach($assignments as $assignment){
-//         $evaluation = new Evaluation;
-//         $evaluation->site_id = $assignment->site_id;
-//         $evaluation->grader_id = $assignment->grader2_id;
-//         $evaluation->save(); 
-//     }
-    
-});
-
 
 // ninja stuff goes here
 Route::group(['before' => 'auth|admin|nonja'], function(){
@@ -379,6 +358,46 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
         return Redirect::home();
 
     });
+
+    Route::get('assign', function(){
+    
+        //     $assignments = Assignment::all();
+            
+        //     foreach($assignments as $assignment){
+        //         $evaluation = new Evaluation;
+        //         $evaluation->site_id = $assignment->site_id;
+        //         $evaluation->grader_id = $assignment->grader1_id;
+        //         $evaluation->save();
+        //     }
+            
+        //     foreach($assignments as $assignment){
+        //         $evaluation = new Evaluation;
+        //         $evaluation->site_id = $assignment->site_id;
+        //         $evaluation->grader_id = $assignment->grader2_id;
+        //         $evaluation->save(); 
+        //     }
+            
+    });
+
+    Route::get('assign_b', function(){
+    
+        // $assignments = Assignment::all();
+            
+        //     foreach($assignments as $assignment){
+        //         $evaluation = new Evaluation;
+        //         $evaluation->site_id = $assignment->site_id;
+        //         $evaluation->grader_id = $assignment->grader1_id;
+        //         $evaluation->save();
+        //     }
+            
+        //     foreach($assignments as $assignment){
+        //         $evaluation = new Evaluation;
+        //         $evaluation->site_id = $assignment->site_id;
+        //         $evaluation->grader_id = $assignment->grader2_id;
+        //         $evaluation->save(); 
+        //     }
+            
+    });    
 
 });
 
