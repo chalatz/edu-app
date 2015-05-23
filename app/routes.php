@@ -397,7 +397,35 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
         //         $evaluation->save(); 
         //     }
             
-    });    
+    });
+
+    Route::get('admin/send-to-sites-about-end-of-phase-a', function(){
+
+        $sites = Site::all();
+
+        $from = 500;
+        $to = 600;
+
+        foreach ($sites as $site) {
+
+            $site_id = $site->id;
+
+            if($site_id > $from && $site_id <= $to){
+
+                $site_email = $site->contact_email;
+
+                // Mail::send('emails.send_to_sites_about_end_of_phase_a',[], function($message) use ($site_email){
+                //     $message->to($site_email)->subject('ΑΠΟΤΕΛΕΣΜΑΤΑ ΦΑΣΗΣ Α - Edu Web Awards 2015');
+                // });
+
+                echo $site_id . " | ". $site->contact_email ."<br>";
+
+
+            }
+
+        }
+
+    });   
 
 });
 
