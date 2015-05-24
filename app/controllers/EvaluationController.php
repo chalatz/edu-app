@@ -295,6 +295,8 @@ class EvaluationController extends \BaseController {
         if($input['is_educational'] == 'no'){
             $evaluation->total_grade = 1;
         }
+
+        $evaluation->total_grade = 0;
         
         $evaluation->fill($input)->save();
         

@@ -107,7 +107,7 @@ Route::group(['before' => 'auth'], function(){
     Route::put('/can_evaluate/b/{id}', ['as' => 'do_can_evaluate_b_submit', 'uses' => 'Evaluation_bController@do_can_evaluate_submit']);
     Route::put('/is_educational_submit/b/{id}', ['as' => 'do_is_educational_b_submit', 'uses' => 'Evaluation_bController@do_is_educational_submit']);    
     Route::put('/comments_submit/b/{id}', ['as' => 'do_comments_b_submit', 'uses' => 'Evaluation_bController@do_comments_submit']);
-
+    Route::get('evaluation/b/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation_b.finalize', 'uses' => 'Evaluation_bController@finalize']);
     Route::resource('evaluation_b', 'Evaluation_bController');
 });
 

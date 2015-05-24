@@ -26,6 +26,16 @@
             @endif
         @endif
 
+        <?php // Phase Β ?>
+        @if(Auth::user()->grader)
+            @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation_b::where('grader_id', Auth::user()->grader->id)->count() > 0 )
+                <div>
+                    {{ link_to('evaluate/b/show', 'Β Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-purple anchor-block']) }}
+                </div>
+            @endif
+        @endif
+        
+
         @if(Auth::user()->id == 59)
             <div>
                 {{ link_to('/admin/manual-cron/', 'Manual Cron', ['class' => 'action-btn action-btn-purple anchor-block']) }}

@@ -180,7 +180,7 @@
                 
                             @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
                                 <div class="row">                                                   
-                                    <p>{{ link_to_route('evaluation.finalize', 'Οριστική Υποβολή Βαθμολογίας', $evaluation->id, ['class' => 'pure-button button-secondary button-secondary-green anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι επιθυμείτε να υποβάλλετε τη βαθμολογία σας οριστικά;");']) }}</p>
+                                    <p>{{ link_to_route('evaluation_b.finalize', 'Οριστική Υποβολή Βαθμολογίας', $evaluation->id, ['class' => 'pure-button button-secondary button-secondary-green anchor-block', 'onclick' => 'return confirm("Είστε σίγουρος ότι επιθυμείτε να υποβάλλετε τη βαθμολογία σας οριστικά;");']) }}</p>
                                     <div class="instructions">Μόνον εφόσον είστε <strong>απολύτως σίγουρος</strong> πατήστε την Οριστική Υποβολή Βαθμολογίας.</div>                        
                                 </div>                                   
                             @endif
