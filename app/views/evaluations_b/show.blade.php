@@ -116,7 +116,7 @@
 
                             <div class="criteria-section">
                                 <div class="criterion-link-wrapper">
-                                    {{ link_to_route('grader.evaluate_edit', 'Β Άξονας (Ταυτότητα - Ενημέρωση)', [Auth::user()->id, 'beta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                    {{ link_to_route('grader.evaluate_b_edit', 'Β Άξονας (Ταυτότητα - Ενημέρωση)', [Auth::user()->id, 'beta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
                                     <div class="criteron-check">
                                         @if($evaluation->beta_grade > 0)
                                             <div class="info-block green white-font" style="width:{{ $evaluation->beta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="criterion-link-wrapper">
-                                    {{ link_to_route('grader.evaluate_edit', 'Γ Άξονας (Περιεχόμενο)', [Auth::user()->id, 'gama', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                    {{ link_to_route('grader.evaluate_b_edit', 'Γ Άξονας (Περιεχόμενο)', [Auth::user()->id, 'gama', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
                                     <div class="criteron-check">
                                         @if($evaluation->gama_grade > 0)
                                             <div class="info-block green white-font" style="width:{{ $evaluation->gama_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div class="criterion-link-wrapper">
-                                    {{ link_to_route('grader.evaluate_edit', 'Δ Άξονας (Διεπαφή - Αισθητική)', [Auth::user()->id, 'delta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                    {{ link_to_route('grader.evaluate_b_edit', 'Δ Άξονας (Διεπαφή - Αισθητική)', [Auth::user()->id, 'delta', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
                                     <div class="criteron-check">
                                         @if($evaluation->delta_grade > 0)
                                             <div class="info-block green white-font" style="width:{{ $evaluation->delta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
@@ -146,7 +146,7 @@
                                     </div>
                                 </div>
                                 <div class="criterion-link-wrapper">
-                                    {{ link_to_route('grader.evaluate_edit', 'Ε Άξονας (Προσωπικά Δεδομένα)', [Auth::user()->id, 'epsilon', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                    {{ link_to_route('grader.evaluate_b_edit', 'Ε Άξονας (Προσωπικά Δεδομένα)', [Auth::user()->id, 'epsilon', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
                                     <div class="criteron-check">
                                         @if($evaluation->epsilon_grade > 0)
                                             <div class="info-block green white-font" style="width:{{ $evaluation->epsilon_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="criterion-link-wrapper">
-                                    {{ link_to_route('grader.evaluate_edit', 'ΣΤ Άξονας (Αλληλεπίδραση)', [Auth::user()->id, 'st', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
+                                    {{ link_to_route('grader.evaluate_b_edit', 'ΣΤ Άξονας (Αλληλεπίδραση)', [Auth::user()->id, 'st', $grader->id, $evaluation->site_id], ['class' => 'action-btn action-btn-blue anchor-block']) }}
                                     <div class="criteron-check">
                                         @if($evaluation->st_grade > 0)
                                             <div class="info-block green white-font" style="width:{{ $evaluation->st_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
@@ -168,7 +168,7 @@
                             </div>
 
                             <div>
-                                {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_comments_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked overflow-hidden')) }}
+                                {{ Form::model($evaluation, array('method' => 'PUT','route' => ['do_comments_b_submit', $evaluation->id], 'class' => 'pure-form pure-form-stacked overflow-hidden')) }}
 
                                     {{ Form::label('site_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Ιστότοπο') }}
                                     {{ Form::textarea('site_comment', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1', 'placeholder' => 'Προαιρετικά σχόλια για τον Ιστότοπο.')) }}

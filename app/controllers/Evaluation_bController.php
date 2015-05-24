@@ -146,7 +146,7 @@ class Evaluation_bController extends \BaseController {
         //$evaluation = Evaluation_b::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->get();
         //$evaluation = Evaluation_b::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
 
-        return View::make('evaluations.edit', compact('evaluation', 'criterion'));
+        return View::make('evaluations_b.edit', compact('evaluation', 'criterion'));
         
 	}
 
@@ -262,7 +262,7 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Βαθμολογίας.');
         Session::flash('alert-class', 'flash-success');
-		return Redirect::route('grader.evaluate_show');
+		return Redirect::route('grader.evaluate_b_show');
         
 	}
     
@@ -276,7 +276,7 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Σχολίου.');
         Session::flash('alert-class', 'flash-success');
-        return Redirect::route('grader.evaluate_show');
+        return Redirect::route('grader.evaluate_b_show');
         
     }
     
@@ -360,7 +360,7 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Οριστικής Υποβολής Βαθμολογίας.');
         Session::flash('alert-class', 'flash-success');
-        return Redirect::route('grader.evaluate_show');
+        return Redirect::route('grader.evaluate_b_show');
         
     }    
 
