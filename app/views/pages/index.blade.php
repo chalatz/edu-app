@@ -28,7 +28,7 @@
 
         <?php // Phase Β ?>
         @if(Auth::user()->grader)
-            @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation_b::where('grader_id', Auth::user()->grader->id)->count() > 0 )
+            @if( ( Auth::user()->grader->approved == 'yes' ) && Evaluation_b::where('grader_id', Auth::user()->grader->id)->count() > 0 )
                 <div>
                     {{ link_to('evaluate/b/show', 'Β Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-purple anchor-block']) }}
                 </div>

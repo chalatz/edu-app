@@ -59,6 +59,7 @@ Route::get('/admin/graders_b/', ['before' => 'auth|admin', 'as' => 'admin.grader
 Route::get('/admin/graders_b/print', ['before' => 'auth|admin', 'as' => 'admin.graders_b_print', 'uses' => 'AdminController@graders_b_print']);
 Route::get('/admin/grader_b/{grader_id}/approve/{user_id}', ['before' => 'auth|admin', 'as' => 'admin.approve_grader_b', 'uses' => 'AdminController@approve']);
 Route::get('/admin/assignments/', ['before' => 'auth|admin', 'as' => 'admin.assignments', 'uses' => 'AdminController@assignments']);
+Route::get('/admin/assignments/b/', ['before' => 'auth|admin', 'as' => 'admin.assignments_b', 'uses' => 'AdminController@assignments_b']);
 Route::get('/admin/evaluations-report/', ['before' => 'auth|admin', 'as' => 'admin.evaluations_report', 'uses' => 'AdminController@evaluations_report']);
 Route::get('/admin/evaluations-report/print/', ['before' => 'auth|admin', 'as' => 'admin.evaluations_report_print', 'uses' => 'AdminController@evaluations_report_print']);
 Route::get('/admin/sites/grades/a/', ['before' => 'auth|admin', 'as' => 'admin.sites_grades_a', 'uses' => 'AdminController@sites_grades_a']);
@@ -336,8 +337,8 @@ Route::get('panormighty_b', function(){
     print_r($s);
     echo "</pre>";
 
-    //file_put_contents('/var/www/html/eduapp/the_b_graders.inc', serialize($g));
-    //file_put_contents('/var/www/html/eduapp/the_b_sites.inc', serialize($s));
+    // file_put_contents('/var/www/html/eduapp/the_b_graders.inc', serialize($g));
+    // file_put_contents('/var/www/html/eduapp/the_b_sites.inc', serialize($s));
 
 });
 
@@ -391,23 +392,23 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
             
     });
 
-    Route::get('assign_b', function(){
+    Route::get('assign/b', function(){
     
         // $assignments = Assignment::all();
             
-        //     foreach($assignments as $assignment){
-        //         $evaluation = new Evaluation;
-        //         $evaluation->site_id = $assignment->site_id;
-        //         $evaluation->grader_id = $assignment->grader1_id;
-        //         $evaluation->save();
-        //     }
-            
-        //     foreach($assignments as $assignment){
-        //         $evaluation = new Evaluation;
-        //         $evaluation->site_id = $assignment->site_id;
-        //         $evaluation->grader_id = $assignment->grader2_id;
-        //         $evaluation->save(); 
-        //     }
+        // foreach($assignments as $assignment){
+        //     $evaluation = new Evaluation_b;
+        //     $evaluation->site_id = $assignment->site_id;
+        //     $evaluation->grader_id = $assignment->grader1_id;
+        //     $evaluation->save();
+        // }
+        
+        // foreach($assignments as $assignment){
+        //     $evaluation = new Evaluation_b;
+        //     $evaluation->site_id = $assignment->site_id;
+        //     $evaluation->grader_id = $assignment->grader2_id;
+        //     $evaluation->save(); 
+        // }
             
     });
 

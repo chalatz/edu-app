@@ -187,6 +187,14 @@ class AdminController extends \BaseController {
         return View::make('admin.assignments', compact('evaluations'));
         
     }
+
+    public function assignments_b(){
+        
+        $evaluations = Evaluation_b::all();
+
+        return View::make('admin.assignments_b', compact('evaluations'));
+        
+    }    
     
     public function masquerade($user_id){
 
