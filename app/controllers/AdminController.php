@@ -36,22 +36,36 @@ class AdminController extends \BaseController {
 
     public function sites_grades_b(){
 
-        // $evaluations = Evaluation_b::distinct()->select('site_id')->groupBy('site_id')->get();
+        //$evaluations = Evaluation_b::distinct()->select('site_id')->groupBy('site_id')->get();
         // foreach ($evaluations as $evaluation) {
         // }
+
+        $evaluations = Evaluation_b::all();
+
+        $site_ids = [];
+
+        foreach ($evaluations as $evaluation) {
+            $site_ids[] = $evaluation->site_id;
+        }
+
+        // echo "<pre>";
+        // echo count($site_ids);
+        // print_r($site_ids);
+        // echo "</pre>";
+        // dd();
         
-        // $sites = Site::orderBy('cat_id')->get();
+        $sites = Site::orderBy('cat_id')->get();
         
-        // $max_evals = 0;
+        $max_evals = 0;
         
-        // foreach($sites as $site){
-        //     $evals_count = Evaluation_b::where('site_id', $site->id)->count();
-        //     if($evals_count > $max_evals){
-        //         $max_evals = $evals_count;
-        //     }
-        // }
+        foreach($sites as $site){
+            $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
         
-        // return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
+        return View::make('admin.sites_grades_b', compact('sites', 'max_evals', 'site_ids'));
         
     }    
 
@@ -545,6 +559,22 @@ class AdminController extends \BaseController {
         return View::make('admin.assign_b_to_site', compact('site'));
         
     }
+
+    public function assign_b_to_site_b($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation_b::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation_b::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations'));
+        }
+        
+        return View::make('admin.assign_b_to_site_b', compact('site'));
+        
+    }    
     
     public function confirm_delete_evaluation_site_grader($evaluation_id) {
         
@@ -565,6 +595,17 @@ class AdminController extends \BaseController {
         $site = Site::find($evaluation->site_id);
         
         return View::make('admin.confirm_delete_evaluation_site_grader_b', compact('evaluation', 'grader', 'site'));
+        
+    }
+
+        public function confirm_delete_evaluation_b_site_grader_b($evaluation_id) {
+        
+        $evaluation = Evaluation_b::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_b_site_grader_b', compact('evaluation', 'grader', 'site'));
         
     }    
     

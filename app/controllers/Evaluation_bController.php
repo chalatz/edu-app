@@ -381,23 +381,13 @@ class Evaluation_bController extends \BaseController {
         $site_id = $evaluation->site_id;
 
         $input = Input::all();
-
-        $grader_type = $input['grader_type'];
         
         $evaluation->delete();
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
-        Session::flash('alert-class', 'flash-success');
-        
-        if($grader_type == 'a'){
-            return Redirect::route('admin.assign_to_site', [$site_id]);
-        }
+        Session::flash('alert-class', 'flash-success');        
 
-        if($grader_type == 'b'){
-            return Redirect::route('admin.assign_b_to_site', [$site_id]);
-        }
-
-        return Redirect::home();
+        return Redirect::route('admin.assign_b_to_site_b', [$site_id]);
 
 	}
     

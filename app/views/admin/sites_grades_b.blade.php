@@ -37,7 +37,6 @@
                     <th>Βαθμός {{$i}}</th>
                 @endfor                
                 <th>Διαφορά</th>
-                <th>Ανάθεση Α</th>
                 <th>Ανάθεση Β</th>
                 @if(Auth::user()->hasRole('ninja'))
                     <th>Μεταμφίεση</th>
@@ -47,6 +46,7 @@
         
         <tbody>
             @foreach($sites as $site)
+            @if(in_array($site->id, $site_ids))
                 <?php
                     $evaluations = Evaluation_b::where('site_id', $site->id)->get();
                     $eval_count = $evaluations->count();
@@ -137,10 +137,7 @@
                     
                     <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
                     
-                    <td>{{ link_to_route('admin.assign_to_site', 'Ανάθεση σε Αξιολ. Α', [$site->id]) }}</td>
-
-
-                    <td>{{ link_to_route('admin.assign_b_to_site', 'Ανάθεση σε Αξιολ. Β', [$site->id]) }}</td>
+                    <td>{{ link_to_route('admin.assign_b_to_site_b', 'Ανάθεση σε Αξιολ. Β', [$site->id]) }}</td>
                     
                     @if(Auth::user()->hasRole('ninja'))
                         <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
@@ -148,6 +145,7 @@
                                         
                 </tr>
 
+            @endif
             @endforeach
         </tbody>
         
@@ -163,7 +161,6 @@
                 @for($i = 1; $i <= $max_evals; $i++)
                     <th></th>
                 @endfor                
-                <th></th>
                 <th></th>
                 <th></th>
                 @if(Auth::user()->hasRole('ninja'))

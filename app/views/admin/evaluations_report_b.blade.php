@@ -9,7 +9,7 @@
         {{ link_to('/admin/evaluations-report/print/b/', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
     </p>
 
-    <table id="evaluations-report-table" class="admin-table pure-table pure-table-horizontal pure-table-striped pure-form">
+    <table id="evaluations-b-report-table" class="admin-table pure-table pure-table-horizontal pure-table-striped pure-form">
     
         <thead>
             <th></th>

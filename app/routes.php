@@ -93,6 +93,10 @@ Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/', ['before' => 'a
 Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/b/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_site_grader_b', 'uses' => 'AdminController@confirm_delete_evaluation_site_grader_b']);
 Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);
 
+# Manual Assignments - Phase B
+Route::get('/admin/assign/b/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_to_site_b', 'uses' => 'AdminController@assign_b_to_site_b']);
+Route::get('/admin/confirm/delete/evaluation/b/{id}/site/grader/b/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_b_site_grader_b', 'uses' => 'AdminController@confirm_delete_evaluation_b_site_grader_b']);
+
 # Evaluation Forms
 //Phase A complete, no more evaluations allowed
 Route::group(['before' => 'auth|admin'], function(){
@@ -353,6 +357,39 @@ Route::get('give-codes', function(){
     }
 });
 
+Route::get('rest-of-graders-b', function(){
+
+    $grader_ids = [];
+    $all_of_grader_ids = [];
+    $rest_of_graders_ids = [];
+
+    $evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
+
+    $graders = Grader::where('approved', 'yes')->get();
+
+    foreach ($graders as $grader) {
+        if(!$grader->user->hasRole('admin')){
+            $all_of_grader_ids[] = $grader->id;
+        }
+    }
+
+    foreach ($evaluations as $evaluation) {
+        $grader_ids[] = $evaluation->grader_id;
+    }
+
+    $rest_of_graders_ids = array_diff($all_of_grader_ids, $grader_ids);
+
+    echo "<p>Graders: " . count($grader_ids) ."</p>";
+    echo "<p>All the Graders B: " . count($all_of_grader_ids) ."</p>";
+    echo "<p>All the Graders B: " . count($rest_of_graders_ids) ."</p>";
+
+    echo "<pre>";
+    print_r($all_of_grader_ids);
+    echo "</pre>";
+
+
+});
+
 // ninja stuff goes here
 Route::group(['before' => 'auth|admin|nonja'], function(){
 
@@ -415,6 +452,7 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
         // }
             
     });
+
 
     Route::get('admin/send-to-sites-about-end-of-phase-a', function(){
 
