@@ -24,7 +24,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
         
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -34,6 +34,28 @@ class AdminController extends \BaseController {
         
     }
 
+    public function sites_grades_b(){
+
+        $evaluations = Evaluation_b::distinct()->select('site_id')->groupBy('site_id')->get();
+        foreach ($evaluations as $evaluation) {
+            
+        }
+        
+        $sites = Site::orderBy('cat_id')->get();
+        
+        $max_evals = 0;
+        
+        foreach($sites as $site){
+            $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
+        
+        return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
+        
+    }    
+
     public function sites_grades_a_ok(){
         
         $sites = Site::orderBy('cat_id')->get();
@@ -41,7 +63,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
 
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -58,7 +80,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
 
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -75,7 +97,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
         
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -92,7 +114,7 @@ class AdminController extends \BaseController {
         $max_evals = 0;
         
         foreach($sites as $site){
-            $evals_count = Evaluation::where('site_id', $site->id)->where('phase', 'a')->count();
+            $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
@@ -121,11 +143,20 @@ class AdminController extends \BaseController {
     public function evaluations_report(){
 
         // $evaluations = Evaluation::simplePaginate(10);
-        $evaluations = Evaluation::where('phase', 'a')->get();
+        $evaluations = Evaluation::all();
 
         return View::make('admin.evaluations_report', compact('evaluations'));
 
     }
+
+    public function evaluations_report_b(){
+
+        // $evaluations = Evaluation::simplePaginate(10);
+        $evaluations = Evaluation_b::all();
+
+        return View::make('admin.evaluations_report_b', compact('evaluations'));
+
+    }    
 
     public function evaluations_report_print(){
 
@@ -135,6 +166,15 @@ class AdminController extends \BaseController {
         return View::make('admin.evaluations_report_print', compact('evaluations'));
 
     }
+
+    public function evaluations_report_print_b(){
+
+        // $evaluations = Evaluation::simplePaginate(10);
+        $evaluations = Evaluation_b::all();
+
+        return View::make('admin.evaluations_report_print', compact('evaluations'));
+
+    }    
     
     public function not_graded(){
         
@@ -479,10 +519,10 @@ class AdminController extends \BaseController {
         
         $site = Site::find($site_id);
         
-        $evaluations_count = Evaluation::where('site_id', $site_id)->where('phase', 'a')->count();
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
         
         if($evaluations_count > 0){
-            $evaluations = Evaluation::where('site_id', $site_id)->where('phase', 'a')->get();
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
             
             return View::make('admin.assign_to_site', compact('site', 'evaluations'));
         }
@@ -495,7 +535,7 @@ class AdminController extends \BaseController {
         
         $site = Site::find($site_id);
         
-        $evaluations_count = Evaluation::where('site_id', $site_id)->where('phase', 'a')->count();
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
         
         if($evaluations_count > 0){
             $evaluations = Evaluation::where('site_id', $site_id)->get();
