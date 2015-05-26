@@ -33,6 +33,11 @@
                     {{ link_to('evaluate/b/show', 'Β Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-purple anchor-block']) }}
                 </div>
             @endif
+            @if( ( Auth::user()->grader->approved == 'yes' ) && Evaluation_b::where('grader_id', Auth::user()->grader->id)->count() == 0 )
+                <div class="flash-message flash-info">
+                    Εάν έχετε λάβει κάποιο email για να αξιολογήσετε κατά τη Β Φάση και δε βλέπετε εδώ τον σχετικό σύνδεσμο, <span style="text-decoration: underline">είναι φυσιολογικό</span>.<br>Εάν χρειαστούμε τη βοήθειά σας, θα σας ενημερώσουμε.<br>Ευχαριστούμε.
+                </div>
+            @endif
         @endif
         
 

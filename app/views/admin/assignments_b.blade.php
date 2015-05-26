@@ -17,7 +17,6 @@
                 <th>Περιφέρεια Αξιολογητή</th>
                 <th>Κατηγορία Ιστότοπου</th>
                 <th>Κατηγορία Αξιολογητή</th>
-                <th>result</th>
                 <th>Κατηγορίες που επιθυμεί ο Αξιολογητής</th>
                 <th>grader email</th>
             </tr>                
@@ -40,7 +39,6 @@
                     <td>
                         @foreach($grader->sites as $graders_site2) {{ $graders_site2->cat_id }} @endforeach
                     </td>
-                    <td>@if($site->cat_id == $graders_site2->cat_id) xxxxx @else ooooo @endif</td>
                     <td>{{ $grader->desired_category }}</td>
                     <td>{{ $grader->user->email }}</td>
                 </tr>
