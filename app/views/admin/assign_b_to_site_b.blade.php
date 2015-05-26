@@ -4,7 +4,7 @@
 
 	<h1>Φάση Β - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
 
-    <p>Έπωνυμία: {{ $site->title }}</p>
+    <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία {{ $site->cat_id }})</p>
     <p>URL: {{ $site->site_url }}</p>
 
     <h2>Τρέχουσες αναθέσεις</h2>
@@ -40,16 +40,15 @@
         <p>Δεν υπάρχουν αναθέσεις Β για αυτόν τον Ιστότοπο</p>
     @endif
 
-    <h3>Αξιολογητές Β (εγκεκριμένοι)</h3>
+    <h3>Αξιολογητές Β (εγκεκριμένοι που δεν έχουν ανάθεση Β και μόνο ρόλο Β)</h3>
 
-    {{ Form::open(array('route' => 'evaluation.store', 'class' => 'pure-form pure-form-stacked')) }}
+    {{ Form::open(array('route' => 'evaluation_b.store', 'class' => 'pure-form pure-form-stacked')) }}
     
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
-            @foreach(Grader::all() as $grader)
-                 @if($grader->approved == 'yes')
-                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}</option>
-                @endif
+            @foreach($the_grader_ids as $g_id)
+                <?php $grader = Grader::find($g_id); ?>
+                <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}, {{ $grader->desired_category }}</option>
             @endforeach
         </select>
         <p class="error-message">{{ $errors->first('grader_id') }}</p>

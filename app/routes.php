@@ -362,6 +362,7 @@ Route::get('rest-of-graders-b', function(){
     $grader_ids = [];
     $all_of_grader_ids = [];
     $rest_of_graders_ids = [];
+    $the_grader_ids = [];
 
     $evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
 
@@ -379,12 +380,20 @@ Route::get('rest-of-graders-b', function(){
 
     $rest_of_graders_ids = array_diff($all_of_grader_ids, $grader_ids);
 
+    foreach ($rest_of_graders_ids as $rg) {
+        $g = Grader::find($rg);
+        if(!$g->user->hasRole('grader')){
+            $the_grader_ids[] = $g->id;
+        }
+    }
+
     echo "<p>Graders: " . count($grader_ids) ."</p>";
     echo "<p>All the Graders B: " . count($all_of_grader_ids) ."</p>";
-    echo "<p>All the Graders B: " . count($rest_of_graders_ids) ."</p>";
+    echo "<p>The rest the Graders B: " . count($rest_of_graders_ids) ."</p>";
+    echo "<p>The wanted Graders B: " . count($the_grader_ids) ."</p>";
 
     echo "<pre>";
-    print_r($all_of_grader_ids);
+    print_r($the_grader_ids);
     echo "</pre>";
 
 

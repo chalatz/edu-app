@@ -43,11 +43,10 @@ class Evaluation_bController extends \BaseController {
 
         $grader_id = $input['grader_id'];
         $site_id = $input['site_id'];
-        $grader_type = $input['grader_type'];
         
         //dd($grader_id);
 
-        $evaluation = new Evaluation;
+        $evaluation = new Evaluation_b;
 
         $evaluation->grader_id = $grader_id;
         $evaluation->site_id = $site_id;
@@ -62,31 +61,17 @@ class Evaluation_bController extends \BaseController {
             $site = Site::find($site_id);
             $site_title = $site->title;
             $site_url = $site->site_url;
+
+            Mail::send('emails.send_to_single_grader_b_to_begin',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
+                $message->to($grader_email)->subject('ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΟΥ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β - Edu Web Awards 2015');
+            });
             
-            if($grader_type == 'a'){
-                Mail::send('emails.send_to_new_grader_a',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('Νέα Ανάθεση Υποψήφιου Ιστότοπου σε Αξιολογητή Α - Edu Web Awards 2015');
-                });
-            }
-            if($grader_type == 'b'){
-                Mail::send('emails.send_to_new_grader_b',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
-                    $message->to($grader_email)->subject('ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΤΡΙΤΟ ΑΞΙΟΛΟΓΗΤΗ - Edu Web Awards 2015');
-                });
-            } 
         }
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
 
-        if($grader_type == 'a'){
-            return Redirect::route('admin.assign_to_site', $site_id);
-        }
-
-        if($grader_type == 'b'){
-            return Redirect::route('admin.assign_b_to_site', $site_id);
-        }
-
-        return Redirect::home();
+        return Redirect::route('admin.assign_b_to_site_b', $site_id);
 
 	}
 
