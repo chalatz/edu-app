@@ -16,6 +16,7 @@
                 <th>Περιφέρεια Ιστότοπου</th>
                 <th>Περιφέρεια Αξιολογητή</th>
                 <th>Κατηγορία Ιστότοπου</th>
+                <th>Κατηγορία Αξιολογητή</th>
                 <th>Κατηγορίες που επιθυμεί ο Αξιολογητής</th>
                 <th>grader email</th>
             </tr>                
@@ -35,6 +36,9 @@
                     <td>{{ $site->district_id }}</td>
                     <td>{{ $grader->grader_district_id }}</td>
                     <td>{{ $site->cat_id }}</td>
+                    <td>
+                        @foreach($grader->sites as $site) {{ $site->cat_id }} @endforeach
+                    </td>
                     <td>{{ $grader->desired_category }}</td>
                     <td>{{ $grader->user->email }}</td>
                 </tr>
