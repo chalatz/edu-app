@@ -1,7 +1,3 @@
-<p style="text-align: center">
-    <img width="200" src="{{ asset('img/logo-small.jpg') }}" alt="Edu web Awards 2015">
-</p>
-
 <h1 style="text-align: center">ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β</h1>
 <h2 style="text-align: center">7ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015</h2>
 <h2 style="text-align: center">ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ</h2>

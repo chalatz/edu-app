@@ -398,21 +398,21 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('assign/b', function(){
     
-        $assignments = Assignment::all();
+        // $assignments = Assignment::all();
             
-        foreach($assignments as $assignment){
-            $evaluation = new Evaluation_b;
-            $evaluation->site_id = $assignment->site_id;
-            $evaluation->grader_id = $assignment->grader1_id;
-            $evaluation->save();
-        }
+        // foreach($assignments as $assignment){
+        //     $evaluation = new Evaluation_b;
+        //     $evaluation->site_id = $assignment->site_id;
+        //     $evaluation->grader_id = $assignment->grader1_id;
+        //     $evaluation->save();
+        // }
         
-        foreach($assignments as $assignment){
-            $evaluation = new Evaluation_b;
-            $evaluation->site_id = $assignment->site_id;
-            $evaluation->grader_id = $assignment->grader2_id;
-            $evaluation->save(); 
-        }
+        // foreach($assignments as $assignment){
+        //     $evaluation = new Evaluation_b;
+        //     $evaluation->site_id = $assignment->site_id;
+        //     $evaluation->grader_id = $assignment->grader2_id;
+        //     $evaluation->save(); 
+        // }
             
     });
 

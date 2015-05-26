@@ -697,14 +697,16 @@ class AdminController extends \BaseController {
             $grader = Grader::find($grader_id);
 
             $grader_email = $grader->user->email;
+            $grader_last_name = $grader->grader_last_name;
+            $grader_first_name = $grader->grader_name;
 
-            echo $i . " | ". $grader_id . " | ". $grader_email . "<br>";
+            // Mail::send('emails.send_to_graders_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
+            //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
+            // });
+
+            echo $i . " | ". $grader_id . " | ". $grader_email . " | " . $grader_last_name . " | " . $grader_first_name. "<br>";
 
         };
-        
-        // Mail::send('emails.send_to_graders_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
-        //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
-        // });
 
     }
     
