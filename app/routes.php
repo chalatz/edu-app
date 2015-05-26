@@ -80,6 +80,7 @@ Route::get('/admin/a-list/print/{cat_id}', ['before' => 'auth|admin', 'as' => 'a
 // Route::get('/admin/send-to-graders-a-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_begin', 'uses' => 'AdminController@send_to_graders_a_to_begin']);
 // Emails to Graders A that have not yet accepted 
 // Route::get('/admin/send-to-late-graders', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_late_graders', 'uses' => 'AdminController@send_to_late_graders']);
+Route::get('/admin/send-to-graders-b-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_b_to_begin', 'uses' => 'AdminController@send_to_graders_b_to_begin']);
 
 # Notify late graders
 Route::get('/admin/notify/late/graders/', ['before' => 'auth|admin|ninja', 'as' => 'admin.notify_late_graders', 'uses' => 'AdminController@notify_late_graders']);
@@ -397,21 +398,21 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('assign/b', function(){
     
-        // $assignments = Assignment::all();
+        $assignments = Assignment::all();
             
-        // foreach($assignments as $assignment){
-        //     $evaluation = new Evaluation_b;
-        //     $evaluation->site_id = $assignment->site_id;
-        //     $evaluation->grader_id = $assignment->grader1_id;
-        //     $evaluation->save();
-        // }
+        foreach($assignments as $assignment){
+            $evaluation = new Evaluation_b;
+            $evaluation->site_id = $assignment->site_id;
+            $evaluation->grader_id = $assignment->grader1_id;
+            $evaluation->save();
+        }
         
-        // foreach($assignments as $assignment){
-        //     $evaluation = new Evaluation_b;
-        //     $evaluation->site_id = $assignment->site_id;
-        //     $evaluation->grader_id = $assignment->grader2_id;
-        //     $evaluation->save(); 
-        // }
+        foreach($assignments as $assignment){
+            $evaluation = new Evaluation_b;
+            $evaluation->site_id = $assignment->site_id;
+            $evaluation->grader_id = $assignment->grader2_id;
+            $evaluation->save(); 
+        }
             
     });
 

@@ -36,23 +36,22 @@ class AdminController extends \BaseController {
 
     public function sites_grades_b(){
 
-        $evaluations = Evaluation_b::distinct()->select('site_id')->groupBy('site_id')->get();
-        foreach ($evaluations as $evaluation) {
-            
-        }
+        // $evaluations = Evaluation_b::distinct()->select('site_id')->groupBy('site_id')->get();
+        // foreach ($evaluations as $evaluation) {
+        // }
         
-        $sites = Site::orderBy('cat_id')->get();
+        // $sites = Site::orderBy('cat_id')->get();
         
-        $max_evals = 0;
+        // $max_evals = 0;
         
-        foreach($sites as $site){
-            $evals_count = Evaluation_b::where('site_id', $site->id)->count();
-            if($evals_count > $max_evals){
-                $max_evals = $evals_count;
-            }
-        }
+        // foreach($sites as $site){
+        //     $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+        //     if($evals_count > $max_evals){
+        //         $max_evals = $evals_count;
+        //     }
+        // }
         
-        return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
+        // return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
         
     }    
 
@@ -678,8 +677,35 @@ class AdminController extends \BaseController {
                 }
             }
         }
-               
         
+    }
+
+    public function send_to_graders_b_to_begin(){
+
+        $evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
+
+        $i = 0;
+
+        foreach ($evaluations as $evaluation) {
+
+            $i++;
+
+            $grader_id = $evaluation->grader_id;
+
+            $gids[] = $grader_id;
+
+            $grader = Grader::find($grader_id);
+
+            $grader_email = $grader->user->email;
+
+            echo $i . " | ". $grader_id . " | ". $grader_email . "<br>";
+
+        };
+        
+        // Mail::send('emails.send_to_graders_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
+        //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
+        // });
+
     }
     
     public function isAdmin(){
