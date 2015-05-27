@@ -10,6 +10,8 @@
             <tr>
                 <th>Ιστότοπος</th>
                 <th>site_id</th>
+                <th>past evals</th>
+                <th>site</th>
                 <th>site του</th>
                 <th>Αξιολογητής</th>
                 <th>grader_id</th>
@@ -28,6 +30,21 @@
                 <tr>
                     <td>{{ $site->title }} ( <a href="{{ $site->site_url }}">{{ $site->site_url }}</a> )</td>
                     <td>{{ $site->id }}</td>
+                    <td>
+                        <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
+                        @foreach($the_evals as $the_eval)
+                            {{ $the_eval->site_id }}|
+                        @endforeach
+                    </td>
+                    <td>
+                        <?php $the_user = User::find($grader->user_id); ?>
+                        @if($the_user->hasRole('site'))
+                            <?php $the_sites = Site::where('user_id', $the_user->id)->get(); ?>
+                            @foreach($the_sites as $the_site) {{$the_site->id}} @endforeach
+                        @else
+                            0
+                        @endif
+                    </td>
                     <td>
                         @foreach($grader->sites as $graders_site) {{ $graders_site->id }} @endforeach
                     </td>

@@ -4,7 +4,7 @@
 
 	<h1>Φάση Β - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
 
-    <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία {{ $site->cat_id }})</p>
+    <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
 
     <h2>Τρέχουσες αναθέσεις</h2>
@@ -48,7 +48,8 @@
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach($the_grader_ids as $g_id)
                 <?php $grader = Grader::find($g_id); ?>
-                <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}, {{ $grader->desired_category }}</option>
+                <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
+                <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}, Επιθ. {{ $grader->desired_category }}, Περ. {{ $grader->grader_district_id }}, Αξιολ. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach</option>
             @endforeach
         </select>
         <p class="error-message">{{ $errors->first('grader_id') }}</p>
