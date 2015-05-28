@@ -94,8 +94,12 @@ Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/b/', ['before' => 
 Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);
 
 # Manual Assignments - Phase B
+// Assignments to purely graders B
 Route::get('/admin/assign/b/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_to_site_b', 'uses' => 'AdminController@assign_b_to_site_b']);
+// Assignments to graders B with sites
+Route::get('/admin/assign/b-with-sites/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_with_sites_to_site_b', 'uses' => 'AdminController@assign_b_with_sites_to_site_b']);
 Route::get('/admin/confirm/delete/evaluation/b/{id}/site/grader/b/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_b_site_grader_b', 'uses' => 'AdminController@confirm_delete_evaluation_b_site_grader_b']);
+
 
 # Evaluation Forms
 //Phase A complete, no more evaluations allowed

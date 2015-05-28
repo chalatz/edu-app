@@ -2,8 +2,8 @@
 
 @section('content')
 
-	<h1>Φάση Β - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
-    <p class="instructions">Ο λογαριασμός τους δεν περιέχει υποψηφιότητα.</p>
+    <h1>Φάση Β - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
+    <p class="instructions">Ο λογαριασμός τους περιέχει υποψηφιότητα.</p>
 
     <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
@@ -41,7 +41,7 @@
         <p>Δεν υπάρχουν αναθέσεις Β για αυτόν τον Ιστότοπο</p>
     @endif
 
-    <h3>Αξιολογητές Β (εγκεκριμένοι που ο λογαριασμός τους δεν περιέχει υποψηφιότητα)</h3>
+    <h3>Αξιολογητές Β (εγκεκριμένοι που ο λογαριασμός τους περιέχει υποψηφιότητα)</h3>
 
     {{ Form::open(array('route' => 'evaluation_b.store', 'class' => 'pure-form pure-form-stacked')) }}
         <?php $graders_b = Grader::where('approved', 'yes')->get(); ?>
@@ -49,14 +49,17 @@
             <strong>Επιθ.</strong>  - Επιθυμητές Κατηγορίες<br>
             <strong>Περ.</strong>   - Περιφέρεια<br>
             <strong>Αξιολ Α.</strong> - Τυχόν sites που έχει αξιολογήσει στην Α Φάση<br>
-            <strong>Αξιολ Β.</strong> - Τυχόν sites που έχει αξιολογήσει στην Β Φάση
+            <strong>Αξιολ Β.</strong> - Τυχόν sites που έχει αξιολογήσει στην Β Φάση<br>
+            <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
+            <strong>Κατ. site.</strong> - Κατηγορία site υποψηφιότητας Αξιολογητή
         </p>
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach($graders_b as $grader_b)
-                @if(!$grader_b->user->hasRole('site'))
+                @if($grader_b->user->hasRole('site'))
                     <?php $the_evals = Evaluation::where('grader_id', $grader_b->id)->get(); ?>
                     <?php $the_evals_b = Evaluation_b::where('grader_id', $grader_b->id)->get(); ?>
+                    <?php $graders_sites = Site::where('user_id', $grader_b->user->id)->get(); ?>
 
                     <option value="{{ $grader_b->id }}">
                         {{ $grader_b->grader_last_name }} {{ $grader_b->grader_name }} , 
@@ -64,7 +67,9 @@
                         Επιθ. {{ $grader_b->desired_category }}, 
                         Περ. {{ $grader_b->grader_district_id }}, 
                         Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
-                        Αξιολ Β. @foreach($the_evals_b as $the_eval) {{ $the_eval->site_id }}| @endforeach 
+                        Αξιολ Β. @foreach($the_evals_b as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
+                        Κωδ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->id }} @endforeach, 
+                        Κατ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->cat_id }} @endforeach                        
                     </option>
 
                 @endif
