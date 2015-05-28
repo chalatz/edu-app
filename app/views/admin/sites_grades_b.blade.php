@@ -30,7 +30,6 @@
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
-                <th>Βαθμός Φ.Α</th>
                 @for($i = 1; $i <= $max_evals; $i++)
                     <th>Αξιολ. {{$i}}</th>
                 @endfor
@@ -59,8 +58,6 @@
                     <td>{{ $site->title }}</td>
                     <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
                     <td>{{ $site->cat_id }}</td>
-                    <?php $total_grade_a = Evaluation::where('site_id', $site->id)->first(); ?>
-                    <td>{{ $total_grade_a->total_grade }}</td>
                     <?php $i = 0; ?>
                     @foreach($evaluations as $evaluation)                    
                         <?php
@@ -156,7 +153,6 @@
         
         <tfoot>
             <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
