@@ -1,3 +1,11 @@
+<?php
+    $g_id = 107;
+    $g = Grader::find($g_id);
+    $s = Site::where('user_id', $g->user->id)->first();
+
+    //dd($s->id);
+?>
+
 @extends('layouts.admin')
 
 @section('content')
@@ -40,16 +48,34 @@
         <p>Δεν υπάρχουν αναθέσεις Β για αυτόν τον Ιστότοπο</p>
     @endif
 
-    <h3>Αξιολογητές Β (εγκεκριμένοι που δεν έχουν ανάθεση Β και μόνο ρόλο Β)</h3>
+    <h3>Αξιολογητές Β (εγκεκριμένοι που έχουν μόνο ρόλο Αξιολογητή Β)</h3>
+    <p class="insrtuctions">Ο λογαριασμός τους δεν περιέχει υποψηφιότητα και δεν έχουν ρόλο Αξιολογητή Α.</p>
 
     {{ Form::open(array('route' => 'evaluation_b.store', 'class' => 'pure-form pure-form-stacked')) }}
-    
+        <?php $graders_b = Grader::where('approved', 'yes')->get(); ?>
+        <p class="instructions">
+            <strong>Επιθ.</strong>  - Επιθυμητές Κατηγορίες<br>
+            <strong>Περ.</strong>   - Περιφέρεια<br>
+            <strong>Αξιολ Α.</strong> - Τυχόν sites που έχει αξιολογήσει στην Α Φάση<br>
+            <strong>Αξιολ Β.</strong> - Τυχόν sites που έχει αξιολογήσει στην Β Φάση
+        </p>
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
-            @foreach($the_grader_ids as $g_id)
-                <?php $grader = Grader::find($g_id); ?>
-                <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
-                <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}, Επιθ. {{ $grader->desired_category }}, Περ. {{ $grader->grader_district_id }}, Αξιολ. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach</option>
+            @foreach($graders_b as $grader_b)
+                @if(!$grader_b->user->hasRole('grader') && !$grader_b->user->hasRole('site'))
+                    <?php $the_evals = Evaluation::where('grader_id', $grader_b->id)->get(); ?>
+                    <?php $the_evals_b = Evaluation_b::where('grader_id', $grader_b->id)->get(); ?>
+
+                    <option value="{{ $grader_b->id }}">
+                        {{ $grader_b->grader_last_name }} {{ $grader_b->grader_name }} , 
+                        {{ $grader_b->user->email }}, 
+                        Επιθ. {{ $grader_b->desired_category }}, 
+                        Περ. {{ $grader_b->grader_district_id }}, 
+                        Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
+                        Αξιολ Β. @foreach($the_evals_b as $the_eval) {{ $the_eval->site_id }}| @endforeach 
+                    </option>
+
+                @endif
             @endforeach
         </select>
         <p class="error-message">{{ $errors->first('grader_id') }}</p>

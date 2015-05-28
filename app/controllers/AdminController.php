@@ -562,33 +562,33 @@ class AdminController extends \BaseController {
 
     public function assign_b_to_site_b($site_id){
 
-        $grader_ids = [];
-        $all_of_grader_ids = [];
-        $rest_of_graders_ids = [];
-        $the_grader_ids = [];
+        // $grader_ids = [];
+        // $all_of_grader_ids = [];
+        // $rest_of_graders_ids = [];
+        // $the_grader_ids = [];
 
-        $g_evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
+        // $g_evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
 
-        $g_graders = Grader::where('approved', 'yes')->get();
+        // $g_graders = Grader::where('approved', 'yes')->get();
 
-        foreach ($g_graders as $g_grader) {
-            if(!$g_grader->user->hasRole('admin')){
-                $all_of_grader_ids[] = $g_grader->id;
-            }
-        }
+        // foreach ($g_graders as $g_grader) {
+        //     if(!$g_grader->user->hasRole('admin')){
+        //         $all_of_grader_ids[] = $g_grader->id;
+        //     }
+        // }
 
-        foreach ($g_evaluations as $g_evaluation) {
-            $grader_ids[] = $g_evaluation->grader_id;
-        }
+        // foreach ($g_evaluations as $g_evaluation) {
+        //     $grader_ids[] = $g_evaluation->grader_id;
+        // }
 
-        $rest_of_graders_ids = array_diff($all_of_grader_ids, $grader_ids);
+        // $rest_of_graders_ids = array_diff($all_of_grader_ids, $grader_ids);
 
-        foreach ($rest_of_graders_ids as $rg) {
-            $g = Grader::find($rg);
-            if(!$g->user->hasRole('grader')){
-                $the_grader_ids[] = $g->id;
-            }
-        }
+        // foreach ($rest_of_graders_ids as $rg) {
+        //     $g = Grader::find($rg);
+        //     if(!$g->user->hasRole('grader')){
+        //         $the_grader_ids[] = $g->id;
+        //     }
+        // }
 
         // ----------------------------
         
@@ -599,7 +599,8 @@ class AdminController extends \BaseController {
         if($evaluations_count > 0){
             $evaluations = Evaluation_b::where('site_id', $site_id)->get();
             
-            return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations', 'the_grader_ids'));
+            // return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations', 'the_grader_ids'));
+            return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations'));            
         }
         
         return View::make('admin.assign_b_to_site_b', compact('site'));
