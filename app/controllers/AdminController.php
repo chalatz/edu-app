@@ -770,29 +770,39 @@ class AdminController extends \BaseController {
 
     public function send_to_graders_b_to_begin(){
 
-        $evaluations = Evaluation_b::distinct()->select('grader_id')->groupBy('grader_id')->get();
+        $evaluations = Evaluation_b::distinct()->select()->groupBy('grader_id')->get();
+
+        //dd($evaluations);
 
         $i = 0;
 
         foreach ($evaluations as $evaluation) {
 
-            $i++;
+            if($evaluation->can_evaluate == 'na'){ // a reminder
 
-            $grader_id = $evaluation->grader_id;
+                $i++;
 
-            $gids[] = $grader_id;
+                $grader_id = $evaluation->grader_id;
 
-            $grader = Grader::find($grader_id);
+                $gids[] = $grader_id;
 
-            $grader_email = $grader->user->email;
-            $grader_last_name = $grader->grader_last_name;
-            $grader_first_name = $grader->grader_name;
+                $grader = Grader::find($grader_id);
 
-            // Mail::send('emails.send_to_graders_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
-            //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
-            // });
+                $grader_email = $grader->user->email;
+                $grader_last_name = $grader->grader_last_name;
+                $grader_first_name = $grader->grader_name;
 
-            echo $i . " | ". $grader_id . " | ". $grader_email . " | " . $grader_last_name . " | " . $grader_first_name. "<br>";
+                // Mail::send('emails.send_reminder_to_grader_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
+                //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
+                // });
+
+                // Mail::send('emails.send_to_graders_b_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
+                //     $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ B - Edu Web Awards 2015');
+                // });
+
+                echo $i . " | ". $grader_id . " | ". $grader_email . " | " . $grader_last_name . " | " . $grader_first_name. "<br>";
+
+            }
 
         };
 
