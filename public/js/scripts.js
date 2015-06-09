@@ -527,6 +527,13 @@
         info: false,
         "order": [[ 5, "desc" ]]
     });
+
+    $('#b-list-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "order": [[ 5, "desc" ]]
+    });    
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');
@@ -555,7 +562,7 @@
             return outputArray;
         }
 
-    function get_ten_highest(){
+    function get_highest(the_ceiling){
         var mos = [], i = 0;
         $('td.mo').each(function(){
           mos[i] = $(this).text() * 1;
@@ -567,7 +574,7 @@
         $('td.mo').each(function(){
         var $this = $(this),
             the_val = $(this).text() * 1;
-          if(the_val >= uniq[9]){
+          if(the_val >= uniq[the_ceiling - 1]){
             $(this).css({"background":"#1f8dd6", "color":"#fff", "font-weight":"bold"});
           }
         });
@@ -595,7 +602,7 @@
 
     }
 
-    //get_ten_highest();
+    get_highest(4);
     get_the_highest();
 
 })(jQuery);

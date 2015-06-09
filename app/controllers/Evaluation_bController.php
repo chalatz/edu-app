@@ -307,7 +307,7 @@ class Evaluation_bController extends \BaseController {
         $today = new DateTime('NOW');
         $input['assigned_at'] = $today;
         $today2 = new DateTime('NOW');
-        $input['assigned_until'] = $today2->modify('+7 days');
+        $input['assigned_until'] = $today2->modify('+2 days');
         
         $evaluation = Evaluation_b::find($id);
         

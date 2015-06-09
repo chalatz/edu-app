@@ -69,7 +69,8 @@
                         Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
                         Αξιολ Β. @foreach($the_evals_b as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
                         Κωδ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->id }} @endforeach, 
-                        Κατ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->cat_id }} @endforeach                        
+                        Κατ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->cat_id }} @endforeach
+                        @if($grader_b->specialty != NULL) , {{ Specialty::find($grader_b->specialty)->specialty_name }}  @endif                      
                     </option>
 
                 @endif

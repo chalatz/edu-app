@@ -74,6 +74,10 @@ Route::get('/admin/sites-bye-bye', ['before' => 'auth|admin', 'as' => 'admin.sit
 // the grades from phase a
 Route::get('/admin/a-list/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.a_list', 'uses' => 'AdminController@a_list']);
 Route::get('/admin/a-list/print/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.a_list_print', 'uses' => 'AdminController@a_list_print']);
+
+// the grades from phase b
+Route::get('/admin/b-list/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.b_list', 'uses' => 'AdminController@b_list']);
+
 // Send email to graders_a to accept
 // Route::get('/admin/send-to-graders-a-to-accept', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_accept', 'uses' => 'AdminController@send_to_graders_a_to_accept']);
 // Emails to Graders A to start grading 
@@ -99,7 +103,6 @@ Route::get('/admin/assign/b/site/b/{site_id}', ['before' => 'auth|admin', 'as' =
 // Assignments to graders B with sites
 Route::get('/admin/assign/b-with-sites/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_with_sites_to_site_b', 'uses' => 'AdminController@assign_b_with_sites_to_site_b']);
 Route::get('/admin/confirm/delete/evaluation/b/{id}/site/grader/b/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_b_site_grader_b', 'uses' => 'AdminController@confirm_delete_evaluation_b_site_grader_b']);
-
 
 # Evaluation Forms
 //Phase A complete, no more evaluations allowed
