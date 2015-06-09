@@ -127,9 +127,12 @@ Route::group(['before' => 'auth'], function(){
 # Evaluation C Forms
 Route::group(['before' => 'auth'], function(){
     Route::get('/evaluate/c/show', ['as' =>'grader.evaluate_c_show', 'uses' => 'Evaluation_cController@show']);
+    Route::get('/evaluate/c/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_c_edit', 'uses' => 'Evaluation_cController@edit']);        
     Route::put('/can_evaluate/c/{id}', ['as' => 'do_can_evaluate_c_submit', 'uses' => 'Evaluation_cController@do_can_evaluate_submit']);
     Route::put('/is_educational_submit/c/{id}', ['as' => 'do_is_educational_c_submit', 'uses' => 'Evaluation_cController@do_is_educational_submit']);
-    Route::put('/comments_submit/c/{id}', ['as' => 'do_comments_c_submit', 'uses' => 'Evaluation_cController@do_comments_submit']);    
+    Route::put('/comments_submit/c/{id}', ['as' => 'do_comments_c_submit', 'uses' => 'Evaluation_cController@do_comments_submit']);
+    Route::get('evaluation/c/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation_c.finalize', 'uses' => 'Evaluation_cController@finalize']);    
+    Route::resource('evaluation_c', 'Evaluation_cController');    
 });
 
 # Statitics

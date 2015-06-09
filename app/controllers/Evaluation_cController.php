@@ -131,7 +131,7 @@ class Evaluation_cController extends \BaseController {
         //$evaluation = Evaluation_c::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->get();
         //$evaluation = Evaluation_c::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
 
-        return View::make('evaluations_b.edit', compact('evaluation', 'criterion'));
+        return View::make('evaluations_c.edit', compact('evaluation', 'criterion'));
         
 	}
 
