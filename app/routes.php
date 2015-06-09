@@ -124,6 +124,13 @@ Route::group(['before' => 'auth'], function(){
     Route::resource('evaluation_b', 'Evaluation_bController');
 });
 
+# Evaluation C Forms
+Route::group(['before' => 'auth'], function(){
+    Route::get('/evaluate/c/show', ['as' =>'grader.evaluate_c_show', 'uses' => 'Evaluation_cController@show']);
+    Route::put('/can_evaluate/c/{id}', ['as' => 'do_can_evaluate_c_submit', 'uses' => 'Evaluation_cController@do_can_evaluate_submit']);
+    Route::put('/is_educational_submit/c/{id}', ['as' => 'do_is_educational_c_submit', 'uses' => 'Evaluation_cController@do_is_educational_submit']);
+    Route::put('/comments_submit/c/{id}', ['as' => 'do_comments_c_submit', 'uses' => 'Evaluation_cController@do_comments_submit']);    
+});
 
 # Statitics
 Route::get('/admin/stats/', ['before' => 'auth|admin', 'as' => 'admin.stats', 'uses' => 'AdminController@stats']);

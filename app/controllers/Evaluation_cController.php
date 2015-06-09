@@ -1,6 +1,6 @@
 <?php
 
-class Evaluation_bController extends \BaseController {
+class Evaluation_cController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -33,7 +33,7 @@ class Evaluation_bController extends \BaseController {
 	public function store()
 	{
 
-        $validator = Validator::make($data = Input::only('grader_id'), Evaluation_b::$grader_a_rules, Evaluation_b::$error_messages);
+        $validator = Validator::make($data = Input::only('grader_id'), Evaluation_c::$grader_a_rules, Evaluation_c::$error_messages);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -46,7 +46,7 @@ class Evaluation_bController extends \BaseController {
         
         //dd($grader_id);
 
-        $evaluation = new Evaluation_b;
+        $evaluation = new Evaluation_c;
 
         $evaluation->grader_id = $grader_id;
         $evaluation->site_id = $site_id;
@@ -96,9 +96,9 @@ class Evaluation_bController extends \BaseController {
         
         $grader_id = $grader->id;
         
-        $evaluations = Evaluation_b::where('grader_id', '=', $grader_id)->get();
+        $evaluations = Evaluation_c::where('grader_id', '=', $grader_id)->get();
                 
-        return View::make('evaluations_b.show', compact('user', 'grader', 'evaluations'));
+        return View::make('evaluations_c.show', compact('user', 'grader', 'evaluations'));
         
 	}
     
@@ -116,7 +116,7 @@ class Evaluation_bController extends \BaseController {
             return Redirect::home();
         }
         
-        $evaluation = Evaluation_b::whereGrader_id($grader_id)->whereSite_id($site_id)->first();        
+        $evaluation = Evaluation_c::whereGrader_id($grader_id)->whereSite_id($site_id)->first();        
         
         if($evaluation->can_evaluate =='no' || $evaluation->finalized == 'yes'){
             return Redirect::home();
@@ -128,8 +128,8 @@ class Evaluation_bController extends \BaseController {
         
         $grader = Grader::where('user_id', '=', $user_id)->first();
         
-        //$evaluation = Evaluation_b::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->get();
-        //$evaluation = Evaluation_b::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
+        //$evaluation = Evaluation_c::where('grader_id', '=', $grader_id, 'and', 'site_id', '=', $site_id)->get();
+        //$evaluation = Evaluation_c::whereGrader_id($grader_id)->whereSite_id($site_id)->first();
 
         return View::make('evaluations_b.edit', compact('evaluation', 'criterion'));
         
@@ -146,14 +146,14 @@ class Evaluation_bController extends \BaseController {
         
         $input = Input::all();
         
-        $evaluation = Evaluation_b::find($id);
+        $evaluation = Evaluation_c::find($id);
         
         $total_grade = $evaluation->total_grade;
         
         // ----- Beta Form
         if(isset($input['bk1']) && isset($input['bk2']) && isset($input['bk3'])){
             
-            $validator = Validator::make($data = Input::all(), Evaluation_b::$beta_rules, Evaluation_b::$error_messages);
+            $validator = Validator::make($data = Input::all(), Evaluation_c::$beta_rules, Evaluation_c::$error_messages);
 
             if ($validator->fails()) {
                 return Redirect::back()->withErrors($validator)->withInput();
@@ -167,7 +167,7 @@ class Evaluation_bController extends \BaseController {
         if(isset($input['gk1']) && isset($input['gk2']) && isset($input['gk3']) &&
             isset($input['gk4']) && isset($input['gk5'])){
 
-            $validator = Validator::make($data = Input::all(), Evaluation_b::$gama_rules, Evaluation_b::$error_messages);
+            $validator = Validator::make($data = Input::all(), Evaluation_c::$gama_rules, Evaluation_c::$error_messages);
 
             if ($validator->fails()) {
                 return Redirect::back()->withErrors($validator)->withInput();
@@ -187,7 +187,7 @@ class Evaluation_bController extends \BaseController {
         if(isset($input['dk1']) && isset($input['dk2']) && isset($input['dk3']) &&
             isset($input['dk4']) && isset($input['dk5'])){
 
-            $validator = Validator::make($data = Input::all(), Evaluation_b::$delta_rules, Evaluation_b::$error_messages);
+            $validator = Validator::make($data = Input::all(), Evaluation_c::$delta_rules, Evaluation_c::$error_messages);
 
             if ($validator->fails()) {
                 return Redirect::back()->withErrors($validator)->withInput();
@@ -206,7 +206,7 @@ class Evaluation_bController extends \BaseController {
         // ----- Epsilon Form
         if(isset($input['ek1']) && isset($input['ek2'])){
 
-            $validator = Validator::make($data = Input::all(), Evaluation_b::$epsilon_rules, Evaluation_b::$error_messages);
+            $validator = Validator::make($data = Input::all(), Evaluation_c::$epsilon_rules, Evaluation_c::$error_messages);
 
             if ($validator->fails()) {
                 return Redirect::back()->withErrors($validator)->withInput();
@@ -222,7 +222,7 @@ class Evaluation_bController extends \BaseController {
         // ----- St Form
         if(isset($input['stk1']) && isset($input['stk2']) && isset($input['stk3'])){
 
-            $validator = Validator::make($data = Input::all(), Evaluation_b::$st_rules, Evaluation_b::$error_messages);
+            $validator = Validator::make($data = Input::all(), Evaluation_c::$st_rules, Evaluation_c::$error_messages);
 
             if ($validator->fails()) {
                 return Redirect::back()->withErrors($validator)->withInput();
@@ -247,7 +247,7 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Βαθμολογίας.');
         Session::flash('alert-class', 'flash-success');
-		return Redirect::route('grader.evaluate_b_show');
+		return Redirect::route('grader.evaluate_c_show');
         
 	}
     
@@ -255,19 +255,19 @@ class Evaluation_bController extends \BaseController {
         
         $input = Input::all();
         
-        $evaluation = Evaluation_b::find($id);
+        $evaluation = Evaluation_c::find($id);
         
         $evaluation->fill($input)->save();
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Σχολίου.');
         Session::flash('alert-class', 'flash-success');
-        return Redirect::route('grader.evaluate_b_show');
+        return Redirect::route('grader.evaluate_c_show');
         
     }
     
     public function do_is_educational_submit($id) {
         
-        $validator = Validator::make($data = Input::all(), Evaluation_b::$is_educational_rules, Evaluation_b::$error_messages);
+        $validator = Validator::make($data = Input::all(), Evaluation_c::$is_educational_rules, Evaluation_c::$error_messages);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -275,7 +275,7 @@ class Evaluation_bController extends \BaseController {
 
         $input = Input::all();
         
-        $evaluation = Evaluation_b::find($id);
+        $evaluation = Evaluation_c::find($id);
 
         if($input['is_educational'] == 'no'){
             $evaluation->total_grade = 1;
@@ -289,13 +289,13 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Απάντησης.');
         Session::flash('alert-class', 'flash-success');
-        return Redirect::route('grader.evaluate_b_show');
+        return Redirect::route('grader.evaluate_c_show');
         
     }  
     
     public function do_can_evaluate_submit($id) {
         
-        $validator = Validator::make($data = Input::all(), Evaluation_b::$can_evaluate_rules, Evaluation_b::$error_messages);
+        $validator = Validator::make($data = Input::all(), Evaluation_c::$can_evaluate_rules, Evaluation_c::$error_messages);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -309,7 +309,7 @@ class Evaluation_bController extends \BaseController {
         $today2 = new DateTime('NOW');
         $input['assigned_until'] = $today2->modify('+7 days');
         
-        $evaluation = Evaluation_b::find($id);
+        $evaluation = Evaluation_c::find($id);
         
         if($input['can_evaluate'] == 'yes'){
             Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Ευχαριστούμε για την αποδοχή.');
@@ -322,13 +322,13 @@ class Evaluation_bController extends \BaseController {
 
         $evaluation->fill($input)->save();
         
-        return Redirect::route('grader.evaluate_b_show');
+        return Redirect::route('grader.evaluate_c_show');
         
     }
     
     public function finalize($id){
         
-        $evaluation = Evaluation_b::find($id);
+        $evaluation = Evaluation_c::find($id);
         
         $grader_id = $evaluation->grader_id;
         
@@ -349,7 +349,7 @@ class Evaluation_bController extends \BaseController {
         
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Οριστικής Υποβολής Βαθμολογίας.');
         Session::flash('alert-class', 'flash-success');
-        return Redirect::route('grader.evaluate_b_show');
+        return Redirect::route('grader.evaluate_c_show');
         
     }    
 
@@ -363,7 +363,7 @@ class Evaluation_bController extends \BaseController {
 	public function destroy($id)
 	{
         
-		$evaluation = Evaluation_b::find($id);
+		$evaluation = Evaluation_c::find($id);
         
         $site_id = $evaluation->site_id;
 
@@ -374,7 +374,7 @@ class Evaluation_bController extends \BaseController {
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');        
 
-        return Redirect::route('admin.assign_b_to_site_b', [$site_id]);
+        return Redirect::route('admin.assign_c_to_site_b', [$site_id]);
 
 	}
     
