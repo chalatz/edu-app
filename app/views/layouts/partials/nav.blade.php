@@ -39,6 +39,7 @@
                         <li>{{ link_to('/admin/evaluations-report/b', 'Αξιολογήσεις Β') }}</li>
                         <li>{{ link_to('/admin/sites/grades/b/', 'Διαχ. Αναθ. Φ. Β') }}</li>
                         <li>{{ link_to('/admin/a-list/1', 'Αποτ. Φ. Α') }}</li>
+                        <li>{{ link_to('/admin/b-list/1', 'Αποτ. Φ. Β') }}</li>                        
                         <li>{{ link_to('/admin/evaluations-report/', 'Αξιολογήσεις Α') }}</li>
                         <li>{{ link_to('/admin/sites/grades/a/ok', 'Διαχ. Αναθ. Φ. Α (χωρίς αποκλ.)') }}</li>
                         <li>{{ link_to('/admin/sites/grades/a/', 'Διαχ. Αναθ. Φ. Α (με αποκλ.)') }}</li>
