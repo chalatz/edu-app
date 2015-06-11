@@ -1,30 +1,12 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
-    <h1>Φάση Β - Αποτελέσματα Κατηγορίας <span id="the_cat_id">{{ $cat_id }}</span></h1>
+    <span id="the_cat_id" style="display: none;">{{ $cat_id }}</span>
 
-    <p style="text-align: center" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
-        {{ link_to('/admin/b-list/print/'.$cat_id, 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-        (Επιλογή όλων, αντιγραφή και επικόλληση στο excel)
-    </p>
-
-    <div class="pure-g">
-        @for($l =1; $l <= 6; $l++)
-                @if($l != $cat_id && $l !=5)
-                    <div class="pure-u-1 pure-u-md-1-4">
-                        <div class="aligned-block orange white-font">
-                            {{ link_to_route('admin.b_list', 'Κατηγορία '. $l , $l, ['class' => 'white-font']) }}
-                        </div>
-                    </div>
-                @endif
-        @endfor
-    </div>
-
-    <table id="b-list-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
+    <table id="b-list-table-print">
     
-        <thead>            
+        <thead>           
             <tr>
                 <th>Κωδικός</th>
                 <th>Επωνυμία</th>
@@ -97,4 +79,58 @@
         </tfoot>
 
     </table>
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    
+    <script>
+
+        var $tbody = $('#b-list-table-print tbody');
+        $tbody.find('tr').sort(function(a,b){ 
+            var tda = $(a).find('td:eq(5)').text(); // can replace 1 with the column you want to sort on
+            var tdb = $(b).find('td:eq(5)').text(); // this will sort on the second column
+                    // if a < b return 1
+            return tda < tdb ? 1 
+                   // else if a > b return -1
+                   : tda > tdb ? -1 
+                   // else they are equal - return 0    
+                   : 0;           
+        }).appendTo($tbody);
+
+        function GetUnique(inputArray)
+        {
+            var outputArray = [];
+            
+            for (var i = 0; i < inputArray.length; i++)
+            {
+                if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
+                {
+                    outputArray.push(inputArray[i]);
+                }
+            }
+           
+            return outputArray;
+        }
+
+        function get_highest(the_table, the_ceiling){
+            var mos = [], i = 0;
+            $(the_table + ' td.mo').each(function(){
+              mos[i] = $(this).text() * 1;
+              i++;
+            });
+
+            var uniq = GetUnique(mos);
+
+            $(the_table + ' td.mo').each(function(){
+            var $this = $(this),
+                the_val = $(this).text() * 1;
+              if(the_val >= uniq[the_ceiling - 1]){
+                $(this).css({"background":"#1f8dd6", "color":"#fff", "font-weight":"bold"});
+              }
+            });
+        }
+
+        get_highest('#b-list-table-print', 4);
+
+    </script>
+
 @stop

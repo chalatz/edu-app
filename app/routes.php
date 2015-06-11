@@ -77,6 +77,7 @@ Route::get('/admin/a-list/print/{cat_id}', ['before' => 'auth|admin', 'as' => 'a
 
 // the grades from phase b
 Route::get('/admin/b-list/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.b_list', 'uses' => 'AdminController@b_list']);
+Route::get('/admin/b-list/print/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.b_list_print', 'uses' => 'AdminController@b_list_print']);
 
 // Send email to graders_a to accept
 // Route::get('/admin/send-to-graders-a-to-accept', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_accept', 'uses' => 'AdminController@send_to_graders_a_to_accept']);

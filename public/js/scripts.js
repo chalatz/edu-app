@@ -562,16 +562,16 @@
             return outputArray;
         }
 
-    function get_highest(the_ceiling){
+    function get_highest(the_table, the_ceiling){
         var mos = [], i = 0;
-        $('td.mo').each(function(){
+        $(the_table + ' td.mo').each(function(){
           mos[i] = $(this).text() * 1;
           i++;
         });
 
         var uniq = GetUnique(mos);
 
-        $('td.mo').each(function(){
+        $(the_table + ' td.mo').each(function(){
         var $this = $(this),
             the_val = $(this).text() * 1;
           if(the_val >= uniq[the_ceiling - 1]){
@@ -602,7 +602,7 @@
 
     }
 
-    get_highest(4);
-    get_the_highest();
+    get_highest('#b-list-table', 4);
+    //get_the_highest();
 
 })(jQuery);

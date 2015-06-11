@@ -153,6 +153,23 @@ class AdminController extends \BaseController {
         return View::make('admin.a_list_print', compact('sites', 'max_evals', 'cat_id'));
 
     }
+
+    public function b_list_print($cat_id){
+
+        $sites = Site::where('cat_id', $cat_id)->get();
+
+        $max_evals = 0;
+        
+        foreach($sites as $site){
+            $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
+
+        return View::make('admin.b_list_print', compact('sites', 'max_evals', 'cat_id'));
+
+    }    
     
     public function graders(){
         
@@ -202,7 +219,7 @@ class AdminController extends \BaseController {
         // $evaluations = Evaluation::simplePaginate(10);
         $evaluations = Evaluation_b::all();
 
-        return View::make('admin.evaluations_report_print', compact('evaluations'));
+        return View::make('admin.evaluations_report_print_b', compact('evaluations'));
 
     }    
     

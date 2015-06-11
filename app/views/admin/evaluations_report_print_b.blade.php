@@ -10,6 +10,7 @@
                 <th>Επωνυμία</th>
                 <th>URL</th>
                 <th>Κατηγορία</th>
+                <th>Κατ Αξ.</th>
                 <th>Αξιολογητής Β</th>
                 <th>Email Αξιολ. Β</th>
                 <th>Υπεύθ. Επικοινωνίας</th>
@@ -49,6 +50,7 @@
                     <td>{{ $site->title }}</td>
                     <td><a href="{{ $site->site_url }}" target="_blank">{{ $site->site_url }}</a></td>
                     <td>{{ $site->cat_id }}</td>
+                    <td>@foreach ($grader->sites as $graders_site) {{$graders_site->cat_id}} @endforeach</td>
                     <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }} ({{ $grader_code }})</td>
                     <td>{{ $grader->user->email }}</td>
                     <td>{{ $site->contact_last_name }} {{ $site->contact_name }}</td>
