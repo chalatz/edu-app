@@ -507,6 +507,24 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
         }
 
+    });
+
+    Route::get('admin/remind-late-graders-b', function(){
+
+        $g = [329, 48, 506, 145, 642, 338, 61, 402, 599];
+
+        foreach($g as $g_id){
+            $grader = Grader::find($g_id);
+
+            $grader_email = $grader->user->email;
+
+            // Mail::send('emails.send_to_late_b_graders',[], function($message) use ($grader_email){
+            //     $message->to($grader_email)->subject('Υπενθύμιση για Αξιολόγηση - Edu Web Awards 2015');
+            // });
+
+            echo $grader_email . '<br>';
+        }
+
     });   
 
 });
