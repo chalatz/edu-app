@@ -70,16 +70,16 @@
                             $grader = Grader::find($evaluation->grader_id);
                             $grader_code = '';
                             if($grader->user->hasRole('grader')){
-                                $grader_code = 'ΑΑ' . sprintf("%03d", $grader->id);
+                                $grader_code = 'Α' . sprintf("%03d", $grader->id);
                             }
                             if($grader->approved == 'yes'){
-                                $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
+                                $grader_code = 'Β' . sprintf("%03d", $grader->id);
                             }
                             if($grader->user->hasRole('grader') && $grader->approved == 'yes'){
-                                $grader_code = 'ΑΑΒ' . sprintf("%03d", $grader->id);
+                                $grader_code = 'ΑΒ' . sprintf("%03d", $grader->id);
                             }
                             if($grader->user->hasRole('admin')){
-                                $grader_code = 'ΑΓ' . sprintf("%03d", $grader->id);
+                                $grader_code = 'Γ' . sprintf("%03d", $grader->id);
                             }
                         ?>
                         @if($grader)

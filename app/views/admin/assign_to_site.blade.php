@@ -14,6 +14,7 @@
             <thead>
                 <tr>
                     <th>Αξιολογητής</th>
+                    <th>Ημ. Αποδοχής</th>
                     <th>Έχει αποδεχθεί;</th>
                     <th>Γιατί δεν έχει αποδεχθεί</th>
                     <th class="red white-font">Διαγραφή</th>
@@ -25,6 +26,11 @@
                     <?php $grader = Grader::find($evaluation->grader_id); ?>
                     <tr>
                         <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                        <td>
+                            @if($evaluation->can_evaluate == 'yes')
+                                {{ date('d / m / Y', strtotime($evaluation->assigned_at)) }}
+                            @endif
+                        </td>
                         <td>
                             @if($evaluation->can_evaluate == 'yes')Ναι @endif
                             @if($evaluation->can_evaluate == 'no') Όχι @endif

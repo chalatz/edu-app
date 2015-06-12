@@ -8,6 +8,12 @@
     <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
 
+    @if($site->cat_id == 6)
+        <p>Δημιουγός Ιστότοπου (από τη δήλωση υποφηφιότητας): {{ $site->creator }}</p>    
+        <p>Αξιολογητής προτεινόμενος από τον Ιστότοπο: {{ $site->graders->first()->grader_last_name }} {{ $site->graders->first()->grader_name }}</p>
+        <p>Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή): {{ Specialty::find($site->graders->first()->specialty)->specialty_name }}</p>
+    @endif
+
     <h2>Τρέχουσες αναθέσεις</h2>
 
     @if(isset($evaluations))
@@ -15,6 +21,8 @@
             <thead>
                 <tr>
                     <th>Αξιολογητής</th>
+                    <th>Ημ. Ανάθεσης</th>
+                    <th>Ημ. Αποδοχής</th>
                     <th>Έχει αποδεχθεί;</th>
                     <th>Γιατί δεν έχει αποδεχθεί</th>
                     <th class="red white-font">Διαγραφή</th>
@@ -26,6 +34,12 @@
                     <?php $grader = Grader::find($evaluation->grader_id); ?>
                     <tr>
                         <td>{{ $grader->grader_last_name }} {{ $grader->grader_name }}</td>
+                        <td>{{ date('d / m / Y', strtotime($evaluation->created_at)) }}</td>
+                        <td>
+                            @if($evaluation->can_evaluate == 'yes')
+                                {{ date('d / m / Y', strtotime($evaluation->assigned_at)) }}
+                            @endif
+                        </td>
                         <td>
                             @if($evaluation->can_evaluate == 'yes')Ναι @endif
                             @if($evaluation->can_evaluate == 'no') Όχι @endif
@@ -54,7 +68,7 @@
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach($graders_b as $grader_b)
-                @if(!$grader_b->user->hasRole('site'))
+                @if(!$grader_b->user->hasRole('site') && $grader_b->grader_district_id != $site->district_id)
                     <?php $the_evals = Evaluation::where('grader_id', $grader_b->id)->get(); ?>
                     <?php $the_evals_b = Evaluation_b::where('grader_id', $grader_b->id)->get(); ?>
 
