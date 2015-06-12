@@ -296,7 +296,9 @@ class EvaluationController extends \BaseController {
             $evaluation->total_grade = 1;
         }
 
-        $evaluation->total_grade = 0;
+        if($input['is_educational'] == 'yes'){
+            $evaluation->total_grade = 0;
+        }
         
         $evaluation->fill($input)->save();
         
@@ -331,6 +333,10 @@ class EvaluationController extends \BaseController {
 
         if($input['can_evaluate'] == 'no'){
             $evaluation->total_grade = -1;
+        }
+
+        if($input['can_evaluate'] == 'yes' && $evaluation->total_grade < 10 && $evaluation->is_educational == 'na'){
+            $evaluation->total_grade = 2;
         }
 
         $evaluation->fill($input)->save();

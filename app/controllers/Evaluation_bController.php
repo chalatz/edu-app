@@ -320,6 +320,10 @@ class Evaluation_bController extends \BaseController {
             $evaluation->total_grade = -1;
         }
 
+        if($input['can_evaluate'] == 'yes' && $evaluation->total_grade < 10 && $evaluation->is_educational == 'na'){
+            $evaluation->total_grade = 2;
+        }        
+
         $evaluation->fill($input)->save();
         
         return Redirect::route('grader.evaluate_b_show');

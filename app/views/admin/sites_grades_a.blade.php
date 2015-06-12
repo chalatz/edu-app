@@ -45,6 +45,12 @@
                 @endif
             </tr>
         </thead>
+
+        <div class="instructions">
+            <strong>Βαθμός</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>-1</strong>: Δεν έχει αποδεχτεί, <strong>1</strong>: Έχει κρίνει τον ιστότοπο μη εκπαιδευτικό, <strong>2</strong>: Έχει αποδεχτεί αλλά δεν έχει προχωρήσει
+        </div>        
         
         <tbody>
             @foreach($sites as $site)
