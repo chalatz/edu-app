@@ -20,7 +20,7 @@
             @if(Auth::user()->grader)
                 @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation::where('grader_id', Auth::user()->grader->id)->count() > 0 )
                     <div>
-                        {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
+                        {{-- {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }} --}}
                     </div>
                 @endif
             @endif
@@ -35,11 +35,20 @@
                 {{-- </div> --}}
             {{-- @endif --}}
         {{-- @endif --}}
+
+        <?php // Phase C ?>
+        @if(Auth::user()->grader)
+            @if( ( Auth::user()->grader->approved == 'yes' ) && Evaluation_c::where('grader_id', Auth::user()->grader->id)->count() > 0 )
+                <div>
+                    {{ link_to('evaluate/c/show', 'Γ Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-red anchor-block']) }}
+                </div>
+            @endif
+        @endif        
         
 
         @if(Auth::user()->id == 59)
             <div>
-                {{ link_to('/admin/manual-cron/', 'Manual Cron', ['class' => 'action-btn action-btn-purple anchor-block']) }}
+                {{-- {{ link_to('/admin/manual-cron/', 'Manual Cron', ['class' => 'action-btn action-btn-purple anchor-block']) }} --}}
             </div>
         @endif
 

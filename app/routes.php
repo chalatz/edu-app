@@ -481,6 +481,30 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
             
     });
 
+    Route::get('assign/c', function(){
+
+        $assignments = Assignment::all();
+
+        // foreach ($assignments as $assignment) {
+        //     echo Site::find($assignment->site_id)->id .' | '. Site::find($assignment->site_id)->title .' // '. Grader::find($assignment->grader1_id)->grader_last_name .' // '. Grader::find($assignment->grader2_id)->grader_last_name . '<br>';
+        // }
+
+        foreach($assignments as $assignment){
+            $evaluation = new Evaluation_c;
+            $evaluation->site_id = $assignment->site_id;
+            $evaluation->grader_id = $assignment->grader1_id;
+            $evaluation->save();
+        }
+        
+        foreach($assignments as $assignment){
+            $evaluation = new Evaluation_c;
+            $evaluation->site_id = $assignment->site_id;
+            $evaluation->grader_id = $assignment->grader2_id;
+            $evaluation->save(); 
+        }
+
+    });
+
 
     Route::get('admin/send-to-sites-about-end-of-phase-a', function(){
 
