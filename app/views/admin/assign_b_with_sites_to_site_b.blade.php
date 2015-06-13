@@ -72,11 +72,14 @@
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach($graders_b as $grader_b)
-                @if($grader_b->user->hasRole('site') && $grader_b->grader_district_id != $site->district_id)
+                <?php $graders_sites = Site::where('user_id', $grader_b->user->id)->get(); ?>
+                @foreach($graders_sites as $graders_site)
+                    <?php $graders_site_cat_id = $graders_site->cat_id; ?>
+                @endforeach
+                @if($grader_b->user->hasRole('site') && $grader_b->grader_district_id != $site->district_id && $site->cat_id != $graders_site_cat_id)
                     <?php $the_evals = Evaluation::where('grader_id', $grader_b->id)->get(); ?>
                     <?php $the_evals_b = Evaluation_b::where('grader_id', $grader_b->id)->get(); ?>
-                    <?php $graders_sites = Site::where('user_id', $grader_b->user->id)->get(); ?>
-
+                    
                     <option value="{{ $grader_b->id }}">
                         {{ $grader_b->grader_last_name }} {{ $grader_b->grader_name }} , 
                         {{ $grader_b->user->email }}, 
