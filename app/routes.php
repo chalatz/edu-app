@@ -118,7 +118,8 @@ Route::group(['before' => 'auth|admin'], function(){
 });
 
 # Evaluation B Forms
-Route::group(['before' => 'auth'], function(){
+//Phase B complete, no more evaluations allowed
+Route::group(['before' => 'auth|admin'], function(){
     Route::get('/evaluate/b/show', ['as' =>'grader.evaluate_b_show', 'uses' => 'Evaluation_bController@show']);
     Route::get('/evaluate/b/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_b_edit', 'uses' => 'Evaluation_bController@edit']);    
     Route::put('/can_evaluate/b/{id}', ['as' => 'do_can_evaluate_b_submit', 'uses' => 'Evaluation_bController@do_can_evaluate_submit']);
