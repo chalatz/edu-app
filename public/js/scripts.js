@@ -491,6 +491,40 @@
                          ]
         }
     );    
+
+    $('#evaluations-c-report-table').dataTable({
+        "dom": 'lfriptip',
+        "language": {
+            "sProcessing":   "Επεξεργασία...",
+            "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
+            "sZeroRecords":  "Δεν βρέθηκαν εγγραφές που να ταιριάζουν",
+            "sInfo":         "Εμφανίζονται _START_ εως _END_ από _TOTAL_ εγγραφές",
+            "sInfoEmpty":    "Εμφανίζονται 0 έως 0 από 0 εγγραφές",
+            "sInfoFiltered": "(φιλτραρισμένες από _MAX_ συνολικά εγγραφές)",
+            "sInfoPostFix":  "",
+            "sSearch":       "Αναζήτηση:",
+            "sUrl":          "",
+            "oPaginate": {
+                "sFirst":    "Πρώτη",
+                "sPrevious": "Προηγούμενη",
+                "sNext":     "Επόμενη",
+                "sLast":     "Τελευταία"
+            }
+        },
+        "pageLength": 200,
+        "lengthMenu": [ [50, 100, 200, 300, -1], [50, 100, 200, 300, "Όλα"] ]
+    }).columnFilter(
+        { sPlaceHolder: "head:after",
+                         aoColumns: [
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" }, { type: "text" }, { type: "text" },
+                            { type: "text" },
+                            { type: "number-range" }
+                         ]
+        }
+    );
     
     $('#sites-grades-table').dataTable({
         "dom": 'lfriptip',

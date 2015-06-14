@@ -203,6 +203,15 @@ class AdminController extends \BaseController {
 
         return View::make('admin.evaluations_report_b', compact('evaluations'));
 
+    }
+
+    public function evaluations_report_c(){
+
+        // $evaluations = Evaluation::simplePaginate(10);
+        $evaluations = Evaluation_c::all();
+
+        return View::make('admin.evaluations_report_c', compact('evaluations'));
+
     }    
 
     public function evaluations_report_print(){
