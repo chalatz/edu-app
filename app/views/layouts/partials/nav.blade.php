@@ -8,6 +8,11 @@
                 <li>{{ link_to('/login', 'Είσοδος') }}</li>
             @else
 
+            @if(Auth::user()->hasRole('ninja'))
+                <li>{{ link_to('/admin/evaluations-report/c', 'Αξιολογήσεις Γ') }}</li>
+                <li>{{ link_to('/admin/sites/grades/c/', 'Διαχ. Αναθ. Φ. Γ') }}</li>
+            @endif
+
                 @foreach(Auth::user()->roles as $role)
 
                     @if($role->role == 'site')
@@ -36,8 +41,6 @@
                         <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
                         <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                         <li>{{ link_to('/admin/graders_b', 'Αξιολογητές Β') }}</li>
-                        <li>{{ link_to('/admin/evaluations-report/c', 'Αξιολογήσεις Γ') }}</li>
-                        <li>{{ link_to('/admin/sites/grades/c/', 'Διαχ. Αναθ. Φ. Γ') }}</li>                                                
                         <li>{{ link_to('/admin/evaluations-report/b', 'Αξιολογήσεις Β') }}</li>
                         <li>{{ link_to('/admin/sites/grades/b/', 'Διαχ. Αναθ. Φ. Β') }}</li>
                         <li>{{ link_to('/admin/a-list/1', 'Αποτ. Φ. Α') }}</li>
