@@ -69,6 +69,31 @@ class AdminController extends \BaseController {
         
     }    
 
+    public function sites_grades_c(){
+
+        $evaluations = Evaluation_c::all();
+
+        $site_ids = [];
+
+        foreach ($evaluations as $evaluation) {
+            $site_ids[] = $evaluation->site_id;
+        }
+        
+        $sites = Site::orderBy('cat_id')->get();
+        
+        $max_evals = 0;
+        
+        foreach($sites as $site){
+            $evals_count = Evaluation_c::where('site_id', $site->id)->count();
+            if($evals_count > $max_evals){
+                $max_evals = $evals_count;
+            }
+        }
+        
+        return View::make('admin.sites_grades_c', compact('sites', 'max_evals', 'site_ids'));
+        
+    }    
+
     public function sites_grades_a_ok(){
         
         $sites = Site::orderBy('cat_id')->get();
