@@ -62,7 +62,7 @@ class Evaluation_cController extends \BaseController {
             $site_title = $site->title;
             $site_url = $site->site_url;
 
-            Mail::send('emails.send_to_single_grader_b_to_begin',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
+            Mail::send('emails.send_to_single_grader_c_to_begin',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title, 'site_url' => $site_url], function($message) use ($grader_email){
                 $message->to($grader_email)->subject('ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΟΥ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β - Edu Web Awards 2015');
             });
             
@@ -71,7 +71,7 @@ class Evaluation_cController extends \BaseController {
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
 
-        return Redirect::route('admin.assign_b_to_site_b', $site_id);
+        return Redirect::route('admin.sites_grades_c');
 
 	}
 
@@ -378,7 +378,7 @@ class Evaluation_cController extends \BaseController {
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής διαγραφή Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');        
 
-        return Redirect::route('admin.assign_c_to_site_b', [$site_id]);
+        return Redirect::route('admin.assign_b_to_site_c', [$site_id]);
 
 	}
     

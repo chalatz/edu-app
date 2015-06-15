@@ -690,6 +690,39 @@ class AdminController extends \BaseController {
         return View::make('admin.assign_b_with_sites_to_site_b', compact('site'));
         
     }
+
+    public function assign_b_to_site_c($site_id){
+        
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation_c::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation_c::where('site_id', $site_id)->get();
+            
+            // return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations', 'the_grader_ids'));
+            return View::make('admin.assign_b_to_site_c', compact('site', 'evaluations'));            
+        }
+        
+        return View::make('admin.assign_b_to_site_c', compact('site'));
+        
+    }
+
+  public function assign_b_with_sites_to_site_c($site_id){
+
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation_c::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation_c::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_b_with_sites_to_site_c', compact('site', 'evaluations'));            
+        }
+        
+        return View::make('admin.assign_b_with_sites_to_site_c', compact('site'));
+        
+    }        
     
     public function confirm_delete_evaluation_site_grader($evaluation_id) {
         
@@ -713,7 +746,7 @@ class AdminController extends \BaseController {
         
     }
 
-        public function confirm_delete_evaluation_b_site_grader_b($evaluation_id) {
+    public function confirm_delete_evaluation_b_site_grader_b($evaluation_id) {
         
         $evaluation = Evaluation_b::find($evaluation_id);
         
@@ -722,7 +755,18 @@ class AdminController extends \BaseController {
         
         return View::make('admin.confirm_delete_evaluation_b_site_grader_b', compact('evaluation', 'grader', 'site'));
         
-    }    
+    }
+
+    public function confirm_delete_evaluation_c_site_grader_b($evaluation_id) {
+        
+        $evaluation = Evaluation_c::find($evaluation_id);
+        
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+        
+        return View::make('admin.confirm_delete_evaluation_c_site_grader_b', compact('evaluation', 'grader', 'site'));
+        
+    } 
     
     
     // Assign a grader to a site

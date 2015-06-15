@@ -71,7 +71,7 @@ class Evaluation_bController extends \BaseController {
         Session::flash('flash_message', '<i class="fa fa-check-circle"></i> Επιτυχής καταχώριση Ανάθεσης.');
         Session::flash('alert-class', 'flash-success');
 
-        return Redirect::route('admin.assign_b_to_site_b', $site_id);
+        return Redirect::route('admin.sites_grades_b');
 
 	}
 
