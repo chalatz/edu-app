@@ -708,7 +708,7 @@ class AdminController extends \BaseController {
         
     }
 
-  public function assign_b_with_sites_to_site_c($site_id){
+    public function assign_b_with_sites_to_site_c($site_id){
 
         $site = Site::find($site_id);
         

@@ -4,8 +4,16 @@
 
 	<h1>Αναθέσεις Ιστότοπου σε Αξιολογητές Α</h1>
 
-    <p>Έπωνυμία: {{ $site->title }}</p>
+    <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
+
+    @if($site->cat_id == 6)
+        <p>Δημιουγός Ιστότοπου (από τη δήλωση υποφηφιότητας): {{ $site->creator }}</p>    
+        <p>Αξιολογητής προτεινόμενος από τον Ιστότοπο: {{ $site->graders->first()->grader_last_name }} {{ $site->graders->first()->grader_name }}</p>
+        @if($site->graders->first()->specialty)
+            <p>Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή): {{ Specialty::find($site->graders->first()->specialty)->specialty_name }}</p>
+        @endif        
+    @endif 
 
     <h2>Τρέχουσες αναθέσεις</h2>
 
@@ -50,11 +58,36 @@
 
     {{ Form::open(array('route' => 'evaluation.store', 'class' => 'pure-form pure-form-stacked')) }}
     
+        <p class="instructions">
+            <strong>Επιθ.</strong>  - Επιθυμητές Κατηγορίες<br>
+            <strong>Περ.</strong>   - Περιφέρεια<br>
+            <strong>Αξιολ Α.</strong> - Τυχόν sites που έχει αξιολογήσει στην Α Φάση<br>
+            <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
+            <strong>Κατ. site.</strong> - Κατηγορία site υποψηφιότητας Αξιολογητή
+        </p>
+
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Α...</option>
             @foreach(Grader::all() as $grader)
-                 @if($grader->user->hasRole('grader'))
-                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}</option>
+                @if($grader->user->hasRole('grader'))
+                <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
+                    @if($grader->district_id != 100)
+                        <?php $the_district_id = $grader->district_id; ?>
+                    @else
+                        @foreach($grader->sites as $the_site)
+                            <?php $the_district_id = $the_site->district_id; ?>
+                        @endforeach
+                    @endif
+
+                    <option value="{{ $grader->id }}">
+                        {{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}
+                        Επιθ. {{ $grader->desired_category }}, 
+                        Περ. {{ $the_district_id }}, 
+                        Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
+                        Κωδ. site. @foreach($grader->sites as $the_site) {{ $the_site->id }} @endforeach, 
+                        Κωδ. site. @foreach($grader->sites as $the_site) {{ $the_site->cat_id }} @endforeach
+                        @if($grader->specialty != NULL) , {{ Specialty::find($grader->specialty)->specialty_name }}  @endif
+                    </option>
                 @endif
             @endforeach
         </select>
