@@ -71,23 +71,33 @@
             @foreach(Grader::all() as $grader)
                 @if($grader->user->hasRole('grader'))
                 <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
+                 @foreach($grader->sites as $the_site)
+                    <?php $the_cat_id = $the_site->cat_id; ?>
+                    <?php $the_site_id = $the_site->id; ?>
+
+                @endforeach
                     @if($grader->district_id != 100)
                         <?php $the_district_id = $grader->district_id; ?>
                     @else
                         @foreach($grader->sites as $the_site)
                             <?php $the_district_id = $the_site->district_id; ?>
+                            <?php $the_cat_id = $the_site->cat_id; ?>
                         @endforeach
                     @endif
 
-                    <option value="{{ $grader->id }}">
-                        {{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}
-                        Επιθ. {{ $grader->desired_category }}, 
-                        Περ. {{ $the_district_id }}, 
-                        Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
-                        Κωδ. site. @foreach($grader->sites as $the_site) {{ $the_site->id }} @endforeach, 
-                        Κωδ. site. @foreach($grader->sites as $the_site) {{ $the_site->cat_id }} @endforeach
-                        @if($grader->specialty != NULL) , {{ Specialty::find($grader->specialty)->specialty_name }}  @endif
-                    </option>
+                    @if($the_district_id != $site->district_id && $site->cat_id != $the_cat_id && $site->id != $the_site_id)
+
+                        <option value="{{ $grader->id }}">
+                            {{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}, 
+                            Επιθ. {{ $grader->desired_category }}, 
+                            Περ. {{ $the_district_id }}, 
+                            Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
+                            Κωδ. site. {{ $the_site_id }}, 
+                            Κατ. site. {{ $the_cat_id }}
+                            @if($grader->specialty != NULL) , {{ Specialty::find($grader->specialty)->specialty_name }}  @endif
+                        </option>
+
+                    @endif
                 @endif
             @endforeach
         </select>
