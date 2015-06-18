@@ -160,7 +160,96 @@ class AdminController extends \BaseController {
 
         return View::make('admin.b_list', compact('sites', 'max_evals', 'cat_id'));
 
-    }    
+    }
+
+    public function c_list(){
+
+        $evals = Evaluation_c::distinct()->select('site_id')->groupBy('site_id')->get();
+
+        $sites = [];
+        $grades_a = [];
+        $grades_b = [];
+        $grades_c = [];
+        $grades_all = [];
+
+        foreach($evals as $eval){
+            $site_id = $eval->site_id;
+            $cat_id = Site::find($site_id)->cat_id;
+            $sites[$site_id]['cat_id'] = $cat_id;
+        }
+
+        foreach ($sites as $site_id=>$value) {
+            // Phase A
+            $evals_a= Evaluation::where('site_id', $site_id)->get();
+            foreach ($evals_a as $eval_a) {
+                $grades_a[] = $eval_a->total_grade;
+            }
+            rsort($grades_a);
+            $sites[$site_id]['grade_a_1'] = $grades_a[0];
+            $sites[$site_id]['grade_a_2'] = $grades_a[1];
+            $grades_all[] = $grades_a[0];
+            $grades_all[] = $grades_a[1];
+            $grades_a = [];
+
+            // Phase B
+            $evals_b= Evaluation_b::where('site_id', $site_id)->get();
+            foreach ($evals_b as $eval_b) {
+                $grades_b[] = $eval_b->total_grade;
+            }
+            rsort($grades_b);
+            $sites[$site_id]['grade_b_1'] = $grades_b[0];
+            $sites[$site_id]['grade_b_2'] = $grades_b[1];
+            $grades_all[] = $grades_b[0];
+            $grades_all[] = $grades_b[1];            
+            $grades_b = [];
+
+            // Phase C
+            $evals_c= Evaluation_c::where('site_id', $site_id)->get();
+            foreach ($evals_c as $eval_c) {
+                $grades_c[] = $eval_c->total_grade;
+            }
+            rsort($grades_c);
+            $sites[$site_id]['grade_c_1'] = $grades_c[0];
+            $sites[$site_id]['grade_c_2'] = $grades_c[1];
+            $grades_all[] = $grades_c[0];
+            $grades_all[] = $grades_c[1];            
+            $grades_c = [];
+
+            sort($grades_all);
+            $min_grade = array_shift($grades_all);
+            $max_grade = array_pop($grades_all);
+
+            $sites[$site_id]['min_grade'] = $min_grade;
+            $sites[$site_id]['max_grade'] = $max_grade;
+
+            $average = array_sum($grades_all) / count($grades_all);
+            $sites[$site_id]['average'] = $average;
+
+            echo "<pre>";
+            //print_r($grades_all);
+            echo "</pre>";
+
+            $grades_all = [];        
+        }
+
+        echo "<pre>";
+        print_r($sites);
+        echo "</pre>";
+
+        // $sites = Site::where('cat_id', $cat_id)->get();
+
+        // $max_evals = 0;
+        
+        // foreach($sites as $site){
+        //     $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+        //     if($evals_count > $max_evals){
+        //         $max_evals = $evals_count;
+        //     }
+        // }
+
+        // return View::make('admin.c_list', compact('sites', 'max_evals', 'cat_id'));
+
+    } 
 
     public function a_list_print($cat_id){
 
