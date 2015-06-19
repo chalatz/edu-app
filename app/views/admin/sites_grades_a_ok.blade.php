@@ -159,10 +159,9 @@
                         
                         <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
                         
-                        <td>{{ link_to_route('admin.assign_to_site', 'Ανάθεση σε Αξιολ. Α', [$site->id]) }}</td>
+                        <td>{{ link_to_route('admin.assign_to_site', 'σε Αξιολ. Α', [$site->id]) }}</td>
 
-
-                        <td>{{ link_to_route('admin.assign_b_to_site', 'Ανάθεση σε Αξιολ. Β', [$site->id]) }}</td>
+                        <td>{{ link_to_route('admin.assign_b_to_site', 'σε Αξιολ. Β χωρίς υποψηφιότητα', [$site->id]) }}</td>
                         
                         @if(Auth::user()->hasRole('ninja'))
                             <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>

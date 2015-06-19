@@ -2,10 +2,19 @@
 
 @section('content')
 
-	<h1>Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
+	<h1>Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
+    <p class="instructions">Ο λογαριασμός τους δεν περιέχει υποψηφιότητα.</p>    
 
-    <p>Έπωνυμία: {{ $site->title }}</p>
+    <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
+
+    @if($site->cat_id == 6)
+        <p>Δημιουγός Ιστότοπου (από τη δήλωση υποφηφιότητας): {{ $site->creator }}</p>    
+        <p>Αξιολογητής προτεινόμενος από τον Ιστότοπο: {{ $site->graders->first()->grader_last_name }} {{ $site->graders->first()->grader_name }}</p>
+        @if($site->graders->first()->specialty)
+            <p>Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή): {{ Specialty::find($site->graders->first()->specialty)->specialty_name }}</p>
+        @endif
+    @endif    
 
     <h2>Τρέχουσες αναθέσεις</h2>
 
@@ -54,7 +63,14 @@
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
             @foreach(Grader::all() as $grader)
                  @if($grader->approved == 'yes')
-                    <option value="{{ $grader->id }}">{{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }}</option>
+                    <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
+                    <option value="{{ $grader->id }}">
+                        {{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }},
+                        Επιθ. {{ $grader->desired_category }},
+                        Περ. {{ $grader->grader_district_id }},
+                        Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach,
+                        @if ($grader->specialty != NULL) , {{ Specialty::find($grader->specialty)->specialty_name }}  @endif 
+                    </option>
                 @endif
             @endforeach
         </select>

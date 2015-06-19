@@ -78,10 +78,10 @@
                         {{ $grader_b->grader_last_name }} {{ $grader_b->grader_name }} , 
                         {{ $grader_b->user->email }}, 
                         Επιθ. {{ $grader_b->desired_category }}, 
-                        Περ. {{ $grader_b->grader_district_id }}, 
+                        Περ. {{ $grader_b->grader_district_id }},
                         Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
                         Αξιολ Β. @foreach($the_evals_b as $the_eval) {{ $the_eval->site_id }}| @endforeach 
-                        @if($grader_b->specialty != NULL) , {{ Specialty::find($grader_b->specialty)->specialty_name }}  @endif                                              
+                        @if ($grader_b->specialty != NULL) , {{ Specialty::find($grader_b->specialty)->specialty_name }}  @endif                                              
                     </option>
 
                 @endif
