@@ -643,7 +643,7 @@
 
     }
 
-    get_highest('#b-list-table', 4);
+    //get_highest('#b-list-table', 4);
     //get_the_highest();
 
 })(jQuery);
