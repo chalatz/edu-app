@@ -38,6 +38,7 @@
                     @endif
 
                     @if($role->role == 'admin')
+                        <li>{{ link_to('/admin/c-list/1', 'Αποτ. Φ. Γ') }}</li>                                            
                         <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
                         <li>{{ link_to('/admin/graders', 'Αξιολογητές Α') }}</li>
                         <li>{{ link_to('/admin/graders_b', 'Αξιολογητές Β') }}</li>
