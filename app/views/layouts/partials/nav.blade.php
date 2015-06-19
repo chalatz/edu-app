@@ -34,6 +34,7 @@
 
                     @if($role->role == 'admin')
                         <li>{{ link_to('/admin/c-list/1', 'Αποτ. Φ. Γ') }}</li>
+                        <li>{{ link_to('/admin/b-list/1', 'Αποτ. Φ. Β') }}</li>                                                
                         <li>{{ link_to('/admin/evaluations-report/c', 'Αξιολογήσεις Γ') }}</li>
                         <li>{{ link_to('/admin/sites/grades/c/', 'Διαχ. Αναθ. Φ. Γ') }}</li>                                            
                         <li>{{ link_to('/admin/sites', 'Υποψήφιοι') }}</li>
@@ -42,7 +43,6 @@
                         <li>{{ link_to('/admin/evaluations-report/b', 'Αξιολογήσεις Β') }}</li>
                         <li>{{ link_to('/admin/sites/grades/b/', 'Διαχ. Αναθ. Φ. Β') }}</li>
                         <li>{{ link_to('/admin/a-list/1', 'Αποτ. Φ. Α') }}</li>
-                        <li>{{ link_to('/admin/b-list/1', 'Αποτ. Φ. Β') }}</li>                        
                         <li>{{ link_to('/admin/evaluations-report/', 'Αξιολογήσεις Α') }}</li>
                         <li>{{ link_to('/admin/sites/grades/a/ok', 'Διαχ. Αναθ. Φ. Α (χωρίς αποκλ.)') }}</li>
                         <li>{{ link_to('/admin/sites/grades/a/', 'Διαχ. Αναθ. Φ. Α (με αποκλ.)') }}</li>
