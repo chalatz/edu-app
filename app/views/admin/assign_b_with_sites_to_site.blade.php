@@ -2,8 +2,8 @@
 
 @section('content')
 
-	<h1>Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
-    <p class="instructions">Ο λογαριασμός τους δεν περιέχει υποψηφιότητα.</p>    
+    <h1>Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Β</h1>
+    <p class="instructions">Ο λογαριασμός τους περιέχει υποψηφιότητα.</p>
 
     <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>
@@ -13,7 +13,7 @@
         <p>Αξιολογητής προτεινόμενος από τον Ιστότοπο: {{ $site->graders->first()->grader_last_name }} {{ $site->graders->first()->grader_name }}</p>
         @if($site->graders->first()->specialty)
             <p>Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή): {{ Specialty::find($site->graders->first()->specialty)->specialty_name }}</p>
-        @endif
+        @endif        
     @endif    
 
     <h2>Τρέχουσες αναθέσεις</h2>
@@ -52,33 +52,41 @@
             </tbody>
         </table>
     @else
-        <p>Δεν υπάρχουν αναθέσεις για αυτόν τον Ιστότοπο</p>
+        <p>Δεν υπάρχουν αναθέσεις Β για αυτόν τον Ιστότοπο</p>
     @endif
 
-    <h3>Αξιολογητές Β (εγκεκριμένοι που ο λογαριασμός τους δεν περιέχει υποψηφιότητα)</h3>
+    <h3>Αξιολογητές Β (εγκεκριμένοι που ο λογαριασμός τους περιέχει υποψηφιότητα)</h3>
 
     {{ Form::open(array('route' => 'evaluation.store', 'class' => 'pure-form pure-form-stacked')) }}
-
+        <?php $graders_b = Grader::where('approved', 'yes')->get(); ?>
         <p class="instructions">
             <strong>Επιθ.</strong>  - Επιθυμητές Κατηγορίες<br>
             <strong>Περ.</strong>   - Περιφέρεια<br>
             <strong>Αξιολ Α.</strong> - Τυχόν sites που έχει αξιολογήσει στην Α Φάση<br>
+            <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
+            <strong>Κατ. site.</strong> - Κατηγορία site υποψηφιότητας Αξιολογητή
         </p>
-    
         <select name="grader_id" id="grader_id" class="chosen-select">
             <option value="">Επιλέξτε Αξιολογητή Β...</option>
-            @foreach(Grader::all() as $grader)
-                 @if($grader->approved == 'yes')
-                 @if(!$grader->user->hasRole('site') && $grader->grader_district_id != $site->district_id)
-                        <?php $the_evals = Evaluation::where('grader_id', $grader->id)->get(); ?>
-                        <option value="{{ $grader->id }}">
-                            {{ $grader->grader_last_name }} {{ $grader->grader_name }} , {{ $grader->user->email }},
-                            Επιθ. {{ $grader->desired_category }},
-                            Περ. {{ $grader->grader_district_id }},
-                            Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach,
-                            @if ($grader->specialty != NULL) , {{ Specialty::find($grader->specialty)->specialty_name }}  @endif 
-                        </option>
-                    @endif
+            @foreach($graders_b as $grader_b)
+                <?php $graders_sites = Site::where('user_id', $grader_b->user->id)->get(); ?>
+                @foreach($graders_sites as $graders_site)
+                    <?php $graders_site_cat_id = $graders_site->cat_id; ?>
+                @endforeach
+                @if($grader_b->user->hasRole('site') && $grader_b->grader_district_id != $site->district_id && $site->cat_id != $graders_site_cat_id)
+                    <?php $the_evals = Evaluation::where('grader_id', $grader_b->id)->get(); ?>
+                    
+                    <option value="{{ $grader_b->id }}">
+                        {{ $grader_b->grader_last_name }} {{ $grader_b->grader_name }} , 
+                        {{ $grader_b->user->email }}, 
+                        Επιθ. {{ $grader_b->desired_category }}, 
+                        Περ. {{ $grader_b->grader_district_id }}, 
+                        Αξιολ Α. @foreach($the_evals as $the_eval) {{ $the_eval->site_id }}| @endforeach, 
+                        Κωδ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->id }} @endforeach, 
+                        Κατ. site. @foreach($graders_sites as $graders_site) {{ $graders_site->cat_id }} @endforeach
+                        @if($grader_b->specialty != NULL) , {{ Specialty::find($grader_b->specialty)->specialty_name }}  @endif                      
+                    </option>
+
                 @endif
             @endforeach
         </select>

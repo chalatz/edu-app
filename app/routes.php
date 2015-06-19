@@ -96,9 +96,13 @@ Route::get('/admin/send-to-graders-b-to-begin', ['before' => 'auth|admin|ninja',
 Route::get('/admin/notify/late/graders/', ['before' => 'auth|admin|ninja', 'as' => 'admin.notify_late_graders', 'uses' => 'AdminController@notify_late_graders']);
 Route::get('/admin/manual-cron/', ['before' => 'auth|admin|ninja', 'as' => 'admin.manual_cron', 'uses' => 'AdminController@manual_cron']);
 
-# Manual Assignments
+# Manual Assignments - Phase A
+// Assignments to graders A
 Route::get('/admin/assign/site/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_to_site', 'uses' => 'AdminController@assign_to_site']);
+// Assignments to purely graders B
 Route::get('/admin/assign/site/b/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_to_site', 'uses' => 'AdminController@assign_b_to_site']);
+// Assignments to graders B with sites
+Route::get('/admin/assign/b-with-sites/site/{site_id}', ['before' => 'auth|admin', 'as' => 'admin.assign_b_with_sites_to_site', 'uses' => 'AdminController@assign_b_with_sites_to_site']);
 Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_site_grader', 'uses' => 'AdminController@confirm_delete_evaluation_site_grader']);
 Route::get('/admin/confirm/delete/evaluation/{id}/site/grader/b/', ['before' => 'auth|admin', 'as' => 'admin.confirm_delete_evaluation_site_grader_b', 'uses' => 'AdminController@confirm_delete_evaluation_site_grader_b']);
 Route::get('/admin/confirm/assign/evaluation/{evaluation_id}/site/{site_id}/to/grader/{grader_id}/', ['before' => 'auth|admin', 'as' => 'admin.assign_evaluation_grader_site', 'uses' => 'AdminController@assign_evaluation_grader_site']);

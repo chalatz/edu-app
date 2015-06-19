@@ -706,6 +706,22 @@ class AdminController extends \BaseController {
         
     }
 
+    public function assign_b_with_sites_to_site($site_id){
+
+        $site = Site::find($site_id);
+        
+        $evaluations_count = Evaluation::where('site_id', $site_id)->count();
+        
+        if($evaluations_count > 0){
+            $evaluations = Evaluation::where('site_id', $site_id)->get();
+            
+            return View::make('admin.assign_b_with_sites_to_site', compact('site', 'evaluations'));            
+        }
+        
+        return View::make('admin.assign_b_with_sites_to_site', compact('site'));
+        
+    }    
+
     public function assign_b_to_site_b($site_id){
 
         // $grader_ids = [];
@@ -753,7 +769,7 @@ class AdminController extends \BaseController {
         
     }
 
-  public function assign_b_with_sites_to_site_b($site_id){
+    public function assign_b_with_sites_to_site_b($site_id){
 
         $site = Site::find($site_id);
         

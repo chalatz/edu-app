@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Αναθέσεις Ιστότοπου σε Αξιολογητές Α</h1>
+	<h1>Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Α</h1>
 
     <p>Έπωνυμία: <strong>{{ $site->title }}</strong> (Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }})</p>
     <p>URL: {{ $site->site_url }}</p>

@@ -52,6 +52,7 @@
                 <th>Διαφορά</th>
                 <th>Ανάθεση Α</th>
                 <th>Ανάθεση Β</th>
+                <th>Ανάθεση Β</th>
                 @if(Auth::user()->hasRole('ninja'))
                     <th>Μεταμφίεση</th>
                 @endif
@@ -162,6 +163,7 @@
                         <td>{{ link_to_route('admin.assign_to_site', 'σε Αξιολ. Α', [$site->id]) }}</td>
 
                         <td>{{ link_to_route('admin.assign_b_to_site', 'σε Αξιολ. Β χωρίς υποψηφιότητα', [$site->id]) }}</td>
+                        <td>{{ link_to_route('admin.assign_b_with_sites_to_site', 'σε Αξιολ. Β με υποψηφιότητα', [$site->id]) }}</td>
                         
                         @if(Auth::user()->hasRole('ninja'))
                             <td>{{ link_to('/admin/masquerade/'.$site->user_id, 'Μεταμφίεση') }}  </td>
@@ -185,6 +187,7 @@
                 @for($i = 1; $i <= $max_evals; $i++)
                     <th></th>
                 @endfor                
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
