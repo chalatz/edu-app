@@ -29,6 +29,7 @@
                 <th>Κωδικός</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
+                <th>Δημιουργός</th>
                 <th>Βαθμός 1</th>
                 <th>Βαθμός 2</th>
                 <th>Μ.Ο</th>
@@ -58,6 +59,7 @@
                             <td>i{{ sprintf("%03d", $site->id) }}</td>
                             <td>{{ $site->title }}</td>
                             <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
+                            <td>{{ $site->creator }}</td>
 
                             <?php // tg stands for total grades ?>
                             <?php $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; ?>                        

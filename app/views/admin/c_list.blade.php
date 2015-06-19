@@ -23,6 +23,7 @@
                 <th>Κωδικός</th>
                 <th>Επωνυμία</th>
                 <th>URL</th>
+                <th>Δημιουργός</th>
                 <th>Φ.Α: 1</th>
                 <th>Φ.Α: 2</th>
                 <th>Φ.Β: 1</th>
@@ -42,6 +43,7 @@
                         <td>i{{ sprintf("%03d", $site_id) }}</td>
                         <td>{{ $site->title }}</td>
                         <td>{{ link_to($site->site_url, $site->site_url, ['target' => '_blank']) }}</td>
+                        <td>{{ $site->creator }}</td>
                         <td 
                             @if($sites_arr['grade_a_1'] == $sites_arr['min_grade'] || $sites_arr['grade_a_1'] == $sites_arr['max_grade'])
                                style="background: red; color: white"
