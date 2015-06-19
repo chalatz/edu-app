@@ -162,7 +162,7 @@ class AdminController extends \BaseController {
 
     }
 
-    public function c_list(){
+    public function c_list($cat_id){
 
         $evals = Evaluation_c::distinct()->select('site_id')->groupBy('site_id')->get();
 
@@ -174,8 +174,8 @@ class AdminController extends \BaseController {
 
         foreach($evals as $eval){
             $site_id = $eval->site_id;
-            $cat_id = Site::find($site_id)->cat_id;
-            $sites[$site_id]['cat_id'] = $cat_id;
+            $the_cat_id = Site::find($site_id)->cat_id;
+            $sites[$site_id]['the_cat_id'] = $the_cat_id;
         }
 
         foreach ($sites as $site_id=>$value) {
@@ -225,29 +225,18 @@ class AdminController extends \BaseController {
             $average = array_sum($grades_all) / count($grades_all);
             $sites[$site_id]['average'] = $average;
 
-            echo "<pre>";
-            //print_r($grades_all);
-            echo "</pre>";
-
             $grades_all = [];        
         }
 
-        echo "<pre>";
-        print_r($sites);
-        echo "</pre>";
-
-        // $sites = Site::where('cat_id', $cat_id)->get();
-
-        // $max_evals = 0;
-        
-        // foreach($sites as $site){
-        //     $evals_count = Evaluation_b::where('site_id', $site->id)->count();
-        //     if($evals_count > $max_evals){
-        //         $max_evals = $evals_count;
-        //     }
+        // foreach ($sites as $site_id=>$value){
+        //     echo $value['average'] . '<br>';
         // }
 
-        // return View::make('admin.c_list', compact('sites', 'max_evals', 'cat_id'));
+        //echo "<pre>";
+        //print_r($sites);
+        //echo "</pre>";
+
+        return View::make('admin.c_list', compact('sites', 'cat_id'));
 
     } 
 

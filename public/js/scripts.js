@@ -567,7 +567,14 @@
         searching: false,
         info: false,
         "order": [[ 5, "desc" ]]
-    });    
+    });
+
+   $('#c-list-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "order": [[ 9, "desc" ]]
+    }); 
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');
