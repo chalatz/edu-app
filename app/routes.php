@@ -39,6 +39,7 @@ Route::get('/profile/{profile}',['as' => 'profile', 'uses' => 'ProfilesControlle
 Route::get('/profile/{profile}/edit', ['as' => 'profile.edit', 'uses' => 'ProfilesController@edit']);
 
 # Sites
+Route::get('/summary/', ['before' => 'auth', 'as' => 'site.summary', 'uses' => 'SitesController@summary']);
 Route::resource('site', 'SitesController');
 
 # Graders
@@ -86,9 +87,9 @@ Route::get('/admin/c-list/{cat_id}', ['before' => 'auth|admin', 'as' => 'admin.c
 
 // Send email to graders_a to accept
 // Route::get('/admin/send-to-graders-a-to-accept', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_accept', 'uses' => 'AdminController@send_to_graders_a_to_accept']);
-// Emails to Graders A to start grading 
+// Emails to Graders A to start grading
 // Route::get('/admin/send-to-graders-a-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_a_to_begin', 'uses' => 'AdminController@send_to_graders_a_to_begin']);
-// Emails to Graders A that have not yet accepted 
+// Emails to Graders A that have not yet accepted
 // Route::get('/admin/send-to-late-graders', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_late_graders', 'uses' => 'AdminController@send_to_late_graders']);
 Route::get('/admin/send-to-graders-b-to-begin', ['before' => 'auth|admin|ninja', 'as' => 'admin.send_to_graders_b_to_begin', 'uses' => 'AdminController@send_to_graders_b_to_begin']);
 
@@ -139,9 +140,9 @@ Route::group(['before' => 'auth|admin'], function(){
 //Phase B complete, no more evaluations allowed
 Route::group(['before' => 'auth|admin'], function(){
     Route::get('/evaluate/b/show', ['as' =>'grader.evaluate_b_show', 'uses' => 'Evaluation_bController@show']);
-    Route::get('/evaluate/b/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_b_edit', 'uses' => 'Evaluation_bController@edit']);    
+    Route::get('/evaluate/b/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_b_edit', 'uses' => 'Evaluation_bController@edit']);
     Route::put('/can_evaluate/b/{id}', ['as' => 'do_can_evaluate_b_submit', 'uses' => 'Evaluation_bController@do_can_evaluate_submit']);
-    Route::put('/is_educational_submit/b/{id}', ['as' => 'do_is_educational_b_submit', 'uses' => 'Evaluation_bController@do_is_educational_submit']);    
+    Route::put('/is_educational_submit/b/{id}', ['as' => 'do_is_educational_b_submit', 'uses' => 'Evaluation_bController@do_is_educational_submit']);
     Route::put('/comments_submit/b/{id}', ['as' => 'do_comments_b_submit', 'uses' => 'Evaluation_bController@do_comments_submit']);
     Route::get('evaluation/b/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation_b.finalize', 'uses' => 'Evaluation_bController@finalize']);
     Route::resource('evaluation_b', 'Evaluation_bController');
@@ -151,12 +152,12 @@ Route::group(['before' => 'auth|admin'], function(){
 # //Phase C complete, no more evaluations allowed
 Route::group(['before' => 'auth|admin|ninja'], function(){
     Route::get('/evaluate/c/show', ['as' =>'grader.evaluate_c_show', 'uses' => 'Evaluation_cController@show']);
-    Route::get('/evaluate/c/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_c_edit', 'uses' => 'Evaluation_cController@edit']);        
+    Route::get('/evaluate/c/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_c_edit', 'uses' => 'Evaluation_cController@edit']);
     Route::put('/can_evaluate/c/{id}', ['as' => 'do_can_evaluate_c_submit', 'uses' => 'Evaluation_cController@do_can_evaluate_submit']);
     Route::put('/is_educational_submit/c/{id}', ['as' => 'do_is_educational_c_submit', 'uses' => 'Evaluation_cController@do_is_educational_submit']);
     Route::put('/comments_submit/c/{id}', ['as' => 'do_comments_c_submit', 'uses' => 'Evaluation_cController@do_comments_submit']);
-    Route::get('evaluation/c/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation_c.finalize', 'uses' => 'Evaluation_cController@finalize']);    
-    Route::resource('evaluation_c', 'Evaluation_cController');    
+    Route::get('evaluation/c/finalize/{id}', ['before' => 'auth', 'as' => 'evaluation_c.finalize', 'uses' => 'Evaluation_cController@finalize']);
+    Route::resource('evaluation_c', 'Evaluation_cController');
 });
 
 # Statitics
@@ -176,52 +177,52 @@ Route::get('pivot', function(){
     } else {
         echo "no";
     }
-   
+
     //$grader = Grader::find(1);
-    
+
     //$grader->sites()->attach(3);
-    
+
     // $user = User::find(17);
     // $user->roles()->attach(1);
-    
-    
+
+
     // $grader_id = $grader->id;
     // $user_id = $grader->user_id;
-    
+
     // $user = User::with('grader')->whereId($user_id)->first();
-    // $user_email = $user->email; 
-    
+    // $user_email = $user->email;
+
     // echo "Grader email (or id): " . $user_email ."<br>";
     // echo "<p>will grade this(these) site(s): </p>";
-    
+
     // foreach($grader->sites as $site) {
     //     echo $site->site_url . "<br>";
     // }
-    
+
 });
 
 // Test Flash
 Route::get('flash', function(){
-    
+
     Session::flash('flash_message', 'Yo');
     Session::flash('alert-class', 'flash-info');
     return Redirect::home();
-    
+
 });
 
 // Test Select Lists from DB
 Route::get('selects', function(){
-    
+
     $districts = ['100' => 'Επιλέξτε...'] + District::lists('district_name', 'id');
     dd($districts);
-    
+
     return View::make('tests.select_lists', compact('districts'));
 });
 
 Route::get('optgroup', function(){
 
     $data[ 'province' ] = array(
- 
+
         'Sardegna' => array(
                     'CA' => 'Cagliari',
                     'CI' => 'Carbonia-Iglesias',
@@ -230,7 +231,7 @@ Route::get('optgroup', function(){
                     'OR' => 'Oristano',
                     'VS' => 'Medio Campidano',
                     'OG' => 'Ogliastra',
-                    'SS' => 'Sassari' 
+                    'SS' => 'Sassari'
             ),
         'Sicilia' => array(
                     'AG' => 'Agrigento',
@@ -252,7 +253,7 @@ Route::get('optgroup', function(){
     $districts = District::all();
 
     $result = array();
-    
+
     foreach(County::all() as $county){
         //if(!array_key_exists($county->district_name, $result)){
             //$result[$county->district_name] = array();
@@ -280,49 +281,49 @@ Route::get('optgroup', function(){
 // Route::resource('users', 'UsersController');
 
 // $sql = "SELECT `id`,`grader_district_id`,`cat_id` FROM `graders`";
-// 
+//
 // SELECT grader_site.grader_id, sites.`id` as site_id, sites.`cat_id`,sites.`district_id` FROM `sites` inner join grader_site on grader_site.site_id = sites.id
 
 Route::get('panormighty', function(){
-    
+
     global $sites, $graders, $l, $gIndex, $sIndex;
-    
+
     $graders = DB::table('graders')
              ->join('grader_site', 'grader_site.grader_id', '=', 'graders.id')
-             ->select('grader_site.grader_id', 'grader_site.site_id', 'graders.cat_id', 
+             ->select('grader_site.grader_id', 'grader_site.site_id', 'graders.cat_id',
                       'graders.district_id', 'graders.specialty')
              ->get();
-    
+
     $sites = DB::table('sites')
              ->join('grader_site', 'grader_site.site_id', '=', 'sites.id')
              ->select('grader_site.grader_id', 'sites.id', 'sites.cat_id', 'sites.district_id')
-             ->get();      
-    
+             ->get();
+
     //dd(count($graders));
 
     echo "<pre>";
     print_r($graders);
     echo "</pre>";
-    
+
     $s2 = [];
     $sIndex = [];
     foreach ($sites as $s) {
         $s2[$s->id] = ["cat" => $s->cat_id, "district" => $s->district_id,
-                      "grader" => $s->grader_id];        
+                      "grader" => $s->grader_id];
         $sIndex[] = $s->id;
     }
-    
+
     $sites = $s2;
-    
+
     $g2 = [];
     $gIndex = [];
     foreach ($graders as $g) {
         $g2[$g->grader_id] = ["cat" => $g->cat_id, "district" => $g->district_id,
-                      "site" => $g->site_id, "specialty" => $g->specialty];  
+                      "site" => $g->site_id, "specialty" => $g->specialty];
         $gIndex[] = $g->grader_id;
     }
-    
-   
+
+
     $graders = $g2;
 
     //file_put_contents('/home/codio/workspace/the_graders.inc', serialize($graders));
@@ -332,9 +333,9 @@ Route::get('panormighty', function(){
     // print_r($graders);
     // echo "</pre>";
     //var_dump($graders);
-    
+
     //dd(count($sites));
-    
+
 });
 
 Route::get('panormighty_b', function(){
@@ -441,16 +442,16 @@ Route::get('rest-of-graders-b', function(){
 Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('/admin/finalize/assignments/a', function(){
-      
+
         $evaluations = Evaluation::all();
         foreach ($evaluations as $evaluation) {
             if($evaluation->finalized != 'yes'){
                 $today = new DateTime('NOW');
-        
+
                 $evaluation->finalized = 'yes';
                 $evaluation->finalized_at = $today;
 
-                $evaluation->save();                
+                $evaluation->save();
             }
         }
 
@@ -461,43 +462,43 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
     });
 
     Route::get('assign', function(){
-    
+
         //     $assignments = Assignment::all();
-            
+
         //     foreach($assignments as $assignment){
         //         $evaluation = new Evaluation;
         //         $evaluation->site_id = $assignment->site_id;
         //         $evaluation->grader_id = $assignment->grader1_id;
         //         $evaluation->save();
         //     }
-            
+
         //     foreach($assignments as $assignment){
         //         $evaluation = new Evaluation;
         //         $evaluation->site_id = $assignment->site_id;
         //         $evaluation->grader_id = $assignment->grader2_id;
-        //         $evaluation->save(); 
+        //         $evaluation->save();
         //     }
-            
+
     });
 
     Route::get('assign/b', function(){
-    
+
         // $assignments = Assignment::all();
-            
+
         // foreach($assignments as $assignment){
         //     $evaluation = new Evaluation_b;
         //     $evaluation->site_id = $assignment->site_id;
         //     $evaluation->grader_id = $assignment->grader1_id;
         //     $evaluation->save();
         // }
-        
+
         // foreach($assignments as $assignment){
         //     $evaluation = new Evaluation_b;
         //     $evaluation->site_id = $assignment->site_id;
         //     $evaluation->grader_id = $assignment->grader2_id;
-        //     $evaluation->save(); 
+        //     $evaluation->save();
         // }
-            
+
     });
 
     Route::get('assign/c', function(){
@@ -514,12 +515,12 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
         //     $evaluation->grader_id = $assignment->grader1_id;
         //     $evaluation->save();
         // }
-        
+
         // foreach($assignments as $assignment){
         //     $evaluation = new Evaluation_c;
         //     $evaluation->site_id = $assignment->site_id;
         //     $evaluation->grader_id = $assignment->grader2_id;
-        //     $evaluation->save(); 
+        //     $evaluation->save();
         // }
 
     });
@@ -573,17 +574,148 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('admin/store-grades', function(){
 
-        
+        $grades_a = []; $grades_b = []; $grades_c = [];
+
+        $sites_a = Evaluation::where('beta_grade', '>', 0)
+        ->Where('gama_grade', '>', 0)
+        ->Where('delta_grade', '>', 0)
+        ->Where('epsilon_grade', '>', 0)
+        ->Where('st_grade', '>', 0)
+        ->Where('is_educational', '=', 'yes')
+        ->orderBy('site_id')
+        ->distinct()->groupBy('site_id')
+        ->get();
+
+        $sites_b = Evaluation_b::where('beta_grade', '>', 0)
+        ->Where('gama_grade', '>', 0)
+        ->Where('delta_grade', '>', 0)
+        ->Where('epsilon_grade', '>', 0)
+        ->Where('st_grade', '>', 0)
+        ->Where('is_educational', '=', 'yes')
+        ->orderBy('site_id')
+        ->distinct()->groupBy('site_id')
+        ->get();
+
+        $sites_c = Evaluation_c::where('beta_grade', '>', 0)
+        ->Where('gama_grade', '>', 0)
+        ->Where('delta_grade', '>', 0)
+        ->Where('epsilon_grade', '>', 0)
+        ->Where('st_grade', '>', 0)
+        ->Where('is_educational', '=', 'yes')
+        ->orderBy('site_id')
+        ->distinct()->groupBy('site_id')
+        ->get();
+
+        foreach($sites_a as $site){
+            $site_id = $site['site_id'];
+            $grade = new Grade;
+            $grade->site_id = $site_id;
+            $grade->save();
+        }
+
+        //--------- Phase A ------------------------------------
+        foreach($sites_a as $site_a){
+
+            $site_a_id = $site_a['site_id'];
+
+            $evals_a = Evaluation::where('site_id', $site_a_id)->get();
+
+            if($evals_a->count() >= 2){
+                foreach($evals_a as $eval_a){
+                    $grades_a[] = $eval_a->total_grade;
+                }
+            }
+
+            rsort($grades_a);
+
+            $a_grade = Grade::where('site_id', $site_a_id)->first();
+            $a_grade->a1_grade = $grades_a[0];
+            $a_grade->a2_grade = $grades_a[1];
+            $a_grade->save();
+
+            $grades_a = [];
+
+        } // end sites_a
+
+
+        //--------- Phase B ------------------------------------
+        foreach($sites_b as $site_b){
+
+            $grades_b = [];
+
+            $site_b_id = $site_b['site_id'];
+
+            $evals_b = Evaluation_b::where('site_id', $site_b_id)->get();
+
+            if($evals_b->count() >= 2){
+                foreach($evals_b as $eval_b){
+                    $grades_b[] = $eval_b->total_grade;
+                }
+            }
+
+            rsort($grades_b);
+
+            $b_grade = Grade::where('site_id', $site_b_id)->first();
+            $b_grade->b1_grade = $grades_b[0];
+            $b_grade->b2_grade = $grades_b[1];
+            $b_grade->save();
+
+        } // end sites_b
+
+         //--------- Phase C ------------------------------------
+        foreach($sites_c as $site_c){
+
+            $site_c_id = $site_c['site_id'];
+
+            $evals_c = Evaluation_c::where('site_id', $site_c_id)->get();
+
+            if($evals_c->count() >= 2){
+                foreach($evals_c as $eval_c){
+                    $grades_c[] = $eval_c->total_grade;
+                }
+            }
+
+            rsort($grades_c);
+
+            $c_grade = Grade::where('site_id', $site_c_id)->first();
+            $c_grade->c1_grade = $grades_c[0];
+            $c_grade->c2_grade = $grades_c[1];
+            $c_grade->save();
+
+            $grades_c = [];
+
+        } // end sites_c
+
+    });
+
+    Route::get('admin/store-final-grades', function(){
+
+        $grades = Grade::all();
+
+        foreach($grades as $grade){
+
+            if($grade->c1_grade > 0 && $grade->c2_grade > 0){
+
+                $grade->final_grade = 200;
+                $grade->phase = 'c';
+                $grade->save();
+
+            } elseif($grade->b1_grade > 0 && $grade->b2_grade > 0){
+
+                $grade->final_grade = ($grade->b1_grade + $grade->b2_grade) / 2;
+                $grade->phase = 'b';
+                $grade->save();
+
+            } elseif($grade->a1_grade > 0 && $grade->a2_grade > 0){
+
+                $grade->final_grade = ($grade->a1_grade + $grade->a2_grade) / 2;
+                $grade->phase = 'a';
+                $grade->save();
+
+            }
+
+        }
 
     });
 
 });
-
-
-
-
-
-
-
-
-

@@ -23,8 +23,8 @@ class CreateGradesTable extends Migration {
 			$table->integer('b2_grade')->default(0);
 			$table->integer('c1_grade')->default(0);
 			$table->integer('c2_grade')->default(0);
-			$table->integer('final_grade')->default(0);
-
+			$table->decimal('final_grade',4,1)->default(0);
+			$table->string('phase', 10)->default('na');
 			$table->timestamps();
 		});
 	}
