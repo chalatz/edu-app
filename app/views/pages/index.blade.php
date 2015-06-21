@@ -37,13 +37,13 @@
         {{-- @endif --}}
 
         <?php // Phase C ?>
-        @if(Auth::user()->grader)
-            @if( ( Auth::user()->grader->approved == 'yes' ) && Evaluation_c::where('grader_id', Auth::user()->grader->id)->count() > 0 )
-                <div>
-                    {{ link_to('evaluate/c/show', 'Γ Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-red anchor-block']) }}
-                </div>
-            @endif
-        @endif        
+        <!-- @if(Auth::user()->grader) -->
+            <!-- @if( ( Auth::user()->grader->approved == 'yes' ) && Evaluation_c::where('grader_id', Auth::user()->grader->id)->count() > 0 ) -->
+                <!-- <div> -->
+                    <!-- {{ link_to('evaluate/c/show', 'Γ Φάση: Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-red anchor-block']) }} -->
+                <!-- </div> -->
+            <!-- @endif -->
+        <!-- @endif         -->
         
 
         @if(Auth::user()->id == 59)

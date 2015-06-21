@@ -148,7 +148,8 @@ Route::group(['before' => 'auth|admin'], function(){
 });
 
 # Evaluation C Forms
-Route::group(['before' => 'auth'], function(){
+# //Phase C complete, no more evaluations allowed
+Route::group(['before' => 'auth|admin|ninja'], function(){
     Route::get('/evaluate/c/show', ['as' =>'grader.evaluate_c_show', 'uses' => 'Evaluation_cController@show']);
     Route::get('/evaluate/c/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'grader.evaluate_c_edit', 'uses' => 'Evaluation_cController@edit']);        
     Route::put('/can_evaluate/c/{id}', ['as' => 'do_can_evaluate_c_submit', 'uses' => 'Evaluation_cController@do_can_evaluate_submit']);
@@ -568,7 +569,13 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
             echo $grader_email . '<br>';
         }
 
-    });   
+    });
+
+    Route::get('admin/store-grades', function(){
+
+        
+
+    });
 
 });
 
