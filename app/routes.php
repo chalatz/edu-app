@@ -718,4 +718,31 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     });
 
+    Route::get('notify-about-summary', function(){
+
+        $grades = Grade::all();
+
+        $from = 0;
+        $to = 0;
+
+        foreach ($grades as $grade) {
+            if($grade->final_grade > 0){
+                $site_id = $grade->site_id;
+                $site = Site::find($site_id);
+
+                if($site_id > $from && $site_id <= $to){
+
+                    $site_email = $site->contact_email;
+
+                    // Mail::send('emails.notify_about_summary',[], function($message) use ($site_email){
+                    //     $message->to($site_email)->subject('Δείτε τη βαθμολογία σας - Edu Web Awards 2015');
+                    // });
+
+                    echo $site_email . '<br>';
+                }
+            }
+        }
+
+    });
+
 });

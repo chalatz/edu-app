@@ -2,7 +2,12 @@
 
 @section('content')
 
-    @if($final_grade && $final_grade > 0)
+    @if($site_id == 294)
+      <div class="instructions">Μετά από έλεγχο διαπιστώθηκε ότι ο ιστότοπός σας δεν είναι εκπαιδευτικός, καθώς περιέχει διαφημίσεις και σχεδιάστηκε από εταιρεία (http://www.wf8.gr/), γεγονός αντίθετο με τους <a href="http://www.eduwebawards.gr/requirements/">όρους του Διαγωνισμού</a> (άρθρο 4 και 5)</div>
+    @elseif($site_id == 64)
+      <div class="instructions">Μετά από έλεγχο διαπιστώθηκε ότι ο ιστότοπός σας δεν είναι εκπαιδευτικός, καθώς περιέχει διαφημιστικό υλικό, γεγονός αντίθετο με τους <a href="http://www.eduwebawards.gr/requirements/">όρους του Διαγωνισμού</a> (άρθρο 5)</div>
+
+    @elseif($final_grade && $final_grade > 0)
 
       <p>
       <span style="font-size: 1.3em">Ο Ιστότοπός σας έχει φτάσει στη φάση <strong>{{ $phase }}</strong> και πήρε το βαθμό:</span>
