@@ -4,6 +4,12 @@
 
     @if(Auth::check())
 
+        @if(Auth::user()->hasRole('site'))
+            @if(Grade::where('site_id', Auth::user()->site->id)->count() > 0)
+                {{ link_to('summary', 'Δείτε τη Βαθμολογία σας και τυχόν σχόλια', ['class' => 'action-btn action-btn-gray anchor-block']) }}
+            @endif
+        @endif
+
         @if(isset(Auth::user()->site))
             @if(Auth::user()->hasRole('site') && Auth::user()->site->grader_agrees == 'no')
                 <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O Αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>

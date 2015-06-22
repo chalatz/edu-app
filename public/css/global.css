@@ -3221,6 +3221,12 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .action-btn-yellow:hover {
   background-color: #FFDE29; }
 
+.action-btn-gray {
+  background-color: #666; }
+
+.action-btn-gray:hover {
+  background-color: gray; }
+
 body {
   color: #777; }
 
@@ -3839,6 +3845,17 @@ form .label-for-checkbox {
 .grade-number-index input {
   width: 4em;
   margin-bottom: 6px; }
+
+.final-grade {
+  background: #5eb95e;
+  color: white;
+  font-size: 2em;
+  line-height: 2em;
+  padding: 0.5em;
+  text-shadow: 0px 3px 1px #444; }
+
+.dd {
+  margin-left: 2em; }
 
 .evaluation-summaries {
   margin-top: 1em;

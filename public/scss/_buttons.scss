@@ -71,3 +71,11 @@
 .action-btn-yellow:hover {
   background-color: #FFDE29;
 }
+
+.action-btn-gray {
+  background-color: #666;
+}
+
+.action-btn-gray:hover {
+  background-color: lighten(#666, 10%);
+}
