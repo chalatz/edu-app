@@ -7,7 +7,7 @@
         @if(isset(Auth::user()->site))
             @if(Auth::user()->hasRole('site') && Auth::user()->site->grader_agrees == 'no')
                 <div class="instructions white-font red little-block"><strong><i class="fa fa-frown-o"></i> O Αξιολογητής Α που έχετε προτείνει, δεν έχει αποδεχθεί την πρόσκλησή σας.</strong></div>
-                <div class="instructions orange little-block white-font"><strong><i class="fa fa-rocket"></i> {{ link_to('/site/'.Auth::user()->id.'/edit#grader-a-details', 'Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.', ['class' => 'white-font']) }} </strong></div>                            
+                <div class="instructions orange little-block white-font"><strong><i class="fa fa-rocket"></i> {{ link_to('/site/'.Auth::user()->id.'/edit#grader-a-details', 'Θα πρέπει να προτείνετε καινούριο Αξιολογητή Α, εντός 48 ωρών.', ['class' => 'white-font']) }} </strong></div>
             @endif
         @endif
 
@@ -20,7 +20,7 @@
             @if(Auth::user()->grader)
                 @if( (Auth::user()->hasRole('grader') || Auth::user()->hasRole('grader_b')) && Evaluation::where('grader_id', Auth::user()->grader->id)->count() > 0 )
                     <div>
-                        {{-- {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }} --}}
+                        {{ link_to('evaluate/show', 'Έναρξη Αξιολόγησης', ['class' => 'action-btn action-btn-orange anchor-block']) }}
                     </div>
                 @endif
             @endif
@@ -44,7 +44,7 @@
                 <!-- </div> -->
             <!-- @endif -->
         <!-- @endif         -->
-        
+
 
         @if(Auth::user()->id == 59)
             <div>
@@ -79,7 +79,7 @@
         </div>
 
     @else
-    
+
         <h3>Καλώς ορίσατε στο Πληροφοριακό Σύστημα του <br> 7ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων!</h3>
 
         <p>{{ link_to('login', 'Συνδεθείτε') }} ή {{ link_to('register', 'Εγγραφείτε') }}</p>
