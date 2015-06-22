@@ -574,147 +574,147 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('admin/store-grades', function(){
 
-        $grades_a = []; $grades_b = []; $grades_c = [];
+        // $grades_a = []; $grades_b = []; $grades_c = [];
 
-        $sites_a = Evaluation::where('beta_grade', '>', 0)
-        ->Where('gama_grade', '>', 0)
-        ->Where('delta_grade', '>', 0)
-        ->Where('epsilon_grade', '>', 0)
-        ->Where('st_grade', '>', 0)
-        ->Where('is_educational', '=', 'yes')
-        ->orderBy('site_id')
-        ->distinct()->groupBy('site_id')
-        ->get();
+        // $sites_a = Evaluation::where('beta_grade', '>', 0)
+        // ->Where('gama_grade', '>', 0)
+        // ->Where('delta_grade', '>', 0)
+        // ->Where('epsilon_grade', '>', 0)
+        // ->Where('st_grade', '>', 0)
+        // ->Where('is_educational', '=', 'yes')
+        // ->orderBy('site_id')
+        // ->distinct()->groupBy('site_id')
+        // ->get();
 
-        $sites_b = Evaluation_b::where('beta_grade', '>', 0)
-        ->Where('gama_grade', '>', 0)
-        ->Where('delta_grade', '>', 0)
-        ->Where('epsilon_grade', '>', 0)
-        ->Where('st_grade', '>', 0)
-        ->Where('is_educational', '=', 'yes')
-        ->orderBy('site_id')
-        ->distinct()->groupBy('site_id')
-        ->get();
+        // $sites_b = Evaluation_b::where('beta_grade', '>', 0)
+        // ->Where('gama_grade', '>', 0)
+        // ->Where('delta_grade', '>', 0)
+        // ->Where('epsilon_grade', '>', 0)
+        // ->Where('st_grade', '>', 0)
+        // ->Where('is_educational', '=', 'yes')
+        // ->orderBy('site_id')
+        // ->distinct()->groupBy('site_id')
+        // ->get();
 
-        $sites_c = Evaluation_c::where('beta_grade', '>', 0)
-        ->Where('gama_grade', '>', 0)
-        ->Where('delta_grade', '>', 0)
-        ->Where('epsilon_grade', '>', 0)
-        ->Where('st_grade', '>', 0)
-        ->Where('is_educational', '=', 'yes')
-        ->orderBy('site_id')
-        ->distinct()->groupBy('site_id')
-        ->get();
+        // $sites_c = Evaluation_c::where('beta_grade', '>', 0)
+        // ->Where('gama_grade', '>', 0)
+        // ->Where('delta_grade', '>', 0)
+        // ->Where('epsilon_grade', '>', 0)
+        // ->Where('st_grade', '>', 0)
+        // ->Where('is_educational', '=', 'yes')
+        // ->orderBy('site_id')
+        // ->distinct()->groupBy('site_id')
+        // ->get();
 
-        foreach($sites_a as $site){
-            $site_id = $site['site_id'];
-            $grade = new Grade;
-            $grade->site_id = $site_id;
-            $grade->save();
-        }
+        // foreach($sites_a as $site){
+        //     $site_id = $site['site_id'];
+        //     $grade = new Grade;
+        //     $grade->site_id = $site_id;
+        //     $grade->save();
+        // }
 
-        //--------- Phase A ------------------------------------
-        foreach($sites_a as $site_a){
+        // //--------- Phase A ------------------------------------
+        // foreach($sites_a as $site_a){
 
-            $site_a_id = $site_a['site_id'];
+        //     $site_a_id = $site_a['site_id'];
 
-            $evals_a = Evaluation::where('site_id', $site_a_id)->get();
+        //     $evals_a = Evaluation::where('site_id', $site_a_id)->get();
 
-            if($evals_a->count() >= 2){
-                foreach($evals_a as $eval_a){
-                    $grades_a[] = $eval_a->total_grade;
-                }
-            }
+        //     if($evals_a->count() >= 2){
+        //         foreach($evals_a as $eval_a){
+        //             $grades_a[] = $eval_a->total_grade;
+        //         }
+        //     }
 
-            rsort($grades_a);
+        //     rsort($grades_a);
 
-            $a_grade = Grade::where('site_id', $site_a_id)->first();
-            $a_grade->a1_grade = $grades_a[0];
-            $a_grade->a2_grade = $grades_a[1];
-            $a_grade->save();
+        //     $a_grade = Grade::where('site_id', $site_a_id)->first();
+        //     $a_grade->a1_grade = $grades_a[0];
+        //     $a_grade->a2_grade = $grades_a[1];
+        //     $a_grade->save();
 
-            $grades_a = [];
+        //     $grades_a = [];
 
-        } // end sites_a
+        // } // end sites_a
 
 
-        //--------- Phase B ------------------------------------
-        foreach($sites_b as $site_b){
+        // //--------- Phase B ------------------------------------
+        // foreach($sites_b as $site_b){
 
-            $grades_b = [];
+        //     $grades_b = [];
 
-            $site_b_id = $site_b['site_id'];
+        //     $site_b_id = $site_b['site_id'];
 
-            $evals_b = Evaluation_b::where('site_id', $site_b_id)->get();
+        //     $evals_b = Evaluation_b::where('site_id', $site_b_id)->get();
 
-            if($evals_b->count() >= 2){
-                foreach($evals_b as $eval_b){
-                    $grades_b[] = $eval_b->total_grade;
-                }
-            }
+        //     if($evals_b->count() >= 2){
+        //         foreach($evals_b as $eval_b){
+        //             $grades_b[] = $eval_b->total_grade;
+        //         }
+        //     }
 
-            rsort($grades_b);
+        //     rsort($grades_b);
 
-            $b_grade = Grade::where('site_id', $site_b_id)->first();
-            $b_grade->b1_grade = $grades_b[0];
-            $b_grade->b2_grade = $grades_b[1];
-            $b_grade->save();
+        //     $b_grade = Grade::where('site_id', $site_b_id)->first();
+        //     $b_grade->b1_grade = $grades_b[0];
+        //     $b_grade->b2_grade = $grades_b[1];
+        //     $b_grade->save();
 
-        } // end sites_b
+        // } // end sites_b
 
-         //--------- Phase C ------------------------------------
-        foreach($sites_c as $site_c){
+        //  //--------- Phase C ------------------------------------
+        // foreach($sites_c as $site_c){
 
-            $site_c_id = $site_c['site_id'];
+        //     $site_c_id = $site_c['site_id'];
 
-            $evals_c = Evaluation_c::where('site_id', $site_c_id)->get();
+        //     $evals_c = Evaluation_c::where('site_id', $site_c_id)->get();
 
-            if($evals_c->count() >= 2){
-                foreach($evals_c as $eval_c){
-                    $grades_c[] = $eval_c->total_grade;
-                }
-            }
+        //     if($evals_c->count() >= 2){
+        //         foreach($evals_c as $eval_c){
+        //             $grades_c[] = $eval_c->total_grade;
+        //         }
+        //     }
 
-            rsort($grades_c);
+        //     rsort($grades_c);
 
-            $c_grade = Grade::where('site_id', $site_c_id)->first();
-            $c_grade->c1_grade = $grades_c[0];
-            $c_grade->c2_grade = $grades_c[1];
-            $c_grade->save();
+        //     $c_grade = Grade::where('site_id', $site_c_id)->first();
+        //     $c_grade->c1_grade = $grades_c[0];
+        //     $c_grade->c2_grade = $grades_c[1];
+        //     $c_grade->save();
 
-            $grades_c = [];
+        //     $grades_c = [];
 
-        } // end sites_c
+        // } // end sites_c
 
     });
 
     Route::get('admin/store-final-grades', function(){
 
-        $grades = Grade::all();
+        // $grades = Grade::all();
 
-        foreach($grades as $grade){
+        // foreach($grades as $grade){
 
-            if($grade->c1_grade > 0 && $grade->c2_grade > 0){
+        //     if($grade->c1_grade > 0 && $grade->c2_grade > 0){
 
-                $grade->final_grade = 200;
-                $grade->phase = 'c';
-                $grade->save();
+        //         $grade->final_grade = 200;
+        //         $grade->phase = 'c';
+        //         $grade->save();
 
-            } elseif($grade->b1_grade > 0 && $grade->b2_grade > 0){
+        //     } elseif($grade->b1_grade > 0 && $grade->b2_grade > 0){
 
-                $grade->final_grade = ($grade->b1_grade + $grade->b2_grade) / 2;
-                $grade->phase = 'b';
-                $grade->save();
+        //         $grade->final_grade = ($grade->b1_grade + $grade->b2_grade) / 2;
+        //         $grade->phase = 'b';
+        //         $grade->save();
 
-            } elseif($grade->a1_grade > 0 && $grade->a2_grade > 0){
+        //     } elseif($grade->a1_grade > 0 && $grade->a2_grade > 0){
 
-                $grade->final_grade = ($grade->a1_grade + $grade->a2_grade) / 2;
-                $grade->phase = 'a';
-                $grade->save();
+        //         $grade->final_grade = ($grade->a1_grade + $grade->a2_grade) / 2;
+        //         $grade->phase = 'a';
+        //         $grade->save();
 
-            }
+        //     }
 
-        }
+        // }
 
     });
 
@@ -722,8 +722,8 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
         $grades = Grade::all();
 
-        $from = 0;
-        $to = 0;
+        $from = 501;
+        $to = 550;
 
         foreach ($grades as $grade) {
             if($grade->final_grade > 0){
