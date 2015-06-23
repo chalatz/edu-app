@@ -574,7 +574,7 @@
         searching: false,
         info: false,
         "order": [[ 10, "desc" ]]
-    }); 
+    }).columnFilter(); 
     
     $('.admin-table tfoot tr').addClass('pure-form').insertAfter('.admin-table thead');
     $('.dataTables_filter').addClass('pure-form');

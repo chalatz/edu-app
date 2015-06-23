@@ -103,7 +103,11 @@
                 @endif
             @endforeach
 
-        </tbody>    
+        </tbody>
+
+        <tfoot>
+
+        </tfoot>   
 
     </table>   
 

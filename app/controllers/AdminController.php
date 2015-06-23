@@ -193,15 +193,17 @@ class AdminController extends \BaseController {
 
             // Phase B
             $evals_b= Evaluation_b::where('site_id', $site_id)->get();
-            foreach ($evals_b as $eval_b) {
-                $grades_b[] = $eval_b->total_grade;
+            if($evals_b->count() > 0){
+                foreach ($evals_b as $eval_b) {
+                    $grades_b[] = $eval_b->total_grade;
+                }
+                rsort($grades_b);
+                $sites[$site_id]['grade_b_1'] = $grades_b[0];
+                $sites[$site_id]['grade_b_2'] = $grades_b[1];
+                $grades_all[] = $grades_b[0];
+                $grades_all[] = $grades_b[1];            
+                $grades_b = [];
             }
-            rsort($grades_b);
-            $sites[$site_id]['grade_b_1'] = $grades_b[0];
-            $sites[$site_id]['grade_b_2'] = $grades_b[1];
-            $grades_all[] = $grades_b[0];
-            $grades_all[] = $grades_b[1];            
-            $grades_b = [];
 
             // Phase C
             $evals_c= Evaluation_c::where('site_id', $site_id)->get();
