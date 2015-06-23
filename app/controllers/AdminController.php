@@ -1015,6 +1015,95 @@ class AdminController extends \BaseController {
         };
 
     }
+
+    public function graders_info($phase){
+
+        if($phase == 'a'){
+            $evals = Evaluation::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->distinct()->groupBy('grader_id')
+            ->get();
+        }
+
+        if($phase == 'b'){
+            $evals = Evaluation_b::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->distinct()->groupBy('grader_id')
+            ->get();
+        }
+
+        if($phase == 'c'){
+            $evals = Evaluation_c::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->distinct()->groupBy('grader_id')
+            ->get();
+        }
+
+        return View::make('admin.graders_info', compact('evals'));
+
+    }
+
+    public function graders_info_all($phase){
+
+        if($phase == 'a'){
+            $evals = Evaluation::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->get();
+        }
+
+        if($phase == 'b'){
+            $evals = Evaluation_b::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->get();
+        }
+
+        if($phase == 'c'){
+            $evals = Evaluation_c::where('beta_grade', '>', 0)
+            ->Where('gama_grade', '>', 0)
+            ->Where('delta_grade', '>', 0)
+            ->Where('epsilon_grade', '>', 0)
+            ->Where('st_grade', '>', 0)
+            ->Where('total_grade', '>', 19)
+            ->orderBy('grader_id')
+            ->get();
+        }
+
+        return View::make('admin.graders_info_all', compact('evals'));
+
+    }    
+
+    public function sites_info(){
+
+        $sites = Site::all();
+
+        return View::make('admin.sites_info', compact('sites'));
+
+    }
     
     public function isAdmin(){
         if(!Auth::guest()){
