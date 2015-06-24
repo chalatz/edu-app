@@ -3,35 +3,35 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends \BaseController {
-    
-    
+
+
     public function index(){
-         
-        return View::make('admin.index');    
+
+        return View::make('admin.index');
 	}
-    
+
     public function sites(){
 
         $sites = Site::all();
         return View::make('admin.sites', compact('sites'));
-        
+
     }
-    
+
     public function sites_grades_a(){
-        
+
         $sites = Site::orderBy('cat_id')->get();
-        
+
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
         }
-        
+
         return View::make('admin.sites_grades_a', compact('sites', 'max_evals'));
-        
+
     }
 
     public function sites_grades_b(){
@@ -53,21 +53,21 @@ class AdminController extends \BaseController {
         // print_r($site_ids);
         // echo "</pre>";
         // dd();
-        
+
         $sites = Site::orderBy('cat_id')->get();
-        
+
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation_b::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
         }
-        
+
         return View::make('admin.sites_grades_b', compact('sites', 'max_evals', 'site_ids'));
-        
-    }    
+
+    }
 
     public function sites_grades_c(){
 
@@ -78,26 +78,26 @@ class AdminController extends \BaseController {
         foreach ($evaluations as $evaluation) {
             $site_ids[] = $evaluation->site_id;
         }
-        
+
         $sites = Site::orderBy('cat_id')->get();
-        
+
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation_c::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
                 $max_evals = $evals_count;
             }
         }
-        
+
         return View::make('admin.sites_grades_c', compact('sites', 'max_evals', 'site_ids'));
-        
-    }    
+
+    }
 
     public function sites_grades_a_ok(){
-        
+
         $sites = Site::orderBy('cat_id')->get();
-        
+
         $max_evals = 0;
 
         foreach($sites as $site){
@@ -106,15 +106,15 @@ class AdminController extends \BaseController {
                 $max_evals = $evals_count;
             }
         }
-        
+
         return View::make('admin.sites_grades_a_ok', compact('sites', 'max_evals'));
-        
+
     }
 
     public function sites_grades_a_ok_print(){
-        
+
         $sites = Site::orderBy('cat_id')->get();
-        
+
         $max_evals = 0;
 
         foreach($sites as $site){
@@ -123,17 +123,17 @@ class AdminController extends \BaseController {
                 $max_evals = $evals_count;
             }
         }
-        
+
         return View::make('admin.sites_grades_a_ok_print', compact('sites', 'max_evals'));
-        
-    }    
+
+    }
 
     public function a_list($cat_id){
 
         $sites = Site::where('cat_id', $cat_id)->get();
 
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
@@ -150,7 +150,7 @@ class AdminController extends \BaseController {
         $sites = Site::where('cat_id', $cat_id)->get();
 
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation_b::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
@@ -201,7 +201,7 @@ class AdminController extends \BaseController {
                 $sites[$site_id]['grade_b_1'] = $grades_b[0];
                 $sites[$site_id]['grade_b_2'] = $grades_b[1];
                 $grades_all[] = $grades_b[0];
-                $grades_all[] = $grades_b[1];            
+                $grades_all[] = $grades_b[1];
                 $grades_b = [];
             }
 
@@ -215,7 +215,7 @@ class AdminController extends \BaseController {
                 $sites[$site_id]['grade_c_1'] = $grades_c[0];
                 $sites[$site_id]['grade_c_2'] = $grades_c[1];
                 $grades_all[] = $grades_c[0];
-                $grades_all[] = $grades_c[1];            
+                $grades_all[] = $grades_c[1];
                 $grades_c = [];
             }
 
@@ -229,7 +229,7 @@ class AdminController extends \BaseController {
             $average = array_sum($grades_all) / count($grades_all);
             $sites[$site_id]['average'] = $average;
 
-            $grades_all = [];        
+            $grades_all = [];
         }
 
         // foreach ($sites as $site_id=>$value){
@@ -242,14 +242,14 @@ class AdminController extends \BaseController {
 
         return View::make('admin.c_list', compact('sites', 'cat_id'));
 
-    } 
+    }
 
     public function a_list_print($cat_id){
 
         $sites = Site::where('cat_id', $cat_id)->get();
 
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
@@ -266,7 +266,7 @@ class AdminController extends \BaseController {
         $sites = Site::where('cat_id', $cat_id)->get();
 
         $max_evals = 0;
-        
+
         foreach($sites as $site){
             $evals_count = Evaluation_b::where('site_id', $site->id)->count();
             if($evals_count > $max_evals){
@@ -276,22 +276,22 @@ class AdminController extends \BaseController {
 
         return View::make('admin.b_list_print', compact('sites', 'max_evals', 'cat_id'));
 
-    }    
-    
+    }
+
     public function graders(){
-        
+
         $graders = Grader::all();
 
         return View::make('admin.graders', compact('graders'));
-        
+
     }
 
     public function graders_b(){
-        
+
         $graders = Grader::with('user')->get();
 
         return View::make('admin.graders_b', compact('graders'));
-        
+
     }
 
     public function evaluations_report(){
@@ -319,7 +319,7 @@ class AdminController extends \BaseController {
 
         return View::make('admin.evaluations_report_c', compact('evaluations'));
 
-    }    
+    }
 
     public function evaluations_report_print(){
 
@@ -337,10 +337,10 @@ class AdminController extends \BaseController {
 
         return View::make('admin.evaluations_report_print_b', compact('evaluations'));
 
-    }    
-    
+    }
+
     public function not_graded(){
-        
+
         $evaluations = Evaluation::where('beta_grade', '>', 0)
             ->Where('gama_grade', '>', 0)
             ->Where('delta_grade', '>', 0)
@@ -351,15 +351,15 @@ class AdminController extends \BaseController {
             ->get();
 
         return View::make('admin.not_graded', compact('evaluations'));
-        
+
     }
-    
+
     public function sites_that_graded(){
-        
+
         $sites = Site::all();
-        
-        $graders = Grader::all(); 
-        
+
+        $graders = Grader::all();
+
         $evaluations = Evaluation::where('total_grade', '>=', 20)
                         ->Where('can_evaluate', '=', 'yes')
                         ->Where('is_educational', '=', 'yes')
@@ -367,11 +367,11 @@ class AdminController extends \BaseController {
                         ->get();
 
         return View::make('admin.sites_that_graded', compact('sites', 'graders', 'evaluations'));
-        
+
     }
-        
+
     public function sites_bye_bye(){
-        
+
         $evaluations = Evaluation::where('total_grade', '<', 20)
                         ->Where('can_evaluate', '=', 'na')
                         ->distinct()
@@ -380,59 +380,59 @@ class AdminController extends \BaseController {
                         ->get();
 
         return View::make('admin.sites_bye_bye', compact('evaluations'));
-        
+
     }
-    
+
     public function assignments(){
-        
+
         $evaluations = Evaluation::all();
 
         return View::make('admin.assignments', compact('evaluations'));
-        
+
     }
 
     public function assignments_b(){
-        
+
         $evaluations = Evaluation_b::all();
 
         return View::make('admin.assignments_b', compact('evaluations'));
-        
-    }    
-    
+
+    }
+
     public function masquerade($user_id){
 
         // store the id of the ninja user
         Session::put('ninja_id', Auth::user()->id);
-        
+
         $user = User::find($user_id);
-        
+
         Auth::login($user);
-        
+
         return Redirect::home();
     }
-    
+
     public function approve($grader_id, $user_id){
-        
+
         $user = User::find($user_id);
         $grader = Grader::find($grader_id);
-        
+
         if($user->hasRole('admin')){
-            
+
             //-------------- Save current time --------
             $objDateTime = new DateTime('NOW');
-            
+
             $grader->approved_at = $objDateTime;
             $grader->approver = $user->id;
             $grader->approved = 'yes';
-            
+
             $grader->save();
-            
+
             return Redirect::back();
-            
+
         } else {
             return Redirect::home();
         }
-        
+
     }
 
     public function switch_back(){
@@ -449,44 +449,44 @@ class AdminController extends \BaseController {
         return Redirect::home();
 
     }
-    
+
     public function stats(){
-        
+
         $sites = Site::all();
         $cats = Category::all();
         $districts = District::all();
-        
+
         $cats_total = 0;
 
         foreach($cats as $cat){
-            $cats_total += Site::where('cat_id', '=', $cat->id)->count(); 
+            $cats_total += Site::where('cat_id', '=', $cat->id)->count();
         }
-        
+
         return View::make('admin.stats', compact(['sites', 'cats', 'districts', 'cats_total']));
-        
+
     }
 
     public function sites_print(){
 
         $sites = Site::all();
         return View::make('admin.sites_print', compact('sites'));
-        
+
     }
 
     public function graders_print(){
-        
+
         $graders = Grader::all();
 
         return View::make('admin.graders_print', compact('graders'));
-        
-    }    
-    
+
+    }
+
     public function graders_b_print(){
-        
+
         $graders = Grader::all();
 
         return View::make('admin.graders_b_print', compact('graders'));
-        
+
     }
 
     public function manual_cron(){
@@ -506,7 +506,7 @@ class AdminController extends \BaseController {
         $today = new DateTimeImmutable('NOW');
 
         foreach($evaluations_all as $evaluation){
-            
+
             if($evaluation->is_educational != 'no' && $evaluation->can_evaluate != 'no'){
 
                 $assigned_until = new DateTimeImmutable($evaluation->assigned_until);
@@ -547,7 +547,7 @@ class AdminController extends \BaseController {
                         $message->to($grader_email)->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
                     });
                 }
-            }    
+            }
 
         } // end foreach
 
@@ -557,11 +557,11 @@ class AdminController extends \BaseController {
         return Redirect::home();
 
     }
-    
+
     public function notify_late_graders(){
-        
+
         //$evaluations = Evaluation::all();
-        
+
 //         $today = new DateTime('NOW');
 //         $ev = Evaluation::find(1);
 //         $assigned_until = $today->modify('+10 days');
@@ -569,37 +569,37 @@ class AdminController extends \BaseController {
 //         $ev->save();
 //         $thedate = $assigned_until->format('Y-m-d H:i:s');
 //         dd($thedate);
-        
+
         $evaluations = Evaluation::where('beta_grade', '=', 0)
                                         ->orWhere('gama_grade', '=', 0)
                                         ->orWhere('delta_grade', '=', 0)
                                         ->orWhere('epsilon_grade', '=', 0)
                                         ->orWhere('st_grade', '=', 0)
-                                        ->distinct()->groupBy('grader_id')->get(); 
-        
+                                        ->distinct()->groupBy('grader_id')->get();
+
         $evaluations_all = Evaluation::where('beta_grade', '=', 0)
                                         ->orWhere('gama_grade', '=', 0)
                                         ->orWhere('delta_grade', '=', 0)
                                         ->orWhere('epsilon_grade', '=', 0)
                                         ->orWhere('st_grade', '=', 0)
-                                        ->get(); 
-        
+                                        ->get();
+
         $today = new DateTimeImmutable('NOW');
-        
+
         $default_date = new DateTime('2015-01-01 10:00:00');
         $holy_tuesday_2015 = new DateTime('2015-04-07 23:59:00');
-        
+
         $expires_today = [];
         $expires_in_two_days = [];
-        
-        foreach($evaluations_all as $evaluation) {                   
-            
+
+        foreach($evaluations_all as $evaluation) {
+
             $assigned_until = new DateTimeImmutable($evaluation->assigned_until);
 
             $days_diff = $today->diff($assigned_until)->format('%R%a');
 
             // echo $assigned_until->format('d / m / Y') ." , ". $days_diff ."<br>";
-            
+
             // if($assigned_until < $holy_tuesday_2015 && $assigned_until > $default_date) {
             //     $grader_id = $evaluation->grader_id;
             //     $grader = Grader::find($grader_id);
@@ -607,14 +607,14 @@ class AdminController extends \BaseController {
             //     $grader_last_name = $grader->grader_last_name;
             //     $grader_first_name = $grader->grader_name;
             //     echo $grader->user->email ." , ". $assigned_until->format('d / m / Y') ."<br>";
-                
+
             //     $evaluation->assigned_until = $holy_tuesday_2015;
             //     $evaluation->save();
-                
+
             //     Mail::send('emails.expires_then',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($grader_email){
             //         $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - 7ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015');
             //     });
-                
+
             // }
 
             if($days_diff == '+0' || $days_diff == '-0') {
@@ -626,10 +626,10 @@ class AdminController extends \BaseController {
                 $grader_email = $grader->user->email;
                 $grader_last_name = $grader->grader_last_name;
                 $grader_first_name = $grader->grader_name;
-                
+
                 $new_date = $today->modify('+2 days');
                 $new_date_formatted = $new_date->format('d / m / Y');
-                
+
                 // Mail::send('emails.expires_today',['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_sitle' => $site_sitle, 'site_url' => $site_url, 'new_date_formatted' => $new_date_formatted], function($message) use ($grader_email){
                 //     $message->to($grader_email)->subject('ΠΑΡΑΤΑΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΚΡΙΣΗΣ - Edu Web Awards 2015');
                 // });
@@ -653,78 +653,78 @@ class AdminController extends \BaseController {
                 // });
 
             }
-            
+
         }
-        
+
         // foreach($evaluations_all as $evaluation) {
         //     $assigned_until = new DateTime($evaluation->assigned_until);
-            
+
         //     if($assigned_until < $holy_tuesday_2015 && $assigned_until > $default_date) {
-                
+
         //         echo $grader->user->email ." , ". $assigned_until->format('d / m / Y') ."user_id:". $grader->user->id . "<br>";
-                
+
         //         $grader_id = $evaluation->grader_id;
         //         $grader = Grader::find($grader_id);
         //         $grader_email = $grader->user->email;
         //         $grader_last_name = $grader->grader_last_name;
-        //         $grader_first_name = $grader->grader_name;                
-                
+        //         $grader_first_name = $grader->grader_name;
+
         //         $evaluation->assigned_until = $holy_tuesday_2015;
-        //         $evaluation->save();                
+        //         $evaluation->save();
         //     }
         // }
 
         //return View::make('admin.notify_late_graders', compact('expires_today','expires_in_two_days'));
-        
-    }    
-    
+
+    }
+
     public function assign_to_site($site_id){
-        
+
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation::where('site_id', $site_id)->get();
-            
+
             return View::make('admin.assign_to_site', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_to_site', compact('site'));
-        
+
     }
 
     public function assign_b_to_site($site_id){
-        
+
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation::where('site_id', $site_id)->get();
-            
+
             return View::make('admin.assign_b_to_site', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_to_site', compact('site'));
-        
+
     }
 
     public function assign_b_with_sites_to_site($site_id){
 
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation::where('site_id', $site_id)->get();
-            
-            return View::make('admin.assign_b_with_sites_to_site', compact('site', 'evaluations'));            
+
+            return View::make('admin.assign_b_with_sites_to_site', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_with_sites_to_site', compact('site'));
-        
-    }    
+
+    }
 
     public function assign_b_to_site_b($site_id){
 
@@ -757,147 +757,147 @@ class AdminController extends \BaseController {
         // }
 
         // ----------------------------
-        
+
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation_b::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation_b::where('site_id', $site_id)->get();
-            
+
             // return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations', 'the_grader_ids'));
-            return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations'));            
+            return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_to_site_b', compact('site'));
-        
+
     }
 
     public function assign_b_with_sites_to_site_b($site_id){
 
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation_b::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation_b::where('site_id', $site_id)->get();
-            
-            return View::make('admin.assign_b_with_sites_to_site_b', compact('site', 'evaluations'));            
+
+            return View::make('admin.assign_b_with_sites_to_site_b', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_with_sites_to_site_b', compact('site'));
-        
+
     }
 
     public function assign_b_to_site_c($site_id){
-        
+
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation_c::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation_c::where('site_id', $site_id)->get();
-            
+
             // return View::make('admin.assign_b_to_site_b', compact('site', 'evaluations', 'the_grader_ids'));
-            return View::make('admin.assign_b_to_site_c', compact('site', 'evaluations'));            
+            return View::make('admin.assign_b_to_site_c', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_to_site_c', compact('site'));
-        
+
     }
 
     public function assign_b_with_sites_to_site_c($site_id){
 
         $site = Site::find($site_id);
-        
+
         $evaluations_count = Evaluation_c::where('site_id', $site_id)->count();
-        
+
         if($evaluations_count > 0){
             $evaluations = Evaluation_c::where('site_id', $site_id)->get();
-            
-            return View::make('admin.assign_b_with_sites_to_site_c', compact('site', 'evaluations'));            
+
+            return View::make('admin.assign_b_with_sites_to_site_c', compact('site', 'evaluations'));
         }
-        
+
         return View::make('admin.assign_b_with_sites_to_site_c', compact('site'));
-        
-    }        
-    
+
+    }
+
     public function confirm_delete_evaluation_site_grader($evaluation_id) {
-        
+
         $evaluation = Evaluation::find($evaluation_id);
-        
+
         $grader = Grader::find($evaluation->grader_id);
         $site = Site::find($evaluation->site_id);
-        
+
         return View::make('admin.confirm_delete_evaluation_site_grader', compact('evaluation', 'grader', 'site'));
-        
+
     }
 
     public function confirm_delete_evaluation_site_grader_b($evaluation_id) {
-        
+
         $evaluation = Evaluation::find($evaluation_id);
-        
+
         $grader = Grader::find($evaluation->grader_id);
         $site = Site::find($evaluation->site_id);
-        
+
         return View::make('admin.confirm_delete_evaluation_site_grader_b', compact('evaluation', 'grader', 'site'));
-        
+
     }
 
     public function confirm_delete_evaluation_b_site_grader_b($evaluation_id) {
-        
+
         $evaluation = Evaluation_b::find($evaluation_id);
-        
+
         $grader = Grader::find($evaluation->grader_id);
         $site = Site::find($evaluation->site_id);
-        
+
         return View::make('admin.confirm_delete_evaluation_b_site_grader_b', compact('evaluation', 'grader', 'site'));
-        
+
     }
 
     public function confirm_delete_evaluation_c_site_grader_b($evaluation_id) {
-        
+
         $evaluation = Evaluation_c::find($evaluation_id);
-        
+
         $grader = Grader::find($evaluation->grader_id);
         $site = Site::find($evaluation->site_id);
-        
+
         return View::make('admin.confirm_delete_evaluation_c_site_grader_b', compact('evaluation', 'grader', 'site'));
-        
-    } 
-    
-    
+
+    }
+
+
     // Assign a grader to a site
     public function assign_evaluation_grader_site($evaluation_id, $site_id, $grader_id){
-        
-        
-        
+
+
+
     }
-    
+
     public function send_to_late_graders() {
-        
+
         $evaluations = Evaluation::distinct()->select('grader_id')->where('can_evaluate', '=', 'na')->groupBy('grader_id')->get();
 
         foreach($evaluations as $evaluation){
             $grader = Grader::find($evaluation->grader_id);
             if($grader->user->hasRole('grader')){
                 echo $grader->user->email . "<br>";
-                
+
                 $grader_email = $grader->user->email;
-                
+
 //                 Mail::send('emails.send_to_late_graders',[], function($message) use ($grader_email){
 //                     $message->to($grader_email)->subject('Αποδοχή συμμετοχής ως Αξιολογητής Α - Edu Web Awards 2015');
-//                 }); 
-                
+//                 });
+
             }
-        }             
-        
+        }
+
     }
-    
-    public function send_to_graders_a_to_accept(){        
-        
-        $graders = Grader::all();       
-        
+
+    public function send_to_graders_a_to_accept(){
+
+        $graders = Grader::all();
+
         foreach ($graders as $grader){
             if($grader->user->hasRole('grader') && !$grader->user->hasRole('grader_b')){
                 if($grader->user->email != $grader->from_who_email && $grader->has_agreed == 'na' && $grader->from_who_email != '2006@windtools.gr'){
@@ -907,7 +907,7 @@ class AdminController extends \BaseController {
                     $site_title = $grader->sites->first()->title;
                     $site = $grader->sites->first();
                     $from_who_email = $grader->from_who_email;
-                    
+
                     echo $from_who_email . "<br>";
 
 //                     Mail::send('emails.send_to_graders_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'site_title' => $site_title], function($message) use ($grader_email){
@@ -916,33 +916,33 @@ class AdminController extends \BaseController {
 
 //                         Mail::send('emails.send_to_sites_a_to_accept', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name], function($message) use ($from_who_email){
 //                             $message->to($from_who_email)->subject('Σχετικά με τον Αξιολογητή Α που έχετε προτείνει - Edu Web Awards 2015');
-//                         });                        
+//                         });
 
                 }
             }
-        }       
-        
+        }
+
     }
-    
+
     public function send_to_graders_a_to_begin(){
-        
+
         $graders = Grader::all();
-        
+
         $from = 0;
         $to = 0;
-        
+
         $evals = array();
         $c = 0;
 
         foreach($graders as $grader){
             if($grader->user->hasRole('grader')){
-                $grader_id = $grader->id;                
+                $grader_id = $grader->id;
                 if($grader_id > $from && $grader_id <= $to){
                     $grader_email = $grader->user->email;
                     $grader_last_name = $grader->grader_last_name;
                     $grader_first_name = $grader->grader_name;
-                    
-                    $evaluations = Evaluation::where('grader_id', $grader_id)->get();                    
+
+                    $evaluations = Evaluation::where('grader_id', $grader_id)->get();
 
                     $i = 0;
                     foreach($evaluations as $evaluation) {
@@ -950,32 +950,32 @@ class AdminController extends \BaseController {
                         $evals['site_title'][$i] = $site->title;
                         $evals['site_url'][$i] = $site->site_url;
                         $i++;
-                    }                    
-                    
+                    }
+
                     // echo "last name: " . $grader_last_name . "<br>";
                     // echo "first name: " . $grader_first_name . "<br>";
                     // echo "|||||||||||||||||||||" . "<br>";
-                    
-                    // for($j = 0; $j<sizeof($evals); $j++){                
+
+                    // for($j = 0; $j<sizeof($evals); $j++){
                     //     echo "site title: " . $evals['site_title'][$j] . "<br>";
                     //     echo "site url: " . $evals['site_url'][$j] . "<br>";
                     //     echo "*********************" . "<br>";
-                    // }                    
+                    // }
                     // echo "----------------------------" . "<br>";
-                    
+
                     $the_evals =  json_encode($evals);
-                    
+
                     Mail::send('emails.send_to_graders_a_to_begin', ['grader_last_name' => $grader_last_name, 'grader_first_name' => $grader_first_name, 'the_evals' => $the_evals], function($message) use ($grader_email){
                         $message->to($grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Α - Edu Web Awards 2015');
                     });
 
                     $c++;
-                    echo $c . " | ". $grader_email ."<br>";                 
-                                                                 
+                    echo $c . " | ". $grader_email ."<br>";
+
                 }
             }
         }
-        
+
     }
 
     public function send_to_graders_b_to_begin(){
@@ -1097,7 +1097,7 @@ class AdminController extends \BaseController {
 
         return View::make('admin.graders_info_all', compact('evals'));
 
-    }    
+    }
 
     public function sites_info(){
 
@@ -1110,7 +1110,25 @@ class AdminController extends \BaseController {
         return View::make('admin.sites_info', compact('sites', 'non_educational'));
 
     }
-    
+
+    public function the_big_list($phase){
+
+      $sites = Site::all();
+
+      if($phase == 'a'){
+        $evals = Evaluation::all();
+      }
+      if($phase == 'b'){
+        $evals = Evaluation_b::all();
+      }
+      if($phase == 'c'){
+        $evals = Evaluation_c::all();
+      }
+
+      return View::make('admin.the_big_list', compact('sites', 'evals'));
+
+    }
+
     public function isAdmin(){
         if(!Auth::guest()){
             if(Auth::user()->type == 'admin'){
@@ -1121,8 +1139,8 @@ class AdminController extends \BaseController {
         } else {
             return false;
         }
-        
+
         return false;
     }
-    
+
 }

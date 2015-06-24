@@ -749,5 +749,6 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
     Route::get('/admin/graders-info/{phase}', ['as' => 'admin.graders_info', 'uses' => 'AdminController@graders_info']);
     Route::get('/admin/sites-info/', ['as' => 'admin.sites_info', 'uses' => 'AdminController@sites_info']);
     Route::get('/admin/graders-info-all/{phase}', ['as' => 'admin.graders_info_all', 'uses' => 'AdminController@graders_info_all']);
+    Route::get('/admin/the-big-list/{phase}', ['as' => 'admin.the_big_list', 'uses' => 'AdminController@the_big_list']);
 
 });
