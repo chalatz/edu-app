@@ -423,7 +423,7 @@ class SitesController extends \BaseController {
 
 			$grades = Grade::where('site_id', $site_id)->first();
 
-			$final_grade = $grades->final_grade;
+			$final_grade = $grades->the_final_grade;
 			$the_phase = $grades->phase;
 
 			if($the_phase == 'a'){

@@ -207,15 +207,17 @@ class AdminController extends \BaseController {
 
             // Phase C
             $evals_c= Evaluation_c::where('site_id', $site_id)->get();
-            foreach ($evals_c as $eval_c) {
-                $grades_c[] = $eval_c->total_grade;
+            if($evals_c->count() > 0){
+                foreach ($evals_c as $eval_c) {
+                    $grades_c[] = $eval_c->total_grade;
+                }
+                rsort($grades_c);
+                $sites[$site_id]['grade_c_1'] = $grades_c[0];
+                $sites[$site_id]['grade_c_2'] = $grades_c[1];
+                $grades_all[] = $grades_c[0];
+                $grades_all[] = $grades_c[1];            
+                $grades_c = [];
             }
-            rsort($grades_c);
-            $sites[$site_id]['grade_c_1'] = $grades_c[0];
-            $sites[$site_id]['grade_c_2'] = $grades_c[1];
-            $grades_all[] = $grades_c[0];
-            $grades_all[] = $grades_c[1];            
-            $grades_c = [];
 
             sort($grades_all);
             $min_grade = array_shift($grades_all);

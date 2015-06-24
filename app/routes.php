@@ -696,19 +696,19 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
         //     if($grade->c1_grade > 0 && $grade->c2_grade > 0){
 
-        //         $grade->final_grade = 200;
+        //         $grade->the_final_grade = $grade->final_grade;
         //         $grade->phase = 'c';
         //         $grade->save();
 
         //     } elseif($grade->b1_grade > 0 && $grade->b2_grade > 0){
 
-        //         $grade->final_grade = ($grade->b1_grade + $grade->b2_grade) / 2;
+        //         $grade->the_final_grade = ($grade->b1_grade + $grade->b2_grade) / 2;
         //         $grade->phase = 'b';
         //         $grade->save();
 
         //     } elseif($grade->a1_grade > 0 && $grade->a2_grade > 0){
 
-        //         $grade->final_grade = ($grade->a1_grade + $grade->a2_grade) / 2;
+        //         $grade->the_final_grade = ($grade->a1_grade + $grade->a2_grade) / 2;
         //         $grade->phase = 'a';
         //         $grade->save();
 
