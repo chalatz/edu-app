@@ -1054,7 +1054,7 @@ class AdminController extends \BaseController {
             ->get();
         }
 
-        return View::make('admin.graders_info', compact('evals'));
+        return View::make('admin.graders_info', compact('evals', 'phase'));
 
     }
 
@@ -1101,7 +1101,11 @@ class AdminController extends \BaseController {
 
         $sites = Site::all();
 
-        return View::make('admin.sites_info', compact('sites'));
+        $non_educational = [];
+
+        $non_educational = [294, 64];
+
+        return View::make('admin.sites_info', compact('sites', 'non_educational'));
 
     }
     

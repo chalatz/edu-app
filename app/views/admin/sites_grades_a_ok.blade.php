@@ -62,7 +62,7 @@
         <tbody>
             @foreach($sites as $site)
                 <?php
-                    $evaluations = Evaluation::where('site_id', $site->id)->where('phase', 'a')->get();
+                    $evaluations = Evaluation::where('site_id', $site->id)->get();
                     $eval_count = $evaluations->count();
 
                     $tg_sum = 0;
