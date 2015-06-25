@@ -1113,19 +1113,17 @@ class AdminController extends \BaseController {
 
     public function the_big_list($phase){
 
-      $sites = Site::all();
-
       if($phase == 'a'){
-        $evals = Evaluation::all();
+        $evals = Evaluation::orderBy('site_id')->get();
       }
       if($phase == 'b'){
-        $evals = Evaluation_b::all();
+        $evals = Evaluation_b::orderBy('site_id')->get();
       }
       if($phase == 'c'){
-        $evals = Evaluation_c::all();
+        $evals = Evaluation_c::orderBy('site_id')->get();
       }
 
-      return View::make('admin.the_big_list', compact('sites', 'evals'));
+      return View::make('admin.the_big_list', compact('evals'));
 
     }
 
