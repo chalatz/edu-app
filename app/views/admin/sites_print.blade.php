@@ -1,6 +1,6 @@
 @extends('layouts.bare')
 
-@section('content')   
+@section('content')
 
     <?php $languages = [
         '1' => 'Ελληνικά',
@@ -11,7 +11,7 @@
     ]; ?>
 
     <table class="pure-table pure-table-horizontal pure-table-striped">
-    
+
         <thead>
             <tr>
                 <th>Κωδικός</th>
@@ -32,11 +32,12 @@
                 <th>Όνομα Υπεύθυνου επικοινωνίας</th>
                 <th>Email Επικοινωνίας</th>
                 <th>Τηλέφωνα</th>
+                <th>Ταχ. Διεύθυνση</th>
                 <th>Αυτοπροτείνεται</th>
                 <th>Δημιουργήθηκε</th>
             </tr>
         </thead>
-        
+
         <tbody>
             @foreach($sites as $site)
 
@@ -59,6 +60,7 @@
                     <td>{{ $site->contact_name }}</td>
                     <td>{{ $site->contact_email }}</td>
                     <td>{{ $site->phone }}</td>
+                    <td>{{ $site->address }}</td>
                     <td>{{ $site->proposes_himself }}</td>
                     <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
                 </tr>

@@ -1,5 +1,5 @@
 <fieldset>
-	
+
 	{{ Form::label('grader_last_name', 'Επώνυμο *') }}
     {{ Form::text('grader_last_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('grader_last_name') }}</p>
@@ -7,7 +7,7 @@
 	{{ Form::label('grader_name', 'Όνομα *') }}
     {{ Form::text('grader_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('grader_name') }}</p>
-    
+
     {{ Form::label('specialty', 'Ειδικότητα *') }}
     {{ Form::select('specialty', $specialties, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('specialty') }}</p>
@@ -15,6 +15,9 @@
     {{ Form::label('grader_district_id', 'Περιφέρεια *') }}
     {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
+
+		{{ Form::label('address', 'Ταχ. Διεύθυνση') }}
+    {{ Form::text('address', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
     <p>
@@ -52,16 +55,16 @@
     <hr>
 
     {{ Form::label('personal_url', 'URL Προσωπικού Ιστότοπου') }}
-    {{ Form::text('personal_url', null, array('class' => 'pure-input-1')) }}    
+    {{ Form::text('personal_url', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('personal_xp', 'Εμπειρία Δημιουργίας - Αξιολόγησης Ιστότοπων') }}
-    {{ Form::text('personal_xp', null, array('class' => 'pure-input-1')) }}    
+    {{ Form::text('personal_xp', null, array('class' => 'pure-input-1')) }}
 
     {{ Form::label('personal_cv', 'Υποβολή Βιογραφικού') }}
     {{ Form::text('personal_cv', null, array('class' => 'pure-input-1')) }}
-    <div class="instructions">Παραθέστε έναν σύνδεσμο από Google Drive, Dropbox κλπ ή οπουδήποτε μπορούμε να δούμε το Βιογραφικό σας.</div>    
-   
-    <hr>    
+    <div class="instructions">Παραθέστε έναν σύνδεσμο από Google Drive, Dropbox κλπ ή οπουδήποτε μπορούμε να δούμε το Βιογραφικό σας.</div>
+
+    <hr>
 
     <label>Ξένες γλώσσες που γνωρίζω</label>
 
@@ -122,6 +125,6 @@
 
     <hr>
     {{ Form::label('comments', 'Παρατηρήσεις, Σχόλια') }}
-    {{ Form::textarea('comments', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1')) }}    
+    {{ Form::textarea('comments', null, array('rows' => 3, 'cols' => '50', 'class' => 'pure-input-1')) }}
 
-</fieldset>	
+</fieldset>

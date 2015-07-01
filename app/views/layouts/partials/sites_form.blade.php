@@ -1,6 +1,6 @@
 <fieldset>
     <h3>Στοιχεία Υποψήφιου Ιστότοπου</h3>
-    
+
     {{ Form::label('site_url', 'URL Ιστοσελίδας *') }}
     {{ Form::url('site_url', null, array('class' => 'pure-input-1', 'required')) }}
     <div class="instructions">Θα πρέπει να ξεκινάει από http://</div>
@@ -24,7 +24,7 @@
     {{ Form::label('responsible', 'Νομικά υπεύθυνος *') }}
     {{ Form::text('responsible', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('responsible') }}</p>
-    
+
     {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου *') }}
     {{ Form::text('responsible_type', null, array('class' => 'pure-input-1', 'required')) }}
     <div class="instructions">π.χ Διευθυντής, Προϊστάμενος, Εκπαιδευτικός, κλπ</div>
@@ -33,19 +33,19 @@
     {{ Form::label('district_id', 'Περιφέρεια *') }}
     {{ Form::select('district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('district_id') }}</p>
-    
+
     {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός)') }}
     {{ Form::select('county_id', $counties_array, null, array('class' => 'pure-input-1')) }}
     <p></p>
-    
+
     {{ Form::label('country_id', 'Χώρα') }}
     {{ Form::select('country_id', $countries, null, array('class' => 'pure-input-1')) }}
     <p></p>
-    
+
     {{ Form::label('language_id', 'Γλώσσα Ιστότοπου') }}
     {{ Form::select('language_id', $languages, null, array('class' => 'pure-input-1')) }}
     <p></p>
-    
+
     {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών;') }}
     {{ Form::select('uses_private_data',[
         '' => 'Επιλέξτε...',
@@ -84,7 +84,7 @@
 <fieldset>
 
     <h3>Στοιχεία Επικοινωνίας Υποψηφιότητας</h3>
-    
+
     {{ Form::label('contact_last_name', 'Επώνυμο Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
     {{ Form::text('contact_last_name', null, array('class' => 'pure-input-1', 'required', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους')) }}
     <p class="error-message">{{ $errors->first('contact_last_name') }}</p>
@@ -100,5 +100,8 @@
     {{ Form::label('phone', 'Τηλέφωνα επικοινωνίας *') }}
     {{ Form::text('phone', null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('phone') }}</p>
+
+    {{ Form::label('address', 'Ταχ. Διεύθυνση') }}
+    {{ Form::text('address', null, array('class' => 'pure-input-1')) }}
 
 </fieldset>

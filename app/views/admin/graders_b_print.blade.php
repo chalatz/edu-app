@@ -1,9 +1,9 @@
-@extends('layouts.bare')  
+@extends('layouts.bare')
 
     @section('content')
-    
+
         <table>
-        
+
             <thead>
                 <tr>
                     <th>Κωδικός</th>
@@ -12,6 +12,7 @@
                     <th>Email</th>
                     <th>Ειδικότητα</th>
                     <th>Περιφέρεια</th>
+                    <th>Ταχ. Διεύθυνση</th>
                     <th>Κατηγορίες που επιθυμεί</th>
                     <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
                     <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
@@ -21,7 +22,7 @@
                     <th>Δημιουργήθηκε</th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 @foreach($graders as $grader)
 
@@ -41,7 +42,7 @@
                         if($grader->user->hasRole('admin')){
                             $grader_code = 'Γ' . sprintf("%03d", $grader->id);
                         }
-                    ?>                    
+                    ?>
 
                         <tr>
                             <td>{{ $grader_code }}</td>
@@ -50,6 +51,7 @@
                             <td>{{ $grader->user->email }}</td>
                             <td>@if(isset($grader->specialty)) {{Specialty::find($grader->specialty)->specialty_name}} @endif</td>
                             <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }}@endif</td>
+                            <td>{{ $grader->address }}</td>
                             <td>{{ $grader->desired_category }}</td>
                             <td>{{ $grader->past_grader }}</td>
                             <td>{{ $grader->past_grader_more }}</td>

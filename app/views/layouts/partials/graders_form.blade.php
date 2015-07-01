@@ -17,6 +17,9 @@
     {{ Form::select('grader_district_id', $districts, null, array('class' => 'pure-input-1', 'required')) }}
     <p class="error-message">{{ $errors->first('grader_district_id') }}</p>
 
+    {{ Form::label('address', 'Ταχ. Διεύθυνση') }}
+    {{ Form::text('address', null, array('class' => 'pure-input-1')) }}
+
     <?php $cats_array = explode('|', $grader->desired_category); ?>
     {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
     <p>

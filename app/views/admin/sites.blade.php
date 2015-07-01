@@ -13,12 +13,12 @@
 	<h1>Υποψήφιοι Ιστότοποι</h1>
 
     <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
+        <i class="fa fa-table"></i>
         {{ link_to('/admin/sites/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
     </p>
 
     <table id="sites-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
-    
+
         <thead>
             <tr>
                 <th>Κωδικός</th>
@@ -39,6 +39,7 @@
                 <th>Όνομα Υπεύθυνου επικοινωνίας</th>
                 <th>Email Επικοινωνίας</th>
                 <th>Τηλέφωνα</th>
+                <th>Ταχ. Διεύθυνση</th>
                 <th>Αυτοπροτείνεται</th>
                 <th>Δημιουργήθηκε</th>
                 @if(Auth::user()->hasRole('ninja'))
@@ -46,7 +47,7 @@
                 @endif
             </tr>
         </thead>
-        
+
         <tbody>
             @foreach($sites as $site)
 
@@ -69,6 +70,7 @@
                     <td>{{ $site->contact_name }}</td>
                     <td>{{ $site->contact_email }}</td>
                     <td>{{ $site->phone }}</td>
+                    <td>{{ $site->address }}</td>
                     <td>{{ $site->proposes_himself }}</td>
                     <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
                     @if(Auth::user()->hasRole('ninja'))
@@ -78,7 +80,7 @@
 
             @endforeach
         </tbody>
-        
+
         <tfoot>
             <tr>
                 <th>Κωδικός</th>
@@ -99,6 +101,7 @@
                 <th>Όνομα Υπεύθυνου επικοινωνίας</th>
                 <th>Email Επικοινωνίας</th>
                 <th>Τηλέφωνα</th>
+                <th>Ταχ. Διεύθυνση</th>
                 <th>Αυτοπροτείνεται</th>
                 <th>Δημιουργήθηκε</th>
             </tr>

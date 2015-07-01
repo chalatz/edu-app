@@ -6,12 +6,12 @@
 	<h1>Αξιολογητές Α</h1>
 
     <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
+        <i class="fa fa-table"></i>
         {{ link_to('/admin/graders/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
     </p>
 
     <table id="graders-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
-    
+
         <thead>
             <tr>
                 <th>Κωδικός</th>
@@ -21,6 +21,7 @@
                 <th>Τηλ. Ιστότοπου που τον πρότεινε</th>
                 <th>Ειδικότητα</th>
                 <th>Περιφέρεια</th>
+								<th>Ταχ. Διεύθυνση</th>
                 <th>Κατηγορίες που επιθυμεί</th>
                 <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
                 <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
@@ -39,7 +40,7 @@
                 @endif
             </tr>
         </thead>
-        
+
         <tbody>
             @foreach($graders as $grader)
 
@@ -69,6 +70,7 @@
                         <td>@foreach($grader->sites as $site) {{ $site->phone }} @endforeach</td>
                         <td>@if(isset($grader->specialty)) {{Specialty::find($grader->specialty)->specialty_name}} @endif</td>
                         <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }}@endif</td>
+												<td>{{ $grader->address }}</td>
                         <td>{{ $grader->desired_category }}</td>
                         <td>{{ $grader->past_grader }}</td>
                         <td>{{ $grader->past_grader_more }}</td>
@@ -96,7 +98,7 @@
 
             @endforeach
         </tbody>
-        
+
         <tfoot>
             <th>Κωδικός</th>
             <th>Eπώνυμο</th>
@@ -105,6 +107,7 @@
             <th>Τηλέφωνο</th>
             <th>Ειδικότητα</th>
             <th>Περιφέρεια</th>
+						<th>Ταχ. Διεύθυνση</th>
             <th>Κατηγορίες που επιθυμεί</th>
             <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
             <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
@@ -117,8 +120,7 @@
             <th>Περιφέρεια Ιστότοπου</th>
             <th>Αυτοπροτάθηκε</th>
             <th>Αποδέχτηκε</th>
-            <th>Δημιουργήθηκε</th>    
-        
+            <th>Δημιουργήθηκε</th>
         </tfoot>
 
     </table>

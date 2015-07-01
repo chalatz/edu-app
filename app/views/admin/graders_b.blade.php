@@ -6,12 +6,12 @@
 	<h1>Αξιολογητές Β</h1>
 
     <p style="float: left" class="little-block light-blue white-font">
-        <i class="fa fa-table"></i> 
+        <i class="fa fa-table"></i>
         {{ link_to('/admin/graders_b/print', 'Εκτυπώσιμη Μορφή', ['target' => '_blank', 'class' => 'white-font']) }}
-    </p>    
+    </p>
 
     <table id="graders-table" class="admin-table pure-table pure-table-horizontal pure-table-striped">
-    
+
         <thead>
             <tr>
                 @if(Auth::user()->hasRole('ninja'))
@@ -24,6 +24,7 @@
                 <th>Email</th>
                 <th>Ειδικότητα</th>
                 <th>Περιφέρεια</th>
+								<th>Ταχ. Διεύθυνση</th>
                 <th>Κατηγορίες που επιθυμεί</th>
                 <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
                 <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
@@ -35,7 +36,7 @@
                 @endif
             </tr>
         </thead>
-        
+
         <tbody>
             @foreach($graders as $grader)
 
@@ -75,6 +76,7 @@
                         <td>{{ $grader->user->email }}</td>
                         <td>@if(isset($grader->specialty)) {{Specialty::find($grader->specialty)->specialty_name}} @endif</td>
                         <td>@if($grader->district_id != 100){{ District::find($grader->district_id)->district_name }}@endif</td>
+												<td>{{ $grader->address }}</td>
                         <td>{{ $grader->desired_category }}</td>
                         <td>{{ $grader->past_grader }}</td>
                         <td>{{ $grader->past_grader_more }}</td>
@@ -95,7 +97,7 @@
 
             @endforeach
         </tbody>
-        
+
         <tfoot>
              @if(Auth::user()->hasRole('ninja'))
                 <th></th>
@@ -107,13 +109,14 @@
             <th>Email</th>
             <th>Ειδικότητα</th>
             <th>Περιφέρεια</th>
+						<th>Ταχ. Διεύθυνση</th>
             <th>Κατηγορίες που επιθυμεί</th>
             <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
             <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
             <th>Ξένες Γλώσσες</th>
             <th>Άλλες Ξένες Γλώσσες</th>
-            <th>Δημιουργήθηκε</th>    
-        
+            <th>Δημιουργήθηκε</th>
+
         </tfoot>
 
     </table>
