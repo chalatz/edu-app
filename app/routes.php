@@ -745,6 +745,70 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     });
 
+    Route::get('questionnaire/to/sites', function(){
+
+      $grades = Grade::all();
+
+      $from = 500;
+      $to = 600;
+
+      foreach($grades as $grade){
+
+        $site_id = $grade->site_id;
+
+        if($site_id > $from && $site_id <= $to){
+
+          $site = Site::find($site_id);
+          $the_email = $site->contact_email;
+
+          // Mail::later(5, 'emails.send_questionnaire_to_sites',[], function($message) use ($the_email){
+          //     $message->to($the_email)->subject('9η Ανακοίνωση (Αξιολόγηση και κλήρωση δώρου αξιολογητή) - Edu Web Awards 2015');
+          // });
+
+          echo $the_email . '<br>';
+
+        }
+
+      }
+
+    });
+
+    Route::get('questionnaire/to/graders', function() {
+
+      $from = 51;
+      $to = 100;
+
+      $graders = Grader::all();
+
+      foreach ($graders as $grader) {
+
+        $grader_id = $grader->id;
+
+        if($grader_id > $from && $grader_id <= $to){
+
+          $evals_a =  Evaluation::where('grader_id', $grader_id)->count();
+          $evals_b =  Evaluation_b::where('grader_id', $grader_id)->count();
+          $evals_c =  Evaluation_c::where('grader_id', $grader_id)->count();
+
+          if($evals_a > 0 || $evals_b > 0 || $evals_c > 0) {
+
+            $the_email = $grader->user->email;
+
+            Mail::later(5, 'emails.send_questionnaire_to_graders',[], function($message) use ($the_email){
+                $message->to($the_email)->subject('9η Ανακοίνωση (Αξιολόγηση και κλήρωση δώρου αξιολογητή) - Edu Web Awards 2015');
+            });
+
+            echo $the_email . '<br>';
+
+          }
+
+        }
+
+      }
+
+
+    });
+
     // For certificates
     Route::get('/admin/graders-info/{phase}', ['as' => 'admin.graders_info', 'uses' => 'AdminController@graders_info']);
     Route::get('/admin/sites-info/', ['as' => 'admin.sites_info', 'uses' => 'AdminController@sites_info']);
