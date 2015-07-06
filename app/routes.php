@@ -775,8 +775,8 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
     Route::get('questionnaire/to/graders', function() {
 
-      $from = 51;
-      $to = 100;
+      $from = 651;
+      $to = 700;
 
       $graders = Grader::all();
 
@@ -794,9 +794,9 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
 
             $the_email = $grader->user->email;
 
-            Mail::later(5, 'emails.send_questionnaire_to_graders',[], function($message) use ($the_email){
-                $message->to($the_email)->subject('9η Ανακοίνωση (Αξιολόγηση και κλήρωση δώρου αξιολογητή) - Edu Web Awards 2015');
-            });
+            // Mail::later(5, 'emails.send_questionnaire_to_graders',[], function($message) use ($the_email){
+            //     $message->to($the_email)->subject('9η Ανακοίνωση (Αξιολόγηση και κλήρωση δώρου αξιολογητή) - Edu Web Awards 2015');
+            // });
 
             echo $the_email . '<br>';
 
