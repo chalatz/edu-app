@@ -278,6 +278,30 @@ class AdminController extends \BaseController {
 
     }
 
+    public function special_praises_print($cat_id){
+
+        //$sites = Site::where('cat_id', $cat_id)->get();
+
+        if($cat_id == 1){
+          $sites = [88,312,59,16,426,383,509,82,453,111,144];
+        }
+
+        if($cat_id == 2){
+          $sites = [236,130,449,491,289,444,440];
+        }
+
+        if($cat_id == 3){
+          $sites = [277,371,391,235,246,204,388,188,512,362];
+        }
+
+        if($cat_id == 6){
+          $sites = [129,380,224,237,3,165,149,173,166];
+        }
+
+        return View::make('admin.special_praises_print', compact('sites'));
+
+    }
+
     public function graders(){
 
         $graders = Grader::all();

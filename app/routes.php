@@ -814,5 +814,7 @@ Route::group(['before' => 'auth|admin|nonja'], function(){
     Route::get('/admin/sites-info/', ['as' => 'admin.sites_info', 'uses' => 'AdminController@sites_info']);
     Route::get('/admin/graders-info-all/{phase}', ['as' => 'admin.graders_info_all', 'uses' => 'AdminController@graders_info_all']);
     Route::get('/admin/the-big-list/{phase}', ['as' => 'admin.the_big_list', 'uses' => 'AdminController@the_big_list']);
+    Route::get('/admin/special-praises/print/{cat_id}', ['as' => 'admin.special_praises_print', 'uses' => 'AdminController@special_praises_print']);
+
 
 });
