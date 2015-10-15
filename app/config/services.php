@@ -15,7 +15,7 @@ return array(
 	*/
 
 	'mandrill' => array(
-		'secret' => 'kUVo6mu0dHSIZbiJMKFd1Q',
+		'secret' => $_ENV['MANDRILL_SECRET'],
 	),
 
 );

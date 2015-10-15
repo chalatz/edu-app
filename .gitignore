@@ -8,7 +8,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 Thumbs.db
-/app/config/database.php
-app/config/database.php
 **.sass-cache**
 cron.txt
