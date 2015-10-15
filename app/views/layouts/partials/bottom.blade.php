@@ -26,6 +26,11 @@
 	    		Σχεδίαση αλγορίθμου αναθέσεων: <a href="https://github.com/sstergou" target="_blank">Στέργου Ευστάθιος</a>
 	    	</p>
 	    </div>
+	    <div class="pure-u-1 pure-u-md-1-2">
+	    	<p>
+	    		<i class="fa fa-github"></i> Δείτε τον κώδικα στο <a href="https://github.com/chalatz/edu-app" target="_blank">Github</a>
+	    	</p>
+	    </div>	    
 	</div>
 
 </div>
