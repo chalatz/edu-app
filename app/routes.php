@@ -270,11 +270,11 @@ Route::get('optgroup', function(){
 });
 
 # Test Email
-Route::get('testemail', function(){
-    Mail::send('emails.test', [], function($message){
-        $message->to('chalatz@yahoo.gr')->subject('Hello from Laravel and Mandrill');
-    });
-});
+// Route::get('testemail', function(){
+//     Mail::send('emails.test', [], function($message){
+//         $message->to('chalatz@yahoo.gr')->subject('Hello from Laravel and Mandrill');
+//     });
+// });
 
 // Route::get('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
 // Route::post('users/login', ['as' => 'users.logmein', 'uses' => 'UsersController@logmein']);
