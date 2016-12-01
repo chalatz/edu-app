@@ -64,7 +64,7 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503);
+	return Response::make("Νέα διεύθυνση: <a href='http://www.eduwebawards.gr/app2/public/'>http://www.eduwebawards.gr/app2/public/</a>", 503);
 });
 
 App::missing(function($exception)
